@@ -1,4 +1,4 @@
-int make_shot_01(char type, char field[][3])
+int make_shot_olenev(char type, char field[][3])
 {
     for(int i = 0; i < 3; i++)
     {
