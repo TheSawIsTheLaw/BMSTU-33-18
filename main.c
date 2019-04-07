@@ -8,10 +8,11 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <xo_ai_01.h>
 #include <xo_ai_02.h>
-
+#include <xo_ai_perestoronin.h>
 // #include <xo_ai_02.h>
 // #include <xo_ai_02.h>
 // #include <xo_ai_02.h>
@@ -91,6 +92,4 @@ int main(void){
 
     return 0;
 
-
-    return 0;
 }
