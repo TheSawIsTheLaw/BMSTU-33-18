@@ -1,8 +1,18 @@
+/* Распределение ролей по написанию модулей 
+
+Прохорова Любовь, Кривозубов Владислав - функция check_win
+Илья Челядинов - функция copy_battlefield
+Лемешкин Богдан - функция print_battlefield
+Саркисов Артём, Топорков Павел - функция anti_cheat
+
+*/
+
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <xo_ai_01.h>
 #include <xo_ai_02.h>
-
+#include <xo_ai_perestoronin.h>
 // #include <xo_ai_02.h>
 // #include <xo_ai_02.h>
 // #include <xo_ai_02.h>
@@ -82,6 +92,4 @@ int main(void){
 
     return 0;
 
-
-    return 0;
 }
