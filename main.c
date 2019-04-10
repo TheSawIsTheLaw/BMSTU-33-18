@@ -13,6 +13,7 @@
 #include <xo_ai_01.h>
 #include <xo_ai_02.h>
 #include <xo_ai_perestoronin.h>
+#include <xo_ai_romanov.h>
 // #include <xo_ai_02.h>
 // #include <xo_ai_02.h>
 // #include <xo_ai_02.h>
