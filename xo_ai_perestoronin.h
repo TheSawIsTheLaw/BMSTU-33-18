@@ -1,3 +1,6 @@
+#define FIELD_SIZE 9
+
+
 int fast_decision(char pos_1, char pos_2, char pos_3)
 {
 	int x = 0, o = 0; empty = 0;
@@ -21,12 +24,16 @@ int fast_decision(char pos_1, char pos_2, char pos_3)
 
 
 
-int space_counter(char BF[][3])
+int space_counter(char BF[][3], int array[])
 {
-	counter = 0;
+	counter = 0, int k = 0;
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 3; j++)
-			if (BF[i][j] == ' ') counter++;
+			if (BF[i][j] == ' ')
+			{
+				counter++;
+				array[k++] = i * 3 + j;
+			} 
 	return counter;
 }
 
@@ -34,10 +41,11 @@ int space_counter(char BF[][3])
 int make_shot_perestoronin(char symb, char BF[][3])
 {
 	int i, j, unsymb;
-	int space_num = space_counter(char BF);
+	int free_slots[FIELD_SIZE];
+	int space_num = space_counter(BF, free_slots);
 
 	unsymb = (symb == 'X') ? 'O' : 'X';
-	if (space_num == 9) 
+	if (space_num == FIELD_SIZE) 
 	{
 		BF[0][0] = symb;
 		return 0;
@@ -71,14 +79,8 @@ int make_shot_perestoronin(char symb, char BF[][3])
 		return 0;
 	}
 
-	while (true)
-	{
-		i = rand() % 3;
-		j = rand() % 3;
-		if (BF[i][j] == ' ')
-		{
-			BF[i][j] = symb;
-			return 0;
-		}
-	}
+	i = rand() % space_num;
+	j = free_slots[i];
+	BF[j / 3][j % 3] = symb;
+	return 0;
 }
