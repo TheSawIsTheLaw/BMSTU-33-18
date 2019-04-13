@@ -21,9 +21,6 @@ int fast_decision(char pos_1, char pos_2, char pos_3)
 }
 
 
-
-
-
 int space_counter(char BF[][3], int array[])
 {
     counter = 0, int k = 0;
