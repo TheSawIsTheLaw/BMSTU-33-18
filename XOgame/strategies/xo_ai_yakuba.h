@@ -1,12 +1,15 @@
-int make_shot_olenev(char type, char field[][3])
-{
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            printf("%d ", field[i][j]);
-        }
+/* Функция makeshot от Якуба */
+/* Бот для самых маленьких или тех, кто желает побеждать всегда */
 
-        printf("\n");
-    }
+#include <stdlib.h>
+#include <time.h>
+
+int make_shot_yakuba(char type, char field[][3])
+{
+    int i, j;
+    srand(time(NULL));
+    i = (rand() % 3);
+    j = (rand() % 3);
+    field[i][j] == type;
+    return 0;
 }
