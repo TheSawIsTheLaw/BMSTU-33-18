@@ -24,8 +24,12 @@ int check_win(char bf[][3])
     return 0;
 }
 
-int copy_battlefield(char from[][3], char to[][3])
+int copy_buttlefield(char from[][3], char to[][3])
 {
+    int a = 0, b = 0;
+    for (a; a < 3; a++)
+        for (b; b < 3; b++)
+            to[a][b] = from[a][b];
 }
 
 void print_battlefield(char bf[][3])
