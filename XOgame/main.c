@@ -15,6 +15,7 @@
 #include "strategies/xo_ai_perestoronin.h"
 #include "strategies/xo_ai_romanov.h"
 #include "strategies/xo_ai_yakuba_harder.h"
+#include "strategies/xo_ai_prokhorova.h"
 
 // 1 - cheat
 // 0 - no cheat
