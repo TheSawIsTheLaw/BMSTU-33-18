@@ -10,6 +10,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "strategies/xo_ai_olenev.h"
+#include "strategies/xo_ai_nitenko.h"
+#include "strategies/xo_ai_perestoronin.h"
+#include "strategies/xo_ai_romanov.h"
+#include "strategies/xo_ai_yakuba_harder.h"
+
 // 1 - cheat
 // 0 - no cheat
 int anti_cheat(char before[][3], char after[][3])
@@ -274,6 +280,8 @@ void print_battlefield(char bf[][3])
 int main(void)
 {
 	printf("XO v0.1 (C) IU7");
+	
+	int win_home = 0, win_guest = 0;
 
     char BF[3][3] = {
         {' ', ' ', ' ' },
@@ -298,7 +306,7 @@ int main(void)
 
         copy_battlefield(BF_COPY, BF);
 
-        if(check_win(BF))
+        if(check_win_by_KV(BF) && check_win_by_PL(BF))
 		{
             win_home++;
             continue;
@@ -314,7 +322,7 @@ int main(void)
 
         copy_battlefield(BF_COPY, BF);
 
-        if(check_win(BF))
+        if(check_win_by_KV(BF) && check_win_by_PL(BF))
 		{
             win_guest++;
             continue;
