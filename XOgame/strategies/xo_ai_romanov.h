@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #define N 3
 
-int stroke_counting(int BF[][N])
+int stroke_counting(char BF[][N])
 {
     int count = 0;
 
@@ -19,20 +19,20 @@ int stroke_counting(int BF[][N])
     return count;
 }
 
-void make_shot_romanov(char symb, int BF[][N])
+void make_shot_romanov(char symb, char BF[][N])
 {
     int turn_number = stroke_counting(BF);
 
-    if (turn_number == 0)
+    if (0 == turn_number)
     {
-        BF[1][1] = symb;
+        BF[N / 2][N / 2] = symb;
     }
 
-    else if (turn_number == 1)
+    else if (1 == turn_number)
     {
-        if (BF[1][1] == ' ')
+        if (BF[N / 2][N / 2] == ' ')
         {
-            BF[1][1] = symb;
+            BF[N / 2][N / 2] = symb;
         }
         else
         {
@@ -42,16 +42,15 @@ void make_shot_romanov(char symb, int BF[][N])
 
     else
     {
-        int i_random = 2;
-        int j_random = 2;
+        int i_random = N - 1;
+        int j_random = N - 1;
 
         while (BF[i_random][j_random] != ' ')
         {
-            i_random = rand() % 3;
-            j_random = rand() % 3;
+            i_random = rand() % N;
+            j_random = rand() % N;
         }
 
         BF[i_random][j_random] = symb;
     }
 }
-
