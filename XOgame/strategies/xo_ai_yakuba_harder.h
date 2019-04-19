@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int make_shot_yakuba(char type, char field[][3])
+int make_shot_yakuba_harder(char type, char field[][3])
 {
     int i, j;
     srand(time(NULL));
