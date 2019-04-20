@@ -10,6 +10,6 @@ int make_shot_yakuba(char type, char field[][3])
     srand(time(NULL));
     i = (rand() % 3);
     j = (rand() % 3);
-    field[i][j] == type;
+    field[i][j] = type;
     return 0;
 }

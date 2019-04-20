@@ -16,6 +16,6 @@ int make_shot_yakuba_harder(char type, char field[][3])
 		i = (rand() % 3);
 		j = (rand() % 3);
     }
-	field[i][j] == type;
+	field[i][j] = type;
 	return 0;
 }
