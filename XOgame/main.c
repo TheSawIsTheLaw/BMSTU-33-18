@@ -297,7 +297,7 @@ int main(void)
     
     bf_formation(DIME, BF);
 
-    char BF_COPY[3][3];
+    char BF_COPY[DIME][DIME];
 
 	for(int i = 0; i < 5; i++)
 	{
@@ -306,7 +306,7 @@ int main(void)
 		
         make_shot_01('X', BF_COPY);
 
-        if(anti_cheat(BF, BF_COPY))
+        if(anti_cheat(DIME, BF, BF_COPY))
 		{
             win_guest++;
             continue;
@@ -322,7 +322,7 @@ int main(void)
 
         make_shot_02('O', BF_COPY);
 
-        if(anti_cheat(BF, BF_COPY))
+        if(anti_cheat(DIME, BF, BF_COPY))
 		{
             win_home++;
             continue;
