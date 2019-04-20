@@ -68,7 +68,7 @@ int anti_cheat(int n, char before[][n], char after[][n])
 // 0 - no win
 int check_win_by_KV(char bf[][3])
 {
-    int limit = 3;
+    int limit = DIME;
 
     // Если на главной диагонали пустые ячейки, то никто не выйграл.
     int ok = 1;
