@@ -17,15 +17,17 @@
 #include "strategies/xo_ai_yakuba_harder.h"
 #include "strategies/xo_ai_prokhorova.h"
 
+#define DIME = 3
+
 // 1 - cheat
 // 0 - no cheat
-int anti_cheat(char before[][3], char after[][3])
+int anti_cheat(int n, char before[][n], char after[][n])
 {
-    int x_cord[9];
-    int y_cord[9];
+    int x_cord[n * n];
+    int y_cord[n * n];
     int n_x_y = 0;
     int cur = 0;
-    int N = 3;
+    int N = n;
     
     // Находим заполненные клетки до последнего хода.
     for (int i = 0; i < N; i++)
@@ -278,17 +280,22 @@ void print_battlefield(char bf[][3])
     printf("┗━━━┻━━━┻━━━┛\n");
 }
 
+void bf_formation(int n, char mtx[][n])
+{
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            mtx[i][j] = ' ';
+}
+
 int main(void)
 {
 	printf("XO v0.1 (C) IU7");
 	
 	int win_home = 0, win_guest = 0;
-
-    char BF[3][3] = {
-        {' ', ' ', ' ' },
-        {' ', ' ', ' ' },
-        {' ', ' ', ' ' }
-    };
+    
+    char BF[DIME][DIME];
+    
+    bf_formation(DIME, BF);
 
     char BF_COPY[3][3];
 
