@@ -1,5 +1,9 @@
-int strtok():
+int strtok()
+{
     pass;
-    
-int strsplit():
+}
+
+int strsplit()
+{
     pass;
+}
