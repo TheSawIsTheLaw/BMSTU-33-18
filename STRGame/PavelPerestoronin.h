@@ -1,9 +1,9 @@
-int strtok()
+int strtok(char *string, const char *delim)
 {
     pass;
 }
 
-int strsplit()
+int strsplit(const char *delim, char *string)
 {
     pass;
 }
