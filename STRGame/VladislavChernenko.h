@@ -1,10 +1,12 @@
-char *strtok(char *str, const char *delim)
-{
-    return str;
-}
+// N - максимальная длина строки, она будет объявлена в мейне
 
-int split(const char *const str, const char *const delim,
-    char *const output)
+char *strtok_Chernenko(char *string, const char *delim)
 {
     return 0;
 }
+
+int split_Chernenko(const char *string, char matrix[][N], const char symbol)
+{
+    return 0;
+}
+

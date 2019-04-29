@@ -1,9 +1,12 @@
-int strtok()
+// N - максимальная длина строки, будет объявлен в мейне
+
+char *strtok_Sukocheva(char *string, const char *delim)
 {
-    pass;
+    return 0;
 }
 
-int strsplit()
+int split_Sukocheva(const char *string, char matrix[][N], const char symbol)
 {
-    pass;
+    return 0;
 }
+

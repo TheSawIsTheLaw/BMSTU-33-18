@@ -1,6 +1,6 @@
-/* Sergey Kononenko header file best lead */
+/* Sergey Kononenko header file best lead 
 
-#define ever ;;
+//#define ever ;;
 
 int my_strlen(const char *s)
 {
@@ -9,19 +9,16 @@ int my_strlen(const char *s)
 
         return l;
 }
+*/
+// N - максимальная длина строки, она будет объявлена в мейне
 
-char* my_strsplit(const char* src_array, char* split_array)
+char *strtok_Kononenko(char *string, const char *delim)
 {
-    for(ever)
-    {
-        //
-    }
+    return 0;
 }
 
-char* my_strtok(char* str, const char* delimiters)
+int split_Kononenko(const char *string, char matrix[][N], const char symbol)
 {
-    for(ever)
-    {
-        //
-    }
+    return 0;
 }
+

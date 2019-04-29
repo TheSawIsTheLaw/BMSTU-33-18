@@ -1,3 +1,4 @@
+/*
 int strlen(const char *s)
 {
     int l = 0;
@@ -5,14 +6,16 @@ int strlen(const char *s)
 
     return l;
 }
+*/
+// N - максимальная длина строки, она будет объявлена в мейне
 
-char* 
-strtok(char* str, const char* delimiters)
+char *strtok_Nitenko(char *string, const char *delim)
 {
-    int i = 0;
-    int 
-    while (1)
-    {
-        if 
-    }
+    return 0;
 }
+
+int split_Nitenko(const char *string, char matrix[][N], const char symbol)
+{
+    return 0;
+}
+

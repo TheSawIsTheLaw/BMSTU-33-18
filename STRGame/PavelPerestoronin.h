@@ -1,9 +1,12 @@
-int strtok(char *string, const char *delim)
+// N - максимальная длина строки, она будет объявлена в мейне
+
+char *strtok_Perestoronin(char *string, const char *delim)
 {
-    pass;
+    return 0;
 }
 
-int strsplit(const char *delim, char *string)
+int split_Perestoronin(const char *string, char matrix[][N], const char symbol)
 {
-    pass;
+    return 0;
 }
+
