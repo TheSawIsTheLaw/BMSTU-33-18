@@ -1,4 +1,4 @@
-char *(strtok[])(char, const char) = 
+char* (*strtok[])(char*, const char*) = 
 {
     strtok_Sukocheva,
     strtok_Namestnik,

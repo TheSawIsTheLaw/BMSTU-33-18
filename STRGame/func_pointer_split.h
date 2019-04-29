@@ -1,4 +1,4 @@
-int (*split[])(const char*, char, const char) = 
+int (*split[])(const char*, char matrix[][N], const char) = 
 {
     split_Sukocheva,
     split_Namestnik,

@@ -33,8 +33,8 @@
 #include "VladislavGurishev.h"
 #include "YefimSokolov.h"
 
-//#include "func_pointer_split.h"
-//#include "func_pointer_strtok.h"
+#include "func_pointer_split.h"
+#include "func_pointer_strtok.h"
 
 void fill_matrix(char matrix[][N], const int matrix_size)
 {
@@ -71,16 +71,16 @@ int print_name(char *array, int index)
 
 void competition(char array_split[N], char array_strtok[N], char matrix_competition[][N], char *array_names)
 {
-    //const char symb = ' ';
+    const char symb = ' ';
     int index = 0;
     for (int i = 0; i < MEMBERS; i++)
     {   
         time_t start_strtok = clock();
-        //char *pch = strtok[i](array_strtok, symb);
-        //while (pch != NULL)
-            //pch = strtok[i](array_strtok, symb);
+        char *pch = strtok[i](array_strtok, &symb);
+        while (pch != NULL)
+            pch = strtok[i](array_strtok, &symb);
         time_t start_split = clock();
-        //int size = split[i](array_split, matrix_competition, symb);
+        int size = split[i](array_split, matrix_competition, symb);
         time_t end_all = clock();
     
         index = print_name(array_names, index);
