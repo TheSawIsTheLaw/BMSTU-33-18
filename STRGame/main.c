@@ -65,6 +65,11 @@ void readfile(FILE *file, char *array)
     fclose(file);
 }
 
+int test_matrix()
+{
+    
+}
+
 int print_name(char *array, int index)
 {
     while (array[index] != ':')
@@ -72,8 +77,8 @@ int print_name(char *array, int index)
         printf("%c", array[index]);
         index++;
     }
-
-    return ++index;
+    index += 2;
+    return index;
 }
 
 void competition(char array_split[N], char array_strtok[N], char matrix_competition[][N], char *array_names)

@@ -20,6 +20,7 @@ int split_Perestoronin(const char *string, char matrix[][N], const char symbol)
 			matrix[i][j++] = string[k];
 		k++;
 	}
-    return --i;
+    matrix[i][j] = '\0';
+    return ++i;
 }
 
