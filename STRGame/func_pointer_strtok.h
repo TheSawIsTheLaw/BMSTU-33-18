@@ -22,5 +22,6 @@ char* (*strtok[])(char*, const char*) =
     strtok_Krivozubov,
     strtok_Chernenko,
     strtok_Gurishev,
-    strtok_Sokolov
+    strtok_Sokolov,
+    strtok_Romanov
 };
