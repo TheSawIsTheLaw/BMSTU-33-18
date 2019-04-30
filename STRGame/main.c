@@ -32,6 +32,7 @@
 #include "VladislavChernenko.h"
 #include "VladislavGurishev.h"
 #include "YefimSokolov.h"
+#include "AlexeyRomanov.h"
 
 #include "func_pointer_split.h"
 #include "func_pointer_strtok.h"
@@ -45,6 +46,12 @@ void fill_matrix(char matrix[][N], const int matrix_size)
             matrix[i][j] = ' ';
         }
     }
+}
+
+void print_matrix(char matrix[][N], const int matrix_size)
+{
+    for (int i = 0; i < matrix_size; i++)
+        puts(matrix[i]);
 }
 
 void readfile(FILE *file, char *array)
@@ -82,7 +89,7 @@ void competition(char array_split[N], char array_strtok[N], char matrix_competit
         time_t start_split = clock();
         int size = split[i](array_split, matrix_competition, symb);
         time_t end_all = clock();
-    
+        print_matrix(matrix_competition, size);
         index = print_name(array_names, index);
         printf("\nВремя выполнения strtok(): %lf\nВремя выполнения split(): %lf\nОбщее время выполнения: %lf", 
                 ((double)start_split -  start_strtok) / CLOCKS_PER_SEC,

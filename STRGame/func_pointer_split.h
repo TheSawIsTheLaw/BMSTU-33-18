@@ -22,5 +22,6 @@ int (*split[])(const char*, char matrix[][N], const char) =
     split_Krivozubov,
     split_Chernenko,
     split_Gurishev,
-    split_Sokolov
+    split_Sokolov,
+    split_Romanov
 };
