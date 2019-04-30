@@ -80,5 +80,4 @@
 ## 🗒<a name="othersems"></a> Другие семинарские проекты
 
 Пожалуйста, не забывайте о:
-* **Лёшеньке**, который ведёт [STRGame](https://git.iu7.bmstu.ru/aolenev/
-iu7-cprog-sems-2019-aolenev/blob/master/STRGame/)
+* **Лёшеньке**, который ведёт [STRGame](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/blob/master/STRGame/)
