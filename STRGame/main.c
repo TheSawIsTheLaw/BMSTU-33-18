@@ -8,6 +8,7 @@
 #define N 200
 #define MEMBERS 23
 #define OK 0
+#define ERROR 1
 
 #include "AlisSukocheva.h"
 #include "AnastasiiaNamestnik.h"
@@ -65,9 +66,32 @@ void readfile(FILE *file, char *array)
     fclose(file);
 }
 
-int test_matrix()
+int check_split(const char *const array_split, char matrix[][N], const int matrix_size, const char symb)
 {
-    
+    int k = 0;
+    for (int i = 0; i < matrix_size; i++)
+    {
+        char check_lexem[N]; int j = 0;
+        while (array_split[k] != symb)
+        {
+            check_lexem[j] = array_split[k];
+            k++;
+            j++;
+        }
+        //puts(check_lexem);
+        //puts(matrix[i]);
+        int m = 0;
+        k++; j = 0; 
+        while (matrix[i][j])
+        {
+            if (matrix[i][j] != check_lexem[m])
+                return ERROR;
+            j++;
+            m++;
+        }
+    }
+
+    return OK;
 }
 
 int print_name(char *array, int index)
@@ -77,7 +101,23 @@ int print_name(char *array, int index)
         printf("%c", array[index]);
         index++;
     }
-    index += 2;
+    return ++index;
+}
+
+int print_results(time_t start_split, time_t start_strtok, time_t end_all, 
+    char *array_names, int index, const int code)
+{   
+    index = print_name(array_names, index);
+    printf("\nStrtok() time: %lf\nSplit() time: %lf\nTotal time: %lf", 
+            ((double)start_split - start_strtok) / CLOCKS_PER_SEC,
+            ((double)end_all - start_split) / CLOCKS_PER_SEC,
+            ((double)end_all - start_strtok) / CLOCKS_PER_SEC);
+    
+    if (code == OK)
+        puts("\nSplit test OK");
+    else
+        puts("\nSplit test NOT OK!");
+
     return index;
 }
 
@@ -90,16 +130,12 @@ void competition(char array_split[N], char array_strtok[N], char matrix_competit
         time_t start_strtok = clock();
         char *pch = strtok[i](array_strtok, &symb);
         while (pch != NULL)
-            pch = strtok[i](array_strtok, &symb);
+            pch = strtok[i](NULL, &symb);
         time_t start_split = clock();
         int size = split[i](array_split, matrix_competition, symb);
         time_t end_all = clock();
-        print_matrix(matrix_competition, size);
-        index = print_name(array_names, index);
-        printf("\nВремя выполнения strtok(): %lf\nВремя выполнения split(): %lf\nОбщее время выполнения: %lf", 
-                ((double)start_split -  start_strtok) / CLOCKS_PER_SEC,
-                ((double)end_all - start_split) / CLOCKS_PER_SEC,
-                ((double)end_all - start_strtok) / CLOCKS_PER_SEC);
+        const int code = check_split(array_split, matrix_competition, size, symb);
+        index = print_results(start_split, start_strtok, end_all, array_names, index, code);
     }
 }
 
@@ -121,3 +157,5 @@ int main(void)
 
     return OK;
 }
+
+
