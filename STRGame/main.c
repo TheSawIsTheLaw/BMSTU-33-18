@@ -78,8 +78,6 @@ int check_split(const char *const array_split, char matrix[][N], const int matri
             k++;
             j++;
         }
-        //puts(check_lexem);
-        //puts(matrix[i]);
         int m = 0;
         k++; j = 0; 
         while (matrix[i][j])
@@ -108,10 +106,8 @@ int print_results(time_t start_split, time_t start_strtok, time_t end_all,
     char *array_names, int index, const int code)
 {   
     index = print_name(array_names, index);
-    printf("\nStrtok() time: %lf\nSplit() time: %lf\nTotal time: %lf", 
-            ((double)start_split - start_strtok) / CLOCKS_PER_SEC,
-            ((double)end_all - start_split) / CLOCKS_PER_SEC,
-            ((double)end_all - start_strtok) / CLOCKS_PER_SEC);
+    printf("\nStrtok() tacts: %ld\nSplit() tacts: %ld\nTotal tacts: %ld", 
+            (start_split - start_strtok), (end_all - start_split), (end_all - start_strtok));
     
     if (code == OK)
         puts("\nSplit test OK");
