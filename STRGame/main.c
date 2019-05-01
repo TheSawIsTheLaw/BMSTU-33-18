@@ -142,11 +142,12 @@ void test_system(char *array_names, char test_matrix[][N])
             FILE *strtok_test = fopen(STRTOK_TESTS_ADDRESS[j], "r");
             readfile(split_test, TS_arr_split);
             readfile(strtok_test, TS_arr_strtok);
-
             const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
+            
             if (!size) complete_split--; // так нужно пока никто (почти) не написал свои функции
             if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j])) ++complete_split;
-
+            
+            fill_matrix(test_matrix, size);
             fill_array(TS_arr_split);
             fill_array(TS_arr_strtok);
         }
