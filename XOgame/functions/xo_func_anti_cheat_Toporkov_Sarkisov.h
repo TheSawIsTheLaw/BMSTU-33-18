@@ -1,10 +1,10 @@
-int anti_cheat(int n, char before[][n], char after[][n])
+int anti_cheat(int DIME, char before[][DIME], char after[][DIME])
 {
-    int x_cord[n * n];
-    int y_cord[n * n];
+    int x_cord[DIME * DIME];
+    int y_cord[DIME * DIME];
     int n_x_y = 0;
     int cur = 0;
-    int N = n * n;
+    int N = DIME * DIME;
     
     // находим заполненные клетки до последнего хода
     for (int i = 0; i < N; i++)
