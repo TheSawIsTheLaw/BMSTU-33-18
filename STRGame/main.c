@@ -4,36 +4,36 @@
 #include <stdio.h>
 #include <time.h>
 
-#define M 1000
-#define N 200
-#define MEMBERS 23
+#define K 100
+#define N 1000
+#define MEMBERS 24
 #define OK 0
 #define ERROR 1
 
-#include "AlisSukocheva.h"
-#include "AnastasiiaNamestnik.h"
-#include "ArtemSarkisov.h"
-#include "BogdanLemeshkin.h"
-#include "DmitryKovalev.h"
-#include "DmitryYakuba.h"
-#include "EmilSimonenko.h"
-#include "IlyaChelyadinov.h"
-#include "KarimAkhmetov.h"
-#include "LyubovProkhorova.h"
-#include "MikhailNitenko.h"
-#include "NadezhdaAksenova.h"
-#include "NikitaBurtelov.h"
-#include "PavelPerestoronin.h"
-#include "PavelToporkov.h"
-#include "SergeyKononenko.h"
-#include "SergeyMinenko.h"
-#include "SergeySaburov.h"
-#include "SergeySverdlov.h"
-#include "VladKrivozubov.h"
-#include "VladislavChernenko.h"
-#include "VladislavGurishev.h"
-#include "YefimSokolov.h"
-#include "AlexeyRomanov.h"
+#include "functions/AlisSukocheva.h"
+#include "functions/AnastasiiaNamestnik.h"
+#include "functions/ArtemSarkisov.h"
+#include "functions/BogdanLemeshkin.h"
+#include "functions/DmitryKovalev.h"
+#include "functions/DmitryYakuba.h"
+#include "functions/EmilSimonenko.h"
+#include "functions/IlyaChelyadinov.h"
+#include "functions/KarimAkhmetov.h"
+#include "functions/LyubovProkhorova.h"
+#include "functions/MikhailNitenko.h"
+#include "functions/NadezhdaAksenova.h"
+#include "functions/NikitaBurtelov.h" 
+#include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 0
+#include "functions/PavelToporkov.h"
+#include "functions/SergeyKononenko.h"
+#include "functions/SergeyMinenko.h"
+#include "functions/SergeySaburov.h"
+#include "functions/SergeySverdlov.h"
+#include "functions/VladKrivozubov.h"
+#include "functions/VladislavChernenko.h"
+#include "functions/VladislavGurishev.h"
+#include "functions/YefimSokolov.h"
+#include "functions/AlexeyRomanov.h"
 
 #include "func_pointer_split.h"
 #include "func_pointer_strtok.h"
@@ -61,6 +61,7 @@ void readfile(FILE *file, char *array)
     while (!feof(file))
     {
         fscanf(file, "%c", &array[i]);
+        printf("%c", array[i]);
         i++;
     }
     fclose(file);
@@ -80,6 +81,8 @@ int check_split(const char *const array_split, char matrix[][N], const int matri
         }
         int m = 0;
         k++; j = 0; 
+        puts(check_lexem);
+        puts(matrix[i]);
         while (matrix[i][j])
         {
             if (matrix[i][j] != check_lexem[m])
@@ -107,7 +110,7 @@ int print_results(time_t start_split, time_t start_strtok, time_t end_all,
 {   
     index = print_name(array_names, index);
     printf("\nStrtok() tacts: %ld\nSplit() tacts: %ld\nTotal tacts: %ld", 
-            (start_split - start_strtok), (end_all - start_split), (end_all - start_strtok));
+        (start_split - start_strtok), (end_all - start_split), (end_all - start_strtok));
     
     if (code == OK)
         puts("\nSplit test OK");
@@ -138,14 +141,16 @@ void competition(char array_split[N], char array_strtok[N], char matrix_competit
 int main(void)
 {   
     setbuf(stdout, NULL);
-    FILE *test_split = fopen("test_split.txt", "r");
+    char TS_split[K];
+    char TS_strtok[K];
+    FILE *test_split = fopen("TestSystem/TEST_SPLIT_1.txt", "r");
     FILE *test_strtok = fopen("test_strtok.txt", "r");
-    FILE *names = fopen("names.txt", "r");
+    FILE *names = fopen("TestSystem/NAMES.txt", "r");
     char matrix_competition[N][N];
-    char array_names[M];
+    char array_names[N];
     char array_split[N];
     char array_strtok[N]; 
-    
+
     readfile(test_strtok, array_strtok);
     readfile(test_split, array_split);
     readfile(names, array_names);
@@ -153,5 +158,6 @@ int main(void)
 
     return OK;
 }
+
 
 
