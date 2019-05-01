@@ -1,0 +1,6 @@
+*.exe
+*.c.swp
+*.o
+*.out
+*.pch
+*.gch

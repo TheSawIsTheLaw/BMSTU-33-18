@@ -1,4 +1,4 @@
-char TEST_ADRESS[COUNT_TESTS][K] = 
+char SPLIT_TESTS_ADDRESS[COUNT_TESTS][K] = 
 {
     "TestSystem/SPLIT_TESTS/TEST_SPLIT_1.txt",
     "TestSystem/SPLIT_TESTS/TEST_SPLIT_2.txt",
