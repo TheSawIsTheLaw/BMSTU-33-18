@@ -5,6 +5,7 @@
 #include <time.h>
 
 #define COUNT_TESTS 20
+#define GHZ 3300000000
 #define K 100
 #define N 1400
 #define MEMBERS 24
@@ -41,6 +42,14 @@
 #include "TestSystem/SPLIT_TESTS/SPLIT_TESTS_ADDRESS.h"
 #include "SPLIT_FUNC_NAMES.h"
 #include "STRTOK_FUNC_NAMES.h"
+
+// супер крутая ассемблерная вставка
+unsigned long long tick(void)
+{
+    unsigned long long d;
+    __asm__ __volatile__ ("rdtsc" : "=A" (d) );
+    return d;
+}
 
 void fill_matrix(char matrix[][N], const int matrix_size)
 {
@@ -81,7 +90,8 @@ void readfile(FILE *file, char *array)
     }
     fclose(file);
 }
-//soon
+
+// soon
 int check_strtok()
 {
     return OK;
@@ -114,13 +124,11 @@ int print_name(char *array, int index)
     return ++index;
 }
 
-int print_results(time_t start, time_t end, char *array_names, int index, const int complete_split, const int complete_strtok)
+int print_results(char *array_names, int index, const int complete_split, const int complete_strtok, const unsigned long long time_ticks)
 {   
     puts("\n----------------------");
     index = print_name(array_names, index);
-    /* develop 
-     printf("\nStrtok() tacts: %ld\nSplit() tacts: %ld\nTotal tacts: %ld", 
-         (start_split - start_strtok), (end_all - start_split), (end_all - start_strtok)); */
+    printf("\nTime running: %.10lf", (double)time_ticks / GHZ);
     printf("\nSplit tests %d / %d\nStrtok tests %d / %d\n", complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
     return index;
 }
@@ -135,15 +143,20 @@ void test_system(char *array_names, char test_matrix[][N])
     {
         int complete_split = 0;
         int complete_strtok = 0;
-        time_t start = clock();
+        unsigned long long time_ticks = 0;
+
         for (int j = 0; j < COUNT_TESTS; j++)
         {
             FILE *split_test = fopen(SPLIT_TESTS_ADDRESS[j], "r");
             FILE *strtok_test = fopen(STRTOK_TESTS_ADDRESS[j], "r");
             readfile(split_test, TS_arr_split);
             readfile(strtok_test, TS_arr_strtok);
+
+            unsigned long long start_time = tick();
             const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
-            
+            unsigned long long end_time = tick();
+            time_ticks += (end_time - start_time);
+
             if (!size) complete_split--; // так нужно пока никто (почти) не написал свои функции
             if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j])) ++complete_split;
             
@@ -151,8 +164,8 @@ void test_system(char *array_names, char test_matrix[][N])
             fill_array(TS_arr_split);
             fill_array(TS_arr_strtok);
         }
-        time_t end = clock();
-        index = print_results(start, end, array_names, index, complete_split, complete_strtok);
+
+        index = print_results(array_names, index, complete_split, complete_strtok, time_ticks);
     }
 }
 
