@@ -19,5 +19,6 @@ char SPLIT_TESTS_ADDRESS[COUNT_TESTS][K] =
     "TestSystem/SPLIT_TESTS/TEST_SPLIT_17.txt",
     "TestSystem/SPLIT_TESTS/TEST_SPLIT_18.txt",
     "TestSystem/SPLIT_TESTS/TEST_SPLIT_19.txt",
-    "TestSystem/SPLIT_TESTS/TEST_SPLIT_20.txt",
+    "TestSystem/SPLIT_TESTS/TEST_SPLIT_20.txt"
 };
+

@@ -39,6 +39,7 @@
 
 #include "TestSystem/STRTOK_TESTS/STRTOK_TESTS_ADDRESS.h"
 #include "TestSystem/SPLIT_TESTS/SEPARATORS_SPLIT.h"
+#include "TestSystem/SPLIT_TESTS/CORRECT_SIZE_SPLIT.h"
 #include "TestSystem/SPLIT_TESTS/SPLIT_TESTS_ADDRESS.h"
 #include "SPLIT_FUNC_NAMES.h"
 #include "STRTOK_FUNC_NAMES.h"
@@ -57,7 +58,7 @@ void fill_matrix(char matrix[][N], const int matrix_size)
     {
         for (int j = 0; j < N; j++)
         {
-            matrix[i][j] = '\0';
+            matrix[i][j] = ' ';
         }
     }
 }
@@ -75,8 +76,15 @@ void fill_array(char *array)
 // Эта функция нужна для отладки
 void print_matrix(char matrix[][N], const int matrix_size)
 {
+    int j = 0;
     for (int i = 0; i < matrix_size; i++)
-        puts(matrix[i]);
+    {
+        while (matrix[i][j])
+        {
+            putchar(matrix[i][j++]);
+        }
+        puts(" ");
+    }
 }
 
 
@@ -157,9 +165,7 @@ void test_system(char *array_names, char test_matrix[][N])
             unsigned long long end_time = tick();
             time_ticks += (end_time - start_time);
 
-            if (!size) complete_split--; // так нужно пока никто (почти) не написал свои функции
-            if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j])) ++complete_split;
-            
+            if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j]) && size == SPLIT_CORRECT_SIZE[j]) ++complete_split;
             fill_matrix(test_matrix, size);
             fill_array(TS_arr_split);
             fill_array(TS_arr_strtok);
