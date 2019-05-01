@@ -6,7 +6,7 @@
 
 #define COUNT_TESTS 20
 #define K 100
-#define N 1000
+#define N 1400
 #define MEMBERS 24
 #define OK 0
 #define ERROR 1
@@ -37,6 +37,7 @@
 #include "functions/AlexeyRomanov.h"
 
 #include "TestSystem/STRTOK_TESTS/STRTOK_TESTS_ADDRESS.h"
+#include "TestSystem/SPLIT_TESTS/SEPARATORS_SPLIT.h"
 #include "TestSystem/SPLIT_TESTS/SPLIT_TESTS_ADDRESS.h"
 #include "SPLIT_FUNC_NAMES.h"
 #include "STRTOK_FUNC_NAMES.h"
@@ -47,18 +48,28 @@ void fill_matrix(char matrix[][N], const int matrix_size)
     {
         for (int j = 0; j < N; j++)
         {
-            matrix[i][j] = ' ';
+            matrix[i][j] = '\0';
         }
     }
 }
 
-/*
+void fill_array(char *array)
+{
+    int i = 0;
+    while (array[i])
+    {
+        array[i] = ' ';
+        i++;
+    }
+}
+
+// Эта функция нужна для отладки
 void print_matrix(char matrix[][N], const int matrix_size)
 {
     for (int i = 0; i < matrix_size; i++)
         puts(matrix[i]);
 }
-*/
+
 
 void readfile(FILE *file, char *array)
 {
@@ -70,37 +81,26 @@ void readfile(FILE *file, char *array)
     }
     fclose(file);
 }
-
+//soon
 int check_strtok()
 {
     return OK;
 }
 
-int check_split(const char *const array_split, char matrix[][N], const int matrix_size, const char symb)
+int check_split(const char *const TS_arr_split, char matrix[][N], const int matrix_size, const char sep)
 {
     int k = 0;
     for (int i = 0; i < matrix_size; i++)
     {
-        char check_lexem[N]; int j = 0;
-        while (array_split[k] != symb)
+        int j = 0;
+        while (matrix[i][j])
         {
-            check_lexem[j] = array_split[k];
+            if (matrix[i][j] != TS_arr_split[k]) return ERROR;
             k++;
             j++;
         }
-        int m = 0;
-        k++; j = 0; 
-        puts(check_lexem);
-        puts(matrix[i]);
-        while (matrix[i][j])
-        {
-            if (matrix[i][j] != check_lexem[m])
-                return ERROR;
-            j++;
-            m++;
-        }
+        k++;
     }
-
     return OK;
 }
 
@@ -114,37 +114,44 @@ int print_name(char *array, int index)
     return ++index;
 }
 
-int print_results(time_t start, time_t end, char *array_names, int index, const int split_code, const int strtok_code)
+int print_results(time_t start, time_t end, char *array_names, int index, const int complete_split, const int complete_strtok)
 {   
+    puts("\n----------------------");
     index = print_name(array_names, index);
     /* develop 
      printf("\nStrtok() tacts: %ld\nSplit() tacts: %ld\nTotal tacts: %ld", 
          (start_split - start_strtok), (end_all - start_split), (end_all - start_strtok)); */
-    split_code == OK ? puts("\nSplit tests is OK.") : puts("\nSplit tests is NOT OK.");
-    strtok_code == OK ? puts("Strtok tests is OK") : puts("Strtok test is NOT OK.");
-
+    printf("\nSplit tests %d / %d\nStrtok tests %d / %d\n", complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
     return index;
 }
 
-int test_system(char *array_names, char test_matrix[][N])
+void test_system(char *array_names, char test_matrix[][N])
 {
     int index = 0;
+    char TS_arr_split[N];
+    char TS_arr_strtok[N];
+
     for (int i = 0; i < MEMBERS; i++)
     {
-        const int split_code = 1;
-        const int strtok_code = 1;
+        int complete_split = 0;
+        int complete_strtok = 0;
         time_t start = clock();
         for (int j = 0; j < COUNT_TESTS; j++)
         {
             FILE *split_test = fopen(SPLIT_TESTS_ADDRESS[j], "r");
             FILE *strtok_test = fopen(STRTOK_TESTS_ADDRESS[j], "r");
-            //const int split_code = check_split();
-            //const int strtok_code = check_strtok(); // will work soon
-            fclose(split_test);
-            fclose(strtok_test);
+            readfile(split_test, TS_arr_split);
+            readfile(strtok_test, TS_arr_strtok);
+
+            const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
+            if (!size) complete_split--; // так нужно пока никто (почти) не написал свои функции
+            if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j])) ++complete_split;
+
+            fill_array(TS_arr_split);
+            fill_array(TS_arr_strtok);
         }
         time_t end = clock();
-        index = print_results(start, end, array_names, index, split_code, strtok_code);
+        index = print_results(start, end, array_names, index, complete_split, complete_strtok);
     }
 }
 
