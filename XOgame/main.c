@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #define DIME 3
+#define ever ;;
 
 /* Strategies include */
 #include "strategies/xo_ai_krivozubov.h"
@@ -22,7 +23,7 @@
 
 int main(void)
 {
-    int win_home = 0, win_guest = 0;
+    int winner = -1;
     char BF[DIME][DIME];
     char BF_COPY[DIME][DIME];
 
@@ -31,43 +32,19 @@ int main(void)
     bf_formation(DIME, BF);
     copy_battlefield(BF, BF_COPY);
 
-	for(int i = 0; i < 5; i++)
+	for(ever)
     {
-        //  INSERT YOUR SHOT HERE!
+        // PLAYER'S 1 SHOT
 
-        if(anti_cheat(DIME, BF, BF_COPY))
-		{
-            win_guest++;
-            continue;
-        }
+        // ANTI-CHEAT CHECK FOR PLAYER'S 1 SHOT
 
-        print_battlefield(BF_COPY);
-        
-        copy_battlefield(BF_COPY, BF);
+        // CHECK FOR PLAYER'S 1 WIN
 
-        if(check_win_by_KV(BF) && check_win_by_PL(BF))
-		{
-            win_home++;
-            continue;
-        }
+        // PLAYER'S 2 SHOT
 
-        //  INSERT YOUR SHOT HERE!
+        // ANTI-CHEAT CHECK FOR PLAYER'S 2 SHOT
 
-        if(anti_cheat(DIME, BF, BF_COPY))
-		{
-            win_home++;
-            continue;
-        }
-        
-        print_battlefield(BF_COPY);
-
-        copy_battlefield(BF_COPY, BF);
-
-        if(check_win_by_KV(BF) && check_win_by_PL(BF))
-		{
-            win_guest++;
-            continue;
-        }
+        // CHECK FOR PLAYER'S 2 WIN
     }
 
     printf("SCORE: %d : %d", win_home, win_guest);
