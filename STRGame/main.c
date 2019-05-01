@@ -35,7 +35,7 @@
 #include "functions/VladislavChernenko.h"
 #include "functions/VladislavGurishev.h"
 #include "functions/YefimSokolov.h"
-#include "functions/AlexeyRomanov.h"
+#include "functions/AlexeyRomanov.h" // SPLIT - 1, STRTOK - 0
 
 #include "TestSystem/STRTOK_TESTS/STRTOK_TESTS_ADDRESS.h"
 #include "TestSystem/SPLIT_TESTS/SEPARATORS_SPLIT.h"
@@ -137,7 +137,7 @@ int print_results(char *array_names, int index, const int complete_split, const 
     puts("\n----------------------");
     index = print_name(array_names, index);
     printf("\nTime running: %.10lf", (double)time_ticks / GHZ);
-    printf("\nSplit tests %d / %d\nStrtok tests %d / %d\n", complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
+    printf("\nSplit tests %d / %d\nStrtok tests %d / %d(TESTS FOR STRTOK NOT WORKING!)\n", complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
     return index;
 }
 
