@@ -8,6 +8,7 @@ char *pre;
 
 char *strtok_Yakuba(char *string, const char *delim)
 {
+    return 0;
     if (string != NULL)
     {
 

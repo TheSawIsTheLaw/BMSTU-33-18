@@ -162,7 +162,7 @@ void test_system(char *array_names, char test_matrix[][N])
 
             unsigned long long start_time = tick();
             const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
-            char *pch = strtok[i](TS_arr_split, &SPLIT_SEPARATORS[j]);
+            char *pch = strtok[i](TS_arr_strtok, &SPLIT_SEPARATORS[j]);
             while (pch != NULL) pch = strtok[i](NULL, &SPLIT_SEPARATORS[j]); // скоро будут отдельные тесты для strtok
             unsigned long long end_time = tick();
             time_ticks += (end_time - start_time);
