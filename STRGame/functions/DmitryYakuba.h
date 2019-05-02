@@ -11,7 +11,7 @@ char *strtok_Yakuba(char *string, const char *delim)
     if (string != NULL)
     {
 
-        int i = Z, q = Z;
+        I i = Z, q = Z;
         while (string[i])
         {
             while (delim[q])
@@ -31,7 +31,7 @@ char *strtok_Yakuba(char *string, const char *delim)
     }
     else
     {
-        int i = Z, q = Z;
+        I i = Z, q = Z;
         char* prepr = pre;
         while (pre[i])
         {
