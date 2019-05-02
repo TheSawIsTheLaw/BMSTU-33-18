@@ -137,7 +137,7 @@ int print_results(char *array_names, int index, const int complete_split, const 
     puts("\n----------------------");
     index = print_name(array_names, index);
     printf("\nTime running: %.10lf", (double)time_ticks / GHZ);
-    printf("\nSplit tests %d / %d\nStrtok tests %d / %d(TESTS FOR STRTOK NOT WORKING!)\n", complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
+    printf("\nSplit tests %d / %d\nStrtok tests %d / %d (TESTS FOR STRTOK NOT WORKING!)\n", complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
     return index;
 }
 
@@ -162,8 +162,8 @@ void test_system(char *array_names, char test_matrix[][N])
 
             unsigned long long start_time = tick();
             const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
-            char *pch = strtok[i](TS_arr_split, SPLIT_SEPARATORS[j])
-            while (pch != NULL) pch = strtok[i](NULL, SPLIT_SEPARATORS[j]) // скоро будут отдельные тесты для strtok
+            char *pch = strtok[i](TS_arr_split, &SPLIT_SEPARATORS[j]);
+            while (pch != NULL) pch = strtok[i](NULL, &SPLIT_SEPARATORS[j]); // скоро будут отдельные тесты для strtok
             unsigned long long end_time = tick();
             time_ticks += (end_time - start_time);
 
