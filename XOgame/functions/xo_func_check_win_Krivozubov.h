@@ -1,6 +1,6 @@
 int check_win(char bf[][3])
 {
-    int limit = 3;
+    int limit = DIME;
 
     // Если на главной диагонали пустые ячейки, то никто не выйграл
     int ok = 1;
