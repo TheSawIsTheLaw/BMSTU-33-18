@@ -21,3 +21,32 @@ char STRTOK_TESTS_ADDRESS[COUNT_TESTS][K] =
     "TestSystem/STRTOK_TESTS/TEST_STRTOK_19.txt",
     "TestSystem/STRTOK_TESTS/TEST_STRTOK_20.txt"
 };
+
+char* (*strtok[])(char*, const char*) =
+{
+    strtok_Sukocheva,
+    strtok_Namestnik,
+    strtok_Sarkisov,
+    strtok_Lemeshkin,
+    strtok_Kovalev,
+    strtok_Yakuba,
+    strtok_Simonenko,
+    strtok_Chelyadinov,
+    strtok_Akhmetov,
+    strtok_Prokhorova,
+    strtok_Nitenko,
+    strtok_Aksenova,
+    strtok_Burtelov,
+    strtok_Perestoronin,
+    strtok_Toporkov,
+    strtok_Kononenko,
+    strtok_Minenko,
+    strtok_Saburov,
+    strtok_Sverdlov,
+    strtok_Krivozubov,
+    strtok_Chernenko,
+    strtok_Gurishev,
+    strtok_Sokolov,
+    strtok_Romanov
+};
+

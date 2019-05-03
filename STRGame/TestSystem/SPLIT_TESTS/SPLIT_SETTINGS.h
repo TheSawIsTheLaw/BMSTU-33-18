@@ -22,3 +22,79 @@ char SPLIT_TESTS_ADDRESS[COUNT_TESTS][K] =
     "TestSystem/SPLIT_TESTS/TEST_SPLIT_20.txt"
 };
 
+char SPLIT_SEPARATORS[COUNT_TESTS] = 
+{
+    ' ',
+    ' ',
+    ' ',
+    ' ',
+    ' ',
+    ' ',
+    ' ',
+    ' ',
+    ' ',
+    ' ',
+    ',',
+    '1',
+    '0',
+    '-',
+    'X',
+    '!',
+    '?',
+    '.',
+    ';',
+    'N'
+};
+
+int SPLIT_CORRECT_SIZE[COUNT_TESTS] =
+{
+    273,
+    535,
+    766,
+    287,
+    670,
+    547,
+    981,
+    223,
+    1067,
+    412,
+    7,
+    11,
+    6,
+    6,
+    5,
+    14,
+    1,
+    32,
+    7,
+    1
+};
+
+int (*split[])(const char*, char matrix[][N], const char) =
+{
+    split_Sukocheva,
+    split_Namestnik,
+    split_Sarkisov,
+    split_Lemeshkin,
+    split_Kovalev,
+    split_Yakuba,
+    split_Simonenko,
+    split_Chelyadinov,
+    split_Akhmetov,
+    split_Prokhorova,
+    split_Nitenko,
+    split_Aksenova,
+    split_Burtelov,
+    split_Perestoronin,
+    split_Toporkov,
+    split_Kononenko,
+    split_Minenko,
+    split_Saburov,
+    split_Sverdlov,
+    split_Krivozubov,
+    split_Chernenko,
+    split_Gurishev,
+    split_Sokolov,
+    split_Romanov
+};
+

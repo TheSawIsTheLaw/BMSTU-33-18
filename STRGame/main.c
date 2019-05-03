@@ -14,7 +14,7 @@
 
 #include "functions/AlisSukocheva.h"
 #include "functions/AnastasiiaNamestnik.h"
-#include "functions/ArtemSarkisov.h"
+#include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/BogdanLemeshkin.h"
 #include "functions/DmitryKovalev.h"
 #include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1 ???
@@ -25,7 +25,7 @@
 #include "functions/MikhailNitenko.h"
 #include "functions/NadezhdaAksenova.h"
 #include "functions/NikitaBurtelov.h" 
-#include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 0
+#include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1
 #include "functions/PavelToporkov.h"
 #include "functions/SergeyKononenko.h"
 #include "functions/SergeyMinenko.h"
@@ -37,12 +37,8 @@
 #include "functions/YefimSokolov.h"
 #include "functions/AlexeyRomanov.h" // SPLIT - 1, STRTOK - 0
 
-#include "TestSystem/STRTOK_TESTS/STRTOK_TESTS_ADDRESS.h"
-#include "TestSystem/SPLIT_TESTS/SEPARATORS_SPLIT.h"
-#include "TestSystem/SPLIT_TESTS/CORRECT_SIZE_SPLIT.h"
-#include "TestSystem/SPLIT_TESTS/SPLIT_TESTS_ADDRESS.h"
-#include "SPLIT_FUNC_NAMES.h"
-#include "STRTOK_FUNC_NAMES.h"
+#include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
+#include "TestSystem/SPLIT_TESTS/SPLIT_SETTINGS.h"
 
 // супер крутая ассемблерная вставка
 unsigned long long tick(void)
@@ -83,7 +79,6 @@ void print_matrix(char matrix[][N], const int matrix_size)
         {
             putchar(matrix[i][j++]);
         }
-        puts(" ");
     }
 }
 
