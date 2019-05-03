@@ -7,6 +7,25 @@ char *strtok_Toporkov(char *string, const char *delim)
 
 int split_Toporkov(const char *string, char matrix[][N], const char symbol)
 {
-    return 0;
+    register int i = CONST_ZERO;
+    register int rows = CONST_ZERO;
+    register int columns = CONST_ZERO;
+    
+    while (string[i] != EX)
+    {
+        if (string[i] == symbol)
+        {
+            matrix[rows++][columns] = EX;
+            columns = CONST_ZERO;
+        }
+        else
+            matrix[rows][columns++] = string[i];
+        
+        ++i;
+    }
+    
+    matrix[rows][columns] = EX;
+    
+    return ++rows;
 }
 
