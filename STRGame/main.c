@@ -27,7 +27,7 @@
 #include "functions/NikitaBurtelov.h" 
 #include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1
 #include "functions/PavelToporkov.h"
-#include "functions/SergeyKononenko.h"
+#include "functions/SergeyKononenko.h" // SPLIT - 1, STRTOK - 0
 #include "functions/SergeyMinenko.h"
 #include "functions/SergeySaburov.h"
 #include "functions/SergeySverdlov.h"
