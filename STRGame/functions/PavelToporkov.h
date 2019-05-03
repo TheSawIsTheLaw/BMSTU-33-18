@@ -1,4 +1,6 @@
 // N - максимальная длина строки, она будет объявлена в мейне
+#define EX '\0'
+#define CONST_ZERO 0
 
 static char *old_str;
 
