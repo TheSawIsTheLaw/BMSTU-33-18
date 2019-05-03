@@ -2,7 +2,7 @@
    клоньте себе на компьютер и тестируйте */
 
 #include <stdio.h>
-#include <time.h>
+#include <stdint.h>
 
 #define COUNT_TESTS 20
 #define GHZ 3300000000
@@ -17,16 +17,16 @@
 #include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/BogdanLemeshkin.h"
 #include "functions/DmitryKovalev.h"
-#include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1 ???
+#include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1 (NEED FIX) 
 #include "functions/EmilSimonenko.h"
 #include "functions/IlyaChelyadinov.h"
 #include "functions/KarimAkhmetov.h"
 #include "functions/LyubovProkhorova.h"
-#include "functions/MikhailNitenko.h"
+#include "functions/MikhailNitenko.h" // SPLIT - 1, STRTOK - 0
 #include "functions/NadezhdaAksenova.h"
 #include "functions/NikitaBurtelov.h" 
 #include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1
-#include "functions/PavelToporkov.h"
+#include "functions/PavelToporkov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/SergeyKononenko.h" // SPLIT - 1, STRTOK - 1
 #include "functions/SergeyMinenko.h"
 #include "functions/SergeySaburov.h"
@@ -40,12 +40,21 @@
 #include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
 #include "TestSystem/SPLIT_TESTS/SPLIT_SETTINGS.h"
 
-// супер крутая ассемблерная вставка
-unsigned long long tick(void)
+// супер крутая ассемблерная вставка (UPDATE)
+uint64_t tick(void)
 {
-    unsigned long long d;
-    __asm__ __volatile__ ("rdtsc" : "=A" (d) );
-    return d;
+    uint32_t high, low;
+    __asm__ __volatile__ (
+        "rdtsc\n"
+        "movl %%edx, %0\n"
+        "movl %%eax, %1\n"
+        : "=r" (high), "=r" (low)
+        :: "%rax", "%rbx", "%rcx", "%rdx"
+        );
+
+    uint64_t ticks = ((uint64_t)high << 32) | low;
+
+    return ticks;
 }
 
 void fill_matrix(char matrix[][N], const int matrix_size)
@@ -127,12 +136,14 @@ int print_name(char *array, int index)
     return ++index;
 }
 
-int print_results(char *array_names, int index, const int complete_split, const int complete_strtok, const unsigned long long time_ticks)
+int print_results(char *array_names, int index, const int complete_split, 
+        const int complete_strtok, const uint64_t time_ticks)
 {   
     puts("\n----------------------");
     index = print_name(array_names, index);
     printf("\nTime running: %.10lf", (double)time_ticks / GHZ);
-    printf("\nSplit tests %d / %d\nStrtok tests %d / %d (TESTS FOR STRTOK NOT WORKING!)\n", complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
+    printf("\nSplit tests %d / %d\nStrtok tests %d / %d (TESTS FOR STRTOK NOT WORKING!)\n", 
+            complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
     return index;
 }
 
@@ -146,7 +157,7 @@ void test_system(char *array_names, char test_matrix[][N])
     {
         int complete_split = 0;
         int complete_strtok = 0;
-        unsigned long long time_ticks = 0;
+        uint64_t time_ticks = 0;
 
         for (int j = 0; j < COUNT_TESTS; j++)
         {
@@ -155,11 +166,11 @@ void test_system(char *array_names, char test_matrix[][N])
             readfile(split_test, TS_arr_split);
             readfile(strtok_test, TS_arr_strtok);
 
-            unsigned long long start_time = tick();
+            uint64_t start_time = tick();
             const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
             char *pch = strtok[i](TS_arr_strtok, &SPLIT_SEPARATORS[j]);
             while (pch != NULL) pch = strtok[i](NULL, &SPLIT_SEPARATORS[j]); // скоро будут отдельные тесты для strtok
-            unsigned long long end_time = tick();
+            uint64_t end_time = tick();
             time_ticks += (end_time - start_time);
 
             if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j]) && size == SPLIT_CORRECT_SIZE[j]) ++complete_split;
