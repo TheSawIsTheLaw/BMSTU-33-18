@@ -1,15 +1,3 @@
-/* Sergey Kononenko header file best lead 
-
-//#define ever ;;
-
-int my_strlen(const char *s)
-{
-    int l = 0;
-    while(*s++ != '\0')
-
-        return l;
-}
-*/
 // N - максимальная длина строки, она будет объявлена в мейне
 
 char *strtok_Kononenko(char *string, const char *delim)
@@ -19,6 +7,22 @@ char *strtok_Kononenko(char *string, const char *delim)
 
 int split_Kononenko(const char *string, char matrix[][N], const char symbol)
 {
-    return 0;
+    register int row = 0, col = 0, k = 0;
+
+    while (string[k])
+    {
+        if (string[k] == symbol)
+        {
+            matrix[row++][col] = '\0';
+            col = 0;
+        }
+        else
+        {
+            matrix[row][col++] = string[k];
+        }
+        k++;
+    }
+    matrix[row][col] = '\0';
+    return ++row;
 }
 
