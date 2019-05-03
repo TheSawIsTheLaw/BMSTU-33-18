@@ -17,17 +17,17 @@ char *strtok_Nitenko(char *string, const char *delim)
 
 int split_Nitenko(const char *string, char matrix[][N], const char symbol)
 {
-    register int n = 0, i = 0, j = 0;
-    while (string[n] != '\0')
+    register int i = 0, j = 0;
+    while (*(string))
     {
-        if (string[n] == symbol)
+        if (*(string) == symbol)
         {
            matrix[i++][j] = '\0';
            j = 0;
         }
         else
-            matrix[i][j++] = string[n];   
-        n++;
+            matrix[i][j++] = *(string);   
+        ++string;
     }
     matrix[i][j] = '\0';
     return ++i;
