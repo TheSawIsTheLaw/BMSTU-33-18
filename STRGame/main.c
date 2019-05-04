@@ -29,12 +29,12 @@
 #include "functions/PavelToporkov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/SergeyKononenko.h" // SPLIT - 1, STRTOK - 1
 #include "functions/SergeyMinenko.h"
-#include "functions/SergeySaburov.h"
+#include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 0
 #include "functions/SergeySverdlov.h"
 #include "functions/VladKrivozubov.h"
 #include "functions/VladislavChernenko.h"
 #include "functions/VladislavGurishev.h"
-#include "functions/YefimSokolov.h"
+#include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 0
 #include "functions/AlexeyRomanov.h" // SPLIT - 1, STRTOK - 0
 
 #include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
