@@ -7,8 +7,8 @@ char *strtok_Sokolov(char *string, const char *delim)
 
 int split_Sokolov(const char *string, char matrix[][N], const char symbol)
 {
-    register int row, col;
-    register index = 0;
+    register int row = 0, col = 0;
+    register int index = 0;
 
     while (string[index])
     {
