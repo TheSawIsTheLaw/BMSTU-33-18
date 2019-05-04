@@ -7,7 +7,7 @@
 #define COUNT_TESTS 20
 #define GHZ 3300000000
 #define K 100
-#define N 1400
+#define N 32000
 #define MEMBERS 24
 #define OK 0
 #define ERROR 1
@@ -63,7 +63,7 @@ void fill_matrix(char matrix[][N], const int matrix_size)
     {
         for (int j = 0; j < N; j++)
         {
-            matrix[i][j] = ' ';
+            matrix[i][j] = '\0';
         }
     }
 }
@@ -73,7 +73,7 @@ void fill_array(char *array)
     int i = 0;
     while (array[i])
     {
-        array[i] = ' ';
+        array[i] = '\0';
         i++;
     }
 }
