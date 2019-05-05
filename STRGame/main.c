@@ -17,7 +17,7 @@
 #include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/BogdanLemeshkin.h"
 #include "functions/DmitryKovalev.h"
-#include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1 (NEED FIX) 
+#include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1
 #include "functions/EmilSimonenko.h"
 #include "functions/IlyaChelyadinov.h"
 #include "functions/KarimAkhmetov.h"
