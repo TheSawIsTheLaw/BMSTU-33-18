@@ -21,6 +21,21 @@ char *find_end_Chernenko(const char *string)
     return (char *)string;
 }
 
+#define BELONGS 1
+#define DOES_NOT_BELONG 0
+
+int belongs(const char *const ichar, const char* set)
+{
+    while (*set != 0)
+    {
+        if (*ichar == *set)
+            return BELONGS;
+        set += 1;
+    }
+
+    return DOES_NOT_BELONG;
+}
+
 char *strtok_Chernenko(char *istr, const char *delim)
 {
     static char *last_token = NULL;
@@ -36,7 +51,7 @@ char *strtok_Chernenko(char *istr, const char *delim)
 
         string_end = find_end_Chernenko(istr);
         
-        while (*left == *delim && left != string_end)
+        while (belongs(left, delim) && left != string_end)
             left++;
         if (left == string_end)
             return NULL;
@@ -44,7 +59,7 @@ char *strtok_Chernenko(char *istr, const char *delim)
         current = left;
         while (current != string_end)
         {
-            if (*current == *delim)
+            if (belongs(current, delim))
                 *current = 0;
             current++;
         }
