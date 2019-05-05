@@ -13,7 +13,7 @@
 #define ERROR 1
 
 #include "functions/AlisSukocheva.h"
-#include "functions/AnastasiiaNamestnik.h"
+#include "functions/AnastasiiaNamestnik.h" // SPLIT - 0, STRTOK - 1
 #include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/BogdanLemeshkin.h"
 #include "functions/DmitryKovalev.h"
@@ -28,9 +28,9 @@
 #include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1
 #include "functions/PavelToporkov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/SergeyKononenko.h" // SPLIT - 1, STRTOK - 1
-#include "functions/SergeyMinenko.h"
-#include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 0
-#include "functions/SergeySverdlov.h"
+#include "functions/SergeyMinenko.h" 
+#include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 1
+#include "functions/SergeySverdlov.h" // SPLIT - 1, STRTOK - 0
 #include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavChernenko.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavGurishev.h"
