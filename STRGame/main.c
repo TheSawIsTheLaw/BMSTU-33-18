@@ -34,7 +34,7 @@
 #include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavChernenko.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavGurishev.h"
-#include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 0
+#include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 1
 #include "functions/AlexeyRomanov.h" // SPLIT - 1, STRTOK - 0
 
 #include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
