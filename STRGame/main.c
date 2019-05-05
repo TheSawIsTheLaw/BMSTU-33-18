@@ -16,7 +16,7 @@
 #include "functions/AnastasiiaNamestnik.h" // SPLIT - 0, STRTOK - 1
 #include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/BogdanLemeshkin.h"
-#include "functions/DmitryKovalev.h"
+#include "functions/DmitryKovalev.h" // SPLIT 1, STRTOK - 0
 #include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1
 #include "functions/EmilSimonenko.h"
 #include "functions/IlyaChelyadinov.h"
@@ -34,7 +34,7 @@
 #include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavChernenko.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavGurishev.h"
-#include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 0
+#include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 1
 #include "functions/AlexeyRomanov.h" // SPLIT - 1, STRTOK - 0
 
 #include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
