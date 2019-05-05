@@ -31,8 +31,8 @@
 #include "functions/SergeyMinenko.h"
 #include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 0
 #include "functions/SergeySverdlov.h"
-#include "functions/VladKrivozubov.h"
-#include "functions/VladislavChernenko.h"
+#include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1
+#include "functions/VladislavChernenko.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavGurishev.h"
 #include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 0
 #include "functions/AlexeyRomanov.h" // SPLIT - 1, STRTOK - 0
@@ -139,11 +139,13 @@ int print_name(char *array, int index)
 int print_results(char *array_names, int index, const int complete_split, 
         const int complete_strtok, const uint64_t time_ticks)
 {   
-    puts("\n----------------------");
+    puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     index = print_name(array_names, index);
+    if (COUNT_TESTS == complete_split) printf(" ✅✅✅✅✅");
     printf("\nTime running: %.10lf", (double)time_ticks / GHZ);
     printf("\nSplit tests %d / %d\nStrtok tests %d / %d (TESTS FOR STRTOK NOT WORKING!)\n", 
             complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
+    
     return index;
 }
 

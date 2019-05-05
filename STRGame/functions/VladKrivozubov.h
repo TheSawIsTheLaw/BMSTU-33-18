@@ -87,6 +87,7 @@ char *strtok_Krivozubov(char *string, const char *delim)
         }
         return NULL;
     }    
+}
 
 int split_Krivozubov(const char *string, char matrix[][N], const char symbol)
 {
