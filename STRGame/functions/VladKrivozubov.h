@@ -3,8 +3,7 @@
 char *strtok_Krivozubov(char *string, const char *delim)
 {
     static char *index;
-    register int i = 0;
-    register int j = 0;
+    register int i = 0, j = 0;
     if (string == NULL)
     {
         if (*index == '\0')
@@ -92,9 +91,7 @@ char *strtok_Krivozubov(char *string, const char *delim)
 
 int split_Krivozubov(const char *string, char matrix[][N], const char symbol)
 {
-    register int i = 0;
-    register int j = 0;
-    register int current = 0;
+    register int i = 0, j = 0, current = 0;
     while(string[current])
     {
         if (string[current] != symbol)
