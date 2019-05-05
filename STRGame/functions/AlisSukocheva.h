@@ -7,6 +7,19 @@ char *strtok_Sukocheva(char *string, const char *delim)
 
 int split_Sukocheva(const char *string, char matrix[][N], const char symbol)
 {
-    return 0;
+    register int i = 0, j = 0;   
+    while (*(string))
+    {
+        if (*(string) == symbol)
+        {
+            matrix[i++][j] = '\0';
+            j = 0;
+        }
+        else
+            matrix[i][j++] = *(string);
+        ++string;
+    }
+    matrix[i][j] = '\0';
+    return ++i;
 }
 
