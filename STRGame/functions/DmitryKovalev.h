@@ -7,6 +7,19 @@ char *strtok_Kovalev(char *string, const char *delim)
 
 int split_Kovalev(const char *string, char matrix[][N], const char symbol)
 {
-    return 0;
+    register int i = 0, j = 0, n = 0;
+	while (string[n] != '\0')
+    {
+		if (string[n] == symbol)
+        {
+			matrix[i++][j] = '\0';
+			j = 0;
+		}
+		else
+			matrix[i][j++] = string[n];
+        n++;
+    }
+    matrix[i][j] = '\0';
+    return ++i;
 }
 
