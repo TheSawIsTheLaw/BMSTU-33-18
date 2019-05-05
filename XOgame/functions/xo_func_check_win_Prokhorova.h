@@ -1,18 +1,20 @@
-int check_win(char bf[][3])
+#define WIN 1
+#define NOT_WIN 0
+
+int check_win(char bf[][DIME])
 {
     char start_el;
-    int size = 3;
-    int counter = 0;
+    int counter;
 
 //Проверка строк
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < DIME; i++)
     {
         if (bf[i][0] != ' ')
         {
             start_el = bf[i][0];
             counter = 1;
 
-            for (int j = 1; j < size; i++)
+            for (int j = 1; j < DIME; i++)
             {
                 if (bf[i][j] == start_el)
                 {
@@ -20,21 +22,21 @@ int check_win(char bf[][3])
                 }
             }
         }
-        if (counter == size)
+        if (counter == DIME)
         {
-            return 1;
+            return WIN;
         }
     }
 
     //Проверка столбцов
-    for (int j = 0; j < size; j++)
+    for (int j = 0; j < DIME; j++)
     {
         if (bf[0][j] != ' ')
         {
             start_el = bf[0][j];
             counter = 1;
 
-            for (int i = 1; i < size; i++)
+            for (int i = 1; i < DIME; i++)
             {
                 if (bf[i][j] == start_el)
                 {
@@ -42,9 +44,9 @@ int check_win(char bf[][3])
                 }
             }
         }
-        if (counter == size)
+        if (counter == DIME)
         {
-            return 1;
+            return WIN;
         }
     }
 
@@ -54,7 +56,7 @@ int check_win(char bf[][3])
         start_el = bf[0][0];
         counter = 1;
 
-        for (int i = 1; i < size; i++)
+        for (int i = 1; i < DIME; i++)
         {
             if (bf[i][i] == start_el)
             {
@@ -62,31 +64,31 @@ int check_win(char bf[][3])
             }
         }
 
-        if (counter == size)
+        if (counter == DIME)
         {
-            return 1;
+            return WIN;
         }
     }
 
     //Проверка побочной диагонали
-    if(bf[0][size - 1] != ' ')
+    if(bf[0][DIME - 1] != ' ')
     {
-        start_el = bf[0][size - 1];
+        start_el = bf[0][DIME - 1];
         counter = 1;
 
-        for (int i = 1; i < size; i++)
+        for (int i = 1; i < DIME; i++)
         {
-            if (bf[i][size - 1 - i] == start_el)
+            if (bf[i][DIME - 1 - i] == start_el)
             {
                 counter += 1;
             }
         }
 
-        if (counter == size)
+        if (counter == DIME)
         {
-            return 1;
+            return WIN;
         }
     }
 
-    return 0;
+    return NOT_WIN;
 }
