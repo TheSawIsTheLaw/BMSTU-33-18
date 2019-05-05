@@ -3,56 +3,60 @@
 #define ONE 1
 
 typedef int I;
+typedef char C;
 
-char *pre;
+C *last = NULL;
+C *final = NULL;
 
-char *strtok_Yakuba(char *string, const char *delim)
+char *strtok_Yakuba(C *s, const C *delim)
 {
-    return 0;
-    if (string != NULL)
+    if (s == NULL)
     {
-
-        I i = Z, q = Z;
-        while (string[i])
-        {
-            while (delim[q])
-            {
-                if (delim[q] == string[i])
-                {
-                    string[i] = IZ;
-                    pre = &string[i+ONE];
-                    return string;
-                }
-                ++q;
-            }
-            ++i;
-            q = Z;
-        }
-        return NULL;
+        C *satan = last;
+        while (*satan != IZ && satan != final)
+            satan++;
+        while (*satan == IZ && satan != final)
+            satan++;
+        if (satan == final)
+            return NULL;
+        last = satan;
+        return last;
     }
     else
     {
-        I i = Z, q = Z;
-        char* prepr = pre;
-        while (pre[i])
+        final = s;
+        while (*final != Z)
+            ++final;
+        C *pre = s;
+        C *now = s;
+        I q = Z;
+        while (delim[q])
+        {
+            while (pre != final && *pre == delim[q])
+                ++pre;
+            if (pre == final)
+                return NULL;
+            ++q;
+        }
+        q = Z;
+        now = pre;
+        while (now != final)
         {
             while (delim[q])
             {
-                if (delim[q] == pre[i])
+                if (*now == delim[q])
                 {
-                    pre[i] = IZ;
-                    pre = &pre[i+ONE];
-                    return prepr;
+                    *now = IZ;
                 }
                 ++q;
             }
-            ++i;
             q = Z;
+            ++now;
         }
-        prepr = pre;
-        pre = NULL;
-        return prepr;
+        last = pre;
+        return last;
     }
+    return NULL;
 }
 
 int split_Yakuba(const char *s, char m[][N], const char sy)
