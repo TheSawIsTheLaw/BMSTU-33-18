@@ -72,6 +72,4 @@ int split_Simonenko(const char *string, char matrix[][N], const char symbol)
     }
     matrix[r][c] = "/0";
     return ++r;
-
-    return 0;
 }
