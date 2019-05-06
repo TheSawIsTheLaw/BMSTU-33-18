@@ -1,6 +1,10 @@
 // N - max str size
 
 char *strtok_Simonenko(char *string, const char *delim)
+{
+    return 0;
+}
+/*
     static char *past;
     int i = 0, j = 0;
 
@@ -47,10 +51,12 @@ char *strtok_Simonenko(char *string, const char *delim)
         return past;     //teper luchshe
     }
 }
-
+*/
 
 int split_Simonenko(const char *string, char matrix[][N], const char symbol)
 {
+    return 0; 
+    /*
     int i = 0;
     int c = 0;
     int r = 0;
@@ -72,4 +78,5 @@ int split_Simonenko(const char *string, char matrix[][N], const char symbol)
     }
     matrix[r][c] = "/0";
     return ++r;
+    */
 }
