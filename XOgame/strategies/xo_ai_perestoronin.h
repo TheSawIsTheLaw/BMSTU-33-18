@@ -7,7 +7,7 @@
 
 int fast_decision(const char* const pos)
 {
-    int x = 0, o = 0; empty = 0;
+    int x = 0, o = 0, empty = 0;
     for (int i = 0; i < SIDE_SIZE; i++)
     {
         if (pos[i] == 'X')
@@ -106,7 +106,7 @@ int make_shot_perestoronin(const char symb, char BF[][SIDE_SIZE])
     int i, j, unsymb;
     int free_slots[FIELD_SIZE];
     int space_num = space_counter(BF, free_slots);
-    int work_arr[SIDE_SIZE];
+    char work_arr[SIDE_SIZE];
     unsymb = (symb == 'X') ? 'O' : 'X';
 
     if (BF[SIDE_SIZE / 2][SIDE_SIZE / 2] == ' ') 
