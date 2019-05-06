@@ -1,14 +1,11 @@
 // N - max str size
-
+#define BSZ '\0'
 char *strtok_Simonenko(char *string, const char *delim)
 {
-    return 0;
-}
-/*
     static char *past;
     int i = 0, j = 0;
 
-    if (string == NULL)
+    if (string == 0)
     {
         while (*past)
         {
@@ -26,7 +23,7 @@ char *strtok_Simonenko(char *string, const char *delim)
             past++;
         }
 
-        return NULL;  
+        return 0;  
     }
 
     else
@@ -51,21 +48,19 @@ char *strtok_Simonenko(char *string, const char *delim)
         return past;     //teper luchshe
     }
 }
-*/
+
 
 int split_Simonenko(const char *string, char matrix[][N], const char symbol)
-{
-    return 0; 
-    /*
-    int i = 0;
-    int c = 0;
-    int r = 0;
+{ 
+    int i = 0;	 //indexer
+    int c = 0;   //collumn
+    int r = 0;   //row
 
     while (string[i])
     {
         if (symbol == string[i])
         {
-            matrix[r][c] = "/0";
+            matrix[r][c] = BSZ ;
             c = 0;
             ++r;
         }
@@ -76,7 +71,6 @@ int split_Simonenko(const char *string, char matrix[][N], const char symbol)
         }
         ++i;
     }
-    matrix[r][c] = "/0";
+    matrix[r][c] = BSZ ;
     return ++r;
-    */
 }
