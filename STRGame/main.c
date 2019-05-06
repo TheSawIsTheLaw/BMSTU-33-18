@@ -12,7 +12,7 @@
 #define OK 0
 #define ERROR 1
 
-#include "functions/AlisSukocheva.h"
+#include "functions/AlisSukocheva.h" // SPLIT - 1, STRTOK - 0
 #include "functions/AnastasiiaNamestnik.h" // SPLIT - 0, STRTOK - 1
 #include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/BogdanLemeshkin.h"
