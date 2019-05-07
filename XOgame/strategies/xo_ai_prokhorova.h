@@ -1,161 +1,135 @@
 #define OK 1
 #define NOT_OK 0
 
-
-int count_symb(char symb, char BF[][3])
+int check_situation(char symb, char BF[][DIME], int *i_to_go, int *j_to_go)
 {
-    int counter = 0;
-    for(int i = 0; i < 3; i++)
+    int count_space;
+    int count_symbol;
+
+    //Проверка строк
+    for (int i = 0; i < DIME; i++)
     {
-        for(int j = 0; j < 3; j++)
+        count_space = 0;
+        count_symbol = 0;
+        for (j = 0; j < DIME; j++)
         {
             if (BF[i][j] == symb)
             {
-                counter += 1;
+                count_symbol += 1;
+            }
+            if (BF[i][j] == ' ')
+            {
+                *i_to_go = i;
+                *j_to_go = j;
+                count_space += 1;
             }
         }
-    }
-    return counter;
-}
-
-int check_situation(char symb, char BF[][3], int *i_to_go, int *j_to_go)
-{
-    //Проверка строк
-    for(int i = 0; i < 3; i++)
-    {
-        if (BF[i][0] == symb && BF[i][1] == symb && BF[i][2] == ' ')
+        if (count_space == 1 && count_symbol == (DIME - 1))
         {
-            *i_to_go = i;
-            *j_to_go = 2;
-            return OK;
-        }
-
-        if (BF[i][0] == symb && BF[i][2] == symb && BF[i][1] == ' ')
-        {
-            *i_to_go = i;
-            *j_to_go = 1;
-            return OK;
-
-        }
-
-        if (BF[i][1] == symb && BF[i][2] == symb && BF[i][0] == ' ')
-        {
-            *i_to_go = i;
-            *j_to_go = 0;
             return OK;
         }
     }
 
 
     //Проверка столбцов
-    for(int j = 0; j < 3; j++)
+    for(int j = 0; j < DIME; j++)
     {
-        if (BF[0][j] == symb && BF[1][j] == symb && BF[2][j] == ' ')
+        count_space = 0;
+        count_symbol = 0;
+        for(int i = 0; i < DIME; i++)
         {
-            *i_to_go = 2;
-            *j_to_go = 0;
-            return OK;
+            if (BF[i][j] == symb)
+            {
+                count_symbol += 1;
+            }
+            if (BF[i][j] == ' ')
+            {
+                count_space += 1;
+                *i_to_go = i;
+                *j_to_go = j;
+            }
         }
-
-        if (BF[1][j] == symb && BF[2][j] == symb && BF[0][j] == ' ')
+        if (count_space == 1 && count_symbol == (DIME - 1))
         {
-            *i_to_go = 0;
-            *j_to_go = j;
-            return OK;
-        }
-
-        if (BF[2][j] == symb && BF[0][j] == symb && BF[1][j] == ' ')
-        {
-            *i_to_go = 1;
-            *j_to_go = j;
             return OK;
         }
     }
 
     //Проверка главной диагонали
-    if (BF[0][0] == symb && BF[1][1] == symb && BF[2][2] == ' ')
+    count_space = 0;
+    count_symbol = 0;
+    int i = 0;
+    while (i < DIME)
     {
-        *i_to_go = 2;
-        *j_to_go = 2;
-        return OK;
+        if (BF[i][i] == symb)
+        {
+            count_symbol += 1;
+        }
+        if (BF[i][i] == space)
+        {
+            count_space += 1;
+            *i_to_go = i;
+            *j_to_go = i;
+        }
+        i += 1;
     }
-
-    if (BF[0][0] == symb && BF[2][2] == symb && BF[1][1] == ' ')
+    if (count_space == 1 && count_symbol == (DIME - 1))
     {
-        *i_to_go = 1;
-        *j_to_go = 1;
-        return OK;
-    }
-
-    if (BF[1][1] == symb && BF[2][2] == symb && BF[0][0] == ' ')
-    {
-        *i_to_go = 0;
-        *j_to_go = 0;
         return OK;
     }
 
     //Проверка побочной диагонали
-
-    if (BF[0][2] == symb && BF[1][1] == symb && BF[2][0] == ' ')
+    count_space = 0;
+    count_symbol = 0;
+    int i = 0;
+    while (i < DIME)
     {
-        *i_to_go = 2;
-        *j_to_go = 0;
-        return OK;
+        if (BF[i][DIME - 1 - i] == symb)
+        {
+            count_symbol += 1;
+        }
+        if (BF[i][DIME - 1 - i] == space)
+        {
+            count_space += 1;
+            *i_to_go = i;
+            *j_to_go = DIME - 1 - i;
+        }
+        i += 1;
     }
-
-    if (BF[0][2] == symb && BF[2][0] == symb && BF[1][1] == ' ')
+    if (count_space == 1 && count_symbol == (DIME - 1))
     {
-        *i_to_go = 1;
-        *j_to_go = 1;
-        return OK;
-    }
-
-    if (BF[1][1] == symb && BF[2][0] == symb && BF[0][2] == ' ')
-    {
-        *i_to_go = 0;
-        *j_to_go = 2;
         return OK;
     }
     return NOT_OK;
-
 }
 
-void make_shot_prokhorova(char symb, char BF[][3])
+void make_shot_prokhorova(char symb, char BF[][DIME])
 {
     char antisymb = symb == 'X'? 'O' : 'X';
     int i_to_go;
     int j_to_go;
     int flag = NOT_OK;
 
-    if (check_situation(symb, BF, &i_to_go, &j_to_go) == OK)
+    if (check_situation(symb, BF, &i_to_go, &j_to_go))
     {
         BF[i_to_go][j_to_go] = symb;
+        return;
     }
-    else
+    
+    if (check_situation(antisymb, BF, &i_to_go, &j_to_go))
     {
-        if (check_situation(antisymb, BF, &i_to_go, &j_to_go) == OK)
-        {
-            BF[i_to_go][j_to_go] = symb;
-        }
-        else
-        {
-            int i = 0;
-            int j = 0;
-            while (i < 3 && flag == NOT_OK)
-            {
-                j = 0;
-                while(j < 3 && flag == NOT_OK)
-                {
-                    if (BF[i][j] == ' ')
-                    {
-                        BF[i][j] = symb;
-                        flag = OK;
-                    }
-                    j += 1;
-                }
-                i += 1;
-            }
-
-        }
+        BF[i_to_go][j_to_go] = symb;
+        return;
     }
+
+    int i = rand() % DIME;
+    int j = rand() % DIME;
+
+    while (BF[i][j] != ' ')
+    {
+        i = rand() % DIME;
+        j = rand() % DIME;
+    }
+
+    BF[i][j] = symb;
 }
