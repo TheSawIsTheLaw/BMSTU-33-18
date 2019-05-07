@@ -31,7 +31,7 @@ char STRTOK_TESTS_ADDRESS[COUNT_TESTS][K] =
     "TestSystem/STRTOK_TESTS/TEST_STRTOK_20.txt"
 };
 
-char* (*strtok[])(char*, const char*) =
+char* (*strtok_arr[])(char*, const char*) =
 {
     strtok_Sukocheva,
     strtok_Namestnik,

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 #define COUNT_TESTS 20
 #define COUNT_SEPS 5
@@ -108,34 +109,13 @@ void readfile(FILE *file, char *array)
 }
 
 // Проверка корректности выполнения функции strtok
-int check_strtok(const char *const string, const char *const symbol, const char *separators, int *index)
+int check_strtok(const char *const pch, const char *const pch_std, const char *const TS_arr_strtok, const char *const TS_arr_strtok_std)
 {
-    if (*symbol != string[*index])
+    if (*pch != *pch_std || !(strcmp(TS_arr_strtok, TS_arr_strtok_std)))
     {
         return ERROR;
     }
-
-    while (TRUE)
-    {
-        int i = 0;
-        while (separators[i])
-        {
-            if (separators[i] == string[*index])
-            {
-                if (string[*index] == '\0')
-                {
-                    return OK;
-                }
-                else
-                {
-                    return ERROR;
-                }
-            }
-            ++i;
-        }
-        *index++;
-    }
-
+    
     return OK;
 }
 
@@ -154,6 +134,7 @@ int check_split(const char *const TS_arr_split, char matrix[][N], const int matr
         }
         k++;
     }
+
     return OK;
 }
 
@@ -198,12 +179,22 @@ int print_results(char *array_names, int index, const int complete_split,
     return index;
 }
 
+void copy_strtok_array(char *strtok1, char *strtok2)
+{
+    int i = 0;
+    while (strtok1[i])
+    {
+        strtok2[i] = strtok1[i];
+    }
+}
+
 // Функция тестовой системы split и strtok
 void test_system(char *array_names, char test_matrix[][N])
 {
     int index = 0;
-    char TS_arr_split[N];
-    char TS_arr_strtok[N];
+    char TS_arr_split[N] = { 0 };
+    char TS_arr_strtok[N] = { 0 };
+    char TS_arr_strtok_std[N] = { 0 };
 
     for (int i = 0; i < MEMBERS; i++)
     {
@@ -213,12 +204,12 @@ void test_system(char *array_names, char test_matrix[][N])
 
         for (int j = 0; j < COUNT_TESTS; j++)
         {
-            int index = 0;
-            int *pointer_index = &index;
+            int strtok_checker = ERROR;
             FILE *split_test = fopen(SPLIT_TESTS_ADDRESS[j], "r");
             FILE *strtok_test = fopen(STRTOK_TESTS_ADDRESS[j], "r");
             readfile(split_test, TS_arr_split);
             readfile(strtok_test, TS_arr_strtok);
+            copy_strtok_array(TS_arr_strtok, TS_arr_strtok_std);
 
             uint64_t start_split = tick();
             const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
@@ -226,17 +217,27 @@ void test_system(char *array_names, char test_matrix[][N])
             time_ticks += end_split - start_split;
 
             uint64_t start_strtok = tick();
-            char *pch = strtok[i](TS_arr_strtok, STRTOK_SEPARATORS);
+            char *pch = strtok_arr[i](TS_arr_strtok, STRTOK_SEPARATORS);
             uint64_t end_strtok = tick();
+            char *pch_std = strtok(TS_arr_strtok_std, STRTOK_SEPARATORS);
             time_ticks += end_strtok - start_strtok;
             while (pch != NULL)
             {
+                strtok_checker = check_strtok(pch, pch_std, TS_arr_strtok, TS_arr_strtok_std);
+                if (strtok_checker)
+                {
+                    break;
+                }
                 uint64_t start_strtok = tick();
-                printf("%s", pch);
-                pch = strtok[i](NULL, STRTOK_SEPARATORS);
+                pch = strtok_arr[i](NULL, STRTOK_SEPARATORS);
                 uint64_t end_strtok = tick();
+                pch_std = strtok(NULL, STRTOK_SEPARATORS);
                 time_ticks += end_strtok - start_strtok;
-                check_strtok(TS_arr_strtok, pch, SPLIT_SEPARATORS, pointer_index);
+            }
+
+            if (!strtok_checker)
+            {
+               ++complete_strtok; 
             }
 
             if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j]) && size == SPLIT_CORRECT_SIZE[j])
