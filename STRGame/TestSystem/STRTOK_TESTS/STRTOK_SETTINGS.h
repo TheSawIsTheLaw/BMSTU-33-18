@@ -1,3 +1,12 @@
+const char STRTOK_SEPARATORS[COUNT_SEPS] = 
+{
+    ' ', 
+    ',', 
+    '.', 
+    ';', 
+    ':' 
+};
+
 char STRTOK_TESTS_ADDRESS[COUNT_TESTS][K] =
 {
     "TestSystem/STRTOK_TESTS/TEST_STRTOK_1.txt",

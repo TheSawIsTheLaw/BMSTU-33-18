@@ -5,12 +5,14 @@
 #include <stdint.h>
 
 #define COUNT_TESTS 20
-#define GHZ 3300000000
+#define COUNT_SEPS 5
+#define GHZ 3300000000 // нужно менять, если у вас другая частота
 #define K 100
 #define N 32000
 #define MEMBERS 24
 #define OK 0
 #define ERROR 1
+#define TRUE 1
 
 #include "functions/AlisSukocheva.h" // SPLIT - 1, STRTOK - 0
 #include "functions/AnastasiiaNamestnik.h" // SPLIT - 0, STRTOK - 1
@@ -40,7 +42,7 @@
 #include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
 #include "TestSystem/SPLIT_TESTS/SPLIT_SETTINGS.h"
 
-// супер крутая ассемблерная вставка (UPDATE)
+// Подсчёт тиков
 uint64_t tick(void)
 {
     uint32_t high, low;
@@ -57,6 +59,7 @@ uint64_t tick(void)
     return ticks;
 }
 
+// Очистка матрицы
 void fill_matrix(char matrix[][N], const int matrix_size)
 {
     for (int i = 0; i < matrix_size; i++)
@@ -68,6 +71,7 @@ void fill_matrix(char matrix[][N], const int matrix_size)
     }
 }
 
+// Очистка массива
 void fill_array(char *array)
 {
     int i = 0;
@@ -78,7 +82,7 @@ void fill_array(char *array)
     }
 }
 
-// Эта функция нужна для отладки
+// Печать матрицы (отладка)
 void print_matrix(char matrix[][N], const int matrix_size)
 {
     int j = 0;
@@ -91,7 +95,7 @@ void print_matrix(char matrix[][N], const int matrix_size)
     }
 }
 
-
+// Считывание файла
 void readfile(FILE *file, char *array)
 {
     int i = 0;
@@ -103,12 +107,39 @@ void readfile(FILE *file, char *array)
     fclose(file);
 }
 
-// soon
-int check_strtok()
+// Проверка корректности выполнения функции strtok
+int check_strtok(const char *const string, const char *const symbol, const char *separators, int *index)
 {
+    if (*symbol != string[*index])
+    {
+        return ERROR;
+    }
+
+    while (TRUE)
+    {
+        int i = 0;
+        while (separators[i])
+        {
+            if (separators[i] == string[*index])
+            {
+                if (string[*index] == '\0')
+                {
+                    return OK;
+                }
+                else
+                {
+                    return ERROR;
+                }
+            }
+            ++i;
+        }
+        *index++;
+    }
+
     return OK;
 }
 
+// Проверка корректности выполнения функции split
 int check_split(const char *const TS_arr_split, char matrix[][N], const int matrix_size, const char sep)
 {
     int k = 0;
@@ -126,6 +157,7 @@ int check_split(const char *const TS_arr_split, char matrix[][N], const int matr
     return OK;
 }
 
+// Печать имени студента
 int print_name(char *array, int index)
 {
     while (array[index] != ':')
@@ -136,19 +168,37 @@ int print_name(char *array, int index)
     return ++index;
 }
 
+// Печать результата прохождения тестовой системы и времени
 int print_results(char *array_names, int index, const int complete_split, 
         const int complete_strtok, const uint64_t time_ticks)
 {   
     puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     index = print_name(array_names, index);
-    if (COUNT_TESTS == complete_split) printf(" ✅✅✅✅✅");
     printf("\nTime running: %.10lf", (double)time_ticks / GHZ);
-    printf("\nSplit tests %d / %d\nStrtok tests %d / %d (TESTS FOR STRTOK NOT WORKING!)\n", 
-            complete_split, COUNT_TESTS, complete_strtok, COUNT_TESTS);
+    printf("\nSplit tests %d / %d", complete_split, COUNT_TESTS);
+    if (COUNT_TESTS == complete_split)
+    {
+        printf(" ✅✅✅✅✅");
+    }
+    else
+    {
+        printf(" ❌❌❌❌❌");
+    }
+
+    printf("\nStrtok tests %d / %d", complete_strtok, COUNT_TESTS);
+    if (COUNT_TESTS == complete_strtok)
+    {
+        printf(" ✅✅✅✅✅");
+    } 
+    else
+    {
+        printf(" ❌❌❌❌❌");
+    }
     
     return index;
 }
 
+// Функция тестовой системы split и strtok
 void test_system(char *array_names, char test_matrix[][N])
 {
     int index = 0;
@@ -163,19 +213,37 @@ void test_system(char *array_names, char test_matrix[][N])
 
         for (int j = 0; j < COUNT_TESTS; j++)
         {
+            int index = 0;
+            int *pointer_index = &index;
             FILE *split_test = fopen(SPLIT_TESTS_ADDRESS[j], "r");
             FILE *strtok_test = fopen(STRTOK_TESTS_ADDRESS[j], "r");
             readfile(split_test, TS_arr_split);
             readfile(strtok_test, TS_arr_strtok);
 
-            uint64_t start_time = tick();
+            uint64_t start_split = tick();
             const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
-            char *pch = strtok[i](TS_arr_strtok, &SPLIT_SEPARATORS[j]);
-            while (pch != NULL) pch = strtok[i](NULL, &SPLIT_SEPARATORS[j]); // скоро будут отдельные тесты для strtok
-            uint64_t end_time = tick();
-            time_ticks += (end_time - start_time);
+            uint64_t end_split = tick();
+            time_ticks += end_split - start_split;
 
-            if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j]) && size == SPLIT_CORRECT_SIZE[j]) ++complete_split;
+            uint64_t start_strtok = tick();
+            char *pch = strtok[i](TS_arr_strtok, STRTOK_SEPARATORS);
+            uint64_t end_strtok = tick();
+            time_ticks += end_strtok - start_strtok;
+            while (pch != NULL)
+            {
+                uint64_t start_strtok = tick();
+                printf("%s", pch);
+                pch = strtok[i](NULL, STRTOK_SEPARATORS);
+                uint64_t end_strtok = tick();
+                time_ticks += end_strtok - start_strtok;
+                check_strtok(TS_arr_strtok, pch, SPLIT_SEPARATORS, pointer_index);
+            }
+
+            if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j]) && size == SPLIT_CORRECT_SIZE[j])
+            {   
+                ++complete_split;
+            }
+
             fill_matrix(test_matrix, size);
             fill_array(TS_arr_split);
             fill_array(TS_arr_strtok);
