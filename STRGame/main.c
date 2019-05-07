@@ -13,31 +13,30 @@
 #define MEMBERS 24
 #define OK 0
 #define ERROR 1
-#define TRUE 1
 
 #include "functions/AlisSukocheva.h" // SPLIT - 1, STRTOK - 0
-#include "functions/AnastasiiaNamestnik.h" // SPLIT - 0, STRTOK - 1
-#include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1
+#include "functions/AnastasiiaNamestnik.h" // SPLIT - 0, STRTOK - 1 (0)
+#include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1 (?)
 #include "functions/BogdanLemeshkin.h"
 #include "functions/DmitryKovalev.h" // SPLIT 1, STRTOK - 0
 #include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1
-#include "functions/EmilSimonenko.h" // NEED FIX
+#include "functions/EmilSimonenko.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/IlyaChelyadinov.h"
 #include "functions/KarimAkhmetov.h"
-#include "functions/LyubovProkhorova.h"
+#include "functions/LyubovProkhorova.h" // SPLIT - 1, STRTOK - 0
 #include "functions/MikhailNitenko.h" // SPLIT - 1, STRTOK - 0
 #include "functions/NadezhdaAksenova.h"
 #include "functions/NikitaBurtelov.h" 
-#include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1
-#include "functions/PavelToporkov.h" // SPLIT - 1, STRTOK - 1
-#include "functions/SergeyKononenko.h" // SPLIT - 1, STRTOK - 1
+#include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1 (?)
+#include "functions/PavelToporkov.h" // SPLIT - 1, STRTOK - 1 (0)
+#include "functions/SergeyKononenko.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/SergeyMinenko.h" 
-#include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 1
-#include "functions/SergeySverdlov.h" // SPLIT - 1, STRTOK - 0
-#include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1
+#include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 1 (0)
+#include "functions/SergeySverdlov.h" // SPLIT - 1, STRTOK - 1 (0)
+#include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/VladislavChernenko.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavGurishev.h"
-#include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 1
+#include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 1 (0)
 #include "functions/AlexeyRomanov.h" // SPLIT - 1, STRTOK - 0
 
 #include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
@@ -109,14 +108,15 @@ void readfile(FILE *file, char *array)
 }
 
 // Проверка корректности выполнения функции strtok
-int check_strtok(const char *const pch, const char *const pch_std, const char *const TS_arr_strtok, const char *const TS_arr_strtok_std)
+int check_strtok(const char *const pch, const char *const pch_std, 
+    const char *const TS_arr_strtok, const char *const TS_arr_strtok_std)
 {
-    if (*pch != *pch_std || !(strcmp(TS_arr_strtok, TS_arr_strtok_std)))
+    if (*pch == *pch_std && !(strcmp(TS_arr_strtok, TS_arr_strtok_std)))
     {
-        return ERROR;
+        return OK;
     }
     
-    return OK;
+    return ERROR;
 }
 
 // Проверка корректности выполнения функции split
@@ -149,6 +149,18 @@ int print_name(char *array, int index)
     return ++index;
 }
 
+void print_correctness(const int count_complete)
+{
+    if (COUNT_TESTS == count_complete)
+    {
+        printf(" ✅✅✅✅✅");
+    }
+    else
+    {
+        printf(" ❌❌❌❌❌");
+    }
+}
+
 // Печать результата прохождения тестовой системы и времени
 int print_results(char *array_names, int index, const int complete_split, 
         const int complete_strtok, const uint64_t time_ticks)
@@ -157,24 +169,9 @@ int print_results(char *array_names, int index, const int complete_split,
     index = print_name(array_names, index);
     printf("\nTime running: %.10lf", (double)time_ticks / GHZ);
     printf("\nSplit tests %d / %d", complete_split, COUNT_TESTS);
-    if (COUNT_TESTS == complete_split)
-    {
-        printf(" ✅✅✅✅✅");
-    }
-    else
-    {
-        printf(" ❌❌❌❌❌");
-    }
-
+    print_correctness(complete_split);
     printf("\nStrtok tests %d / %d", complete_strtok, COUNT_TESTS);
-    if (COUNT_TESTS == complete_strtok)
-    {
-        printf(" ✅✅✅✅✅");
-    } 
-    else
-    {
-        printf(" ❌❌❌❌❌");
-    }
+    print_correctness(complete_strtok);
     
     return index;
 }
@@ -185,6 +182,7 @@ void copy_strtok_array(char *strtok1, char *strtok2)
     while (strtok1[i])
     {
         strtok2[i] = strtok1[i];
+        ++i;
     }
 }
 
@@ -211,16 +209,16 @@ void test_system(char *array_names, char test_matrix[][N])
             readfile(strtok_test, TS_arr_strtok);
             copy_strtok_array(TS_arr_strtok, TS_arr_strtok_std);
 
-            uint64_t start_split = tick();
+            uint64_t start_time = tick();
             const int size = split[i](TS_arr_split, test_matrix, SPLIT_SEPARATORS[j]);
-            uint64_t end_split = tick();
-            time_ticks += end_split - start_split;
+            uint64_t end_time = tick();
+            time_ticks += end_time - start_time;
 
-            uint64_t start_strtok = tick();
+            start_time = tick();
             char *pch = strtok_arr[i](TS_arr_strtok, STRTOK_SEPARATORS);
-            uint64_t end_strtok = tick();
+            end_time = tick();
             char *pch_std = strtok(TS_arr_strtok_std, STRTOK_SEPARATORS);
-            time_ticks += end_strtok - start_strtok;
+            time_ticks += end_time - start_time;
             while (pch != NULL)
             {
                 strtok_checker = check_strtok(pch, pch_std, TS_arr_strtok, TS_arr_strtok_std);
@@ -228,11 +226,11 @@ void test_system(char *array_names, char test_matrix[][N])
                 {
                     break;
                 }
-                uint64_t start_strtok = tick();
+                start_time = tick();
                 pch = strtok_arr[i](NULL, STRTOK_SEPARATORS);
-                uint64_t end_strtok = tick();
+                end_time = tick();
                 pch_std = strtok(NULL, STRTOK_SEPARATORS);
-                time_ticks += end_strtok - start_strtok;
+                time_ticks += end_time - start_time;
             }
 
             if (!strtok_checker)
