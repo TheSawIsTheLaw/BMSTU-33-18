@@ -101,7 +101,6 @@ int check_situation(char symb, char BF[][DIME], int *i_to_go, int *j_to_go)
         return OK;
     }
     return NOT_OK;
-
 }
 
 void make_shot_prokhorova(char symb, char BF[][DIME])
