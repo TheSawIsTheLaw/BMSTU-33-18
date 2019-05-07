@@ -44,7 +44,8 @@ char *strtok_Krivozubov(char *string, const char *delim)
                     j++;
                 }
                 i++;
-            }   
+            }
+            return NULL;
         }
 
     }
