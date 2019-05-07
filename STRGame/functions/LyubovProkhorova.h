@@ -4,6 +4,7 @@
 
 char *strtok_Prokhorova(char *str, const char *delimiters )
 {
+    /*
     static char* previous;
     int i = 0;
     int j = 0;
@@ -85,6 +86,8 @@ char *strtok_Prokhorova(char *str, const char *delimiters )
         }
         return ans;
     }
+*/
+    return 0;
 }
 
 int split_Prokhorova(const char *str, char ans[][N], const char delimiter)
