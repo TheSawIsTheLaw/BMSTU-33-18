@@ -4,11 +4,8 @@ char *strtok_Sarkisov(char *string, const char *delim)
 {
     static char *stc;
     static int len;
-    int num_s = 0;
-    int num_d = 0;
-    int len_str = 0;
-    int ind;
-
+    register int num_s = 0, num_d = 0, len_str = 0, count = 0, ind;
+    
     if (string != NULL)
     {
         stc = string;
@@ -16,19 +13,19 @@ char *strtok_Sarkisov(char *string, const char *delim)
             len_str++;
         len = len_str;
     }
-
+    
     else if (len > 0)
     {
         stc++;
         len--;
         string = stc;
     }
-
+    
     else
     {
         string = NULL;
     }
-
+    
     while (*stc)
     {
         while (delim[num_d] != '\0')
@@ -38,14 +35,40 @@ char *strtok_Sarkisov(char *string, const char *delim)
                 num_s++;
                 num_d = 0;
             }
-            else 
+            else
                 num_d++;
         }
-
+        
         ind = num_s;
+        
+        if (ind > 0 && count == 0)
+        {
+            while (ind > 1)
+            {
+                stc++;
+                string++;
+                len--;
+                ind--;
+            }
+            
+            if (ind == 1)
+            {
+                if (len > 1)
+                {
+                    stc--;
+                    len++;
+                }
+            }
+            stc++;
+            string++;
+            len--;
+            ind--;
+        }
+        
+        count++;
         num_s = 0;
         num_d = 0;
-
+        
         while (ind > 1)
         {
             *stc = '\0';
@@ -53,7 +76,7 @@ char *strtok_Sarkisov(char *string, const char *delim)
             len--;
             ind--;
         }
-
+        
         if (ind == 1)
         {
             *stc = '\0';
@@ -63,11 +86,11 @@ char *strtok_Sarkisov(char *string, const char *delim)
                 len++;
             }
         }
-
+        
         stc++;
         len--;
     }
-
+    
     return string;
 }
 
