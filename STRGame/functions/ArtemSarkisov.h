@@ -73,8 +73,7 @@ char *strtok_Sarkisov(char *string, const char *delim)
 
 int split_Sarkisov(const char *string, char matrix[][N], const char symbol)
 {
-    int row = 0;
-    int col = 0;
+    register int row = 0, col = 0;
     
     while (*string)
     {
