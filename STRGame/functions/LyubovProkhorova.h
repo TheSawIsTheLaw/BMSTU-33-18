@@ -4,7 +4,7 @@
 
 char *strtok_Prokhorova(char *str, const char *delimiters )
 {
-    /*
+
     static char* previous;
     int i = 0;
     int j = 0;
@@ -46,7 +46,7 @@ char *strtok_Prokhorova(char *str, const char *delimiters )
             ++i;
         }
 
-        return ans;
+        return NULL;
     }
     else
     {
@@ -86,7 +86,7 @@ char *strtok_Prokhorova(char *str, const char *delimiters )
         }
         return ans;
     }
-*/
+
     return 0;
 }
 
