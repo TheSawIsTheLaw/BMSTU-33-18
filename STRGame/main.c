@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <inttypes.h>
 #include <string.h>
 
 #define COUNT_TESTS 20
@@ -23,7 +24,7 @@
 #include "functions/EmilSimonenko.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/IlyaChelyadinov.h"
 #include "functions/KarimAkhmetov.h"
-#include "functions/LyubovProkhorova.h" // SPLIT - 1, STRTOK - 0
+#include "functions/LyubovProkhorova.h" // SPLIT - 1, STRTOK - 1
 #include "functions/MikhailNitenko.h" // SPLIT - 1, STRTOK - 0
 #include "functions/NadezhdaAksenova.h"
 #include "functions/NikitaBurtelov.h" 
@@ -167,8 +168,8 @@ int print_results(char *array_names, int index, const int complete_split,
 {   
     puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     index = print_name(array_names, index);
-    printf("\nTime running: %.10lf", (double)time_ticks / GHZ);
-    printf("\nSplit tests %d / %d", complete_split, COUNT_TESTS);
+    printf("\nTime running: %.10lf\nTicks: %" PRIu64 "\n", (double)time_ticks / GHZ, time_ticks);
+    printf("Split tests %d / %d", complete_split, COUNT_TESTS);
     print_correctness(complete_split);
     printf("\nStrtok tests %d / %d", complete_strtok, COUNT_TESTS);
     print_correctness(complete_strtok);
