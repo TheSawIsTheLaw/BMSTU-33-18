@@ -112,6 +112,11 @@ void readfile(FILE *file, char *array)
 int check_strtok(const char *const pch, const char *const pch_std, 
     const char *const TS_arr_strtok, const char *const TS_arr_strtok_std)
 {
+    if (pch == NULL && pch_std != NULL)
+    {
+        return ERROR;
+    }
+
     if (*pch == *pch_std && !(strcmp(TS_arr_strtok, TS_arr_strtok_std)))
     {
         return OK;
@@ -166,7 +171,7 @@ void print_correctness(const int count_complete)
 int print_results(char *array_names, int index, const int complete_split, 
         const int complete_strtok, const uint64_t time_ticks)
 {   
-    puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     index = print_name(array_names, index);
     printf("\nTime running: %.10lf\nTicks: %" PRIu64 "\n", (double)time_ticks / GHZ, time_ticks);
     printf("Split tests %d / %d", complete_split, COUNT_TESTS);
@@ -223,10 +228,6 @@ void test_system(char *array_names, char test_matrix[][N])
 
             while (pch_std != NULL)
             {
-                if (pch == NULL && pch_std != NULL)
-                {
-                    break;
-                }
                 strtok_checker = check_strtok(pch, pch_std, TS_arr_strtok, TS_arr_strtok_std);
                 if (strtok_checker)
                 {
