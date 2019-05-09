@@ -24,7 +24,7 @@
 #include "functions/EmilSimonenko.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/IlyaChelyadinov.h"
 #include "functions/KarimAkhmetov.h"
-#include "functions/LyubovProkhorova.h" // SPLIT - 1, STRTOK - 1
+#include "functions/LyubovProkhorova.h" // SPLIT - 1, STRTOK - 1 (???)
 #include "functions/MikhailNitenko.h" // SPLIT - 1, STRTOK - 0
 #include "functions/NadezhdaAksenova.h"
 #include "functions/NikitaBurtelov.h" 
