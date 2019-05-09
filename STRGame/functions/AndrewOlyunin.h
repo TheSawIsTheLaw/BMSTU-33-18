@@ -15,11 +15,11 @@ int split(const char *string, char word_matrix[][N], const char splt_symbol)
 		}
 		else
 		{
-			matrix[row][col++] = string[k];
+			word_matrix[row][col++] = string[k];
 		}	
 		k++;
 	}
-	matrix[row][col] = '\0';
+	word_matrix[row][col] = '\0';
 	return ++row;
 }
 
