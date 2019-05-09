@@ -76,7 +76,7 @@ void fill_matrix(char matrix[][N], const int matrix_size)
 void fill_array(char *array)
 {
     int i = 0;
-    while (array[i])
+    while (i < N)
     {
         array[i] = '\0';
         i++;
@@ -169,7 +169,7 @@ void print_correctness(const int count_complete)
 
 // Печать результата прохождения тестовой системы и времени
 int print_results(char *array_names, int index, const int complete_split, 
-        const int complete_strtok, const uint64_t time_ticks)
+    const int complete_strtok, const uint64_t time_ticks)
 {   
     puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     index = print_name(array_names, index);
@@ -190,6 +190,7 @@ void copy_strtok_array(char *strtok1, char *strtok2)
         strtok2[i] = strtok1[i];
         ++i;
     }
+    strtok2[i] = '\0';
 }
 
 // Функция тестовой системы split и strtok
@@ -242,7 +243,7 @@ void test_system(char *array_names, char test_matrix[][N])
 
             if (pch_std == pch && !strtok_checker)
             {
-               ++complete_strtok; 
+                ++complete_strtok; 
             }
 
             if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j]) && size == SPLIT_CORRECT_SIZE[j])
