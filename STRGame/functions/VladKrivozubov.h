@@ -55,7 +55,7 @@ char *strtok_Krivozubov(char *string, const char *delim)
             {
                 if (delim[j] == *start)
                 {
-                    string++;
+                    start++;
                     break;
                 }
                 j++;
@@ -63,7 +63,7 @@ char *strtok_Krivozubov(char *string, const char *delim)
             if (!delim[j])
                 break;
         }
-        index = string;
+        index = start;
         while (*start)
         {
             j = 0;
