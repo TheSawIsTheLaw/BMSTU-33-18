@@ -33,7 +33,7 @@ char *strtok_Perestoronin(char *string, const char *delim)
     else
     {
         register int j;
-        while (!(*string))
+        while (*string)
         {
             for (j = 0; delim[j]; j++)
                 if (*string == delim[j])
