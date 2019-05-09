@@ -16,9 +16,21 @@ char *strtok_Perestoronin(char *string, const char *delim)
     }
     else
     {
+        register int i, j;
+        while (!(*string))
+        {
+            for (j = 0; delim[j]; j++)
+                if (*string == delim[j])
+                {
+                    string++;
+                    break;
+                }
+            if (!delim[j])
+                break;
+            }
         olds = string;
-        for (int i = 0; string[i]; i++)
-            for (int j = 0; delim[j]; j++)
+        for (i = 0; string[i]; i++)
+            for (j = 0; delim[j]; j++)
                 if (string[i] == delim[j])
                 {
                     string[i] = '\0';
