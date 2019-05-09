@@ -17,7 +17,7 @@
 
 #include "functions/AlisSukocheva.h" // SPLIT - 1, STRTOK - 0
 #include "functions/AnastasiiaNamestnik.h" // SPLIT - 0, STRTOK - 1 (0)
-#include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1 (?)
+#include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1 
 #include "functions/BogdanLemeshkin.h"
 #include "functions/DmitryKovalev.h" // SPLIT 1, STRTOK - 0
 #include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1
@@ -28,13 +28,13 @@
 #include "functions/MikhailNitenko.h" // SPLIT - 1, STRTOK - 0
 #include "functions/NadezhdaAksenova.h"
 #include "functions/NikitaBurtelov.h" 
-#include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1 (?)
+#include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1 
 #include "functions/PavelToporkov.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/SergeyKononenko.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/SergeyMinenko.h" 
 #include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/SergeySverdlov.h" // SPLIT - 1, STRTOK - 1 (0)
-#include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1 (0)
+#include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavChernenko.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavGurishev.h"
 #include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 1 (0)
@@ -43,7 +43,7 @@
 #include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
 #include "TestSystem/SPLIT_TESTS/SPLIT_SETTINGS.h"
 
-// Подсчёт тиков
+// Подсчёт тиков (тактов)
 uint64_t tick(void)
 {
     uint32_t high, low;
