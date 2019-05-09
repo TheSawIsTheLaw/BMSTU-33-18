@@ -3,20 +3,36 @@ static char *olds;
 
 char *strtok_Perestoronin(char *string, const char *delim)
 {
+    register int i;
     if (string == NULL)
     {
         for (; *olds; olds++)
-            for (int i = 0; delim[i]; i++)
+        {
+            for (i = 0; delim[i]; i++)
                 if (*olds == delim[i])
                 {
                     *olds = '\0';
-                    return ++olds;
+                    break;
                 }
-        return NULL;
+            if (*olds == '\0')
+                break;
+        }
+        while (*olds)
+        {
+            for (i = 0; delim[i]; i++)
+                if (*olds == delim[i])
+                {
+                    olds++;
+                    break;
+                }
+            if (!delim[i])
+                return olds;
+        }
+    return NULL;
     }
     else
     {
-        register int i, j;
+        register int i;
         while (!(*string))
         {
             for (j = 0; delim[j]; j++)
@@ -34,7 +50,7 @@ char *strtok_Perestoronin(char *string, const char *delim)
                 if (string[i] == delim[j])
                 {
                     string[i] = '\0';
-                    break; 
+                    break;
                 }
         return olds;
     }
