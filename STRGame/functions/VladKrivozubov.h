@@ -2,91 +2,85 @@
 
 char *strtok_Krivozubov(char *string, const char *delim)
 {
-    static char *index;
-    register int i = 0, j = 0;
+    static char *index, *start;
+    register int j = 0;
     if (string == NULL)
     {
-        if (*index == '\0')
-            return NULL;
-        else
-        {
-            string = index;
-            while (string[i])
-            {
-                j = 0;
-                while (delim[j])
-                {
-                    if (string[i] == delim[j])
-                        break;
-                    index = &string[i + 1];
-                    j = 0;
-                    while(*index)
-                    {
-                        j = 0;
-                        while (delim[j])
-                        {
-                            if (*index == delim[j])
-                            {
-                                *index = '\0';
-                                break;
-                            }
-                            j++;
-                        }
-                        if (*index == '\0')
-                        {
-                            index++;
-                            break;
-                        }
-                        else
-                            index++;
-                    }
-                    return &string[i];
-                    j++;
-                }
-                i++;
-            }
-            return NULL;
-        }
-
-    }
-    else
-    {
-        i = 0; j = 0;
-        while (string[i] != '\0')
+        while (*start)
         {
             j = 0;
             while (delim[j])
             {
-                if (string[i] == delim[j])
-                    break;
-                index = &string[i + 1];
-                j = 0;
-                while(*index)
+                if (*start == delim[j])
                 {
-                    j = 0;
-                    while (delim[j])
+                    start++;
+                    break;
+                }
+                j++;          
+            }
+            if (!delim[j])
+                break;
+        }
+        if (*index == '\0')
+            return NULL;
+        else
+        {   
+            index = start;
+            while (*start)
+            {
+                j = 0;
+                while (delim[j])
+                {
+                    if (delim[j] == *start)
                     {
-                        if (*index == delim[j])
-                        {
-                            *index = '\0';
-                            break;
-                        }
-                        j++;
-                    }
-                    if (*index == '\0')
-                    {
-                        index++;
+                        *start = '\0';
                         break;
                     }
-                    else
-                        index++;
+                    j++;
                 }
-                return &string[i];
+                start++;
+                if (delim[j])
+                    break;
+            }
+            return index;
+        }
+    }
+    else
+    {
+        while (*string)
+        {
+            j = 0;
+            while (delim[j])
+            {
+                if (delim[j] == *string)
+                {
+                    string++;
+                    break;
+                }
                 j++;
             }
-            i++;
+            if (!delim[j])
+                break;
         }
-        return NULL;
+        index = string;
+        start = string;
+        while (*start)
+        {
+            j = 0;
+            while (delim[j])
+            {
+                if (delim[j] == *start)
+                {
+                    *start = '\0';
+                    break;
+                }
+                j++;
+            }
+            start++;
+            if (delim[j])
+                break;
+        }
+        return index;
     }    
 }
 
@@ -107,4 +101,3 @@ int split_Krivozubov(const char *string, char matrix[][N], const char symbol)
     matrix[i][j] = '\0';
     return ++i;
 }
-
