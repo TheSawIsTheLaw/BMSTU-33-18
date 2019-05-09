@@ -3,50 +3,51 @@
 char *strtok_Simonenko(char *string, const char *delim)
 {
     static char *past;
-    int i = 0, j = 0;
+    static char *last;
 
-    if (string == 0)
+    if (string == NULL)
     {
-        while (*past)
-        {
-            while (delim[i])
-            {
-                if (*past == delim[i])
-                {
-                    *past = '\0';
-                    return ++past;
-                }
-
-                i++;
-            }
-
-            past++;
-        }
-
-        return 0;  
-    }
-
+    
+		char *now = past;
+        while (*now != BSZ && now != last)
+			now++;							//now we reached lexema
+		while (*now == BSZ && now != last)
+			now++;
+		if (now == last)
+			return NULL;
+		else
+		{	
+			past = now;
+			return now;
+		}
+	}
     else
     {
-        past = string;
-        while (string[i])
-        {
-            while (delim[j])
-            {
-                if (string[i] == delim[j])
-                {
-                    string[i] = '\0';
-                    break;
-                }
-
-                j++;
-            }
-
-            i++;
-        }
-
-        return past;     //teper luchshe
+        last = string;
+		char *before = string;
+		int i = 0;
+        while (*last != 0)
+			last++;
+		while (delim[i++])    //OP++ returns its prevous znachenie and then increases operand
+		{
+			while (*before == delim[i] && before != last)
+				before++;
+			if (before == last)
+				return NULL;
+		}
+		i = 0;
+		char *rightnow = before;
+		while (rightnow++ != last)
+		{
+			while (delim[i++])
+				if (*rightnow == delim[i-1])
+					*rightnow = BSZ;
+			i = 0;
+		}      
+		past = before;
+        return before;     //teper luchshe
     }
+	return NULL;
 }
 
 
@@ -56,21 +57,14 @@ int split_Simonenko(const char *string, char matrix[][N], const char symbol)
     int c = 0;   //collumn
     int r = 0;   //row
 
-    while (string[i])
-    {
+    while (string[i++])
         if (symbol == string[i])
         {
-            matrix[r][c] = BSZ ;
+            matrix[r++][c] = BSZ ;
             c = 0;
-            ++r;
         }
         else
-        {
-            matrix[r][c] = string[i];
-            ++c;
-        }
-        ++i;
-    }
-    matrix[r][c] = BSZ ;
+            matrix[r][c++] = string[i];
+    matrix[r][c] = BSZ;
     return ++r;
 }
