@@ -17,7 +17,7 @@ char *strtok_Perestoronin(char *string, const char *delim)
             if (*olds == '\0')
                 break;
         }
-        while (*olds)
+        while (*++olds)
         {
             for (i = 0; delim[i]; i++)
                 if (*olds == delim[i])
