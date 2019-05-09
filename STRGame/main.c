@@ -220,8 +220,13 @@ void test_system(char *array_names, char test_matrix[][N])
             end_time = tick();
             char *pch_std = strtok(TS_arr_strtok_std, STRTOK_SEPARATORS);
             time_ticks += end_time - start_time;
-            while (pch != NULL)
+
+            while (pch_std != NULL)
             {
+                if (pch == NULL && pch_std != NULL)
+                {
+                    break;
+                }
                 strtok_checker = check_strtok(pch, pch_std, TS_arr_strtok, TS_arr_strtok_std);
                 if (strtok_checker)
                 {
@@ -234,7 +239,7 @@ void test_system(char *array_names, char test_matrix[][N])
                 time_ticks += end_time - start_time;
             }
 
-            if (!strtok_checker)
+            if (pch_std == pch && !strtok_checker)
             {
                ++complete_strtok; 
             }
@@ -246,6 +251,7 @@ void test_system(char *array_names, char test_matrix[][N])
 
             fill_matrix(test_matrix, size);
             fill_array(TS_arr_split);
+            fill_array(TS_arr_strtok_std);
             fill_array(TS_arr_strtok);
         }
 
