@@ -1,18 +1,53 @@
-/*
-int strlen(const char *s)
-{
-    int l = 0;
-    while(*l++ != '\0')
-
-    return l;
-}
-*/
-// N - максимальная длина строки, она будет объявлена в мейне
-//ты че докопалсо мне там для другова
+static char *lastik;
 
 char *strtok_Nitenko(char *string, const char *delim)
 {
-    return 0;
+	register char *start = NULL;
+	register int i;
+
+	if (string == NULL) 
+		string = lastik;
+	
+    while (*(string))
+    {
+        i = 0;
+        while (delim[i] && *(string) != delim[i])
+            i++;
+        
+        if (*(string) != delim[i])
+            break;
+        
+        string++;
+    }
+
+	if (*(string))
+	{
+		start = string;
+		
+		while (*(string))
+    	{
+        	i = 0;
+        	while (delim[i])
+        	{
+            	if (*(string) == delim[i])
+                	break;
+            	i++;
+        	}
+        	if (*(string) == delim[i])
+        		break;
+            
+        	string++;
+    	}
+		
+		if (*(string))
+		{
+			*string = '\0';
+			string++;
+		}
+	}
+
+	lastik = string;
+	return start;
 }
 
 int split_Nitenko(const char *string, char matrix[][N], const char symbol)

@@ -2,46 +2,51 @@
 
 char *strtok_Namestnik(char *string, const char *delim)
 {
-    static char *initial;
-    register int i = 0, j = 0;
+    static char * next;
+    register int i = 0, flag = 0;
     
-    if (string != NULL)
+    if (string)
     {
-        initial = string;
-        while (string[j])
+        next = string;
+        if (*next)
         {
+            i = 0;
             while (delim[i])
             {
-                if (string[j] == delim[i])
+                if (*next == delim[i])
                 {
-                    string[j] = '\0';
+                    *next++ = '\0';
                     break;
                 }
                 i++;
             }
-            j++;
         }
-        return initial;
     }
-    else
-    {
-        while (*initial)
-        {
-            while (delim[i])
-            {
-                if (*initial == delim[i])
-                {
-                    *initial  = '\0';
-                    return ++initial;
-                }
-                i++;
-            }
-            initial++;
-        }
+    if ( ! *next )
         return NULL;
+    
+    string = next;
+   
+    while (*next)
+    {
+        i = 0;
+        while (delim[i])
+        {
+            if (*next == delim[i])
+            {
+                *next++ = '\0';
+                flag = 1;
+                break;
+            }
+            i++;
+        }
+        if (flag)
+            break;
+        next++;
     }
+   
+    return string;
 }
-
 int split_Namestnik(const char *string, char matrix[][N], const char symbol)
 {
     return 0;

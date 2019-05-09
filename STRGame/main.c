@@ -24,7 +24,7 @@
 #include "functions/EmilSimonenko.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/IlyaChelyadinov.h"
 #include "functions/KarimAkhmetov.h"
-#include "functions/LyubovProkhorova.h" // SPLIT - 1, STRTOK - 1
+#include "functions/LyubovProkhorova.h" // SPLIT - 1, STRTOK - 1 (???)
 #include "functions/MikhailNitenko.h" // SPLIT - 1, STRTOK - 0
 #include "functions/NadezhdaAksenova.h"
 #include "functions/NikitaBurtelov.h" 
@@ -76,7 +76,7 @@ void fill_matrix(char matrix[][N], const int matrix_size)
 void fill_array(char *array)
 {
     int i = 0;
-    while (array[i])
+    while (i < N)
     {
         array[i] = '\0';
         i++;
@@ -112,6 +112,11 @@ void readfile(FILE *file, char *array)
 int check_strtok(const char *const pch, const char *const pch_std, 
     const char *const TS_arr_strtok, const char *const TS_arr_strtok_std)
 {
+    if (pch == NULL && pch_std != NULL)
+    {
+        return ERROR;
+    }
+
     if (*pch == *pch_std && !(strcmp(TS_arr_strtok, TS_arr_strtok_std)))
     {
         return OK;
@@ -164,9 +169,9 @@ void print_correctness(const int count_complete)
 
 // Печать результата прохождения тестовой системы и времени
 int print_results(char *array_names, int index, const int complete_split, 
-        const int complete_strtok, const uint64_t time_ticks)
+    const int complete_strtok, const uint64_t time_ticks)
 {   
-    puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+    puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     index = print_name(array_names, index);
     printf("\nTime running: %.10lf\nTicks: %" PRIu64 "\n", (double)time_ticks / GHZ, time_ticks);
     printf("Split tests %d / %d", complete_split, COUNT_TESTS);
@@ -185,6 +190,7 @@ void copy_strtok_array(char *strtok1, char *strtok2)
         strtok2[i] = strtok1[i];
         ++i;
     }
+    strtok2[i] = '\0';
 }
 
 // Функция тестовой системы split и strtok
@@ -220,7 +226,8 @@ void test_system(char *array_names, char test_matrix[][N])
             end_time = tick();
             char *pch_std = strtok(TS_arr_strtok_std, STRTOK_SEPARATORS);
             time_ticks += end_time - start_time;
-            while (pch != NULL)
+
+            while (pch_std != NULL)
             {
                 strtok_checker = check_strtok(pch, pch_std, TS_arr_strtok, TS_arr_strtok_std);
                 if (strtok_checker)
@@ -234,9 +241,9 @@ void test_system(char *array_names, char test_matrix[][N])
                 time_ticks += end_time - start_time;
             }
 
-            if (!strtok_checker)
+            if (pch_std == pch && !strtok_checker)
             {
-               ++complete_strtok; 
+                ++complete_strtok; 
             }
 
             if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j]) && size == SPLIT_CORRECT_SIZE[j])
@@ -246,6 +253,7 @@ void test_system(char *array_names, char test_matrix[][N])
 
             fill_matrix(test_matrix, size);
             fill_array(TS_arr_split);
+            fill_array(TS_arr_strtok_std);
             fill_array(TS_arr_strtok);
         }
 
