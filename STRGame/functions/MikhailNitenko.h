@@ -2,11 +2,11 @@ static char *lastik;
 
 char *strtok_Nitenko(char *string, const char *delim)
 {
-	register char *start = NULL;
-	register int i;
+    register char *start = NULL;
+    register int i;
 
-	if (string == NULL) 
-		string = lastik;
+    if (string == NULL) 
+        string = lastik;
 	
     while (*(string))
     {
@@ -20,34 +20,34 @@ char *strtok_Nitenko(char *string, const char *delim)
         string++;
     }
 
-	if (*(string))
-	{
-		start = string;
+    if (*(string))
+    {
+        start = string;
 		
-		while (*(string))
-    	{
-        	i = 0;
-        	while (delim[i])
-        	{
-            	if (*(string) == delim[i])
-                	break;
-            	i++;
-        	}
-        	if (*(string) == delim[i])
-        		break;
+        while (*(string))
+        {
+            i = 0;
+            while (delim[i])
+            {
+                if (*(string) == delim[i])
+                    break;
+                i++;
+            }
+            if (*(string) == delim[i])
+                break;
             
-        	string++;
-    	}
+            string++;
+        }
 		
-		if (*(string))
-		{
-			*string = '\0';
-			string++;
-		}
-	}
+        if (*(string))
+        {
+            *string = '\0';
+            string++;
+        }
+    }
 
-	lastik = string;
-	return start;
+    lastik = string;
+    return start;
 }
 
 int split_Nitenko(const char *string, char matrix[][N], const char symbol)
