@@ -5,13 +5,14 @@ int check_situation(char symb, char BF[][DIME], int *i_to_go, int *j_to_go)
 {
     int count_space;
     int count_symbol;
+    int i;
 
     //Проверка строк
-    for (int i = 0; i < DIME; i++)
+    for (i = 0; i < DIME; i++)
     {
         count_space = 0;
         count_symbol = 0;
-        for (j = 0; j < DIME; j++)
+        for (int j = 0; j < DIME; j++)
         {
             if (BF[i][j] == symb)
             {
@@ -36,7 +37,7 @@ int check_situation(char symb, char BF[][DIME], int *i_to_go, int *j_to_go)
     {
         count_space = 0;
         count_symbol = 0;
-        for(int i = 0; i < DIME; i++)
+        for(i = 0; i < DIME; i++)
         {
             if (BF[i][j] == symb)
             {
@@ -58,14 +59,14 @@ int check_situation(char symb, char BF[][DIME], int *i_to_go, int *j_to_go)
     //Проверка главной диагонали
     count_space = 0;
     count_symbol = 0;
-    int i = 0;
+    i = 0;
     while (i < DIME)
     {
         if (BF[i][i] == symb)
         {
             count_symbol += 1;
         }
-        if (BF[i][i] == space)
+        if (BF[i][i] == ' ')
         {
             count_space += 1;
             *i_to_go = i;
@@ -81,14 +82,14 @@ int check_situation(char symb, char BF[][DIME], int *i_to_go, int *j_to_go)
     //Проверка побочной диагонали
     count_space = 0;
     count_symbol = 0;
-    int i = 0;
+    i = 0;
     while (i < DIME)
     {
         if (BF[i][DIME - 1 - i] == symb)
         {
             count_symbol += 1;
         }
-        if (BF[i][DIME - 1 - i] == space)
+        if (BF[i][DIME - 1 - i] == ' ')
         {
             count_space += 1;
             *i_to_go = i;

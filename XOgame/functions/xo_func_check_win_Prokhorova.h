@@ -1,7 +1,7 @@
 #define WIN 1
 #define NOT_WIN 0
 
-int check_win(char bf[][DIME])
+int check_win_by_PL(char bf[][DIME])
 {
     char start_el;
     int counter;
