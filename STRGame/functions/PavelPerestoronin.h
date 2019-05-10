@@ -4,10 +4,15 @@ static char *olds;
 char *strtok_Perestoronin(char *string, const char *delim)
 {
     register int i, j;
+    // Считываем строку, если запуск с новой строкой
     if (string)
         olds = string;
+    // Если после предыдущей итерации olds указывает на конец строки,
+    // то она была полностью обработана (+ Обработка NULL для
+    // некорректной строки (нужна ли?))
     if ((olds == NULL) || (*olds == '\0'))
         return NULL;
+    // Проходим все разделители в начале слова
     while(olds)
     {
         for (i = 0; delim[i]; i++)
@@ -21,10 +26,7 @@ char *strtok_Perestoronin(char *string, const char *delim)
     }
     if (*olds == '\0')
         return NULL;
-/*
-    char * start = c;
-    while(*c && (strchr(delim,*c)==0)) ++c;
-*/
+    // Находим следующий разделитель (или конец строки)
     i = 0;
     while (olds[i])
     {
@@ -34,11 +36,13 @@ char *strtok_Perestoronin(char *string, const char *delim)
         i++;
     }
     last_oper:
+        // Если конец строки, то olds указывает на '\0' и в след итерации нас ждет NULL
         if (olds[i] == '\0')
         {
             olds += i;
             return olds - i;
         }
+        // Если не конец строки, то ставим нуль-символ и ссылаем olds на след элемент
         olds[i] = '\0';
         olds += i + 1;
         return olds - i - 1;
