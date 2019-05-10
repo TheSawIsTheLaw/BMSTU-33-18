@@ -99,3 +99,7 @@ char *strtok_Toporkov(char *string, const char *delim)
     return string;
 }
 
+int split_Perestoronin(const char *string, char matrix[][N], const char symbol)
+{
+    return 0;    
+}
