@@ -50,7 +50,7 @@ char *strtok_Namestnik(char *string, const char *delim)
     return string;
 }
 
-int split_Namestnik(const char *string, char matrix[][8], const char symbol)
+int split_Namestnik(const char *string, char matrix[][N], const char symbol)
 {
     register int row = 0, col = 0;
     while (*string)
