@@ -48,7 +48,7 @@ char *strtok_Toporkov(char *string, const char *delim)
         
         if (count == CONST_ZERO && index > CONST_ZERO)
         {
-            while (ind > 1)
+            while (index > CONST_ONE)
             {
                 old_str++;
                 string++;
@@ -58,7 +58,7 @@ char *strtok_Toporkov(char *string, const char *delim)
             
             if (index == CONST_ONE)
             {
-                if (len > CONST_ONE)
+                if (length > CONST_ONE)
                 {
                     length++;
                     old_str--;
