@@ -46,7 +46,7 @@ char *strtok_Prokhorova(char *str, const char *delimiters )
             ++i;
         }
 
-        return NULL;
+        return ans;
     }
     else
     {
