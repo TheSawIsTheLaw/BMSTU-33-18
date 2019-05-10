@@ -1,72 +1,101 @@
 // N - максимальная длина строки, она будет объявлена в мейне
 #define EX '\0'
 #define CONST_ZERO 0
-
-static char *old_str;
+#define CONST_ONE 1
 
 char *strtok_Toporkov(char *string, const char *delim)
 {
+    static char *old_str;
+    static int length;
+    register int length_cur = CONST_ZERO;
+    register int count = CONST_ZERO;
     register int i = CONST_ZERO;
     register int j = CONST_ZERO;
+    register int index;
+    
     if (string != NULL)
     {
         old_str = string;
-        while (string[i])
-        {
-            while (delim[j])
-            {
-                if (delim[j] == string[i])
-                {
-                    string[i] = EX;
-                    break;
-                }
-                ++j;
-            }
-            ++i;
-        }
-        return old_str;
+        while (string[length_cur] != EX)
+            length_cur++;
+        length = length_cur;
     }
+    
+    else if (length > CONST_ZERO)
+    {
+        length--;
+        old_str++;
+        string = old_str;
+    }
+    
     else
+        string = NULL;
+    
+    while (*old_str)
     {
-        while (*old_str)
+        while (delim[j] != EX)
         {
-            while (delim[i])
+            if (old_str[i] == delim[j])
             {
-                if (delim[i] == *old_str)
-                {
-                    *old_str = EX;
-                    ++old_str;
-                    return old_str;
-                }
-                ++i;
+                i++;
+                j = CONST_ZERO;
             }
-            ++old_str;
+            else
+                j++;
         }
-        return NULL;
-    }
-}
-
-int split_Toporkov(const char *string, char matrix[][N], const char symbol)
-{
-    register int i = CONST_ZERO;
-    register int rows = CONST_ZERO;
-    register int columns = CONST_ZERO;
-    
-    while (string[i] != EX)
-    {
-        if (string[i] == symbol)
-        {
-            matrix[rows++][columns] = EX;
-            columns = CONST_ZERO;
-        }
-        else
-            matrix[rows][columns++] = string[i];
         
-        ++i;
+        index = i;
+        
+        if (count == CONST_ZERO && index > CONST_ZERO)
+        {
+            while (ind > 1)
+            {
+                old_str++;
+                string++;
+                index--;
+                length--;
+            }
+            
+            if (index == CONST_ONE)
+            {
+                if (len > CONST_ONE)
+                {
+                    length++;
+                    old_str--;
+                }
+            }
+            old_str++;
+            string++;
+            index--;
+            length--;
+        }
+        
+        count++;
+        i = CONST_ZERO;
+        j = CONST_ZERO;
+        
+        while (index > CONST_ONE)
+        {
+            *old_str = EX;
+            old_str++;
+            index--;
+            length--;
+        }
+        
+        if (index == CONST_ONE)
+        {
+            *old_str = EX;
+            if (length > CONST_ONE)
+            {
+                old_str--;
+                length++;
+            }
+        }
+        
+        old_str++;
+        length--;
     }
     
-    matrix[rows][columns] = EX;
-    
-    return ++rows;
+    return string;
 }
 
