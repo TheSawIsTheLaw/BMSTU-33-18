@@ -11,7 +11,7 @@ int split_Akhmetov(const char *string, char matrix[][N], const char symbol)
     int column = 0;
     int row = 0;
     int index = 0;
-    while (string(index) != '\0')
+    while (string[index] != '\0')
     {
         if (string[index] == symbol)
         {
