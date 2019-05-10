@@ -1,47 +1,61 @@
 // N - максимальная длина строки, она будет объявлена в мейне
-static char *late_s;
-
+#include <string.h>
+int strlen_Saburov (char *string)
+{
+    int i = 0;
+    while (string[i] != '\0')
+            i++;
+    return i;
+}
 char *strtok_Saburov(char *string, const char *delim)
 {
-    register int i = 0;
-	register int j = 0;
-	if (string == NULL)
+    static char *late_s;
+    static int size;
+
+    int i;
+
+    if(string != NULL)
     {
-    	while (*late_s)
-    	{
-    		while (delim[i])
-    		{
-    			if (*late_s == delim[i])
-                {
-                    *late_s = '\0';
-                     return ++late_s;
-                }
-    			i++;
-    		}
-    		late_s++;
-    	}
-    	return NULL;
+        late_s = string;
+        size = strlen_Saburov(string);
     }
+
+    else if(size > 0)
+    {
+        late_s++;
+        size--;
+        string = late_s;
+    }
+
     else
     {
-    	late_s = string;
-    	while (string[i])
-    	{
-    		while (delim[j])
-    		{
-                if(string[i] == delim[j])
-                {
-                    string[i] = '\0';
-                    break;
-                }
-    			j++;
-    		}
-    		i++;
-    	}
-    	return late_s;
+        string = NULL;
     }
-}
 
+    while(*late_s)
+    {
+        i = strspn(late_s, delim);
+        while(i > 1)
+        {
+            *late_s = '\0';
+            late_s++;
+            size--;
+            i--;
+        }
+        if(1 == i)
+        {
+            *late_s = '\0';
+            if(size > 1)
+            {
+                late_s--;
+                size++;
+            }
+        }
+        late_s++;
+        size--;
+    }
+    return string;
+}
 int split_Saburov(const char *string, char matrix[][N], const char symbol)
 {
     int i =0;
