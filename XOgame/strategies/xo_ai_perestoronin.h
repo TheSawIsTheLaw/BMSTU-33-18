@@ -1,5 +1,5 @@
-#define FIELD_SIZE 9
-#define SIDE_SIZE 3
+#define FIELD_SIZE DIME * DIME
+#define SIDE_SIZE DIME
 #define MADE_SHOT 0
 #define NOT_FAST 0
 #define NO_WAY 0
