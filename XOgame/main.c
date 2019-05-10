@@ -2,16 +2,15 @@
 #include <stdlib.h>
 
 #define DIME 3
-#define ever ;;
+#define GAME_OVER 0
 
 /* Strategies include */
-#include "strategies/xo_ai_krivozubov.h"
-#include "strategies/xo_ai_olenev.h"
-#include "strategies/xo_ai_nitenko.h"
-#include "strategies/xo_ai_perestoronin.h"
-#include "strategies/xo_ai_romanov.h"
-#include "strategies/xo_ai_yakuba_harder.h"
+// #include "strategies/xo_ai_krivozubov.h"
 #include "strategies/xo_ai_prokhorova.h"
+#include "strategies/xo_ai_perestoronin.h"
+// #include "strategies/xo_ai_romanov.h"
+// #include "strategies/xo_ai_yakuba.h"
+// #include "strategies/xo_ai_chernenko.h"
 
 /* Functions include */
 #include "functions/xo_func_anti_cheat_Toporkov_Sarkisov.h"
@@ -32,22 +31,55 @@ int main(void)
     bf_formation(DIME, BF);
     copy_battlefield(BF, BF_COPY);
 
-	for(ever)
+    printf("LET THE GAME BEGIN");
+    print_battlefield(BF_COPY);
+
+	for (int i = 0; i < DIME * DIME / 2 + 1; ++i)
     {
-        // PLAYER'S 1 SHOT
+        make_shot_perestoronin('X', BF);
 
-        // ANTI-CHEAT CHECK FOR PLAYER'S 1 SHOT
+        if (anti_cheat(DIME, BF, BF_COPY))
+        {
+            print_battlefield(BF_COPY);
 
-        // CHECK FOR PLAYER'S 1 WIN
+            if (check_win_by_KV(BF) && check_win_by_PL(BF))
+            {
+                printf("The winner is player 1");
 
-        // PLAYER'S 2 SHOT
+                break;
+            }
+            else
+            {
+                copy_battlefield(BF_COPY, BF);
 
-        // ANTI-CHEAT CHECK FOR PLAYER'S 2 SHOT
+                make_shot_prokhorova('O', BF);
 
-        // CHECK FOR PLAYER'S 2 WIN
+                if (anti_cheat(DIME, BF, BF_COPY))
+                {
+                    print_battlefield(BF_COPY);
+
+                    if (check_win_by_KV(BF) && check_win_by_PL(BF))
+                    {
+                        printf("The winner is player 2");
+
+                        break;
+                    }
+                }
+                else
+                {
+                    printf("Oh, player 2 is cheating. The winner is player 1");
+
+                    break;
+                }
+            }
+        }
+        else
+        {
+            printf("Oh, player 2 is cheating. The winner is player 1");
+
+            break;
+        }
     }
 
-    printf("SCORE: %d : %d", win_home, win_guest);
-
-    return 0;
+    return GAME_OVER;
 }
