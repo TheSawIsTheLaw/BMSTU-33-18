@@ -3,58 +3,45 @@ static char *olds;
 
 char *strtok_Perestoronin(char *string, const char *delim)
 {
-    register int i;
-    if (string == NULL)
+    register int i, j;
+    if (string)
+        olds = string;
+    if ((olds == NULL) || (*olds == '\0'))
+        return NULL;
+    while(olds)
     {
-        for (; *olds; olds++)
-        {
-            for (i = 0; delim[i]; i++)
-                if (*olds == delim[i])
-                {
-                    *olds = '\0';
-                    break;
-                }
-            if (*olds == '\0')
-                break;
-        }
-        while (*++olds)
-        {
-            for (i = 0; delim[i]; i++)
-                if (*olds == delim[i])
-                {
-                    olds++;
-                    break;
-                }
-            if (!delim[i])
-                return olds;
-        }
-    return NULL;
-    }
-    else
-    {
-        register int j;
-        while (*string)
-        {
-            for (j = 0; delim[j]; j++)
-                if (*string == delim[j])
-                {
-                    string++;
-                    break;
-                }
-            if (!delim[j])
+        for (i = 0; delim[i]; i++)
+            if (*olds == delim[i])
+            {
+                olds++;
                 break;
             }
-        olds = string;
-        for (i = 0; string[i]; i++)
-            for (j = 0; delim[j]; j++)
-                if (string[i] == delim[j])
-                {
-                    string[i] = '\0';
-                    break;
-                }
-        return olds;
+        if (!delim[i])
+            break;
     }
-
+    if (*olds == '\0')
+        return NULL;
+/*
+    char * start = c;
+    while(*c && (strchr(delim,*c)==0)) ++c;
+*/
+    i = 0;
+    while (olds[i])
+    {
+        for (j = 0; delim[j]; j++)
+            if (olds[i] == delim[j])
+                goto last_oper;
+        i++;
+    }
+    last_oper:
+        if (olds[i] == '\0')
+        {
+            olds += i;
+            return olds - i;
+        }
+        olds[i] = '\0';
+        olds += i + 1;
+        return olds - i - 1;
 }
 
 int split_Perestoronin(const char *string, char matrix[][N], const char symbol)
