@@ -1,9 +1,9 @@
-int strtok(char *string, const char *delim)
+int strtok_Olyunin(char *string, const char *delim)
 {
 	return 0;	
 }
 
-int split(const char *string, char word_matrix[][N], const char split_symbol)
+int split_Olyunin(const char *string, char word_matrix[][N], const char split_symbol)
 {
 	register int row = 0, col = 0, k = 0;
 	while(string[k])
