@@ -1,4 +1,4 @@
-int check_win(char bf[][3])
+int check_win_by_KV(char bf[][DIME])
 {
     int limit = DIME;
 
