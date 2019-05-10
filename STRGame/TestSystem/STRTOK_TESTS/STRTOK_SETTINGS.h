@@ -56,6 +56,8 @@ char* (*strtok_arr[])(char*, const char*) =
     strtok_Chernenko,
     strtok_Gurishev,
     strtok_Sokolov,
-    strtok_Romanov
+    strtok_Romanov,
+    strtok_Aleksandrovich,
+    strtok_Olyunin
 };
 

@@ -95,6 +95,8 @@ int (*split[])(const char*, char matrix[][N], const char) =
     split_Chernenko,
     split_Gurishev,
     split_Sokolov,
-    split_Romanov
+    split_Romanov,
+    split_Aleksandrovich,
+    split_Olyunin,
 };
 
