@@ -7,6 +7,23 @@ char *strtok_Lemeshkin(char *string, const char *delim)
 
 int split_Lemeshkin(const char *string, char matrix[][N], const char symbol)
 {
-    return 0;
+    register int i = 0, rw = 0, col = 0;
+
+        while (string[i] != '\0')
+        {
+            if (string[i] == symbol)
+            {
+                matrix[rw++][col] = '\0';
+                col = 0;
+            }
+            else
+                matrix[rw][col++] = string[i];
+
+            ++i;
+        }
+
+        matrix[rw][col] = '\0';
+
+        return ++rw;
 }
 
