@@ -1,3 +1,5 @@
+// функция возвращает 1 - читерства не было
+// функция возвращает 0 - читерство было
 int anti_cheat(int n, char before[][DIME], char after[][DIME])
 {
     int x_cord[DIME * DIME];
@@ -26,17 +28,17 @@ int anti_cheat(int n, char before[][DIME], char after[][DIME])
             if (after[i][j] == 'X' || after[i][j] == 'O')
                 cur++;
             if (after[i][j] != 'X' && after[i][j] != 'O' && after[i][j] != ' ')
-                return 1;
+                return 0;
         }
     }
     
     // проверям, что был сделан только один ход
     if (cur - n_x_y != 1)
-        return 1;
+        return 0;
     
     // проверяем, что ранне введенные данные не были изменены
     for (int i = 0; i < n_x_y; i++)
         if (before[x_cord[i]][y_cord[i]] != after[x_cord[i]][y_cord[i]])
-            return 1;
-    return 0;
+            return 0;
+    return 1;
 }
