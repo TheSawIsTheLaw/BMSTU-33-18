@@ -12,7 +12,7 @@ int split_Chelyadinov(const char *string, char matrix[][N], const char symbol)
     {
         if (string[k] == symbol)
         {
-            matrix[i][++j] = '\0';
+            matrix[++i][j] = '\0';
             j = 0;
         }
         else
