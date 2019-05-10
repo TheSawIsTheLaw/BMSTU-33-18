@@ -1,4 +1,4 @@
-int strtok_Aleksandrovich(char *string, const char *delim)
+char *strtok_Aleksandrovich(char *string, const char *delim)
 {
 	return 0;
 }

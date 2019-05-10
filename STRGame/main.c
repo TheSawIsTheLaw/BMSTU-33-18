@@ -11,7 +11,7 @@
 #define GHZ 3300000000 // нужно менять, если у вас другая частота
 #define K 100
 #define N 32000
-#define MEMBERS 24
+#define MEMBERS 26
 #define OK 0
 #define ERROR 1
 
@@ -176,7 +176,7 @@ int print_results(char *array_names, int index, const int complete_split,
     puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     index = print_name(array_names, index);
     printf("\nSplit time running: %.10lf\nTicks: %" PRIu64 "\n", (double)ticks_split / GHZ, ticks_split);
-    printf("\nStrtok time running: %.10lf\nTicks: %" PRIu54 "\n", (double)ticks_strtok / GHZ, ticks_strtok);
+    printf("\nStrtok time running: %.10lf\nTicks: %" PRIu64 "\n", (double)ticks_strtok / GHZ, ticks_strtok);
     printf("Split tests %d / %d", complete_split, COUNT_TESTS);
     print_correctness(complete_split);
     printf("\nStrtok tests %d / %d", complete_strtok, COUNT_TESTS);

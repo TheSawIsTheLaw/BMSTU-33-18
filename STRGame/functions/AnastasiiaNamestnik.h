@@ -3,7 +3,7 @@
 char *strtok_Namestnik(char *string, const char *delim)
 {
     static char * next;
-    register int i = 0, flag = 0;
+    register int i = 0;
     
     if (string)
     {

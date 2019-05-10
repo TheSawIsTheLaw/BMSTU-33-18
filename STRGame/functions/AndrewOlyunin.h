@@ -1,4 +1,4 @@
-int strtok_Olyunin(char *string, const char *delim)
+char *strtok_Olyunin(char *string, const char *delim)
 {
 	return 0;	
 }
