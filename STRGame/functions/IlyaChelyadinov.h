@@ -6,7 +6,7 @@ char *strtok_Chelyadinov(char *string, const char *delim)
 }
 
 int split_Chelyadinov(const char *string, char matrix[][N], const char symbol)
-{/*
+{
     register int i = 0, j = 0, k = 0;
     while (string[k])
     {
@@ -19,8 +19,7 @@ int split_Chelyadinov(const char *string, char matrix[][N], const char symbol)
             matrix[i][++j] =  string[k];
         ++k;
     }
-    matrix[i][j] = "\0";
-    return ++i;*/
-    return 0;
+    matrix[i][j] = '\0';
+    return ++i;
 }
 
