@@ -41,6 +41,7 @@ int main()
 
         if (anti_cheat(DIME, BF, BF_COPY))
         {
+            printf("Player's 1 shot:");
             print_battlefield(BF_COPY);
 
             if (check_win_by_KV(BF_COPY) && check_win_by_PL(BF_COPY))
@@ -57,6 +58,7 @@ int main()
 
                 if (anti_cheat(DIME, BF_COPY, BF))
                 {
+                    printf("Player's 2 shot:");
                     print_battlefield(BF);
 
                     if (check_win_by_KV(BF) && check_win_by_PL(BF))
@@ -81,6 +83,8 @@ int main()
             break;
         }
     }
+
+	printf("Game tied!");
 
     return GAME_OVER;
 }
