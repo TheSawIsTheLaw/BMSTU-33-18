@@ -2,44 +2,91 @@
 
 char *strtok_Sokolov(char *string, const char *delim)
 {
-    register int i = 0;
-    static char *previous;
+    register int i;
+    static char *begin, *index;
 
     if (string != NULL)
     {
-        register int j = 0;
-        previous = string;
-        while (string[i])
+        begin = string;
+        while (*begin)
         {
-            while (delim[j])
-            {
-                if (string[i] == delim[j])
-                {
-                    string[i] = '\0';
-                    break;
-                }
-                j++;
-            }
-            i++;
-        }
-        return previous;
-    }
-    else
-    {
-        while (*previous)
-        {
+            i = 0;
             while (delim[i])
             {
-                if (*previous == delim[i])
+                if (delim[i] == *begin)
                 {
-                    *previous = '\0';
-                    return ++previous;
+                    begin++;
+                    break;
                 }
                 i++;
             }
-            previous++;
+            if (!delim[i])
+                break;
         }
-        return NULL;
+        index = begin;
+        while (*begin)
+        {
+            i = 0;
+            while (delim[i])
+            {
+                if (delim[i] == *begin)
+                {
+                    *begin = '\0';
+                    break;
+                }
+                i++;
+            }
+            begin++;
+            if (delim[i])
+                break;
+        }
+        if (*begin == '\0')
+            return string;
+        return index;
+    }    
+
+    }
+    else
+    {
+        while (*begin)
+        {
+            i = 0;
+            while (delim[j])
+            {
+                if (*begin == delim[i])
+                {
+                    begin++;
+                    break;
+                }
+                i++;          
+            }
+            if (!delim[i])
+                break;
+        }
+        if (*begin == '\0')
+            return NULL;
+        else
+        {   
+            index = begin;
+            while (*begin)
+            {
+                i = 0;
+                while (delim[i])
+                {
+                    if (delim[i] == *begin)
+                    {
+                        *begin = '\0';
+                        break;
+                    }
+                    i++;
+                }
+                begin++;
+                if (delim[i])
+                    break;
+            }
+            return index;
+        }
+
     }
 }
 
