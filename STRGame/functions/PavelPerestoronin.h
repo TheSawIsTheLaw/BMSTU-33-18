@@ -15,10 +15,10 @@ char *strtok_Perestoronin(char *string, const char *delim)
     // Проходим все разделители в начале слова
     while(olds)
     {
-        for (i = 0; delim[i]; i++)
+        for (i = 0; delim[i]; ++i)
             if (*olds == delim[i])
             {
-                olds++;
+                ++olds;
                 break;
             }
         if (!delim[i])
@@ -30,10 +30,10 @@ char *strtok_Perestoronin(char *string, const char *delim)
     i = 0;
     while (olds[i])
     {
-        for (j = 0; delim[j]; j++)
+        for (j = 0; delim[j]; ++j)
             if (olds[i] == delim[j])
                 goto last_oper;
-        i++;
+        ++i;
     }
     last_oper:
         // Если конец строки, то olds указывает на '\0' и в след итерации нас ждет NULL
