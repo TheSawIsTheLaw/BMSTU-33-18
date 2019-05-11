@@ -12,7 +12,7 @@ char *strtok_Saburov(char *string, const char *delim)
     static char *late_s;
     static int size;
 
-    int i;
+    int i,s = 0;
 
     if(string != NULL)
     {
@@ -35,6 +35,28 @@ char *strtok_Saburov(char *string, const char *delim)
     while(*late_s)
     {
         i = strspn(late_s, delim);
+        if (i > 0 && s == 0)
+        {
+            while (i > 1)
+            {
+                late_s++;
+                string++;
+                size--;
+                i--;
+            }
+
+            if (i == 1 && size > 1)
+            {
+                late_s--;
+                size++;
+            }
+            late_s++;
+            string++;
+            size--;
+            i--;
+        }
+
+        s++;
         while(i > 1)
         {
             *late_s = '\0';
