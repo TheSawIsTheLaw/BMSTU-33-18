@@ -9,38 +9,38 @@
 #define COUNT_TESTS 20
 #define COUNT_SEPS 5
 #define GHZ 3300000000 // нужно менять, если у вас другая частота
-#define K 100
 #define N 32000
+#define K 100
 #define MEMBERS 26
 #define OK 0
 #define ERROR 1
 
 #include "functions/AlisSukocheva.h" // SPLIT - 1, STRTOK - 0
-#include "functions/AnastasiiaNamestnik.h" // SPLIT - 0, STRTOK - 1 (0)
+#include "functions/AnastasiiaNamestnik.h" // SPLIT - 1, STRTOK - 1 (???)
 #include "functions/ArtemSarkisov.h" // SPLIT - 1, STRTOK - 1 
-#include "functions/BogdanLemeshkin.h"
+#include "functions/BogdanLemeshkin.h" // SPLIT - 1, STRTOK - 0
 #include "functions/DmitryKovalev.h" // SPLIT 1, STRTOK - 0
 #include "functions/DmitryYakuba.h" // SPLIT - 1, STRTOK - 1
-#include "functions/EmilSimonenko.h" // SPLIT - 1, STRTOK - 1 (0)
-#include "functions/IlyaChelyadinov.h"
-#include "functions/KarimAkhmetov.h"
+#include "functions/EmilSimonenko.h" // SPLIT - 1, STRTOK - 1 (???)
+#include "functions/IlyaChelyadinov.h" // SPLIT - 1, STRTOK - 0
+#include "functions/KarimAkhmetov.h" // SPLIT - 1, STRTOK - 0
 #include "functions/LyubovProkhorova.h" // SPLIT - 1, STRTOK - 1 (???)
-#include "functions/MikhailNitenko.h" // SPLIT - 1, STRTOK - 0
-#include "functions/NadezhdaAksenova.h"
-#include "functions/NikitaBurtelov.h" 
+#include "functions/MikhailNitenko.h" // SPLIT - 1, STRTOK - 1
+#include "functions/NadezhdaAksenova.h" // ????????????
+#include "functions/NikitaBurtelov.h" // ??????????????
 #include "functions/PavelPerestoronin.h" // SPLIT - 1, STRTOK - 1 
-#include "functions/PavelToporkov.h" // SPLIT - 1, STRTOK - 1 (0)
+#include "functions/PavelToporkov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/SergeyKononenko.h" // SPLIT - 1, STRTOK - 1 (0)
-#include "functions/SergeyMinenko.h" 
-#include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 1 (0)
+#include "functions/SergeyMinenko.h" /// ??????????????
+#include "functions/SergeySaburov.h" // SPLIT - 1, STRTOK - 1 (???)
 #include "functions/SergeySverdlov.h" // SPLIT - 1, STRTOK - 1 (0)
 #include "functions/VladKrivozubov.h" // SPLIT - 1, STRTOK - 1
 #include "functions/VladislavChernenko.h" // SPLIT - 1, STRTOK - 1
-#include "functions/VladislavGurishev.h"
+#include "functions/VladislavGurishev.h" // ???????????
 #include "functions/YefimSokolov.h" // SPLIT 1, STRTOK - 1 (0)
 #include "functions/AlexeyRomanov.h" // SPLIT - 1, STRTOK - 0
-#include "functions/AndrewOlyunin.h" // SPLIT - 0, STRTOK - 0
-#include "functions/GeorgeAleksandrovich.h" // SPLIT - 0, STRTOK - 0
+#include "functions/AndrewOlyunin.h" // SPLIT - 1, STRTOK - 0
+#include "functions/GeorgeAleksandrovich.h" // SPLIT - 1, STRTOK - 0
 
 #include "TestSystem/STRTOK_TESTS/STRTOK_SETTINGS.h"
 #include "TestSystem/SPLIT_TESTS/SPLIT_SETTINGS.h"
@@ -175,7 +175,7 @@ int print_results(char *array_names, int index, const int complete_split,
 {   
     puts("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     index = print_name(array_names, index);
-    printf("\nSplit time running: %.10lf\nTicks: %" PRIu64 "\n", (double)ticks_split / GHZ, ticks_split);
+    printf("\nSplit time running: %.10lf\nTicks: %" PRIu64 "", (double)ticks_split / GHZ, ticks_split);
     printf("\nStrtok time running: %.10lf\nTicks: %" PRIu64 "\n", (double)ticks_strtok / GHZ, ticks_strtok);
     printf("Split tests %d / %d", complete_split, COUNT_TESTS);
     print_correctness(complete_split);
