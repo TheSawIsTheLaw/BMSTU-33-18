@@ -123,13 +123,13 @@ void make_shot_prokhorova(char symb, char BF[][DIME])
         return;
     }
 
-    int i = rand() % DIME;
-    int j = rand() % DIME;
+    int i = rand() % DIME - 1;
+    int j = rand() % DIME - 1;
 
     while (BF[i][j] != ' ')
     {
-        i = rand() % DIME;
-        j = rand() % DIME;
+        i = rand() % DIME - 1;
+        j = rand() % DIME - 1;
     }
 
     BF[i][j] = symb;
