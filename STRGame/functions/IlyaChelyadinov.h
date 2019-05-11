@@ -1,71 +1,54 @@
 // N - максимальная длина строки, она будет объявлена в мейне
-
-int not_myne_strspn(const char *str1,const char *str2)
-{ 
-    int i,k,counter=0; 
-    for(i=0;str1[i]!='\0';i++)
-    { 
-        if(counter != i) 
-            break; 
-        for(k=0;str1[k]!='\0';k++)
-        { 
-            if(str1[i]==str2[k]) 
-            counter++; 
-        } 
-    } 
-    return counter; 
-}
-unsigned short my_strlen(char *str) 
-{
-    for (int i = 0;; i++) 
-        if (str[i] == '\0') 
-            return i;
-}
-
+static char *p;
 
 char *strtok_Chelyadinov(char *str, const char *delim)
 {
-    static char *next;
-    static int size;
-    int i;
-    if (str != NULL)
+    register char *nach = NULL;
+    register int i;
+
+    if (str == NULL)
+        str = p;
+
+    while (*(str))
     {
-        next = str;
-        size = my_strlen(str);
+        i = 0;
+        while (delim[i] && *(str) != delim[i])
+            i++;
+
+        if (*(str) != delim[i])
+            break;
+
+        str++;
     }
-    else if (size > 0)
+
+    if (*(str))
     {
-        ++next;
-        size--;
-        str = next;
-    }
-    else
-    {
-        str = NULL;
-    }
-    while (*next)
-    {
-        i = not_myne_strspn(next, delim);
-        while (i>1)
+        nach = str;
+
+        while (*(str))
         {
-            *next = '\0';
-            ++next;
-            size--;
-            i--;
-        }
-        if (i == 1)
-        {
-            *next = '\0';
-            if (size > 1)
+            i = 0;
+            while (delim[i])
             {
-                next--;
-                ++size;
+                if (*(str) == delim[i])
+                    break;
+                i++;
             }
+            if (*(str) == delim[i])
+                break;
+
+            str++;
         }
-        ++next;
-        size--;
+
+        if (*(str))
+        {
+            *str = '\0';
+            str++;
+        }
     }
-    return str;
+
+    p = str;
+    return nach;
 }
 
 int split_Chelyadinov(const char *string, char matrix[][N], const char symbol)
