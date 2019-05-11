@@ -1,8 +1,8 @@
-unsigned short strlen(char *str) {
+unsigned short mystrlen(char *str) {
     for (int i = 0;; i++) if (str[i] == '\0') return i;
 }
 
-int strspn(const char *str1, const char *str2) {
+int mystrspn(const char *str1, const char *str2) {
     int i, k, counter = 0;
     for (i = 0; str1[i] != '\0'; i++) {
         if (counter != i) break;
@@ -20,15 +20,14 @@ char *strtok_Akhmetov(char *string, const char *delim) {
     int i;
     if (string != NULL) {
         temp = string;
-        size = strlen(string);
+        size = mystrlen(string);
     } else if (size > 0) {
         temp++;
         size--;
         string = temp;
-    }
-    else { string = NULL; }
+    } else { string = NULL; }
     while (*temp) {
-        i = strspn(temp, delim);
+        i = mystrspn(temp, delim);
         while (i > 1) {
             *temp = '\0';
             temp++;
@@ -46,22 +45,23 @@ char *strtok_Akhmetov(char *string, const char *delim) {
         }
         return string;
     }
+}
 
-    int split_Akhmetov(const char *string, char matrix[][N], const char symbol) {
-        int column = 0;
-        int row = 0;
-        int index = 0;
-        while (string[index] != '\0') {
-            if (string[index] == symbol) {
-                matrix[row++][column] = '\0';
-                column = 0;
-            } else {
-                matrix[row][column++] = string[index];
-            }
-
-            index++;
+int split_Akhmetov(const char *string, char matrix[][N], const char symbol) {
+    int column = 0;
+    int row = 0;
+    int index = 0;
+    while (string[index] != '\0') {
+        if (string[index] == symbol) {
+            matrix[row++][column] = '\0';
+            column = 0;
+        } else {
+            matrix[row][column++] = string[index];
         }
-        matrix[row][column] = '\0';
-        row++;
-        return row;
+
+        index++;
     }
+    matrix[row][column] = '\0';
+    row++;
+    return row;
+}
