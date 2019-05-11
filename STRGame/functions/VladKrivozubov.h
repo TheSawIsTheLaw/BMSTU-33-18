@@ -1,8 +1,9 @@
 ﻿// N - максимальная длина строки, она будет объявлена в мейне
 
+
+static char *index, *start;
 char *strtok_Krivozubov(char *string, const char *delim)
 {
-    static char *index, *start;
     register int j;
     if (string == NULL)
     {   
