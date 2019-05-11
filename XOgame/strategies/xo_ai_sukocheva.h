@@ -4,7 +4,7 @@
 
 void make_shot_sukocheva(const char symb, char BF[][DIME])
 {
-	temp = FALSE;
+	int temp = FALSE;
 
 	for (int i = 0; i < DIME; i++)
 	{
