@@ -16,10 +16,8 @@ char *strtok_Simonenko(char *string, const char *delim)
 		if (now == last)
 			return NULL;
 		else
-		{	
-			past = now;
-			return now;
-		}
+		past = now;
+		return now;
 	}
     else
     {
@@ -58,7 +56,7 @@ int split_Simonenko(const char *string, char matrix[][N], const char symbol)
     int r = 0;   //row
 
     while (string[i++])
-        if (symbol == string[i])
+        if (symbol == string[i-1])
         {
             matrix[r++][c] = BSZ ;
             c = 0;
