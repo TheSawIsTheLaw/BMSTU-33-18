@@ -249,6 +249,13 @@ void test_system(char *array_names, char test_matrix[][N])
             {
                 ++complete_strtok; 
             }
+            else
+            {
+                if (i == 9)
+                {
+                    printf("%d ", j);
+                }
+            }
 
             if (!check_split(TS_arr_split, test_matrix, size, SPLIT_SEPARATORS[j]) && size == SPLIT_CORRECT_SIZE[j])
             {   
