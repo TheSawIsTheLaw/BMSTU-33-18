@@ -1,5 +1,5 @@
 // N - максимальная длина строки, она будет объявлена в мейне
-static char *lastik;
+static char *lasti;
 
 char *strtok_Kovalev(char *string, const char *delim)
 {
@@ -7,7 +7,7 @@ char *strtok_Kovalev(char *string, const char *delim)
     register int i;
 
     if (string == NULL) 
-        string = lastik;
+        string = lasti;
 	
     while (*(string))
     {
@@ -47,7 +47,7 @@ char *strtok_Kovalev(char *string, const char *delim)
         }
     }
 
-    lastik = string;
+    lasti = string;
     return start;
 
 }
