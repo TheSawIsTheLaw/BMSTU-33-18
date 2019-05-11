@@ -49,7 +49,7 @@ char *strtok_Sokolov(char *string, const char *delim)
         while (*begin)
         {
             i = 0;
-            while (delim[j])
+            while (delim[i])
             {
                 if (*begin == delim[i])
                 {
