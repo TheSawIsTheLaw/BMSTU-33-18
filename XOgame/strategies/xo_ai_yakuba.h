@@ -4,26 +4,26 @@
 #include <stdlib.h>
 #include <time.h>
 
-void make_shot_yakuba_harder(char type, int x, char field[][x], int y)
+void make_shot_yakuba_harder(char type, char field[][DIME])
 {
     int i, j, k = 0;
     srand(time(NULL));
-    i = (rand() % x);
-    j = (rand() % y);
+    i = (rand() % DIME);
+    j = (rand() % DIME);
     while (field[i][j] != ' ')
     {
         k += 1;
         srand(time(NULL));
-        i = (0 + rand() % x);
-        j = (0 + rand() % y);
+        i = (0 + rand() % DIME);
+        j = (0 + rand() % DIME);
         if (k == 666)
             break;
     }
     if (k == 666)
     {
-        for (int q = 0; q < x; q++)
+        for (int q = 0; q < DIME; q++)
         {
-            for (int w = 0; w < y; w++)
+            for (int w = 0; w < DIME; w++)
                 if (field[q][w] == ' ')
                 {
                     field[q][w] = type;
