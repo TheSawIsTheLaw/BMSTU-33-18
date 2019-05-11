@@ -5,48 +5,46 @@ char *strtok_Kononenko(char *string, const char *delim)
     static char *prev;
     register int i = 0, j = 0;
 
-    if (string == NULL)
-    {
-        while (*prev)
-        {
-            while (delim[i])
-            {
-                if (*prev == delim[i])
-                {
-                    *prev = '\0';
-                    return ++prev;
-                }
-
-                i++;
-            }
-
-            prev++;
-        }
-
-        return NULL;
-    }
-
-    else
-    {
+    if (string)
         prev = string;
-        while (string[i])
-        {
-            while (delim[j])
+
+
+    if ((prev == NULL) || (*prev == '\0'))
+        return NULL;
+
+    while(prev)
+    {
+        for (i = 0; delim[i]; i++)
+            if (*prev == delim[i])
             {
-                if (string[i] == delim[j])
-                {
-                    string[i] = '\0';
-                    break;
-                }
-
-                j++;
+                prev++;
+                break;
             }
-
-            i++;
-        }
-
-        return prev;
+        if (!delim[i])
+            break;
     }
+
+    if (*prev == '\0')
+        return NULL;
+
+    i = 0;
+    while (prev[i])
+    {
+        for (j = 0; delim[j]; j++)
+            if (prev[i] == delim[j])
+                goto last_action;
+        i++;
+    }
+
+    last_action:
+        if (prev[i] == '\0')
+        {
+            prev += i;
+            return prev - i;
+        }
+        prev[i] = '\0';
+        prev += i + 1;
+        return prev - i - 1;
 }
 
 int split_Kononenko(const char *string, char matrix[][N], const char symbol)
