@@ -6,7 +6,9 @@ attendee_list = [
     "Perestoronin Pavel",
     "Prokhorova Lyubov",
     "Romanov Alexey",
-    "Yakuba Dmitriy"
+    "Yakuba Dmitriy",
+    "Sukocheva Alis",
+    "Kononenko Sergey"
 ]
 
 

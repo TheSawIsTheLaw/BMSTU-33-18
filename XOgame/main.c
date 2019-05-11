@@ -6,11 +6,13 @@
 
 /* Strategies include */
 // #include "strategies/xo_ai_krivozubov.h"
-// #include "strategies/xo_ai_prokhorova.h"
-#include "strategies/xo_ai_perestoronin.h"
+#include "strategies/xo_ai_prokhorova.h"
+// #include "strategies/xo_ai_perestoronin.h"
 // #include "strategies/xo_ai_romanov.h"
 // #include "strategies/xo_ai_yakuba.h"
-#include "strategies/xo_ai_chernenko.h"
+// #include "strategies/xo_ai_chernenko.h"
+// #include "strategies/xo_ai_sukocheva.h"
+// #include "strategies/xo_ai_kononenko.h"
 
 /* Functions include */
 #include "functions/xo_func_anti_cheat_Toporkov_Sarkisov.h"
@@ -20,9 +22,8 @@
 #include "functions/xo_func_copy_battlefield.h"
 #include "functions/xo_func_print_battlefield_Lemeshkin.h"
 
-int main(void)
+int main()
 {
-    int winner = -1;
     char BF[DIME][DIME];
     char BF_COPY[DIME][DIME];
 
@@ -36,7 +37,7 @@ int main(void)
     {
         copy_battlefield(BF, BF_COPY);
 
-        make_shot_chernenko('X', BF_COPY);
+        make_shot_prokhorova('X', BF_COPY);
 
         if (anti_cheat(DIME, BF, BF_COPY))
         {
@@ -52,7 +53,7 @@ int main(void)
             {
                 copy_battlefield(BF_COPY, BF);
 
-                make_shot_chernenko('O', BF);
+                make_shot_prokhorova('O', BF);
 
                 if (anti_cheat(DIME, BF_COPY, BF))
                 {
