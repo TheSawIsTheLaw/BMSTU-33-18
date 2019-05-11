@@ -1,18 +1,22 @@
 // N - максимальная длина строки, она будет объявлена в мейне
 
-int my_strspn(const char *str1,const char *str2){ 
+int not_myne_strspn(const char *str1,const char *str2)
+{ 
     int i,k,counter=0; 
-    for(i=0;str1[i]!='\0';i++){ 
+    for(i=0;str1[i]!='\0';i++)
+    { 
         if(counter != i) 
             break; 
-        for(k=0;str1[k]!='\0';k++){ 
+        for(k=0;str1[k]!='\0';k++)
+        { 
             if(str1[i]==str2[k]) 
             counter++; 
         } 
     } 
     return counter; 
 }
-unsigned short mystrlen(char *str) {
+unsigned short my_strlen(char *str) 
+{
     for (int i = 0;; i++) 
         if (str[i] == '\0') 
             return i;
@@ -27,7 +31,7 @@ char *strtok_Chelyadinov(char *str, const char *delim)
     if (str != NULL)
     {
         next = str;
-        size = strlen(str);
+        size = my_strlen(str);
     }
     else if (size > 0)
     {
@@ -41,7 +45,7 @@ char *strtok_Chelyadinov(char *str, const char *delim)
     }
     while (*next)
     {
-        i = my_strspn(next, delim);
+        i = not_myne_strspn(next, delim);
         while (i>1)
         {
             *next = '\0';
