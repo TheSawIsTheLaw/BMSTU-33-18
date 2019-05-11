@@ -34,11 +34,6 @@ __Ticks:__ 71412344
 
 [Результаты (O3)](https://pp.userapi.com/c855336/v855336897/3d186/xL6QK6srECw.jpg)
 
-
-## Ссылка на таблицу с результатами
-
-https://docs.google.com/spreadsheets/d/1a4DQ38XDtpzeq_VvIOv0xyRYNezhHgZIF39ViqNtX1E/edit#gid=0
-
 # На 11.05:
 ## __1.__ Сделали все функции:
 
