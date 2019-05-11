@@ -14,10 +14,10 @@ char *strtok_Kononenko(char *string, const char *delim)
 
     while(prev)
     {
-        for (i = 0; delim[i]; i++)
+        for (i = 0; delim[i]; ++i)
             if (*prev == delim[i])
             {
-                prev++;
+                ++prev;
                 break;
             }
         if (!delim[i])
@@ -27,7 +27,7 @@ char *strtok_Kononenko(char *string, const char *delim)
     i = 0;
     while (prev[i])
     {
-        for (j = 0; delim[j]; j++)
+        for (j = 0; delim[j]; ++j)
             if (prev[i] == delim[j])
             {
                 if (prev[i] == '\0')
@@ -40,7 +40,7 @@ char *strtok_Kononenko(char *string, const char *delim)
                 return prev - i - 1;
             }
 
-        i++;
+        ++i;
     }
 }
 
@@ -52,14 +52,14 @@ int split_Kononenko(const char *string, char matrix[][N], const char symbol)
     {
         if (string[k] == symbol)
         {
-            matrix[row++][col] = '\0';
+            matrix[++row][col] = '\0';
             col = 0;
         }
         else
         {
-            matrix[row][col++] = string[k];
+            matrix[row][++col] = string[k];
         }
-        k++;
+        ++k;
     }
     matrix[row][col] = '\0';
     return ++row;
