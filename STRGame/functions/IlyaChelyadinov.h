@@ -41,7 +41,7 @@ char *strtok_Chelyadinov(char *str, const char *delim)
     }
     else
     {
-        str = NULL
+        str = NULL;
     }
     while (*next)
     {
