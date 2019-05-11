@@ -1,3 +1,7 @@
+## Сылка на таблицу с результатами
+
+https://docs.google.com/spreadsheets/d/1a4DQ38XDtpzeq_VvIOv0xyRYNezhHgZIF39ViqNtX1E/edit#gid=0
+
 # На 11.05:
 ## __1.__ Сделали все функции:
 
