@@ -44,8 +44,6 @@ char *strtok_Sokolov(char *string, const char *delim)
             return string;
         return index;
     }    
-
-    }
     else
     {
         while (*begin)
@@ -86,7 +84,6 @@ char *strtok_Sokolov(char *string, const char *delim)
             }
             return index;
         }
-
     }
 }
 
