@@ -1,55 +1,54 @@
 // N - максимальная длина строки, она будет объявлена в мейне
 static char *lasti;
 
-char *strtok_Kovalev(char *string, const char *delim)
+char *strtok_Kovalev(char *str, const char *delim)
 {
     register char *start = NULL;
     register int i;
 
-    if (string == NULL) 
-        string = lasti;
-	
-    while (*(string))
+    if (str == NULL)
+        str = lasti;
+
+    while (*(str))
     {
         i = 0;
-        while (delim[i] && *(string) != delim[i])
+        while (delim[i] && *(str) != delim[i])
             i++;
-        
-        if (*(string) != delim[i])
+
+        if (*(str) != delim[i])
             break;
-        
-        string++;
+
+        str++;
     }
 
-    if (*(string))
+    if (*(str))
     {
-        start = string;
-		
-        while (*(string))
+        start = str;
+
+        while (*(str))
         {
             i = 0;
             while (delim[i])
             {
-                if (*(string) == delim[i])
+                if (*(str) == delim[i])
                     break;
                 i++;
             }
-            if (*(string) == delim[i])
+            if (*(str) == delim[i])
                 break;
-            
-            string++;
+
+            str++;
         }
-		
-        if (*(string))
+
+        if (*(str))
         {
-            *string = '\0';
-            string++;
+            *str = '\0';
+            str++;
         }
     }
 
-    lasti = string;
+    lasti = str;
     return start;
-
 }
 
 int split_Kovalev(const char *string, char matrix[][N], const char symbol)
