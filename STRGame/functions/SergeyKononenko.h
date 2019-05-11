@@ -24,27 +24,24 @@ char *strtok_Kononenko(char *string, const char *delim)
             break;
     }
 
-    if (*prev == '\0')
-        return NULL;
-
     i = 0;
     while (prev[i])
     {
         for (j = 0; delim[j]; j++)
             if (prev[i] == delim[j])
-                goto last_action;
+            {
+                if (prev[i] == '\0')
+                {
+                    prev += i;
+                    return prev - i;
+                }
+                prev[i] = '\0';
+                prev += i + 1;
+                return prev - i - 1;
+            }
+
         i++;
     }
-
-    last_action:
-        if (prev[i] == '\0')
-        {
-            prev += i;
-            return prev - i;
-        }
-        prev[i] = '\0';
-        prev += i + 1;
-        return prev - i - 1;
 }
 
 int split_Kononenko(const char *string, char matrix[][N], const char symbol)
