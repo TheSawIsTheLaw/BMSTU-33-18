@@ -54,13 +54,17 @@ int split_Perestoronin(const char *string, char matrix[][N], const char symbol)
     while (string[k])
     {
         if (string[k] != symbol)
-            matrix[i][j++] = string[k];
+        {
+            matrix[i][j] = string[k];
+            ++j;
+        }
         else
         {
-            matrix[i++][j] = '\0';
+            matrix[i][j] = '\0';
+            ++i;
             j = 0;
         }
-        k++;
+        ++k;
     }
     matrix[i][j] = '\0';
     return ++i;
