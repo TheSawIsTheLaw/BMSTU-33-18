@@ -43,8 +43,8 @@ char *strtok_Akhmetov(char *string, const char *delim) {
             temp++;
             size--;
         }
-        return string;
     }
+    return string;
 }
 
 int split_Akhmetov(const char *string, char matrix[][N], const char symbol) {
