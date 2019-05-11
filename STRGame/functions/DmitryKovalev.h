@@ -1,4 +1,5 @@
 // N - максимальная длина строки, она будет объявлена в мейне
+static char *lastik;
 
 char *strtok_Kovalev(char *string, const char *delim)
 {
