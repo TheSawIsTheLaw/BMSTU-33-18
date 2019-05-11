@@ -3,10 +3,11 @@
 
 #define DIME 3
 #define GAME_OVER 0
+#define CHEAT 1
 
 /* Strategies include */
 // #include "strategies/xo_ai_krivozubov.h"
-#include "strategies/xo_ai_prokhorova.h"
+// #include "strategies/xo_ai_prokhorova.h"
 // #include "strategies/xo_ai_perestoronin.h"
 // #include "strategies/xo_ai_romanov.h"
 // #include "strategies/xo_ai_yakuba.h"
@@ -24,6 +25,7 @@
 
 int main()
 {
+    int shot_count = 0;
     char BF[DIME][DIME];
     char BF_COPY[DIME][DIME];
 
@@ -37,54 +39,61 @@ int main()
     {
         copy_battlefield(BF, BF_COPY);
 
-        make_shot_prokhorova('X', BF_COPY);
+        make_shot_perestoronin('X', BF_COPY);
+        shot_count++;
 
         if (anti_cheat(DIME, BF, BF_COPY))
         {
-            printf("Player's 1 shot:");
+            printf("Player's 1 shot:\n");
             print_battlefield(BF_COPY);
 
             if (check_win_by_KV(BF_COPY) && check_win_by_PL(BF_COPY))
             {
-                printf("The winner is player 1");
+                printf("The winner is player 1\n");
 
-                break;
+                return GAME_OVER;
             }
             else
             {
-                copy_battlefield(BF_COPY, BF);
-
-                make_shot_prokhorova('O', BF);
-
-                if (anti_cheat(DIME, BF_COPY, BF))
+                if (shot_count == DIME * DIME)
                 {
-                    printf("Player's 2 shot:");
-                    print_battlefield(BF);
+                    printf("Game tied!\n");
 
-                    if (check_win_by_KV(BF) && check_win_by_PL(BF))
-                    {
-                        printf("The winner is player 2");
-
-                        break;
-                    }
+                    return GAME_OVER;
                 }
                 else
                 {
-                    printf("Oh, player 2 is cheating. The winner is player 1");
+                    copy_battlefield(BF_COPY, BF);
 
-                    break;
+                    make_shot_romanov('O', BF);
+                    shot_count++;
+
+                    if (anti_cheat(DIME, BF_COPY, BF))
+                    {
+                        printf("Player's 2 shot:\n");
+                        print_battlefield(BF);
+
+                        if (check_win_by_KV(BF) && check_win_by_PL(BF))
+                        {
+                            printf("The winner is player 2\n");
+
+                            return GAME_OVER;
+                        }
+                     }
+                    else
+                    {
+                        printf("Oh, player 2 is cheating. The winner is player 1\n");
+
+                        return CHEAT;
+                    }
                 }
             }
         }
         else
         {
-            printf("Oh, player 1 is cheating. The winner is player 2");
+            printf("Oh, player 1 is cheating. The winner is player 2\n");
 
-            break;
+            return CHEAT;
         }
     }
-
-	printf("Game tied!");
-
-    return GAME_OVER;
 }
