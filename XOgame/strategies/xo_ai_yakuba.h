@@ -16,10 +16,10 @@ void make_shot_yakuba_harder(char type, char field[][DIME])
         srand(time(NULL));
         i = (0 + rand() % DIME);
         j = (0 + rand() % DIME);
-        if (k == 666)
+        if (k == 100)
             break;
     }
-    if (k == 666)
+    if (k == 100)
     {
         for (int q = 0; q < DIME; q++)
         {
@@ -27,10 +27,10 @@ void make_shot_yakuba_harder(char type, char field[][DIME])
                 if (field[q][w] == ' ')
                 {
                     field[q][w] = type;
-                    k = 665;
+                    k = 99;
                     break;
                 }
-            if (k == 665)
+            if (k == 99)
                 break;
         }
     }
