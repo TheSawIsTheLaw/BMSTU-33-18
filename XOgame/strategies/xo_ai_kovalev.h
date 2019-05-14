@@ -16,6 +16,11 @@ void make_shot_kovalev(char symb, char BF[][DIME])
     int en_conter;
     int conter;
     int space;
+    int dig_power = 3;
+    for (int i = 0; i < DIME - 3; i++)
+        dig_power = (dig_power * 3 + 2) * 3 + 2;
+    
+
     for (int i = 0; i < DIME; i++)
     {
         printf("\n");
@@ -57,17 +62,26 @@ void make_shot_kovalev(char symb, char BF[][DIME])
                             space++;
                     }
                 }
-                if(conter == DIME - 1)
-                    danger+=100;
 
-                if (conter == DIME - 2 && space == 1)
-                    danger+=6;
+                int new_d = 0;
+                if (conter == 0)
+                {
+                    new_d = 1;
+                    for (int wei = 1; wei < en_conter; wei++)
+                    {
+                        new_d = (new_d * 3 + 2) * 3 + 2;
+                    }
+                }
 
-                if (en_conter == DIME - 1)
-                    danger+=40;
-
-                if (en_conter == DIME - 2 && space == 1)
-                    danger+=4;
+                if (en_conter == 0)
+                {
+                    new_d = 5;
+                    for (int wei = 1; wei < conter; wei++)
+                    {
+                        new_d = (new_d * 3 + 2) * 3 + 2;
+                    }
+                }
+                danger+=new_d;
 
                 en_conter = 0;
                 conter = 0;
@@ -97,23 +111,30 @@ void make_shot_kovalev(char symb, char BF[][DIME])
                             space++;
                     }
                 }
+                new_d = 0;
+                if (conter == 0)
+                {
+                    new_d = 1;
+                    for (int wei = 1; wei < en_conter; wei++)
+                    {
+                        new_d = (new_d * 3 + 2) * 3 + 2;
+                    }
+                }
 
-                if(conter == DIME - 1)
-                    danger+=100;
-
-                if (conter == DIME - 2 && space == 1)
-                    danger+=6;
-
-                if (en_conter == DIME - 1)
-                    danger+=40;
-
-                if (en_conter == DIME - 2 && space == 1)
-                    danger+=4;
+                if (en_conter == 0)
+                {
+                    new_d = 5;
+                    for (int wei = 1; wei < conter; wei++)
+                    {
+                        new_d = (new_d * 3 + 2) * 3 + 2;
+                    }
+                }
+                danger+=new_d;
 
 
                 if(i == j)
                 {
-                    danger+=1;
+                    danger+=dig_power;
                     en_conter = 0;
                     conter = 0;
                     space = 0;
@@ -142,22 +163,30 @@ void make_shot_kovalev(char symb, char BF[][DIME])
                                 space++;
                         }
                     }
-                    if(conter == DIME - 1)
-                        danger+=100;
+                    new_d = 0;
+                    if (conter == 0)
+                    {
+                        new_d = 1;
+                        for (int wei = 1; wei < en_conter; wei++)
+                        {
+                            new_d = (new_d * 3 + 2) * 3 + 2;
+                        }
+                    }
 
-                    if (conter == DIME - 2 && space == 1)
-                        danger+=6;
-
-                    if (en_conter == DIME - 1)
-                        danger+=40;
-
-                    if (en_conter == DIME - 2 && space == 1)
-                        danger+=4;
+                    if (en_conter == 0)
+                    {
+                        new_d = 5;
+                        for (int wei = 1; wei < conter; wei++)
+                        {
+                            new_d = (new_d * 3 + 2) * 3 + 2;
+                        }
+                    }
+                    danger+=new_d;
                 }
 
                 if(i + j == DIME -1)
                 {
-                    danger+=1;
+                    danger+=dig_power;
                     en_conter = 0;
                     conter = 0;
                     space = 0;
@@ -186,17 +215,25 @@ void make_shot_kovalev(char symb, char BF[][DIME])
                                 space++;
                         }
                     }
-                    if(conter == DIME - 1)
-                        danger+=100;
+                    new_d = 0;
+                    if (conter == 0)
+                    {
+                        new_d = 1;
+                        for (int wei = 1; wei < en_conter; wei++)
+                        {
+                            new_d = (new_d * 3 + 2) * 3 + 2;
+                        }
+                    }
 
-                    if (conter == DIME - 2 && space == 1)
-                        danger+=6;
-
-                    if (en_conter == DIME - 1)
-                        danger+=40;
-
-                    if (en_conter == DIME - 2 && space == 1)
-                        danger+=4;
+                    if (en_conter == 0)
+                    {
+                        new_d = 5;
+                        for (int wei = 1; wei < conter; wei++)
+                        {
+                            new_d = (new_d * 3 + 2) * 3 + 2;
+                        }
+                    }
+                    danger+=new_d;
                 }
 
                 if (danger >= res_danger)
