@@ -11,9 +11,10 @@
 // #include "strategies/xo_ai_perestoronin.h"
 // #include "strategies/xo_ai_romanov.h"
 // #include "strategies/xo_ai_yakuba.h"
-// #include "strategies/xo_ai_chernenko.h"
+#include "strategies/xo_ai_chernenko.h"
 // #include "strategies/xo_ai_sukocheva.h"
 // #include "strategies/xo_ai_kononenko.h"
+#include "strategies/xo_ai_kovalev.h"
 
 /* Functions include */
 #include "functions/xo_func_anti_cheat_Toporkov_Sarkisov.h"
@@ -39,7 +40,7 @@ int main()
     {
         copy_battlefield(BF, BF_COPY);
 
-        make_shot_perestoronin('X', BF_COPY);
+        make_shot_chernenko('X', BF_COPY);
         shot_count++;
 
         if (anti_cheat(DIME, BF, BF_COPY))
@@ -65,7 +66,7 @@ int main()
                 {
                     copy_battlefield(BF_COPY, BF);
 
-                    make_shot_romanov('O', BF);
+                    make_shot_kovalev('O', BF);
                     shot_count++;
 
                     if (anti_cheat(DIME, BF_COPY, BF))
