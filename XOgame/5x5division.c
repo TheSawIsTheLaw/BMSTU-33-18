@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DIME 3
+#define DIME 5
 #define STUDENTS 3
 
 #define GAME_OVER 0
@@ -156,9 +156,9 @@ int main()
         }
     }
 
-    points_file = fopen("3x3division.txt", "w");
+    points_file = fopen("5x5division.txt", "w");
 
-    fprintf(points_file, "!3x3 division ranking!\n\n");
+    fprintf(points_file, "!5x5 division ranking!\n\n");
     for (int i = 0; i < STUDENTS; ++i)
     {
         fprintf(points_file, "%s's points: %d\n", students[i], points[i]);
