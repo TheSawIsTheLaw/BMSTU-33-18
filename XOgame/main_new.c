@@ -8,7 +8,7 @@
 #define WIN_PLAYER_TWO -2
 
 /* Strategies include */
-// #include "strategies/xo_ai_krivozubov.h"
+#include "strategies/xo_ai_krivozubov.h"
 // #include "strategies/xo_ai_prokhorova.h"
 // #include "strategies/xo_ai_perestoronin.h"
 // #include "strategies/xo_ai_romanov.h"
@@ -28,7 +28,8 @@
 
 typedef void (*xo_strategy)(char, char[][DIME]);
 
-int xogame_round(xo_strategy first_player_strategy, xo_strategy second_player_strategy)
+int xogame_round(const char *first_player_name, const char *second_player_name,
+                 xo_strategy first_player_strategy, xo_strategy second_player_strategy)
 {
     int shot_count = 0;
     char BF[DIME][DIME];
@@ -49,13 +50,13 @@ int xogame_round(xo_strategy first_player_strategy, xo_strategy second_player_st
 
         if (anti_cheat(DIME, BF, BF_COPY))
         {
-            printf("Player's 1 shot:\n");
+            printf("%s's shot:\n", first_player_name);
             print_battlefield(BF_COPY);
             printf("\n");
 
             if (check_win_by_KV(BF_COPY))
             {
-                printf("The winner is player 1\n");
+                printf("The winner is %s\n", first_player_name);
 
                 return WIN_PLAYER_ONE;
             }
@@ -76,13 +77,13 @@ int xogame_round(xo_strategy first_player_strategy, xo_strategy second_player_st
 
                     if (anti_cheat(DIME, BF_COPY, BF))
                     {
-                        printf("Player's 2 shot:\n");
+                        printf("%s's shot:\n", second_player_name);
                         print_battlefield(BF);
                         printf("\n");
 
                         if (check_win_by_KV(BF))
                         {
-                            printf("The winner is player 2\n");
+                            printf("The winner is %s\n", second_player_name);
 
                             return WIN_PLAYER_TWO;
                         }
@@ -98,7 +99,7 @@ int xogame_round(xo_strategy first_player_strategy, xo_strategy second_player_st
                     }
                     else
                     {
-                        printf("Oh, player 2 is cheating. The winner is player 1\n");
+                        printf("Oh, %s is cheating. The winner is %s\n", second_player_name, first_player_name);
 
                         return WIN_PLAYER_ONE;
                     }
@@ -107,7 +108,7 @@ int xogame_round(xo_strategy first_player_strategy, xo_strategy second_player_st
         }
         else
         {
-            printf("Oh, player 1 is cheating. The winner is player 2\n");
+            printf("Oh, %s is cheating. The winner is %s\n", first_player_name, second_player_name);
 
             return WIN_PLAYER_TWO;
         }
@@ -116,7 +117,17 @@ int xogame_round(xo_strategy first_player_strategy, xo_strategy second_player_st
 
 int main()
 {
-    xogame_round(&make_shot_kovalev, &make_shot_kovalev);
+    const char *students[] = {
+            "Dmitriy Kovalev",
+            "Krivozubov Vladislav"
+    };
+
+    xo_strategy xo_strategies[] = {
+            make_shot_kovalev,
+            make_shot_krivozubov
+    };
+
+    xogame_round(students[0], students[1], xo_strategies[0], xo_strategies[1]);
 
     return 0;
 }
