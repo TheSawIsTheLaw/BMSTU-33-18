@@ -19,7 +19,6 @@ void make_shot_kovalev(char symb, char BF[][DIME])
     int dig_power = 3;
     for (int i = 0; i < DIME - 3; i++)
         dig_power = (dig_power * 3 + 2) * 3 + 2;
-    
 
     for (int i = 0; i < DIME; i++)
     {
@@ -245,5 +244,41 @@ void make_shot_kovalev(char symb, char BF[][DIME])
             }
         }
     }
-    BF[res_i][res_j] = symb;
+    en_conter = 0;
+    conter = 0;
+    int i_en = 0;
+    int j_en = 0;
+    for (int i = 0; i < DIME; i++)
+        for(int j = 0; j < DIME; j++)
+        {
+            if (BF[i][j] == symb)
+                conter++;
+            if (BF[i][j] == en_symb)
+            {
+                en_conter++;
+                i_en = i;
+                j_en = j;
+            }
+        }
+
+    if (en_conter == 1 && conter == 0)
+    {
+        if (i_en == 0 && j_en == 0)
+            BF[0][1] = symb;
+
+        else if (i_en == DIME - 1 && j_en == 0)
+            BF[DIME - 1][1] = symb;
+
+        else if (i_en == 0 && j_en == DIME - 1)
+            BF[1][DIME - 1] = symb;
+
+        else if (i_en == DIME - 1 && j_en == DIME - 1)
+            BF[DIME - 2][DIME - 1] = symb;
+
+        else
+            BF[res_i][res_j] = symb;
+
+    }
+    else
+        BF[res_i][res_j] = symb;
 }
