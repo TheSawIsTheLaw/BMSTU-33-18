@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define DIME 3
+
 #define GAME_OVER 0
 #define WIN_PLAYER_ONE -1
 #define WIN_PLAYER_TWO -2
@@ -11,7 +13,7 @@
 // #include "strategies/xo_ai_perestoronin.h"
 // #include "strategies/xo_ai_romanov.h"
 // #include "strategies/xo_ai_yakuba.h"
-#include "strategies/xo_ai_chernenko.h"
+// #include "strategies/xo_ai_chernenko.h"
 // #include "strategies/xo_ai_sukocheva.h"
 // #include "strategies/xo_ai_kononenko.h"
 #include "strategies/xo_ai_kovalev.h"
@@ -26,15 +28,13 @@
 
 typedef void (*xo_strategy)(char, char[][DIME]);
 
-int xogame_round(int dimension, xo_strategy first_player_strategy, xo_strategy second_player_strategy)
+int xogame_round(xo_strategy first_player_strategy, xo_strategy second_player_strategy)
 {
-    #define DIME 3
-
     int shot_count = 0;
     char BF[DIME][DIME];
     char BF_COPY[DIME][DIME];
 
-    printf("XO v0.1 (C) IU7\n");
+    printf("\nXO v0.1 (C) IU7\n");
 
     bf_formation(DIME, BF);
 
@@ -51,6 +51,7 @@ int xogame_round(int dimension, xo_strategy first_player_strategy, xo_strategy s
         {
             printf("Player's 1 shot:\n");
             print_battlefield(BF_COPY);
+            printf("\n");
 
             if (check_win_by_KV(BF_COPY))
             {
@@ -77,6 +78,7 @@ int xogame_round(int dimension, xo_strategy first_player_strategy, xo_strategy s
                     {
                         printf("Player's 2 shot:\n");
                         print_battlefield(BF);
+                        printf("\n");
 
                         if (check_win_by_KV(BF))
                         {
@@ -110,11 +112,11 @@ int xogame_round(int dimension, xo_strategy first_player_strategy, xo_strategy s
             return WIN_PLAYER_TWO;
         }
     }
-
-    #undef DIME
 }
 
 int main()
 {
-    xogame_round(5, &make_shot_chernenko, &make_shot_kovalev);
+    xogame_round(&make_shot_kovalev, &make_shot_kovalev);
+
+    return 0;
 }
