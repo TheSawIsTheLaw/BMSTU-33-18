@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DIME 3
 #define GAME_OVER 0
-#define CHEAT 1
+#define WIN_PLAYER_ONE -1
+#define WIN_PLAYER_TWO -2
 
 /* Strategies include */
 // #include "strategies/xo_ai_krivozubov.h"
@@ -24,8 +24,12 @@
 #include "functions/xo_func_copy_battlefield.h"
 #include "functions/xo_func_print_battlefield_Lemeshkin.h"
 
-int main()
+typedef void (*xo_strategy)(char, char[][DIME]);
+
+int xogame_round(int dimension, xo_strategy first_player_strategy, xo_strategy second_player_strategy)
 {
+    #define DIME 3
+
     int shot_count = 0;
     char BF[DIME][DIME];
     char BF_COPY[DIME][DIME];
@@ -36,11 +40,11 @@ int main()
 
     printf("LET THE GAME BEGIN\n");
 
-	for (int i = 0; i < DIME * DIME / 2 + 1; ++i)
+    for (int i = 0; i < DIME * DIME / 2 + 1; ++i)
     {
         copy_battlefield(BF, BF_COPY);
 
-        make_shot_chernenko('X', BF_COPY);
+        first_player_strategy('X', BF_COPY);
         shot_count++;
 
         if (anti_cheat(DIME, BF, BF_COPY))
@@ -48,11 +52,11 @@ int main()
             printf("Player's 1 shot:\n");
             print_battlefield(BF_COPY);
 
-            if (check_win_by_KV(BF_COPY) && check_win_by_PL(BF_COPY))
+            if (check_win_by_KV(BF_COPY))
             {
                 printf("The winner is player 1\n");
 
-                return GAME_OVER;
+                return WIN_PLAYER_ONE;
             }
             else
             {
@@ -66,7 +70,7 @@ int main()
                 {
                     copy_battlefield(BF_COPY, BF);
 
-                    make_shot_kovalev('O', BF);
+                    second_player_strategy('O', BF);
                     shot_count++;
 
                     if (anti_cheat(DIME, BF_COPY, BF))
@@ -74,18 +78,27 @@ int main()
                         printf("Player's 2 shot:\n");
                         print_battlefield(BF);
 
-                        if (check_win_by_KV(BF) && check_win_by_PL(BF))
+                        if (check_win_by_KV(BF))
                         {
                             printf("The winner is player 2\n");
 
-                            return GAME_OVER;
+                            return WIN_PLAYER_TWO;
                         }
-                     }
+                        else
+                        {
+                            if (shot_count == DIME * DIME)
+                            {
+                                printf("Game tied!\n");
+
+                                return GAME_OVER;
+                            }
+                        }
+                    }
                     else
                     {
                         printf("Oh, player 2 is cheating. The winner is player 1\n");
 
-                        return CHEAT;
+                        return WIN_PLAYER_ONE;
                     }
                 }
             }
@@ -94,7 +107,14 @@ int main()
         {
             printf("Oh, player 1 is cheating. The winner is player 2\n");
 
-            return CHEAT;
+            return WIN_PLAYER_TWO;
         }
     }
+
+    #undef DIME
+}
+
+int main()
+{
+    xogame_round(5, &make_shot_chernenko, &make_shot_kovalev);
 }
