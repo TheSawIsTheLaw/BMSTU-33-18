@@ -3,6 +3,8 @@
 
 #define DIME 3
 
+#define STUDENTS 2
+
 #define GAME_OVER 0
 #define WIN_PLAYER_ONE -1
 #define WIN_PLAYER_TWO -2
@@ -35,9 +37,11 @@ int xogame_round(const char *first_player_name, const char *second_player_name,
     char BF[DIME][DIME];
     char BF_COPY[DIME][DIME];
 
-    printf("\nXO v0.1 (C) IU7\n");
+    printf("XO v0.1 (C) IU7\n");
 
     bf_formation(DIME, BF);
+
+    printf("----------------------------------------\n");
 
     printf("LET THE GAME BEGIN\n");
 
@@ -117,6 +121,10 @@ int xogame_round(const char *first_player_name, const char *second_player_name,
 
 int main()
 {
+    FILE *points_file;
+
+    int points[STUDENTS] = { 0 };
+
     const char *students[] = {
             "Dmitriy Kovalev",
             "Krivozubov Vladislav"
@@ -127,7 +135,49 @@ int main()
             make_shot_krivozubov
     };
 
-    xogame_round(students[0], students[1], xo_strategies[0], xo_strategies[1]);
+    for (int i = 0; i < STUDENTS - 1; ++i)
+    {
+        for (int j = i + 1; j < STUDENTS; ++j)
+        {
+            int res_first = xogame_round(students[i], students[j], xo_strategies[i], xo_strategies[j]);
+
+            if (res_first == WIN_PLAYER_ONE)
+                points[i] += 3;
+            else
+            {
+                if (res_first == WIN_PLAYER_TWO)
+                    points[j] += 3;
+                else
+                {
+                    points[i] += 1;
+                    points[j] += 1;
+                }
+            }
+
+            int res_second = xogame_round(students[j], students[i], xo_strategies[j], xo_strategies[i]);
+
+            if (res_second == WIN_PLAYER_ONE)
+                points[j] += 3;
+            else
+            {
+                if (res_second == WIN_PLAYER_TWO)
+                    points[i] += 3;
+                else
+                {
+                    points[i] += 1;
+                    points[j] += 1;
+                }
+            }
+        }
+    }
+
+    points_file = fopen("3x3division.txt", "w");
+
+    fprintf(points_file, "!3x3 division ranking!\n");
+    for (int i = 0; i < STUDENTS; ++i)
+    {
+        fprintf(points_file, "%s' points: %d\n", students[i], points[i]);
+    }
 
     return 0;
 }
