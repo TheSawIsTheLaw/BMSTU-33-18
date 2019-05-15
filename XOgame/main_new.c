@@ -173,10 +173,10 @@ int main()
 
     points_file = fopen("3x3division.txt", "w");
 
-    fprintf(points_file, "!3x3 division ranking!\n");
+    fprintf(points_file, "!3x3 division ranking!\n\n");
     for (int i = 0; i < STUDENTS; ++i)
     {
-        fprintf(points_file, "%s' points: %d\n", students[i], points[i]);
+        fprintf(points_file, "%s's points: %d\n", students[i], points[i]);
     }
 
     return 0;
