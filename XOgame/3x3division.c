@@ -3,7 +3,7 @@
 
 #define DIME 3
 
-#define STUDENTS 2
+#define STUDENTS 3
 
 #define GAME_OVER 0
 #define WIN_PLAYER_ONE -1
@@ -13,11 +13,11 @@
 #include "strategies/xo_ai_krivozubov.h"
 // #include "strategies/xo_ai_prokhorova.h"
 // #include "strategies/xo_ai_perestoronin.h"
-// #include "strategies/xo_ai_romanov.h"
+#include "strategies/xo_ai_romanov.h"
 // #include "strategies/xo_ai_yakuba.h"
 // #include "strategies/xo_ai_chernenko.h"
 // #include "strategies/xo_ai_sukocheva.h"
-// #include "strategies/xo_ai_kononenko.h"
+#include "strategies/xo_ai_kononenko.h"
 #include "strategies/xo_ai_kovalev.h"
 
 /* Functions include */
@@ -127,12 +127,14 @@ int main()
 
     const char *students[] = {
             "Dmitriy Kovalev",
-            "Krivozubov Vladislav"
+            "Krivozubov Vladislav",
+            "Romanov Alexey"
     };
 
     xo_strategy xo_strategies[] = {
             make_shot_kovalev,
-            make_shot_krivozubov
+            make_shot_krivozubov,
+            make_shot_romanov
     };
 
     for (int i = 0; i < STUDENTS - 1; ++i)
