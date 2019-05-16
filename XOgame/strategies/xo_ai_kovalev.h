@@ -22,6 +22,7 @@ void make_shot_kovalev(char symb, char BF[][DIME])
 
     for (int i = 0; i < DIME; i++)
     {
+        printf("\n");
         for(int j = 0; j < DIME; j++)
         {
             if (BF[i][j] == ' ')
@@ -260,7 +261,7 @@ void make_shot_kovalev(char symb, char BF[][DIME])
             }
         }
 
-    if (en_conter == 1 && conter == 0)
+    if (en_conter == 1 && conter == 0 && DIME == 3)
     {
         if (i_en == 0 && j_en == 0)
             BF[0][1] = symb;
@@ -279,5 +280,46 @@ void make_shot_kovalev(char symb, char BF[][DIME])
 
     }
     else
-        BF[res_i][res_j] = symb;
+    {
+        en_conter = 0;
+        for (int i = 0; i < DIME - 2; i++)
+        {
+            if (BF[DIME - 1][i] == en_symb)
+                en_conter++;
+            if (BF[DIME - 1 - i][i] == en_symb)
+                en_conter++;
+            if (BF[DIME - 1][i] == symb)
+                conter++;
+            if (BF[DIME - 1 - i][i] == symb)
+                conter++;
+        }
+
+        if (en_conter == 0 && danger < 750 && conter != 0 && DIME > 4)
+        {
+            int postavil = 0;
+            for (int i = DIME / 2; i < DIME; i++)
+            {
+                if (BF[DIME - 1 - i][i] == ' ')
+                {
+                    BF[DIME - 1 - i][i] = symb;
+                    postavil = 1;
+                    break;
+                }
+                if (BF[DIME - 1][i] == ' ')
+                {
+                    BF[DIME - 1][i] = symb;
+                    postavil = 1;
+                    break;
+                }
+            }
+            if (!postavil)
+                BF[res_i][res_j] = symb;
+
+        }
+        else
+        {
+            BF[res_i][res_j] = symb;
+        }
+
+    }
 }
