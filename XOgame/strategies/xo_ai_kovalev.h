@@ -293,7 +293,7 @@ void make_shot_kovalev(char symb, char BF[][DIME])
                 conter++;
         }
 
-        if (en_conter == 0 && res_danger < 750 && conter != 0 && DIME > 4)
+        if (en_conter == 0 && danger < 750 && conter != 0 && DIME > 4)
         {
             int postavil = 0;
             for (int i = DIME / 2; i < DIME; i++)
