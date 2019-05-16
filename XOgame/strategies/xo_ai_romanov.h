@@ -75,8 +75,8 @@ int move_main_diag(char BF[][DIME], const char symb)
     {
         if (k <= (DIME - 1))
         {
-            BF[k][k] = MOVE;
-            return OK;
+            BF[k][k] = symb;
+            return MOVE;
         }
     }
     return NO_MOVE;
@@ -152,7 +152,6 @@ int lookup_verticale(char BF[][DIME], const char symb, const char second_symb)
 
 int lookup_main_diag(char BF[][DIME], const char symb, const char second_symb)
 {
-    puts("3");
     int count = 0;
     for (int i = 0; i < DIME; i++)
     {
@@ -175,7 +174,6 @@ int lookup_main_diag(char BF[][DIME], const char symb, const char second_symb)
 
 int lookup_incid_diag(char BF[][DIME], const char symb, const char second_symb)
 {
-    puts("4");
     int count = 0;
     for (int i = 1; i <= DIME; i++)
     {
@@ -216,6 +214,7 @@ void make_shot_romanov(char symb, char BF[][DIME])
     if (0 == turn_number)
     {
         BF[DIME / 2][DIME / 2] = symb;
+        return;
     }
 
     else if (1 == turn_number)
@@ -223,13 +222,23 @@ void make_shot_romanov(char symb, char BF[][DIME])
         if (BF[DIME / 2][DIME / 2] == ' ')
         {
             BF[DIME / 2][DIME / 2] = symb;
+            return;
         }
         else
         {
             BF[0][0] = symb;
+            return;
         }
     }
-    //else if (3 == 
+    else if (2 == turn_number && BF[0][0] == ' ')
+    {
+        BF[0][0] = symb;
+    }
+    else if (3 == turn_number && BF[0][0] == 'X' && BF[DIME - 1][DIME - 1] == 'X' && BF[1][0] == ' ')
+    {
+        BF[1][0] = symb;
+        return;
+    }
     else
     {
         char second_symb;
