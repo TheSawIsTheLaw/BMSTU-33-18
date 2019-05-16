@@ -127,7 +127,7 @@ void make_shot_prokhorova(char symb, char BF[][DIME])
     {
         for(int j = 0; j < DIME; j++)
         {
-            (if BF[i][j] == ' ')
+            if (BF[i][j] == ' ')
             {
                 BF[i][j] = symb;
                 return;
