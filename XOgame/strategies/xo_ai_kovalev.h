@@ -22,7 +22,6 @@ void make_shot_kovalev(char symb, char BF[][DIME])
 
     for (int i = 0; i < DIME; i++)
     {
-        printf("\n");
         for(int j = 0; j < DIME; j++)
         {
             if (BF[i][j] == ' ')
