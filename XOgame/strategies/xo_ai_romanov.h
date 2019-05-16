@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <time.h>
 #define MOVE 1
 #define NO_MOVE 0
 
@@ -101,7 +102,7 @@ int move_incid_diag(char BF[][DIME], const char symb)
     return NO_MOVE;
 }
 
-int lookup_horizontale(char BF[][DIME], const char symb)
+int lookup_horizontale(char BF[][DIME], const char symb, const char second_symb)
 {
     for (int i = 0; i < DIME; i++)
     {
@@ -115,7 +116,7 @@ int lookup_horizontale(char BF[][DIME], const char symb)
         }
         if (DIME - 1 == count)
         {
-            const int move = move_horizontale(BF, i, symb);
+            const int move = move_horizontale(BF, i, second_symb);
             if (move)
             {
                 return MOVE;
@@ -125,7 +126,7 @@ int lookup_horizontale(char BF[][DIME], const char symb)
     return NO_MOVE;
 }
 
-int lookup_verticale(char BF[][DIME], const char symb)
+int lookup_verticale(char BF[][DIME], const char symb, const char second_symb)
 {
     for (int i = 0; i < DIME; i++)
     {
@@ -139,7 +140,7 @@ int lookup_verticale(char BF[][DIME], const char symb)
         }
         if (DIME - 1 == count)
         {
-            const int move = move_horizontale(BF, i, symb);
+            const int move = move_verticale(BF, i, second_symb);
             if (move)
             {
                 return MOVE;
@@ -149,9 +150,9 @@ int lookup_verticale(char BF[][DIME], const char symb)
     return NO_MOVE;
 }
 
-
-int lookup_main_diag(char BF[][DIME], const char symb)
+int lookup_main_diag(char BF[][DIME], const char symb, const char second_symb)
 {
+    puts("3");
     int count = 0;
     for (int i = 0; i < DIME; i++)
     {
@@ -162,7 +163,7 @@ int lookup_main_diag(char BF[][DIME], const char symb)
     }
     if (DIME - 1 == count)
     {
-        const int move = move_main_diag(BF, symb);
+        const int move = move_main_diag(BF, second_symb);
         if (move)
         {
             return MOVE;
@@ -172,8 +173,9 @@ int lookup_main_diag(char BF[][DIME], const char symb)
 }
 
 
-int lookup_incid_diag(char BF[][DIME], const char symb)
+int lookup_incid_diag(char BF[][DIME], const char symb, const char second_symb)
 {
+    puts("4");
     int count = 0;
     for (int i = 1; i <= DIME; i++)
     {
@@ -184,13 +186,27 @@ int lookup_incid_diag(char BF[][DIME], const char symb)
     }
     if (DIME - 1 == count)
     {
-        const int move = move_incid_diag(BF, symb);
+        const int move = move_incid_diag(BF, second_symb);
         if (move)
         {
             return MOVE;
         }
     }
     return NO_MOVE;
+}
+
+int okay_go_random(char BF[][DIME], const char symb)
+{
+    srand(time(NULL));
+    int i_random = DIME - 1;
+    int j_random = DIME - 1;
+
+    while (BF[i_random][j_random] != ' ')
+    {
+        i_random = rand() % DIME;
+        j_random = rand() % DIME;
+    }
+    BF[i_random][j_random] = symb;
 }
 
 void make_shot_romanov(char symb, char BF[][DIME])
@@ -213,7 +229,7 @@ void make_shot_romanov(char symb, char BF[][DIME])
             BF[0][0] = symb;
         }
     }
-
+    //else if (3 == 
     else
     {
         char second_symb;
@@ -228,25 +244,25 @@ void make_shot_romanov(char symb, char BF[][DIME])
         
         // DEFENCE
         // HORIZONTAL LOOKUP (DEFENCE)
-        int move = lookup_horizontale(BF, second_symb);
+        int move = lookup_horizontale(BF, second_symb, symb);
         if (move)
         {
             return;
         }
         // VERTICAL LOOKUP (DEFENCE)
-        move = lookup_verticale(BF, second_symb);
+        move = lookup_verticale(BF, second_symb, symb);
         if (move)
         {
             return;
         }
         // MAIN DIAG LOOKUP (DEFENCE)
-        move = lookup_main_diag(BF, second_symb);
+        move = lookup_main_diag(BF, second_symb, symb);
         if (move)
         {
             return;
         }
         // INCIDENTAL DIAG LOOKUP (DEFENCE)
-        move = lookup_incid_diag(BF, second_symb); 
+        move = lookup_incid_diag(BF, second_symb, symb); 
         if (move)
         {
             return;
@@ -254,38 +270,30 @@ void make_shot_romanov(char symb, char BF[][DIME])
         
         // ATTACK RAXES
         // HORIZONTAL LOOKUP (ATTACK)
-        move = lookup_horizontale(BF, symb);
+        move = lookup_horizontale(BF, symb, symb);
         if (move)
         {
             return;
         }
         // VERTICAL LOOKUP (ATTACK)
-        move = lookup_verticale(BF, symb);
+        move = lookup_verticale(BF, symb, symb);
         if (move)
         {
             return;
         }
         // MAIN DIAG LOOKUP (ATTACK)
-        move = lookup_main_diag(BF, symb);
+        move = lookup_main_diag(BF, symb, symb);
         if (move)
         {
             return;
         }
         // INCIDENTAL DIAG LOOKUP (ATTACK)
-        move = lookup_incid_diag(BF, symb); 
+        move = lookup_incid_diag(BF, symb, symb); 
         if (move)
         {
             return;
         }
         
-        int i_random = DIME - 1;
-        int j_random = DIME - 1;
-
-        while (BF[i_random][j_random] != ' ')
-        {
-            i_random = rand() % DIME;
-            j_random = rand() % DIME;
-        }
-        BF[i_random][j_random] = symb;
+        okay_go_random(BF, symb);
     }
 }
