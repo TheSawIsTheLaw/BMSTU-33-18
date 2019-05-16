@@ -1,9 +1,6 @@
-#define FALSE 0
-#define TRUE 1
-
-void make_shot_sukocheva(const char symb, char BF[][DIME])
+void make_shot_sukocheva(char symb, char BF[][DIME])
 {
-	int temp = FALSE;
+	int temp = 0;
 
 	for (int i = 0; i < DIME; i++)
 	{
@@ -11,7 +8,7 @@ void make_shot_sukocheva(const char symb, char BF[][DIME])
 			if (BF[i][j] == ' ')
 			{
 				BF[i][j] = symb;
-				temp = TRUE;
+				temp = 1;
 				break;
 			}
 		if (temp)
