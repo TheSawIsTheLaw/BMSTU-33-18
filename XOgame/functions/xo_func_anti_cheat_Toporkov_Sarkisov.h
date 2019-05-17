@@ -7,12 +7,15 @@
 
 int anti_cheat(int n, char before[][DIME], char after[][DIME])
 {
+    static char old_sym = ' ';
+    static char new_sym = ' ';
     int x_cord[DIME * DIME];
     int y_cord[DIME * DIME];
-    int n_x_y = ZERO;
-    int cur = ZERO;
-    const int N = n;
-    
+    int n_x_y = 0;
+    int cur = 0;
+    int N = n;
+    int temp = 0;
+
     // Находим заполненные клетки до последнего хода
     for (int i = ZERO; i < N; i++)
     {
@@ -23,6 +26,12 @@ int anti_cheat(int n, char before[][DIME], char after[][DIME])
                 y_cord[n_x_y] = j;
                 n_x_y++;
             }
+    }
+    
+    if (n_x_y == 0)
+    {
+        old_sym = ' ';
+        new_sym = ' ';
     }
     
     // Находим кол-во заполненных клеток после последнего хода, а также проверяем, что новый ход корректен
@@ -46,7 +55,7 @@ int anti_cheat(int n, char before[][DIME], char after[][DIME])
         if (before[x_cord[i]][y_cord[i]] != after[x_cord[i]][y_cord[i]])
             return ERROR;
 
-    // Проверяем, какой символ был добавлен  
+    // Проверяем, какой символ был добавлен и сравнение его с предыдущим  
     for (int i = ZERO; i < N; i++)
         for (int j = ZERO; i < N; j++)
         {
