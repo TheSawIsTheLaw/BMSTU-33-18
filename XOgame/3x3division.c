@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define DIME 3
-#define STUDENTS 8
+#define STUDENTS 9
 
 #define GAME_OVER 0
 #define WIN_PLAYER_ONE -1
@@ -116,7 +116,8 @@ int main()
             "Chernenko Vladislav",
             "Dmitriy Yakuba",
             "Sukocheva Alis",
-            "Perestoronin Pavel"
+            "Perestoronin Pavel",
+            "Kononenko Sergey"
     };
 
     xo_strategy xo_strategies[] = {
@@ -127,7 +128,8 @@ int main()
             make_shot_chernenko,
             make_shot_yakuba,
             make_shot_sukocheva,
-            make_shot_perestoronin
+            make_shot_perestoronin,
+            make_shot_kononenko
     };
 
     for (int i = 0; i < STUDENTS - 1; ++i)
