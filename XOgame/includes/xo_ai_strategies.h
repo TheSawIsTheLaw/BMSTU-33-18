@@ -7,3 +7,4 @@
 #include "../strategies/xo_ai_sukocheva.h"
 #include "../strategies/xo_ai_kononenko.h"
 #include "../strategies/xo_ai_kovalev.h"
+#include "../strategies/xo_ai_saburov.h"
