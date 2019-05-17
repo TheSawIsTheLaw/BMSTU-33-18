@@ -19,5 +19,6 @@ xo_strategy xo_strategies[] = {
         make_shot_yakuba,
         make_shot_sukocheva,
         make_shot_perestoronin,
-        make_shot_kononenko
+        make_shot_kononenko,
+        make_shot_saburov
 };
