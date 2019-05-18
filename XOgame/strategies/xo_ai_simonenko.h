@@ -7,7 +7,7 @@ void make_shot_simonenko(char symb, char BF[][DIME])
 		int j = 0;
 		while (j < DIME) 
 		{
-			if (BF[i][j] = ' ')
+			if (BF[i][j] == ' ')
 			{
 				BF[i][j] = symb;
 				your_turn = 1;
