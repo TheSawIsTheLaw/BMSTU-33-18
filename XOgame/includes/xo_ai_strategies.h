@@ -8,3 +8,4 @@
 #include "../strategies/xo_ai_kononenko.h"
 #include "../strategies/xo_ai_kovalev.h"
 #include "../strategies/xo_ai_saburov.h"
+#include "../strategies/xo_ai_simonenko.h"
