@@ -26,7 +26,7 @@
 
 ### Name_in_progress <a name="rec"></a>
 
-👨‍💻 *TeamLead* проекта - **Нитенко Михаил* 
+👨‍💻 *TeamLead* проекта - **Нитенко Михаил**
 * GitLab: @nmyu18u413
 * Telegram: @VASYA_VAN
 * VK: @ya_vrzh
