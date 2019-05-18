@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #define DIME 3
-#define STUDENTS 9
+#define STUDENTS 13
 
 #define GAME_OVER 0
 #define WIN_PLAYER_ONE -1

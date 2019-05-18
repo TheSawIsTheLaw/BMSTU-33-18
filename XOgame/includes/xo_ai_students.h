@@ -8,7 +8,10 @@ const char *students[] = {
         "Sukocheva Alis",
         "Perestoronin Pavel",
         "Kononenko Sergey",
-		"Simonenko Emil"
+        "Saburov Sergey",
+		"Simonenko Emil",
+		"Minenko Sergey",
+		"Namestnik Anastasia"
 };
 
 xo_strategy xo_strategies[] = {
@@ -22,5 +25,7 @@ xo_strategy xo_strategies[] = {
         make_shot_perestoronin,
         make_shot_kononenko,
         make_shot_saburov,
-		make_shot_simonenko
+		make_shot_simonenko,
+		make_shot_minenko,
+		make_shot_namestnik
 };

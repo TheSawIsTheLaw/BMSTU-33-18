@@ -9,3 +9,5 @@
 #include "../strategies/xo_ai_kovalev.h"
 #include "../strategies/xo_ai_saburov.h"
 #include "../strategies/xo_ai_simonenko.h"
+#include "../strategies/xo_ai_minenko.h"
+#include "../strategies/xo_ai_namestnik.h"
