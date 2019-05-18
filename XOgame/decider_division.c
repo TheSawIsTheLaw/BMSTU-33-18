@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DIME 5
-#define STUDENTS 13
+#define DIME 3
+#define STUDENTS 2
 
 #define GAME_OVER 0
 #define WIN_PLAYER_ONE -1
@@ -12,7 +12,7 @@ typedef void (*xo_strategy)(char, char[][DIME]);
 
 #include "includes/xo_ai_strategies.h"
 #include "includes/xo_ai_functions.h"
-#include "includes/xo_ai_students.h"
+#include "includes/xo_ai_students_final.h"
 
 int xogame_round(const char *first_player_name, const char *second_player_name,
                  xo_strategy first_player_strategy, xo_strategy second_player_strategy)
@@ -27,7 +27,7 @@ int xogame_round(const char *first_player_name, const char *second_player_name,
 
     bf_formation(DIME, BF);
 
-    printf("LET THE GAME BEGIN\n\n");
+    printf("LET THE FINAL BEGIN\n\n");
 
     for (int i = 0; i < DIME * DIME / 2 + 1; ++i)
     {
@@ -144,9 +144,9 @@ int main()
         }
     }
 
-    points_file = fopen("5x5division.txt", "w");
+    points_file = fopen("decider_division.txt", "w");
 
-    fprintf(points_file, "!5x5 division ranking!\n\n");
+    fprintf(points_file, "!Final battle ranking!\n\n");
     for (int i = 0; i < STUDENTS; ++i)
     {
         fprintf(points_file, "%s's points: %d\n", students[i], points[i]);

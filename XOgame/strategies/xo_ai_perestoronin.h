@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #define FIELD_SIZE DIME * DIME
 #define SIDE_SIZE DIME
 #define MADE_SHOT 0
@@ -100,8 +101,7 @@ int check_rev_diag(char BF[][SIDE_SIZE], const char unsymb)
     return GOOD_WAY;
 }
 
-
-int make_shot_perestoronin(const char symb, char BF[][SIDE_SIZE])
+int make_shot_peperonin(const char symb, char BF[][SIDE_SIZE])
 {
     int i, j, unsymb;
     int free_slots[FIELD_SIZE];
@@ -165,4 +165,9 @@ int make_shot_perestoronin(const char symb, char BF[][SIDE_SIZE])
     j = free_slots[i];
     BF[j / SIDE_SIZE][j % SIDE_SIZE] = symb;
     return MADE_SHOT;
+}
+
+void make_shot_perestoronin(char symb, char BF[][DIME])
+{
+    int fizika = make_shot_peperonin(symb, BF);
 }

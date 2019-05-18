@@ -1,7 +1,7 @@
 /* Функция makeshot от Якуба */
 /* Более сложный простейший бот с проверкой на наличие в ячейке значения */
 
-void make_shot_yakuba_harder(char type, char field[][DIME])
+void make_shot_yakuba(char type, char field[][DIME])
 {
     int i, j, k = 0;
     srand(time(NULL));

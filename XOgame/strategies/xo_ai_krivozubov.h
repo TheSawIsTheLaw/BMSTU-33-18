@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 
 #define TURN_END 1
@@ -11,54 +9,54 @@
 #define NO_PASSIVE_DEF 0
 
 
-int defense(char sign, char bf[][3]);
+int defense(char sign, char bf[][DIME]);
 
-void place_str(char sign, char bf[][3], int index)
+void place_str(char sign, char bf[][DIME], int index)
 {
-    for (int j = 0; j < 3; j++)
+    for (int j = 0; j < DIME; j++)
         if (bf[index][j] == ' ')
             bf[index][j] = sign;
 }
 
-void place_col(char sign, char bf[][3], int index)
+void place_col(char sign, char bf[][DIME], int index)
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < DIME; i++)
         if (bf[i][index] == ' ')
             bf[i][index] = sign;
 }
 
-void place_diag(char sign, char bf[][3])
+void place_diag(char sign, char bf[][DIME])
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < DIME; i++)
         if (bf[i][i] == ' ')
             bf[i][i] = sign;
 }
 
-void place_diag_fake(char sign, char bf[][3])
+void place_diag_fake(char sign, char bf[][DIME])
 {
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < DIME; i++)
         if (bf[i][2 - i] == ' ')
             bf[i][2 - i] = sign;
 }
 
-int easy(char sign, char bf[][3])
+int easy(char sign, char bf[][DIME])
 {
     char antisign = (sign == 'X') ? 'O' : 'X';
     int home_total = 0;
     int rival_total = 0;
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < DIME; i++)
     {
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < DIME; j++)
             if (bf[i][j] == sign)
                 home_total++;
             else if (bf[i][j] == antisign)
                 rival_total++;
-        if (home_total == 2 && rival_total == 0)
+        if (home_total == DIME - 1 && rival_total == 0)
         {
             place_str(sign, bf, i);
             return NEW_TURN;
         }
-        else if (home_total == 0 && rival_total == 2)
+        else if (home_total == 0 && rival_total == DIME - 1)
         {
             place_str(sign, bf, i);
             return NEW_TURN;
@@ -67,19 +65,19 @@ int easy(char sign, char bf[][3])
         rival_total = 0;
     }
 
-    for (int j = 0; j < 3; j++)
+    for (int j = 0; j < DIME; j++)
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < DIME; i++)
             if (bf[i][j] == sign)
                 home_total++;
             else if (bf[i][j] == antisign)
                 rival_total++;
-        if (home_total == 2 && rival_total == 0)
+        if (home_total == DIME - 1 && rival_total == 0)
         {
             place_col(sign, bf, j);
             return NEW_TURN;
         }
-        else if (home_total == 0 && rival_total == 2)
+        else if (home_total == 0 && rival_total == DIME - 1)
         {
             place_col(sign, bf, j);
             return NEW_TURN;
@@ -88,17 +86,17 @@ int easy(char sign, char bf[][3])
         rival_total = 0;
     }
     
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < DIME; i++)
         if (bf[i][i] == sign)
             home_total++;
         else if (bf[i][i] == antisign)
             rival_total++;
-    if (home_total == 2 && rival_total == 0)
+    if (home_total == DIME - 1 && rival_total == 0)
     {
         place_diag(sign, bf);
         return NEW_TURN;
     }
-    else if (home_total == 0 && rival_total == 2)
+    else if (home_total == 0 && rival_total == DIME - 1)
     {
         place_diag(sign, bf);
         return NEW_TURN;
@@ -106,17 +104,17 @@ int easy(char sign, char bf[][3])
     home_total = 0;
     rival_total = 0;
         
-    for (int i = 0; i < 3; i++)
-        if (bf[i][2 - i] == sign)
+    for (int i = 0; i < DIME; i++)
+        if (bf[i][DIME - 1 - i] == sign)
             home_total++;
-        else if (bf[i][2 - i] == antisign)
+        else if (bf[i][DIME - 1 - i] == antisign)
             rival_total++;
-    if (home_total == 2 && rival_total == 0)
+    if (home_total == DIME - 1 && rival_total == 0)
     {
         place_diag_fake(sign, bf);
         return NEW_TURN;
     }
-    else if (home_total == 0 && rival_total == 2)
+    else if (home_total == 0 && rival_total == DIME - 1)
     {
         place_diag_fake(sign, bf);
         return NEW_TURN;
@@ -124,21 +122,21 @@ int easy(char sign, char bf[][3])
     return NO_EASY;
 }
 
-int no_x_fence(char bf[][3])
+int no_x_fence(char bf[][DIME])
 {
     if (bf[0][2] != 'X' && bf[0][0] != 'X' && bf[2][2] != 'X' && bf[2][0] != 'X')
         return GOOD;
     return NO_GOOD;
 }
 
-int no_diag_x(char bf[][3])
+int no_diag_x(char bf[][DIME])
 {
     if (bf[2][2] == ' ')
         return GOOD;
     return NO_GOOD;
 }
 
-int diag_on_base(char bf[][3])
+int diag_on_base(char bf[][DIME])
 {
     if (bf[0][2] == ' ')
     {
@@ -153,29 +151,26 @@ int diag_on_base(char bf[][3])
     return NO_GOOD;
 }
 
-int do_random_move(char sign, char bf[][3])
+int do_random_move(char sign, char bf[][DIME])
 {
     int no_empty = 1;
-    for (int i = 0; i < 3; i++)
-        for (int j = 0; j < 3; j++)
+    for (int i = 0; i < DIME; i++)
+        for (int j = 0; j < DIME; j++)
             if (bf[i][j] == ' ')
                 no_empty = 0;
     if (no_empty)
         return GAME_END;
-    srand(time(NULL));
-    int i = 1;
-    int j = 1;
-    while (bf[i][j] != ' ')
-    {
-        i = rand() % 3;
-        j = rand() % 3;
-    }
-    bf[i][j] = sign;
-        return NEW_TURN;
-               
+    for (int i = 0; i < DIME; i++)
+        for (int j = 0; j < DIME; j++)
+            if (bf[i][j] == ' ')
+            {
+                bf[i][j] = sign;
+                return NEW_TURN;
+            }
+    return NEW_TURN;
 }
 
-int attack(char bf[][3])
+int attack(char bf[][DIME])
 {
     if (easy('X',bf))
         return TURN_END;
@@ -197,7 +192,7 @@ int attack(char bf[][3])
     return TURN_END;   
 }
 
-int defense(char sign, char bf[][3])
+int defense(char sign, char bf[][DIME])
 {
     if (sign == 'O')
     {
@@ -215,11 +210,16 @@ int defense(char sign, char bf[][3])
     return NO_PASSIVE_DEF;
 }
 
-void make_shot_krivozubov(char sign, char field[][3])
+void make_shot_krivozubov(char sign, char field[][DIME])
 {
-    if (sign == 'X')
-        attack(field);
+    if (DIME == 3)
+        if (sign == 'X')
+            attack(field);
+        else
+            defense('O',field);
     else
-        defense('O',field);
+        if (sign == 'X')
+            do_random_move('X', field);
+        else
+            defense('O', field);
 }
-

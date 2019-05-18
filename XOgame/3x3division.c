@@ -2,16 +2,17 @@
 #include <stdlib.h>
 
 #define DIME 3
-#define STUDENTS 3
+#define STUDENTS 13
 
 #define GAME_OVER 0
 #define WIN_PLAYER_ONE -1
 #define WIN_PLAYER_TWO -2
 
+typedef void (*xo_strategy)(char, char[][DIME]);
+
 #include "includes/xo_ai_strategies.h"
 #include "includes/xo_ai_functions.h"
-
-typedef void (*xo_strategy)(char, char[][DIME]);
+#include "includes/xo_ai_students.h"
 
 int xogame_round(const char *first_player_name, const char *second_player_name,
                  xo_strategy first_player_strategy, xo_strategy second_player_strategy)
@@ -105,20 +106,7 @@ int xogame_round(const char *first_player_name, const char *second_player_name,
 int main()
 {
     FILE *points_file;
-
     int points[STUDENTS] = { 0 };
-
-    const char *students[] = {
-            "Dmitriy Kovalev",
-            "Krivozubov Vladislav",
-            "Romanov Alexey"
-    };
-
-    xo_strategy xo_strategies[] = {
-            make_shot_kovalev,
-            make_shot_krivozubov,
-            make_shot_romanov
-    };
 
     for (int i = 0; i < STUDENTS - 1; ++i)
     {
