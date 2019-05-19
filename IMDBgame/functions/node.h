@@ -2,9 +2,10 @@
 
 typedef struct
 {
-	int id;
+	unsigned int id;
 	char name[32];
-	int connection[AMOUNT_OF_ACTORS];
+	unsigned int connection[AMOUNT_OF_ACTORS];
+    unsigned int len;
 } node;
 
 node graph[AMOUNT_OF_ACTORS];
