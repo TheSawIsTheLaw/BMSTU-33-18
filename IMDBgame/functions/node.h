@@ -4,7 +4,7 @@ typedef struct
 {
 	int id;
 	char name[32];
-	int cinnection[AMOUNT_OF_ACTORS];
+	int connection[AMOUNT_OF_ACTORS];
 } node;
 
 node graph[AMOUNT_OF_ACTORS];
