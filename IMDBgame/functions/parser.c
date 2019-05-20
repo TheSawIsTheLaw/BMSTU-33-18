@@ -52,12 +52,12 @@ void shift_to_id_act(FILE *f)
 int pars_films(FILE *f, int *arr, const int i)
 {
     int len = 0;
-    int film_id, actor_id;
+    unsigned int film_id, actor_id;
     while (!feof(f))
     {
-        fscanf(f, "%d", &film_id);
+        fscanf(f, "%u", &film_id);
         shift_to_id_act(f);
-        fscanf(f, "%d", &actor_id);
+        fscanf(f, "%u", &actor_id);
 
         if (graph[i].id == actor_id)
         {
@@ -70,7 +70,7 @@ int pars_films(FILE *f, int *arr, const int i)
     return len;
 }
 
-int check_repeat(const int i, int j, const int actor_id)
+int check_repeat(const int i, int j, unsigned int actor_id)
 {
     int len = graph[i].len;
     int checker = 0;
@@ -84,14 +84,14 @@ int check_repeat(const int i, int j, const int actor_id)
     }
 
     graph[i].connection[j] = actor_id;
-    graph[i].len += 1;
+    ++graph[i].len;
     return ++j;
 }
 
 void add_connections(FILE *f, const int i, const int film_id)
 {
     int j = 0;
-    int temp_film_id, actor_id;
+    unsigned int temp_film_id, actor_id;
     while (!feof(f)) 
     {
         shift_to_id_act(f);
@@ -182,6 +182,24 @@ void pars_name(FILE *f, const int i)
 }
 // END BLOCK 1.
 
+void print_info(const int i)
+{
+    printf("Actor id: %u\n", graph[i].id);
+    printf("Actor name: %s\n", graph[i].name);
+    puts("Actor connections: ");
+    /*
+    if (0 == graph[i].len)
+    {
+        puts("No connections");
+    }
+    for (int j = 0; j < graph[i].len; j++)
+    {
+        printf("%d. %u\n", j, graph[i].connection[j]);
+    }
+    */
+    puts("\n--------------------------");
+}
+
 int parser()
 {
     FILE *f;
@@ -197,6 +215,8 @@ int parser()
     {
         pars_id(f, count_people);
         pars_name(f, count_people);
+        //graph[count_people].len = 0;
+        print_info(count_people);
         ++count_people;
     }
     fclose(f);
@@ -221,7 +241,7 @@ int main(void)
 {
     setbuf(stdout, NULL);
     int a = parser();
-    
+    /* 
     for (int i = 0; i < 7; i++)
     {
         printf("Actor id: %u\n", graph[i].id);
@@ -236,7 +256,7 @@ int main(void)
             printf("%d. %d\n", j, graph[i].connection[j]);
         }
         puts("\n--------------------------");
-    } 
+    } */
     
     return OK;
 }
