@@ -1,4 +1,4 @@
-// NEVER WRIE PARSERS IN C
+// NEVER WRITE PARSERS IN C
 #define FILE_NAMES "../data/name_basic-test.tsv"
 #define FILE_PRINCIPALS "../data/title_principals-test.tsv"
 #include <stdio.h>
@@ -6,13 +6,14 @@
 
 #define N 200
 #define STD_SHIFT 3
-#define START_PARS 74
+#define NAMES_PARS 74
+#define CONNECTIONS_PARS 49
 #define FILE_ERR 1
 #define OK 0
 
 // 2. THIS BLOCK PARS CONNECTIONS 
 
-void shift_to_id_act(FILE *f)
+void shift_to_id_film(FILE *f)
 {
     char shift_arr[N];
     int i = 0;
@@ -35,7 +36,7 @@ void shift_to_id_act(FILE *f)
     while (shift_arr[i - 2] != 't' || shift_arr[i - 1] != 't');
 }
 
-void shift_to_id_film(FILE *f)
+void shift_to_id_act(FILE *f)
 {
     char shift_arr[N];
     fscanf(f, "%s", shift_arr);
@@ -51,32 +52,82 @@ void shift_to_id_film(FILE *f)
 int pars_films(FILE *f, int *arr, const int i)
 {
     int len = 0;
-    int film_id;
-    int actor_id;
+    int film_id, actor_id;
     while (!feof(f))
     {
         fscanf(f, "%d", &film_id);
-        shift_to_id_film(f);
+        shift_to_id_act(f);
         fscanf(f, "%d", &actor_id);
+
         if (graph[i].id == actor_id)
         {
             arr[len] = film_id;
             ++len;
         }
-        shift_to_id_act(f);
+        shift_to_id_film(f);
     }
 
     return len;
+}
+
+int check_repeat(const int i, int j, const int actor_id)
+{
+    int len = graph[i].len;
+    int checker = 0;
+
+    for (int k = 0; k < len; k++)
+    {
+        if (graph[i].connection[k] == actor_id)
+        {
+            return j;
+        }
+    }
+
+    graph[i].connection[j] = actor_id;
+    graph[i].len += 1;
+    return ++j;
+}
+
+void add_connections(FILE *f, const int i, const int film_id)
+{
+    int j = 0;
+    int temp_film_id, actor_id;
+    while (!feof(f)) 
+    {
+        shift_to_id_act(f);
+        fscanf(f, "%u", &actor_id);
+        if (actor_id != graph[i].id)
+        {
+            j = check_repeat(i, j, actor_id);
+        }
+        shift_to_id_film(f);
+        fscanf(f, "%d", &temp_film_id);
+        if (temp_film_id != film_id)
+        {
+            return;
+        }
+    }
+}
+
+void find_connections(FILE *f, int *arr, const int len, const int i)
+{
+    fseek(f, CONNECTIONS_PARS, SEEK_SET);
+    int film_id;
+    fscanf(f, "%d", &film_id);
+    for (int j = 0; j < len; j++)
+    {
+        if (film_id == arr[j])
+        {
+            add_connections(f, i, film_id);
+        }
+    }
 }
 
 void pars_connections(FILE *f, const int i)
 {
     int arr_films[N];
     int len = pars_films(f, arr_films, i);
-    for (int j = 0; j < len; j++)
-    {
-        printf("%d ", arr_films[j]);
-    }
+    find_connections(f, arr_films, len, i);
 }
 // END BLOCK 2
 
@@ -127,7 +178,6 @@ void pars_name(FILE *f, const int i)
         ++j;
     }
     graph[i].name[j - 1] = '\0';
-    //puts(graph[i].name);
     shift_to_id(f);
 }
 // END BLOCK 1.
@@ -141,7 +191,7 @@ int parser()
     }
 
     // BLOCK 1: PARS NAMES AND ID 
-    fseek(f, START_PARS, SEEK_SET);
+    fseek(f, NAMES_PARS, SEEK_SET);
     int count_people = 0;
     while (!feof(f))
     {
@@ -159,7 +209,7 @@ int parser()
     // BLOCK 2: PARS CONNECTIONS
     for (int i = 0; i < count_people; i++)
     {
-        fseek(f, 49, SEEK_SET);
+        fseek(f, CONNECTIONS_PARS, SEEK_SET);
         pars_connections(f, i);
     }
     fclose(f);
@@ -171,6 +221,23 @@ int main(void)
 {
     setbuf(stdout, NULL);
     int a = parser();
+    
+    for (int i = 0; i < 7; i++)
+    {
+        printf("Actor id: %u\n", graph[i].id);
+        printf("Actor name: %s\n", graph[i].name);
+        puts("Actor connections: ");
+        if (0 == graph[i].len)
+        {
+            puts("No connections");
+        }
+        for (int j = 0; j < graph[i].len; j++)
+        {
+            printf("%d. %d\n", j, graph[i].connection[j]);
+        }
+        puts("\n--------------------------");
+    } 
+    
     return OK;
 }
     
