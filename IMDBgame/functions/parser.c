@@ -26,7 +26,7 @@ void shift_to_name(FILE *f, const int i)
 }
 
 // DEVELOPING 
-void shift_to_film(FILE *f)
+void shift_to_id_act(FILE *f)
 {
     char shift_arr[N];
     int i = 0;
@@ -37,11 +37,10 @@ void shift_to_film(FILE *f)
     }
 
     i = 0; 
-    while (shift_arr[i] != 't' || shift_arr[i + 1] != 't')
+    while (shift_arr[i - 1] != 't' || shift_arr[i] != 't')
     {
         if (fscanf(f, "%c", &shift_arr[i]) != EOF)
         {
-            //puts(shift_arr);
             ++i;
         }
         else
@@ -49,12 +48,14 @@ void shift_to_film(FILE *f)
             break;
         }
     }
+//    puts(shift_arr);
 }
 
 void shift_to_id_f(FILE *f)
 {
     char shift_arr[N];
     fscanf(f, "%s", shift_arr);
+    puts(shift_arr);
     fseek(f, 2, SEEK_CUR);
 }
 
@@ -68,13 +69,13 @@ int pars_films(FILE *f, int *arr, const int i)
         fscanf(f, "%d", &film_id);
         shift_to_id_f(f);
         fscanf(f, "%d", &actor_id);
+        //printf("%d %d\n", film_id, actor_id);
         if (graph[i].id == actor_id)
         {
             arr[len] = film_id;
-            //printf("%d", arr[len]);
             ++len;
         }
-        shift_to_film(f);
+        shift_to_id_act(f);
     }
 
     return len;
