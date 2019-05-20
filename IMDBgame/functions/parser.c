@@ -1,4 +1,6 @@
-#define FILE_NAME "../data/name_basic-test.tsv"
+// NEVER WRIE PARSERS IN C
+#define FILE_NAMES "../data/name_basic-test.tsv"
+#define FILE_PRINCIPALS "../data/title_principals-test.tsv"
 #include <stdio.h>
 #include "node.h"
 
@@ -24,14 +26,68 @@ void shift_to_name(FILE *f, const int i)
 }
 
 // DEVELOPING 
-/*
-void pars_connection(FILE *f, const int i, char *connections)
+void shift_to_film(FILE *f)
 {
-    char connections[N];
-    fscanf(f, "%s", connections);
-    puts(connections);
+    char shift_arr[N];
+    int i = 0;
+    while (i < STD_SHIFT - 1)
+    {
+        fscanf(f, "%s", shift_arr);
+        ++i;
+    }
+
+    i = 0; 
+    while (shift_arr[i] != 't' || shift_arr[i + 1] != 't')
+    {
+        if (fscanf(f, "%c", &shift_arr[i]) != EOF)
+        {
+            //puts(shift_arr);
+            ++i;
+        }
+        else
+        {
+            break;
+        }
+    }
 }
-*/
+
+void shift_to_id_f(FILE *f)
+{
+    char shift_arr[N];
+    fscanf(f, "%s", shift_arr);
+    fseek(f, 2, SEEK_CUR);
+}
+
+int pars_films(FILE *f, int *arr, const int i)
+{
+    int len = 0;
+    int film_id;
+    int actor_id;
+    while (!feof(f))
+    {
+        fscanf(f, "%d", &film_id);
+        shift_to_id_f(f);
+        fscanf(f, "%d", &actor_id);
+        if (graph[i].id == actor_id)
+        {
+            arr[len] = film_id;
+            //printf("%d", arr[len]);
+            ++len;
+        }
+        shift_to_film(f);
+    }
+
+    return len;
+}
+
+void pars_connections(FILE *f, const int i)
+{
+    int arr_films[N];
+    int len = pars_films(f, arr_films, i);
+    //fscanf(f, "%s", x);
+    //puts(x);
+}
+
 
 void shift_to_id(FILE *f)
 {
@@ -68,7 +124,7 @@ void pars_name(FILE *f, const int i)
 int parser()
 {
     FILE *f;
-    if ((f = fopen(FILE_NAME, "r")) == NULL)
+    if ((f = fopen(FILE_NAMES, "r")) == NULL)
     {
         return FILE_ERR;
     }
@@ -81,22 +137,27 @@ int parser()
         pars_name(f, count_people);
         ++count_people;
     }
+    fclose(f);
 
+    if ((f = fopen(FILE_PRINCIPALS, "r")) == NULL)
+    {
+        return FILE_ERR;
+    }
+    fseek(f, 91, SEEK_SET);
     for (int i = 0; i < count_people; i++)
     {
         // PARS FOR CONNECTIONS HERE (SOON)
+        pars_connections(f, i);
         return OK;
     }
 
     return OK;
 }
 
-/* FOR TESTING
 int main(void)
 {
     setbuf(stdout, NULL);
     int a = parser();
     return OK;
 }
-*/
     
