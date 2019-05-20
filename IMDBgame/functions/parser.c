@@ -10,22 +10,8 @@
 #define FILE_ERR 1
 #define OK 0
 
-void pars_id(FILE *f, const int i)
-{
-    fscanf(f, "%u", &graph[i].id);
-}
+// 2. THIS BLOCK PARS CONNECTIONS 
 
-void shift_to_name(FILE *f, const int i)
-{
-    char check_symb = ' ';
-    while (check_symb == ' ')
-    {
-        fscanf(f, "%c", &check_symb);
-    }
-    graph[i].name[0] = check_symb;
-}
-
-// DEVELOPING 
 void shift_to_id_act(FILE *f)
 {
     char shift_arr[N];
@@ -37,26 +23,29 @@ void shift_to_id_act(FILE *f)
     }
 
     i = 0; 
-    while (shift_arr[i - 1] != 't' || shift_arr[i] != 't')
-    {
+    do
         if (fscanf(f, "%c", &shift_arr[i]) != EOF)
         {
             ++i;
         }
         else
         {
-            break;
+            return;
         }
-    }
-//    puts(shift_arr);
+    while (shift_arr[i - 2] != 't' || shift_arr[i - 1] != 't');
 }
 
-void shift_to_id_f(FILE *f)
+void shift_to_id_film(FILE *f)
 {
     char shift_arr[N];
     fscanf(f, "%s", shift_arr);
-    puts(shift_arr);
-    fseek(f, 2, SEEK_CUR);
+    int i = 0;
+    char tmp;
+    while (i < STD_SHIFT) // FSEEK
+    {
+        fscanf(f, "%c", &tmp);
+        ++i;
+    }
 }
 
 int pars_films(FILE *f, int *arr, const int i)
@@ -67,9 +56,8 @@ int pars_films(FILE *f, int *arr, const int i)
     while (!feof(f))
     {
         fscanf(f, "%d", &film_id);
-        shift_to_id_f(f);
+        shift_to_id_film(f);
         fscanf(f, "%d", &actor_id);
-        //printf("%d %d\n", film_id, actor_id);
         if (graph[i].id == actor_id)
         {
             arr[len] = film_id;
@@ -85,10 +73,25 @@ void pars_connections(FILE *f, const int i)
 {
     int arr_films[N];
     int len = pars_films(f, arr_films, i);
-    //fscanf(f, "%s", x);
-    //puts(x);
+    for (int j = 0; j < len; j++)
+    {
+        printf("%d ", arr_films[j]);
+    }
 }
+// END BLOCK 2
 
+
+// 1. THIS BLOCK PARSING NAMES + ID
+
+void shift_to_name(FILE *f, const int i)
+{
+    char check_symb = ' ';
+    while (check_symb == ' ')
+    {
+        fscanf(f, "%c", &check_symb);
+    }
+    graph[i].name[0] = check_symb;
+}
 
 void shift_to_id(FILE *f)
 {
@@ -98,13 +101,18 @@ void shift_to_id(FILE *f)
         fscanf(f, "%s", arr_check);
     }
 
-    char check_symb; // NEED TO CHANGE FOR FSEEK (SOON)
+    char check_symb; // FSEEK ! 
     int i = 0;
     while (i < STD_SHIFT)
     {
         fscanf(f, "%c", &check_symb);
         ++i;
     }
+}
+
+void pars_id(FILE *f, const int i)
+{
+    fscanf(f, "%u", &graph[i].id);
 }
 
 void pars_name(FILE *f, const int i)
@@ -119,8 +127,10 @@ void pars_name(FILE *f, const int i)
         ++j;
     }
     graph[i].name[j - 1] = '\0';
+    //puts(graph[i].name);
     shift_to_id(f);
 }
+// END BLOCK 1.
 
 int parser()
 {
@@ -130,6 +140,7 @@ int parser()
         return FILE_ERR;
     }
 
+    // BLOCK 1: PARS NAMES AND ID 
     fseek(f, START_PARS, SEEK_SET);
     int count_people = 0;
     while (!feof(f))
@@ -144,13 +155,14 @@ int parser()
     {
         return FILE_ERR;
     }
-    fseek(f, 91, SEEK_SET);
+
+    // BLOCK 2: PARS CONNECTIONS
     for (int i = 0; i < count_people; i++)
     {
-        // PARS FOR CONNECTIONS HERE (SOON)
+        fseek(f, 49, SEEK_SET);
         pars_connections(f, i);
-        return OK;
     }
+    fclose(f);
 
     return OK;
 }
