@@ -1,4 +1,5 @@
 #include "node.h"
+#include <stdio.h>
 
 #define MAX_NAME_SIZE 32
 
