@@ -1,5 +1,4 @@
 #include "node.h"
-#include <stdio.h>
 
 #define MAX_NAME_SIZE 32
 
@@ -47,8 +46,9 @@ void fill_struct(c_c *const f_id_name, c_C *const f_neighbours, node *const arra
     {
         u_i i = 0u; // Номер записи
         char ending = ;
-        while (!feof(fp_2))
+        while (ending != EOF)
         {
+            ungetc(symb, f_p);
             fscanf(fp_1, "%u", &(array[i].id));
             cut_name(fp_1, array[i].name);
             array[i] = structure;
