@@ -9,13 +9,13 @@
 typedef const char c_c;
 typedef unsigned int u_i;
 
-void cut_name(FILE* f_p, char *name)
+void fill_name(FILE* f_p, char *name)
 {
     u_i length = 0u;
     char symb = fgetc(f_p);
     while (symb == ' ')
         symb = fgetc(f_p);
-    if (symb == '\n')
+    if (symb == '\n' or symb == EOF)
     {
         name[0] = '\0';
     }
@@ -32,8 +32,23 @@ void cut_name(FILE* f_p, char *name)
         }
         name[length] = '\0';
     }
-    while (symb != '\n')
+    while (symb != '\n' && symb != EOF)
         symb = fgetc(f_p);
+}
+
+void fill_neighbours(FILE* f_p, u_i *const array, u_i *const len)
+{
+    *len = 0;
+    char symb = fgetc(f_p);
+    while (symb != '\n' && symb != EOF)
+    {
+        ungetc(symb, f_p);
+        fscanf(f_p, "%u,", array[*len]);
+        (*len)++;
+        symb = fgetc(f_p);
+        while (symb == ' ')
+            symb = fgetc(f_p);
+    }
 }
 
 void fill_struct(c_c *const f_id_name, c_C *const f_neighbours, node *const array)
@@ -49,12 +64,13 @@ void fill_struct(c_c *const f_id_name, c_C *const f_neighbours, node *const arra
         while (ending != EOF)
         {
             ungetc(symb, f_p);
-            fscanf(fp_1, "%u", &(array[i].id));
-            cut_name(fp_1, array[i].name);
-            array[i] = structure;
-            fill_neighbours(fp_2, );
+            fscanf(fp_1, "%u", &(array[i].id)); //  Читаем id
+            fill_name(fp_1, array[i].name); // Читаем name
+            fill_neighbours(fp_2, array[i].connection, &(array[i].len));
             i++;
             ending = fgetc(fp_2);
         }
+        fclose(fp_1);
+        fclose(fp_2);
     }
 }
