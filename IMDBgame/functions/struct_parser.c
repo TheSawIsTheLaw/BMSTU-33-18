@@ -15,13 +15,12 @@ void fill_name(FILE* f_p, char *name)
     char symb = fgetc(f_p);
     while (symb == ' ')
         symb = fgetc(f_p);
-    if (symb == '\n' or symb == EOF)
+    if (symb == '\n' || symb == EOF)
     {
         name[0] = '\0';
     }
     else
     {
-        ungetc(symb, f_p);
         while (symb != '\n')
         {
             if (length == MAX_NAME_SIZE - 1)
@@ -43,7 +42,7 @@ void fill_neighbours(FILE* f_p, u_i *const array, u_i *const len)
     while (symb != '\n' && symb != EOF)
     {
         ungetc(symb, f_p);
-        fscanf(f_p, "%u,", array[*len]);
+        fscanf(f_p, "%u,", &array[*len]);
         (*len)++;
         symb = fgetc(f_p);
         while (symb == ' ')
@@ -51,7 +50,7 @@ void fill_neighbours(FILE* f_p, u_i *const array, u_i *const len)
     }
 }
 
-void fill_struct(c_c *const f_id_name, c_C *const f_neighbours, node *const array)
+void fill_struct(c_c *const f_id_name, c_c *const f_neighbours, node *const array)
 {
 
     FILE *fp_1 = fopen(f_id_name, "r");
@@ -63,7 +62,7 @@ void fill_struct(c_c *const f_id_name, c_C *const f_neighbours, node *const arra
         char ending = fgetc(fp_2);
         while (ending != EOF)
         {
-            ungetc(symb, f_p);
+            ungetc(ending, fp_2);
             fscanf(fp_1, "%u", &(array[i].id)); //  Читаем id
             fill_name(fp_1, array[i].name); // Читаем name
             fill_neighbours(fp_2, array[i].connection, &(array[i].len));
