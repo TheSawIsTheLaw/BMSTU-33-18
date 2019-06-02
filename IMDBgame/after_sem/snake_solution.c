@@ -14,11 +14,13 @@ int is_less(int *elem_1, int *elem_2)
 
 void swap_pair(int *elem_1, int *elem_2)
 {
-    int temp[2] = { elem_1[0], elem_1[1] };
-    elem_1[0] = elem_2[0];
-    elem_1[1] = elem_2[1];
-    elem_2[0] = temp[0];
-    elem_2[1] = temp[1];
+    int temp;
+    for (int i = 0; i < PAIR_LEN; i++)
+    {
+        temp = elem_1[i];
+        elem_1[i] = elem_2[i];
+        elem_2[i] = temp;
+    }
 }
 
 
