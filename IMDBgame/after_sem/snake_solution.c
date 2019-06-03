@@ -24,6 +24,37 @@ void swap_pair(int *elem_1, int *elem_2)
 }
 
 
+int get_pos_by_id(int main_matr[][PAIR_LEN], int id, int len)
+{
+    int left = 0;
+    int right = len - 1;
+    int middle;
+    int index;
+
+    while (left < right)
+    {
+        middle = (left + right) / 2;
+        if (main_matr[middle][0] < id)
+            left = middle + 1;
+        else if (main_matr[middle][0] > id)
+            right = middle;
+        else
+        {
+            index = middle;
+            break;
+        }
+    }
+
+    if (left == right && main_matr[middle][0] == id)
+        index = left;
+    else
+        return -1;
+
+    while (main_matr[--index][0] == id);
+    return index + 1;
+}
+
+
 void qsort(int main_matr[][PAIR_LEN], int begin, int end) // qsort(main_matr, 0, size - 1)
 {
     if (begin >= end)
@@ -47,4 +78,57 @@ void qsort(int main_matr[][PAIR_LEN], int begin, int end) // qsort(main_matr, 0,
 }
 
 
-int snake_solution();
+// snake_solution(films_matr, actors_matr, len, from, to, 0, 20, route)
+int snake_solution(int films_matr[][PAIR_LEN], int actors_matr[][PAIR_LEN],
+    int len, int from, int to, int iter, int max_iter, int *route)
+{
+    if (iter >= max_iter)
+        return -1;
+    else if (from == to)
+        return 0;
+
+    int pos, min_pos;
+    int min_dist = max_iter + 1, dist;
+
+    if (!(iter % 2))
+    {
+        pos = get_pos_by_id(actors_matr, from, len);
+        while (actors_matr[pos][0] == from)
+            if ((dist = snake_solution(films_matr, actors_matr, len, actors_matr[pos++][1], to, iter + 1, max_iter, route + 1)) != -1)
+            {
+                min_dist = (min_dist > dist) ? dist : min_dist;
+                min_pos = pos - 1;
+            }
+        if (min_dist < max_iter + 1)
+        {
+            *route = min_pos;
+            return min_dist;
+        }
+        else
+            return -1;
+    }
+
+    else
+    {
+        pos = get_pos_by_id(films_matr, from, len);
+        while (films_matr[pos][0] == from)
+            if ((dist = snake_solution(films_matr, actors_matr, len, films_matr[pos++][1], to, iter + 1, max_iter, route + 1)) != -1)
+            {
+                min_pos = (min_dist > dist) ? pos - 1 : min_pos;
+                min_dist = (min_dist > dist) ? dist : min_dist;
+            }
+        if (min_dist < max_iter + 1)
+        {
+            *route = min_pos;
+            return min_dist;
+        }
+        else
+            return -1;
+    }
+}
+
+
+int main()
+{
+    return 0;
+}
