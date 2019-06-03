@@ -6,7 +6,7 @@
 #define TAB 9
 #define ID_SIZE 16
 #define NAME_SIZE 100
-#define COUNT 9000000
+#define COUNT 9336192
 #define OK 0
 
 void pars_to_file(FILE *const f1, const char *const line)
