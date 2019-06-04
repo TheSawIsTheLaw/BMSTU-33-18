@@ -29,9 +29,8 @@ int get_pos_by_id(int main_matr[][PAIR_LEN], int id, int len)
     int left = 0;
     int right = len - 1;
     int middle;
-    int index;
 
-    while (left < right)
+    while (left <= right)
     {
         middle = (left + right) / 2;
         if (main_matr[middle][0] < id)
@@ -39,14 +38,13 @@ int get_pos_by_id(int main_matr[][PAIR_LEN], int id, int len)
         else if (main_matr[middle][0] > id)
             right = middle - 1;
         else
-        {
-            index = middle;
-            break;
-        }
+            goto found;
     }
+    return -1;
 
-    while (main_matr[--index][0] == id);
-    return index + 1;
+    found:
+    while (main_matr[middle--][0] == id && middle >= 0);
+    return (middle == -1) ? middle + 1 : middle + 2;
 }
 
 
@@ -72,7 +70,7 @@ void my_sort(int main_matr[][PAIR_LEN], int begin, int end) // qsort(main_matr, 
     my_sort(main_matr, left, end);
 }
 
-
+/*
 // snake_solution(films_matr, actors_matr, len, from, to, 0, 20, route)
 int snake_solution(int films_matr[][PAIR_LEN], int actors_matr[][PAIR_LEN],
     int len, int from, int to, int iter, int max_iter, int *route)
@@ -121,21 +119,21 @@ int snake_solution(int films_matr[][PAIR_LEN], int actors_matr[][PAIR_LEN],
             return -1;
     }
 }
-
+*/
 
 int main()
 {
     setbuf(stdout, NULL);
 
     int test_arr[][PAIR_LEN] = { { 234, 234 }, { 3242, 324 }, { 3142, 724 }, { 123, 121 }, { 234, 657 },
-    { 34, 3412 }, { 3142, 2 }, { 324, 100 } };
+    { 34, 3412 }, { 34, 34 }, { 34, 32 }, { 3142, 2 }, { 324, 100 } };
 
-    my_sort(test_arr, 0, 7);
-    for (int i = 0; i < 8; i++)
+    my_sort(test_arr, 0, 9);
+    for (int i = 0; i < 10; i++)
         printf("%d   %d\n", test_arr[i][0], test_arr[i][1]);
 
-    printf("\n%d", get_pos_by_id(test_arr, 324, 8));
-    printf("\n%d", get_pos_by_id(test_arr, 34, 8));
-    printf("\n%d", get_pos_by_id(test_arr, 3142, 8));
+    printf("\n%d", get_pos_by_id(test_arr, 324, 10));
+    printf("\n%d", get_pos_by_id(test_arr, 34, 10));
+    printf("\n%d", get_pos_by_id(test_arr, 3142, 10));
     return 0;
 }
