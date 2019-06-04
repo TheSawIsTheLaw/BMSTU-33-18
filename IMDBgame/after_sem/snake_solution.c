@@ -6,7 +6,7 @@
 
 int is_less(int *elem_1, int *elem_2)
 {
-    if (elem_1[0] < elem_2[0] || (elem_1[0] < elem_2[0] && elem_1[1] < elem_2[1]))
+    if (elem_1[0] < elem_2[0] || (elem_1[0] == elem_2[0] && elem_1[1] < elem_2[1]))
         return YES;
     return NO;
 }
@@ -37,7 +37,7 @@ int get_pos_by_id(int main_matr[][PAIR_LEN], int id, int len)
         if (main_matr[middle][0] < id)
             left = middle + 1;
         else if (main_matr[middle][0] > id)
-            right = middle;
+            right = middle - 1;
         else
         {
             index = middle;
@@ -45,22 +45,17 @@ int get_pos_by_id(int main_matr[][PAIR_LEN], int id, int len)
         }
     }
 
-    if (left == right && main_matr[middle][0] == id)
-        index = left;
-    else
-        return -1;
-
     while (main_matr[--index][0] == id);
     return index + 1;
 }
 
 
-void qsort(int main_matr[][PAIR_LEN], int begin, int end) // qsort(main_matr, 0, size - 1)
+void my_sort(int main_matr[][PAIR_LEN], int begin, int end) // qsort(main_matr, 0, size - 1)
 {
     if (begin >= end)
         return;
 
-    int middle_pos = (end - begin) / 2;
+    int middle_pos = (end + begin) / 2;
     int middle[2] = { main_matr[middle_pos][0], main_matr[middle_pos][1] };
     int left = begin, right = end;
 
@@ -73,8 +68,8 @@ void qsort(int main_matr[][PAIR_LEN], int begin, int end) // qsort(main_matr, 0,
         if (left <= right)
             swap_pair(main_matr[left++], main_matr[right--]);
     }
-    qsort(main_matr, begin, right);
-    qsort(main_matr, left, end);
+    my_sort(main_matr, begin, right);
+    my_sort(main_matr, left, end);
 }
 
 
@@ -130,5 +125,17 @@ int snake_solution(int films_matr[][PAIR_LEN], int actors_matr[][PAIR_LEN],
 
 int main()
 {
+    setbuf(stdout, NULL);
+
+    int test_arr[][PAIR_LEN] = { { 234, 234 }, { 3242, 324 }, { 3142, 724 }, { 123, 121 }, { 234, 657 },
+    { 34, 3412 }, { 3142, 2 }, { 324, 100 } };
+
+    my_sort(test_arr, 0, 7);
+    for (int i = 0; i < 8; i++)
+        printf("%d   %d\n", test_arr[i][0], test_arr[i][1]);
+
+    printf("\n%d", get_pos_by_id(test_arr, 324, 8));
+    printf("\n%d", get_pos_by_id(test_arr, 34, 8));
+    printf("\n%d", get_pos_by_id(test_arr, 3142, 8));
     return 0;
 }
