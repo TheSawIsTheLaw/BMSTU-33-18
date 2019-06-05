@@ -10,6 +10,8 @@
 #define TAB 9
 #define COUNT 33766111
 
+int fst_check = 0;
+
 void readline(FILE *const f, char *const line)
 {
     int i = -1;
@@ -46,8 +48,12 @@ void find_films(FILE *const f1, FILE *const f2, const char *const line, char *co
     unsigned int end_f = -1;
     if (strcmp(checker, id_str))
     {
-        fwrite(&end_f, sizeof(end_f), 1, f2);
+        if (fst_check)
+        {
+            fwrite(&end_f, sizeof(end_f), 1, f2);
+        } 
         fwrite(&id, sizeof(id), 1, f2);
+        fst_check++;
     }
 
     i = 10;
