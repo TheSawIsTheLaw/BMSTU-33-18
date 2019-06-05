@@ -17,7 +17,7 @@ void pars_to_file(FILE *const f1, char *const line)
     line[9] = '\0';
     unsigned int id = atoi(&line[2]);
     fwrite(&id, sizeof(unsigned int), 1, f1); 
-    
+
     int i = 9;
     char name[NAME_SIZE] = { '\0' };
     char full_name[NAME_SIZE] = { '\0' };
