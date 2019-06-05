@@ -18,7 +18,7 @@ typedef struct actor
 
 void print_struct(const actor_t actor)
 {
-    printf("%d\n%s\n\n\n", actor.id, actor.name);
+    printf("%d %s\n\n", actor.id, actor.name);
 }
 
 int get_struct_file_size(FILE *const f)
@@ -32,35 +32,6 @@ int get_struct_file_size(FILE *const f)
     return size;
 }
 
-int check_file(FILE *const f)
-{
-    actor_t cur_actor;
-
-    if (!f)
-        return FILE_NOT_EXIST_ERROR;
-
-    int size = get_struct_file_size(f);
-
-    fseek(f, 0, SEEK_SET);
-
-    if (size == 0)
-        return EMPTY_FILE_ERROR;
-
-    for (int i = 0; i < size; ++i)
-    {
-        if (fread(&cur_actor, sizeof(actor_t), 1, f) != GOT_ARG)
-        {
-            fseek(f, 0, SEEK_SET);
-
-            return WRONG_ARG;
-        }
-    }
-
-    fseek(f, 0, SEEK_SET);
-
-    return OK;
-}
-
 void print_file(FILE *const f)
 {
     fseek(f, 0, SEEK_SET);
@@ -71,7 +42,7 @@ void print_file(FILE *const f)
     for (int i = 0; i < size; ++i)
     {
         fread(&actor, sizeof(actor_t), 1, f);
-        print_struct(student);
+        print_struct(actor);
     }
 }
 
@@ -126,7 +97,36 @@ void sort_file(FILE *const f, const unsigned int first, const unsigned int last)
         put_actor_by_pos(f, pivot, s_actor);
         put_actor_by_pos(f, j, p_actor);
 
-        sort_file(f, first, j - 1);
+        sort_file(f, first, i - 1);
         sort_file(f, j + 1, last);
     }
+}
+
+void fill_binary_file(FILE *const f)
+{
+    actor_t a1 = { 13211, "Roman Alexeev" };
+    actor_t a2 = { 675, "Kovaliy Dmitriev" };
+    actor_t a3 = { 13, "Koney Sergienko" };
+    actor_t a4 = { 454111, "Pablo Pepperoni" };
+
+    fwrite(&a1, sizeof(actor_t), 1, f);
+    fwrite(&a2, sizeof(actor_t), 1, f);
+    fwrite(&a3, sizeof(actor_t), 1, f);
+    fwrite(&a4, sizeof(actor_t), 1, f);
+}
+
+int main(int argc, char **argv)
+{
+    FILE *f_in = NULL;
+
+    f_in = fopen(argv[1], "wb");
+    fill_binary_file(f_in);
+    fclose(f_in);
+
+    f_in = fopen(argv[1], "rb+");
+    sort_file(f_in, 0, 3);
+    print_file(f_in);
+    fclose(f_in);
+
+    return OK;
 }
