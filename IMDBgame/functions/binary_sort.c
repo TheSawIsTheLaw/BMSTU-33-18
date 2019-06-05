@@ -102,7 +102,7 @@ void sort_file(FILE *const f, const unsigned int first, const unsigned int last)
     }
 }
 
-void fill_binary_file(FILE *const f)
+/*void fill_binary_file(FILE *const f)
 {
     actor_t a1 = { 13211, "Roman Alexeev" };
     actor_t a2 = { 675, "Kovaliy Dmitriev" };
@@ -113,18 +113,18 @@ void fill_binary_file(FILE *const f)
     fwrite(&a2, sizeof(actor_t), 1, f);
     fwrite(&a3, sizeof(actor_t), 1, f);
     fwrite(&a4, sizeof(actor_t), 1, f);
-}
+}*/
 
 int main(int argc, char **argv)
 {
     FILE *f_in = NULL;
 
-    f_in = fopen(argv[1], "wb");
+    /*f_in = fopen(argv[1], "wb");
     fill_binary_file(f_in);
-    fclose(f_in);
+    fclose(f_in);*/
 
     f_in = fopen(argv[1], "rb+");
-    sort_file(f_in, 0, 3);
+    sort_file(f_in, 0, 10);
     print_file(f_in);
     fclose(f_in);
 
