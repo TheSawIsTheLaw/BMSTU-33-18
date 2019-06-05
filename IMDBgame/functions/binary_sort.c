@@ -1,14 +1,8 @@
 #include <stdio.h>
 
 #define OK 0
-#define FILE_NOT_EXIST_ERROR -1
-#define EMPTY_FILE_ERROR -2
-#define FILE_ERROR -3
-#define WRONG_ARG -4
 
-#define GOT_ARG 1
-
-#define ACTOR_NAME_LEN 37
+#define ACTOR_NAME_LEN 36
 
 typedef struct actor
 {
@@ -58,14 +52,14 @@ void put_actor_by_pos(FILE *const f, const int pos, const actor_t put_actor)
     fwrite(&put_actor, sizeof(actor_t), 1, f);
 }
 
-void sort_file(FILE *const f, const unsigned int first, const unsigned int last)
+void sort_file_id_name(FILE *const f, const unsigned int first, const unsigned int last)
 {
     unsigned int i, j, pivot;
     actor_t f_actor, s_actor, p_actor;
 
     if (first < last)
     {
-        pivot = first;
+        pivot = (first + last) / 2;
         i = first;
         j = last;
 
@@ -97,34 +91,17 @@ void sort_file(FILE *const f, const unsigned int first, const unsigned int last)
         put_actor_by_pos(f, pivot, s_actor);
         put_actor_by_pos(f, j, p_actor);
 
-        sort_file(f, first, i - 1);
-        sort_file(f, j + 1, last);
+        sort_file_id_name(f, first, i - 1);
+        sort_file_id_name(f, j + 1, last);
     }
 }
-
-/*void fill_binary_file(FILE *const f)
-{
-    actor_t a1 = { 13211, "Roman Alexeev" };
-    actor_t a2 = { 675, "Kovaliy Dmitriev" };
-    actor_t a3 = { 13, "Koney Sergienko" };
-    actor_t a4 = { 454111, "Pablo Pepperoni" };
-
-    fwrite(&a1, sizeof(actor_t), 1, f);
-    fwrite(&a2, sizeof(actor_t), 1, f);
-    fwrite(&a3, sizeof(actor_t), 1, f);
-    fwrite(&a4, sizeof(actor_t), 1, f);
-}*/
 
 int main(int argc, char **argv)
 {
     FILE *f_in = NULL;
 
-    /*f_in = fopen(argv[1], "wb");
-    fill_binary_file(f_in);
-    fclose(f_in);*/
-
     f_in = fopen(argv[1], "rb+");
-    sort_file(f_in, 0, 10);
+    sort_file_id_name(f_in, 0, 9336191);
     print_file(f_in);
     fclose(f_in);
 
