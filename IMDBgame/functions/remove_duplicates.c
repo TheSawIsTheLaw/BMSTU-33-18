@@ -7,16 +7,12 @@ int main(int argc, char **argv)
 
     f_in = fopen(argv[1], "rb");
     f_out = fopen(argv[2], "wb");
-
     remove_duplicates(f_in, f_out);
-
     fclose(f_in);
     fclose(f_out);
 
     f_out = fopen(argv[2], "rb");
-
     check_duplicates(f_out);
-
     fclose(f_out);
 
     return OK;
