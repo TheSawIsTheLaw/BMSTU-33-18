@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     char name[36];
     unsigned int id1;
 
-    for (int i = 0; i < 400; i++)
+    for (int i = 0; i < 100; i++)
     {
         fread(&id1, sizeof(id1), 1, f);
         fread(&name, sizeof(name), 1, f);

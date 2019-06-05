@@ -17,9 +17,6 @@ void pars_to_file(FILE *const f1, char *const line)
     line[9] = '\0';
     unsigned int id = atoi(&line[2]);
     fwrite(&id, sizeof(unsigned int), 1, f1); 
-    fseek(f1, -4, SEEK_CUR);
-    fread(&check_id, sizeof(check_id), 1, f1);
-    printf("\nID %u | NAME: ", check_id);
     
     int i = 9;
     char name[NAME_SIZE] = { '\0' };
@@ -38,15 +35,10 @@ void pars_to_file(FILE *const f1, char *const line)
 
         name[j] = ' ';
         name[++j] = '\0';
-        puts(name);
     } while (name[0] != '\\' && !isdigit(name[0]));
 
     full_name[35] = '\0';
     fwrite(&full_name, MX_NAME, 1, f1);
-    fseek(f1, -36, SEEK_CUR);
-    char checker[MX_NAME];
-    fread(&checker, sizeof(checker), 1, f1);
-    puts(checker);
 }
 
 void readline(FILE *const f, FILE *const f1)
@@ -71,7 +63,7 @@ int main(int argc, char  *argv[])
     f = fopen(argv[1], "r");
     f1 = fopen(argv[2], "wb+");
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < COUNT; i++)
     {
         readline(f, f1);
     }
