@@ -87,3 +87,46 @@ void put_actor_by_pos(FILE *const f, const int pos, const actor_t put_actor)
     fwrite(&put_actor, sizeof(actor_t), 1, f);
 }
 
+void sort_file(FILE *const f, const unsigned int first, const unsigned int last)
+{
+    unsigned int i, j, pivot;
+    actor_t f_actor, s_actor, p_actor;
+
+    if (first < last)
+    {
+        pivot = first;
+        i = first;
+        j = last;
+
+        while(i < j)
+        {
+            get_actor_by_pos(f, i, &f_actor);
+            get_actor_by_pos(f, j, &s_actor);
+            get_actor_by_pos(f, pivot, &p_actor);
+
+            while(f_actor.id <= p_actor.id && i < last)
+            {
+                i++;
+                get_actor_by_pos(f, i, &f_actor);
+            }
+
+            while(s_actor.id > p_actor.id)
+            {
+                j--;
+                get_actor_by_pos(f, j, &s_actor);
+            }
+            
+            if (i < j)
+            {
+                put_actor_by_pos(f, i, s_actor);
+                put_actor_by_pos(f, j, f_actor);
+            }
+        }
+
+        put_actor_by_pos(f, pivot, s_actor);
+        put_actor_by_pos(f, j, p_actor);
+
+        sort_file(f, first, j - 1);
+        sort_file(f, j + 1, last);
+    }
+}
