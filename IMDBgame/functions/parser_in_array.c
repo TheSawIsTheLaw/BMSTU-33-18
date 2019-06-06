@@ -54,6 +54,7 @@ void fill_out(FILE *in_1, FILE *in_2, FILE *out)
     while (fread(&actor_id, sizeof(int), 1, in_1) == 1)
     {
         char flag = 0;
+        printf("%d\n", actor_id);
         while (find_film(in_2, actor_id, &film_id))
         {
             till_end(in_2);
@@ -73,6 +74,7 @@ int main(int argc, char **argv)
     FILE *f_id_name = fopen(argv[1], "rb");
     FILE *f_film_actors = fopen(argv[2], "rb");
     FILE *out = fopen(argv[3], "wb");
+    setbuf(stdout, NULL);
     fill_out(f_id_name, f_film_actors, out);
     fclose(f_id_name);
     fclose(f_film_actors);
