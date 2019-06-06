@@ -52,7 +52,7 @@ void find_films(FILE *const f1, FILE *const f2, const char *const line, char *co
     {
         /*
         counter++;
-        if (counter > 20)
+        if (counter > 10000)
         {
             int end_f = -1;
             fwrite(&end_f, sizeof(end_f), 1, f2);
