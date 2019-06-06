@@ -4,8 +4,8 @@
 #define ONE 1
 
 #define COUNT 1000
-#define COUNT_OF_CONECTIONS_ACTOR_FILMS 6
-#define COUNT_OF_CONECTIONS_FILMS_ACTOR 6
+#define COUNT_OF_CONECTIONS_ACTOR_FILMS 10
+#define COUNT_OF_CONECTIONS_FILMS_ACTOR 10
 #define COUNT_OF_ELEMENTS_IN_ONE_CONECTION 2
 
 #define OK 1
@@ -69,16 +69,24 @@ int make_array_actor_to_actor(int matrix_actors_films[][COUNT_OF_ELEMENTS_IN_ONE
         while (matrix_films_actors[index_for_film][ZERO] == cur_film) {
             if (cur_actor == last_actor)
             {
-                if (finaly_matrix[n - 1][ONE] < matrix_films_actors[index_for_film][ONE])
+                int b = 1;
+                int i = n - 1;
+                while (finaly_matrix[i][0] == matrix_films_actors[index_for_film][1])
                 {
-                    printf("%d %d - 01\n", finaly_matrix[n - 1][ONE], matrix_films_actors[index_for_film][ONE]);
+                    if (finaly_matrix[i][1] == matrix_films_actors[index_for_film][1])
+                    {
+                        b = 0;
+                    }
+                    i--;
+                }
+                if (b == 1)
+                {
                     reads_in_matrix_of_conections_actors(finaly_matrix, &n, cur_actor, &matrix_films_actors[index_for_film][ONE]);
                 }
                 ++index_for_film;
             }
             else
             {
-                printf("0-0\n");
                 reads_in_matrix_of_conections_actors(finaly_matrix, &n, cur_actor, &matrix_films_actors[index_for_film][ONE]);
                 ++index_for_film;
             }
@@ -98,14 +106,20 @@ int main(void)
         {3, 11},
         {2, 22},
         {3, 22},
-        {3, 33}
+        {3, 33},
+        {4, 33},
+        {1, 44},
+        {4, 44}
     };
     int matrix_films_actors[COUNT_OF_CONECTIONS_FILMS_ACTOR][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] = {{1, 11},
         {1, 22},
+        {1, 44},
         {2, 11},
         {3, 11},
         {3, 22},
-        {3, 33}
+        {3, 33},
+        {4, 33},
+        {4, 44}
     };
     
     int finaly_matrix[COUNT][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] = {{0, 0}};
