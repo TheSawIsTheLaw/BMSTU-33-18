@@ -58,7 +58,7 @@ int make_array_actor_to_actor(int matrix_actors_films[][COUNT_OF_ELEMENTS_IN_ONE
     int last_actor = -1;
     int cur_actor = -1;
     int cur_film = -1;
-    for (int el = ZERO; el < 3; el++)
+    for (int el = ZERO; el < COUNT_OF_CONECTIONS_ACTOR_FILMS; el++)
     {
         last_actor = cur_actor;
         cur_actor = matrix_actors_films[el][ONE];
