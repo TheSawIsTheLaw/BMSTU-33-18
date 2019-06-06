@@ -1,4 +1,7 @@
+#include <string.h>
+
 #define OK 0
+#define NO_MATCHES -1
 
 #define ACTOR_NAME_LEN 36
 
@@ -129,4 +132,19 @@ void check_duplicates(FILE *const f)
         printf("No duplicates found\n\n");
     else
         printf("%d duplicates found\n\n", duplicate_count);
+}
+
+int get_id_by_name(FILE *const f, char actor_name[ACTOR_NAME_LEN])
+{
+    int size = get_struct_file_size(f);
+    actor_t cur_actor;
+
+    for (int i = 0; i < size; ++i)
+    {
+        get_actor_by_pos(f, i, &cur_actor);
+        if (!strcmp(cur_actor.name, actor_name))
+            return cur_actor.id;
+    }
+
+    return NO_MATCHES;
 }
