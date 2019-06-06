@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-#define N 4713814 - 509712
+//#define N 4713814 - 509712
+#define N 200
 //#define N 1000000
 #define OK 0
 

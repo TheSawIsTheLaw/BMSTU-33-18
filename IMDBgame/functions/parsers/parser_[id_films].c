@@ -12,6 +12,7 @@
 
 
 int fst_check = 0;
+//int counter = 0;
 
 void readline(FILE *const f, char *const line)
 {
@@ -37,18 +38,27 @@ void find_films(FILE *const f1, FILE *const f2, const char *const line, char *co
     }
     id_str[i] = '\0';
     
-    unsigned int id = atoi(&id_str[2]);
+    int id = atoi(&id_str[2]);
     fseek(f1, id * sizeof(id) - sizeof(id), SEEK_SET);
-    unsigned int tf_ch;
+    int tf_ch;
     fread(&tf_ch, sizeof(tf_ch), 1, f1);
     if (!tf_ch)
     {
         return;
     }
-
+    
     int end_f = -1;
     if (strcmp(checker, id_str))
     {
+        /*
+        counter++;
+        if (counter > 20)
+        {
+            int end_f = -1;
+            fwrite(&end_f, sizeof(end_f), 1, f2);
+            exit(0);
+        }
+        */
         if (fst_check)
         {
             fwrite(&end_f, sizeof(end_f), 1, f2);
@@ -73,7 +83,7 @@ void find_films(FILE *const f1, FILE *const f2, const char *const line, char *co
     }
     actor_id[j] = '\0';
 
-    unsigned int act_id_int  = atoi(&actor_id[2]);
+    int act_id_int  = atoi(&actor_id[2]);
     fwrite(&act_id_int, sizeof(act_id_int), 1, f2);
 
     strcpy(checker, id_str);
