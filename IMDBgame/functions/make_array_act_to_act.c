@@ -4,8 +4,8 @@
 #define ONE 1
 
 #define COUNT 1000
-#define COUNT_OF_CONECTIONS_ACTOR_FILMS 100
-#define COUNT_OF_CONECTIONS_FILMS_ACTOR 100
+#define COUNT_OF_CONECTIONS_ACTOR_FILMS 6
+#define COUNT_OF_CONECTIONS_FILMS_ACTOR 6
 #define COUNT_OF_ELEMENTS_IN_ONE_CONECTION 2
 
 #define OK 1
@@ -37,8 +37,10 @@ int bin_search(int need_id ,int matrix[][COUNT_OF_ELEMENTS_IN_ONE_CONECTION], in
 int search_start_index_for_film(int matrix_films_actors[][COUNT_OF_ELEMENTS_IN_ONE_CONECTION], int cur_film)
 {
     int index = bin_search(cur_film, matrix_films_actors, COUNT_OF_CONECTIONS_FILMS_ACTOR);
-    while (matrix_films_actors[index - 1][0] == matrix_films_actors[index][0])
+    while (matrix_films_actors[index - 1][0] == matrix_films_actors[index][0] && index > 0)
+    {
         --index;
+    }
     return index;
 }
 
@@ -46,16 +48,17 @@ void reads_in_matrix_of_conections_actors(int finaly_matrix[][COUNT_OF_ELEMENTS_
 {
     finaly_matrix[*n][0] = cur_actor;
     finaly_matrix[*n][1] = *el;
+    printf("(%d %d)\n", cur_actor, *el);
     (*n)++;
 }
 
 int make_array_actor_to_actor(int matrix_actors_films[][COUNT_OF_ELEMENTS_IN_ONE_CONECTION], int matrix_films_actors[][COUNT_OF_ELEMENTS_IN_ONE_CONECTION], int finaly_matrix[][COUNT_OF_ELEMENTS_IN_ONE_CONECTION])
 {
-    static int n = 0;
+    int n = 0;
     int last_actor = -1;
     int cur_actor = -1;
     int cur_film = -1;
-    for (int el = ZERO; el < COUNT_OF_CONECTIONS_ACTOR_FILMS; el++)
+    for (int el = ZERO; el < 3; el++)
     {
         last_actor = cur_actor;
         cur_actor = matrix_actors_films[el][ONE];
@@ -68,19 +71,21 @@ int make_array_actor_to_actor(int matrix_actors_films[][COUNT_OF_ELEMENTS_IN_ONE
             {
                 if (finaly_matrix[n - 1][ONE] < matrix_films_actors[index_for_film][ONE])
                 {
+                    printf("%d %d - 01\n", finaly_matrix[n - 1][ONE], matrix_films_actors[index_for_film][ONE]);
                     reads_in_matrix_of_conections_actors(finaly_matrix, &n, cur_actor, &matrix_films_actors[index_for_film][ONE]);
                 }
                 ++index_for_film;
             }
             else
             {
+                printf("0-0\n");
                 reads_in_matrix_of_conections_actors(finaly_matrix, &n, cur_actor, &matrix_films_actors[index_for_film][ONE]);
                 ++index_for_film;
             }
         }
     }
     
-    return OK;
+    return n;
 }
 
 
@@ -88,8 +93,21 @@ int main(void)
 {
     printf("start\n");
     
-    int matrix_actors_films[COUNT_OF_CONECTIONS_ACTOR_FILMS][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] = {{0, 0}};
-    int matrix_films_actors[COUNT_OF_CONECTIONS_FILMS_ACTOR][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] = {{0, 0}};
+    int matrix_actors_films[COUNT_OF_CONECTIONS_ACTOR_FILMS][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] ={{1, 11},
+        {2, 11},
+        {3, 11},
+        {2, 22},
+        {3, 22},
+        {3, 33}
+    };
+    int matrix_films_actors[COUNT_OF_CONECTIONS_FILMS_ACTOR][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] = {{1, 11},
+        {1, 22},
+        {2, 11},
+        {3, 11},
+        {3, 22},
+        {3, 33}
+    };
+    
     int finaly_matrix[COUNT][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] = {{0, 0}};
     
     int rc = make_array_actor_to_actor(matrix_actors_films, matrix_films_actors, finaly_matrix);
