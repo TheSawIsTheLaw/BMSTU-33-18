@@ -1,5 +1,9 @@
 
 #define SIZE 3694389
+#define NO 0
+#define YES 1
+#define PAIR_LEN 2
+
 
 void add_conn(int *const conn_arr, const int new_conn_id)
 {

@@ -1,11 +1,13 @@
 #include <stdio.h>
+#include "create_arrs.h"
 
 #define ZERO 0
 #define ONE 1
 
-#define COUNT 1000
-#define COUNT_OF_CONECTIONS_ACTOR_FILMS 10
-#define COUNT_OF_CONECTIONS_FILMS_ACTOR 10
+#define SIZE 3694389
+#define COUNT 3694389
+#define COUNT_OF_CONECTIONS_ACTOR_FILMS 3694389
+#define COUNT_OF_CONECTIONS_FILMS_ACTOR 3694389
 #define COUNT_OF_ELEMENTS_IN_ONE_CONECTION 2
 
 #define OK 1
@@ -66,7 +68,7 @@ int make_array_actor_to_actor(int matrix_actors_films[][COUNT_OF_ELEMENTS_IN_ONE
         
         int index_for_film = search_start_index_for_film(matrix_films_actors, cur_film);
         
-        while (matrix_films_actors[index_for_film][ZERO] == cur_film) {
+        /*while (matrix_films_actors[index_for_film][ZERO] == cur_film) {
             if (cur_actor == last_actor)
             {
                 int b = 1;
@@ -90,7 +92,7 @@ int make_array_actor_to_actor(int matrix_actors_films[][COUNT_OF_ELEMENTS_IN_ONE
                 reads_in_matrix_of_conections_actors(finaly_matrix, &n, cur_actor, &matrix_films_actors[index_for_film][ONE]);
                 ++index_for_film;
             }
-        }
+    }*/
     }
     
     return n;
@@ -101,26 +103,17 @@ int main(void)
 {
     printf("start\n");
     
-    int matrix_actors_films[COUNT_OF_CONECTIONS_ACTOR_FILMS][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] ={{1, 11},
-        {2, 11},
-        {3, 11},
-        {2, 22},
-        {3, 22},
-        {3, 33},
-        {4, 33},
-        {1, 44},
-        {4, 44}
-    };
-    int matrix_films_actors[COUNT_OF_CONECTIONS_FILMS_ACTOR][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] = {{1, 11},
-        {1, 22},
-        {1, 44},
-        {2, 11},
-        {3, 11},
-        {3, 22},
-        {3, 33},
-        {4, 33},
-        {4, 44}
-    };
+    int matrix_actors_films[COUNT_OF_CONECTIONS_ACTOR_FILMS][COUNT_OF_ELEMENTS_IN_ONE_CONECTION];
+
+    int n1 = ZERO;
+    create_mas(matrix_actors_films, &n1, "out.bin");
+    sort_by_actors(matrix_actors_films);
+    
+    int matrix_films_actors[COUNT_OF_CONECTIONS_FILMS_ACTOR][COUNT_OF_ELEMENTS_IN_ONE_CONECTION];
+    
+    int n2 = ZERO;
+    create_mas(matrix_films_actors, &n2, "out.bin");
+    sort_by_films(matrix_actors_films);
     
     int finaly_matrix[COUNT][COUNT_OF_ELEMENTS_IN_ONE_CONECTION] = {{0, 0}};
     
