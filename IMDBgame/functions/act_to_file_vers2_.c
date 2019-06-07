@@ -48,18 +48,19 @@ void make_array_actor_to_actor(int actors_films[][COUNT_OF_ELEMENTS_IN_1_C1CTION
 {
     int cur_actor = -1;
     int cur_film = -1;
-
+    int index_for_film;
     for (int el = 0; el < COUNT_OF_C1CTIONS_ACTOR_FILMS; el++)
     {
+        if (el % 50000 == 0)
+            printf("%d     ", el);
+        cur_film = actors_films[el][0];
         cur_actor = actors_films[el][1];
-
         if (cur_actor == 0)
         {
-            fclose(cur_file);
-            return;
+            continue;
         }
 
-        int index_for_film = search_start_index_for_film(films_actors, cur_film);
+        index_for_film = search_start_index_for_film(films_actors, cur_film);
 
         while (films_actors[index_for_film][0] == cur_film)
         {
@@ -72,8 +73,8 @@ void make_array_actor_to_actor(int actors_films[][COUNT_OF_ELEMENTS_IN_1_C1CTION
 
 int main()
 {
-    int actors_films[SIZE][2];
-    int films_actors[SIZE][2];
+    static int actors_films[SIZE][2];
+    static int films_actors[SIZE][2];
     int size;
 
     create_mas(films_actors, &size, "out.bin");
@@ -84,10 +85,9 @@ int main()
     FILE *actors_file;
 
     actors_file = fopen("actors_file.bin", "wb");
-
     make_array_actor_to_actor(actors_films, films_actors, actors_file);
     fclose(actors_file);
 
     return SUCCESS_EXIT;
-    
+
 }

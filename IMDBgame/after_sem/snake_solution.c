@@ -4,13 +4,6 @@
 #define YES 1
 #define PAIR_LEN 2
 #define SIZE 21
-/*
-typedef struct
-{
-    unsigned int vertex_id : 24;
-    unsigned int bacon : 8;
-} Tree;
-*/
 
 
 void add_conn(int *const conn_arr, const int new_conn_id)
@@ -149,7 +142,7 @@ int get_route(const int *const main_tree, int index, int *const route)
     return i;
 }
 
-
+/*
 void set_test(int test_arr[][PAIR_LEN], const int num_1, const int *nums,
     const int len_nums, int *const pos)
 {
@@ -211,32 +204,47 @@ int fill_test(int test_arr[][PAIR_LEN])
 
     return pos;
 }
+// int test_arr[100][PAIR_LEN];
+// int size = fill_test(test_arr);
+*/
+
+
+
 
 
 int main()
 {
     setbuf(stdout, NULL);
 
-    int test_arr[100][PAIR_LEN];
-    int size = fill_test(test_arr);
-    int main_tree[21];
-    int route[100];
+    int main_pairs_arr[ACTORS_PAIRS_SIZE][PAIR_LEN];
+    int main_tree[ACTORS_PAIRS_SIZE];
+    int route[MAX_ROUTE_LEN];
     int from, to;
+    char actor[100];
 
-    for (int i = 0; i < 21; i++)
-        main_tree[i] = 0;
-
-    my_sort(test_arr, 0, size - 1, 0);
-
-    printf("Введите от кого и до кого держим путь: ");
-    scanf("%d%d", &from, &to);
-
+    // my_sort(main_pairs_arr, 0, ACTORS_PAIRS_SIZE - 1, 0);
+    read_actor:
+    printf("Введите актера, для которого нужно вычислить расстояния: ");
+    gets(actor);
+    // Сережа, дай айди и запиши в переменную from, пожалуйста!!!
+    if (!check)
+        goto read_actor;
     make_tree(main_tree, test_arr, size, from, to);
-    size = get_route(main_tree, to, route);
-
-    printf("route:\n");
-    for (int i = 0; i < size; i++)
-        printf("%d   ", route[i]);
+    while (strcmp(actor, "exit"))
+    {
+        read_actor_to:
+        printf("Введите актера, от которого нужно вычислить расстояние до первоначального: ");
+        gets(actor);
+        // Сережа, дай айди и запиши в переменную to, пожалуйста (также может поступить exit, нужно выйти в таком случае)!!!
+        if (!check)
+            goto read_actor_to;
+        size = get_route(main_tree, to, route);
+        printf("dist = %d\n", size - 1);
+        printf("route:\n");
+        // Сережа, в route хранится путь из айди, дай имена, пожалуйста!!!
+        for (int i = 0; i < size; i++)
+            printf("%d   ", route[i]);
+    }
 
     return 0;
 }
