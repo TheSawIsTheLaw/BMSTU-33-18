@@ -1,4 +1,3 @@
-
 #define SIZE 3694389
 #define NO 0
 #define YES 1
@@ -52,7 +51,7 @@ int get_pos_by_id(int main_matr[][PAIR_LEN], const int id, const int len, const 
     int left = 0;
     int right = len - 1;
     int middle;
-    
+
     while (left <= right)
     {
         middle = (left + right) / 2;
@@ -64,7 +63,7 @@ int get_pos_by_id(int main_matr[][PAIR_LEN], const int id, const int len, const 
         goto found;
     }
     return -1;
-    
+
 found:
     while (main_matr[middle--][index] == id && middle >= 0);
     return (middle == -1) ? middle + 1 : middle + 2;
@@ -75,11 +74,11 @@ void my_sort(int main_matr[][PAIR_LEN], const int begin, const int end, const in
 {
     if (begin >= end)
     return;
-    
+
     int middle_pos = (end + begin) / 2;
     int middle[2] = { main_matr[middle_pos][0], main_matr[middle_pos][1] };
     int left = begin, right = end;
-    
+
     while (left <= right)
     {
         while (is_less(main_matr[left], middle, index))
@@ -99,7 +98,7 @@ void create_mas(int arr[][2], int *size, char *filename)
     *size = 0;
     int id;
     while (*size != SIZE)
-    {    
+    {
         fread(&id, sizeof(int), 1, f);
         if (id == -1)
             continue;
