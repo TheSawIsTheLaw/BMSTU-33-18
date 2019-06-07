@@ -9,7 +9,7 @@
 * [По организационным и остальным вопросам](#org)
 
 ## ✏ По вопросам семинарских проектов <a name="sems"></a>
-
+## [Leaderboard](https://docs.google.com/spreadsheets/d/1r5wZ7WW5BFAgROaxf1SvH3cbg8OA8J4fSu6nSBqjfXE/edit?usp=sharing)
 ### XOgame <a name="xo"></a>
 
 👨‍💻 *TeamLead* проекта - **Кононенко Сергей** 
