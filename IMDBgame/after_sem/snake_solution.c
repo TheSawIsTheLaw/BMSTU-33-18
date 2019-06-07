@@ -228,8 +228,6 @@ int main()
 
     my_sort(test_arr, 0, size - 1, 0);
 
-    // for (int i = 0; i < size; i++)
-    //     printf("%d   %d     %d\n", test_arr[i][0], test_arr[i][1], size - i);
     printf("Введите от кого и до кого держим путь: ");
     scanf("%d%d", &from, &to);
 
@@ -242,56 +240,3 @@ int main()
 
     return 0;
 }
-
-
-
-/*
-// snake_solution(films_matr, actors_matr, len, from, to, 0, 20, route)
-int snake_solution(int films_matr[][PAIR_LEN], int actors_matr[][PAIR_LEN],
-int len, int from, int to, int iter, int max_iter, int *route)
-{
-if (iter >= max_iter)
-return -1;
-else if (from == to)
-return 0;
-
-int pos, min_pos;
-int min_dist = max_iter + 1, dist;
-
-if (!(iter % 2))
-{
-pos = get_pos_by_id(actors_matr, from, len);
-while (actors_matr[pos][0] == from)
-if ((dist = snake_solution(films_matr, actors_matr, len, actors_matr[pos++][1], to, iter + 1, max_iter, route + 1)) != -1)
-{
-min_dist = (min_dist > dist) ? dist : min_dist;
-min_pos = pos - 1;
-}
-if (min_dist < max_iter + 1)
-{
-*route = min_pos;
-return min_dist;
-}
-else
-return -1;
-}
-
-else
-{
-pos = get_pos_by_id(films_matr, from, len);
-while (films_matr[pos][0] == from)
-if ((dist = snake_solution(films_matr, actors_matr, len, films_matr[pos++][1], to, iter + 1, max_iter, route + 1)) != -1)
-{
-min_pos = (min_dist > dist) ? pos - 1 : min_pos;
-min_dist = (min_dist > dist) ? dist : min_dist;
-}
-if (min_dist < max_iter + 1)
-{
-*route = min_pos;
-return min_dist;
-}
-else
-return -1;
-}
-}
-*/
