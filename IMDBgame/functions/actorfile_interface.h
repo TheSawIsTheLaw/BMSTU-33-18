@@ -139,6 +139,9 @@ int get_id_by_name(FILE *const f, char actor_name[ACTOR_NAME_LEN])
     int size = get_struct_file_size(f);
     actor_t cur_actor;
 
+    actor_name[strlen(actor_name)] = ' ';
+    actor_name[strlen(actor_name) + 1] = '\0';
+
     for (int i = 0; i < size; ++i)
     {
         get_actor_by_pos(f, i, &cur_actor);
