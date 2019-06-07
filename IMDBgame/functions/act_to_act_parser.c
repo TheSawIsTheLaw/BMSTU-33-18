@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include "create_arrs.h"
 
-#define 0 0
-#define 1 1
-
 #define COUNT 1000
 #define COUNT_OF_C1CTIONS_ACTOR_FILMS SIZE
 #define COUNT_OF_C1CTIONS_FILMS_ACTOR SIZE
