@@ -223,27 +223,39 @@ int main()
     char actor[100];
 
     // my_sort(main_pairs_arr, 0, ACTORS_PAIRS_SIZE - 1, 0);
+    /*
     read_actor:
     printf("Введите актера, для которого нужно вычислить расстояния: ");
     gets(actor);
     // Сережа, дай айди и запиши в переменную from, пожалуйста!!!
     if (!check)
         goto read_actor;
+    */
+    printf("Введите актера, для которого нужно вычислить расстояния: ");
+    scanf("%d", &from);
     make_tree(main_tree, test_arr, size, from, to);
-    while (strcmp(actor, "exit"))
+    // while (strcmp(actor, "exit"))
+    while (to != -1)
     {
+        printf("Введите актера, до которого нужно вычислить расстояние: ");
+        scanf("%d", &to);
+        if (to == -1)
+            return 0;
+        /*
         read_actor_to:
         printf("Введите актера, от которого нужно вычислить расстояние до первоначального: ");
         gets(actor);
         // Сережа, дай айди и запиши в переменную to, пожалуйста (также может поступить exit, нужно выйти в таком случае)!!!
         if (!check)
             goto read_actor_to;
+        */
         size = get_route(main_tree, to, route);
         printf("dist = %d\n", size - 1);
         printf("route:\n");
         // Сережа, в route хранится путь из айди, дай имена, пожалуйста!!!
         for (int i = 0; i < size; i++)
             printf("%d   ", route[i]);
+        printf("\n");
     }
 
     return 0;
