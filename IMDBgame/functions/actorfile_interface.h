@@ -41,6 +41,20 @@ void print_file(FILE *const f)
     }
 }
 
+void print_actors(FILE *const f)
+{
+    fseek(f, 0, SEEK_SET);
+
+    int size = get_struct_file_size(f);
+    actor_t actor;
+
+    for (int i = 0; i < size; ++i)
+    {
+        fread(&actor, sizeof(actor_t), 1, f);
+        printf("%s", actor.name);
+    }
+}
+
 void get_actor_by_pos(FILE *const f, const int pos, actor_t *const get_actor)
 {
     fseek(f, pos * sizeof(actor_t), SEEK_SET);
@@ -48,7 +62,7 @@ void get_actor_by_pos(FILE *const f, const int pos, actor_t *const get_actor)
 }
 
 void put_actor_by_pos(FILE *const f, const int pos, const actor_t put_actor)
-{   
+{
     fseek(f, pos * sizeof(actor_t), SEEK_SET);
     fwrite(&put_actor, sizeof(actor_t), 1, f);
 }
@@ -81,7 +95,7 @@ void sort_file_id_name(FILE *const f, const unsigned int first, const unsigned i
                 j--;
                 get_actor_by_pos(f, j, &s_actor);
             }
-            
+
             if (i < j)
             {
                 put_actor_by_pos(f, i, s_actor);
@@ -138,15 +152,36 @@ int get_id_by_name(FILE *const f, char actor_name[ACTOR_NAME_LEN])
 {
     int size = get_struct_file_size(f);
     actor_t cur_actor;
+    int str_len = strlen(actor_name);
 
-    actor_name[strlen(actor_name)] = ' ';
-    actor_name[strlen(actor_name) + 1] = '\0';
+    actor_name[str_len] = ' ';
+    actor_name[++str_len] = '\0';
 
     for (int i = 0; i < size; ++i)
     {
         get_actor_by_pos(f, i, &cur_actor);
         if (!strcmp(cur_actor.name, actor_name))
             return cur_actor.id;
+    }
+
+    return NO_MATCHES;
+}
+
+int get_name_by_id(FILE *const f, unsigned int needed_id, char actor_name[ACTOR_NAME_LEN])
+{
+    int size = get_struct_file_size(f);
+    actor_t cur_actor;
+
+    for (int i = 0; i < size; ++i)
+    {
+        get_actor_by_pos(f, i, &cur_actor);
+        if (cur_actor.id == needed_id)
+        {
+            strcpy(actor_name, cur_actor.name);
+            actor_name[strlen(actor_name) - 1] = '\0';
+
+            return OK;
+        }
     }
 
     return NO_MATCHES;

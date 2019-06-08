@@ -246,28 +246,25 @@ int main()
 
     f = fopen("functions/clean_actors_file.bin", "rb");
     make_array(main_pairs_arr, f, CLEAN_FILE_SIZE);
-    int index = get_pos_by_id(main_pairs_arr, 262632, CLEAN_FILE_SIZE, 0);
-    printf("%d", index);
-    for (int i = index; main_pairs_arr[i][0] == 262632; i++)
-        printf("%d\n", main_pairs_arr[i][1]);
+    // int index = get_pos_by_id(main_pairs_arr, 262632, CLEAN_FILE_SIZE, 0);
+    // printf("%d", index);
+    // for (int i = index; main_pairs_arr[i][0] == 262632; i++)
+    //     printf("%d\n", main_pairs_arr[i][1]);
     // my_sort(main_pairs_arr, 0, CLEAN_FILE_SIZE - 1, 0);
     // printf("sorted %d  %d\n", main_pairs_arr[1][0], main_pairs_arr[1][1]);
 
     f_in = fopen("data/ID_NAME_NODUPS.bin", "rb");
 
     read_actor:
-        printf("Введите актера, для которого нужно вычислить расстояния: ");
-        scanf("%d", &from);
-        // scanf("%[^\n]", actor);
-        get_name_by_id(f_in, from, actor);
-        printf("%s\n", actor);
+    printf("Введите актера, для которого нужно вычислить расстояния: ");
+    gets(actor);
+    from = get_id_by_name(f_in, actor);
 
     if (from == NO_MATCHES)
     {
         printf("Данный актёр в базе не найден.\n");
         goto read_actor;
     }
-    printf("Found\n");
     /*
     qwerty:
     printf("Введите актера, для которого нужно вычислить расстояния: ");
@@ -278,17 +275,31 @@ int main()
     // for (int i = 0; i < 1200; i++)
     //     printf("%d   %d\n", main_pairs_arr[i][0], main_pairs_arr[i][1]);
     make_tree(main_tree, main_pairs_arr, CLEAN_FILE_SIZE, from);
+/*
+    int k = 0;
+    for (int i = 1; i < ACTORS_PAIRS_SIZE; i++)
+    {
+        size = get_route(main_tree, i, route);
+        if (size - 1 >= 8)
+        {
+            printf("%d  ", size - 1);
+            k += size - 1;
+        }
+    }
+    printf("\n\nsumm: %d\n", k);
+*/
     // while (strcmp(actor, "exit"))
+
+
     while (1)
     {
 
         read_actor_to:
-            printf("Введите актера, от которого нужно вычислить расстояние до первоначального: ");
-            // scanf("%[^\n]", actor);
-            scanf("%d", &to);
-            get_name_by_id(f_in, to, actor);
-            printf("%s", actor);
-        if (from == NO_MATCHES)
+        printf("Введите актера, от которого нужно вычислить расстояние до первоначального: ");
+        gets(actor);
+        // scanf("%d", &to);
+        to = get_id_by_name(f_in, actor);
+        if (to == NO_MATCHES)
         {
             printf("Данный актёр в базе не найден.\n");
             goto read_actor_to;
@@ -297,9 +308,9 @@ int main()
         size = get_route(main_tree, to, route);
         if (size > -1)
         {
-            printf("dist = %d\n", size - 1);
+            printf("\nРАССТОЯНИЕ = %d\n", size - 1);
 
-            printf("route:\n");
+            printf("ПУТЬ:    ");
             for (int i = 0; i < size; i++)
             {
                 get_name_by_id(f_in, route[i], actor);
@@ -311,6 +322,5 @@ int main()
         else
             printf("No connection\n");
     }
-
     return 0;
 }
