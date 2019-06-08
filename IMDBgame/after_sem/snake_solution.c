@@ -4,11 +4,20 @@
 #define YES 1
 #define PAIR_LEN 2
 #define SIZE 21
+#define CLEAN_FILE_SIZE 23901921
+#define ACTORS_PAIRS_SIZE 11500000
+#define MAX_ROUTE_LEN 100
 
 
 void add_conn(int *const conn_arr, const int new_conn_id)
 {
     conn_arr[new_conn_id / (sizeof(unsigned int) * 8)] |= 1 << (new_conn_id % (sizeof(unsigned int) * 8));
+}
+
+
+void make_array(int actor_to_actor_arr[][2], FILE* f, int size)
+{
+	fread(&actor_to_actor_arr[0][0], sizeof(int) * 2, size, f);
 }
 
 
@@ -53,7 +62,6 @@ int get_pos_by_id(int main_matr[][PAIR_LEN], const int id, const int len, const 
     int left = 0;
     int right = len - 1;
     int middle;
-
     while (left <= right)
     {
         middle = (left + right) / 2;
@@ -95,35 +103,44 @@ void my_sort(int main_matr[][PAIR_LEN], const int begin, const int end, const in
 }
 
 
+static int queue[ACTORS_PAIRS_SIZE] = { 0 }; // очередь для вершин для поиска в ширину
+static int visited[ACTORS_PAIRS_SIZE / 32 + 1] = { 0 }; // список посещенных вершин
+
+
 void make_tree(int *main_tree, int actors_pairs[][PAIR_LEN],
-    const int size_of_actors, const int from, const int to) // id of main vertex of tree (Bacon's)
+    const int size_of_actors, const int from) // id of main vertex of tree (Bacon's)
 {
-    int queue[SIZE]; // очередь для вершин для поиска в ширину
-    int visited[SIZE / 32 + 1] = { 0 }; // список посещенных вершин
     int cur_pos = 0, max_pos = 0; // начало, конец очереди
     int id = from;
-    int cur_id, index;
+    int cur_id, index, k = 0;
     // all variables higher were unsigned (but it can be the problem when we would link funcs???????)
 
-    main_tree[id] = 0;
+    main_tree[id] = -1;
     add_conn(visited, id);
     queue[max_pos++] = id;
 
     while(cur_pos < max_pos) // пока очередь не пуста
     {
+        if (k % 1000000 == 0)
+            printf("%d\n", k / 1000000);
         // printf("\nqueue:  ");
         // for (int i = cur_pos; i < max_pos; i++)
         //     printf("%d   ", queue[i]);
         id = queue[cur_pos++]; // берем следующего по очереди актера
         index = get_pos_by_id(actors_pairs, id, size_of_actors, 0);
+        if (index == -1)
+            continue;
         while (actors_pairs[index][0] == id) // найдем все необработанные связи для этого актера...
         {
             cur_id = actors_pairs[index++][1];
             if (!get_conn(visited, cur_id)) // если найдена связь и она еще не была обработана
             {
+                k++;
                 add_conn(visited, cur_id); // добавить связь в обработанные
                 queue[max_pos++] = cur_id; // добавить данного актера в очередь
+                // printf("in%d", cur_id);
                 main_tree[cur_id] = id; // записать данные для данного актера
+                // printf("out");
             }
         }
     }
@@ -134,7 +151,9 @@ int get_route(const int *const main_tree, int index, int *const route)
 {
     int i = 0;
     route[i++] = index;
-    while(main_tree[index] != 0)
+    if (main_tree[index] == 0)
+        return -1;
+    while(main_tree[index] != -1)
     {
         route[i++] = main_tree[index];
         index = main_tree[index];
@@ -216,13 +235,19 @@ int main()
 {
     setbuf(stdout, NULL);
 
-    int main_pairs_arr[ACTORS_PAIRS_SIZE][PAIR_LEN];
-    int main_tree[ACTORS_PAIRS_SIZE];
+    static int main_pairs_arr[CLEAN_FILE_SIZE][PAIR_LEN];
+    static int main_tree[ACTORS_PAIRS_SIZE];
     int route[MAX_ROUTE_LEN];
-    int from, to;
-    char actor[100];
+    int from, to, size;
+    FILE *f;
+    // char actor[100];
 
-    // my_sort(main_pairs_arr, 0, ACTORS_PAIRS_SIZE - 1, 0);
+
+    f = fopen("../functions/clean_actors_file.bin", "rb");
+    make_array(main_pairs_arr, f, CLEAN_FILE_SIZE);
+    // my_sort(main_pairs_arr, 0, CLEAN_FILE_SIZE - 1, 0);
+    // printf("sorted %d  %d\n", main_pairs_arr[1][0], main_pairs_arr[1][1]);
+
     /*
     read_actor:
     printf("Введите актера, для которого нужно вычислить расстояния: ");
@@ -231,11 +256,16 @@ int main()
     if (!check)
         goto read_actor;
     */
+    qwerty:
     printf("Введите актера, для которого нужно вычислить расстояния: ");
     scanf("%d", &from);
-    make_tree(main_tree, test_arr, size, from, to);
+    if (get_pos_by_id(main_pairs_arr, from, CLEAN_FILE_SIZE, 0) == -1)
+        goto qwerty;
+    // for (int i = 0; i < 1200; i++)
+    //     printf("%d   %d\n", main_pairs_arr[i][0], main_pairs_arr[i][1]);
+    make_tree(main_tree, main_pairs_arr, CLEAN_FILE_SIZE, from);
     // while (strcmp(actor, "exit"))
-    while (to != -1)
+    while (1)
     {
         printf("Введите актера, до которого нужно вычислить расстояние: ");
         scanf("%d", &to);
@@ -250,12 +280,17 @@ int main()
             goto read_actor_to;
         */
         size = get_route(main_tree, to, route);
-        printf("dist = %d\n", size - 1);
-        printf("route:\n");
-        // Сережа, в route хранится путь из айди, дай имена, пожалуйста!!!
-        for (int i = 0; i < size; i++)
-            printf("%d   ", route[i]);
-        printf("\n");
+        if (size > -1)
+        {
+            printf("dist = %d\n", size - 1);
+            printf("route:\n");
+            // Сережа, в route хранится путь из айди, дай имена, пожалуйста!!!
+            for (int i = 0; i < size; i++)
+                printf("%d   ", route[i]);
+            printf("\n");
+        }
+        else
+            printf("No connection\n");
     }
 
     return 0;
