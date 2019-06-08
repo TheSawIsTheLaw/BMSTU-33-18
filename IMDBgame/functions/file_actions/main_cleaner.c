@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "create_arrs.h"
-#include "cleaner.h"
+#include "../interfaces/create_arrs.h"
+#include "../interfaces/cleaner.h"
 
 
 int main(void)

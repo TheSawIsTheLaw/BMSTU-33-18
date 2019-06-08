@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "actorfile_interface.h"
+#include "../interfaces/actorfile_interface.h"
 
 int main(int argc, char **argv)
 {
