@@ -243,7 +243,6 @@ int main()
     FILE *f, *f_in;
     char actor[100];
 
-
     f = fopen("functions/clean_actors_file.bin", "rb");
     make_array(main_pairs_arr, f, CLEAN_FILE_SIZE);
     // int index = get_pos_by_id(main_pairs_arr, 262632, CLEAN_FILE_SIZE, 0);
@@ -257,7 +256,16 @@ int main()
 
     read_actor:
     printf("Введите актера, для которого нужно вычислить расстояния: ");
-    gets(actor);
+    
+    int i = -1;
+    do
+    {
+        i++;
+        scanf("%c", &actor[i]);
+    } while (actor[i] != '\n');
+
+    actor[i] = '\0';
+
     from = get_id_by_name(f_in, actor);
 
     if (from == NO_MATCHES)
@@ -296,7 +304,15 @@ int main()
 
         read_actor_to:
         printf("Введите актера, от которого нужно вычислить расстояние до первоначального: ");
-        gets(actor);
+        
+        int i = -1;
+        do
+        {
+            i++;
+            scanf("%c", &actor[i]);
+        } while (actor[i] != '\n');
+
+        actor[i] = '\0';
         // scanf("%d", &to);
         to = get_id_by_name(f_in, actor);
         if (to == NO_MATCHES)
