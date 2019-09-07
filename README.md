@@ -33,7 +33,7 @@
 * 
 ### ARRgame <a name="arr"></a>
 
-👨‍💻 *TeamLead* проекта - **Нитенко Михаил**
+👨‍💻 *TeamLead* проекта - **Якуба Дмитрий**
 * GitLab: @yadv18u603
 * Telegram: @xGULZAx
 * VK: А вдруг Антон Александрович увидит и убьёт
