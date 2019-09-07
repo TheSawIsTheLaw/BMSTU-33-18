@@ -6,6 +6,7 @@
   * [XOgame](#xo)
   * [STRGame](#STRGame)
   * [IMDBgame](#rec)
+  * [ARRgame](#arr)
 * [По организационным и остальным вопросам](#org)
 * [Leaderboard](https://docs.google.com/spreadsheets/d/1r5wZ7WW5BFAgROaxf1SvH3cbg8OA8J4fSu6nSBqjfXE/edit?usp=sharing)
 ## ✏ По вопросам семинарских проектов <a name="sems"></a>
@@ -29,6 +30,13 @@
 * GitLab: @nmyu18u413
 * Telegram: @VASYA_VAN
 * VK: @ya_vrzh
+* 
+### ARRgame <a name="arr"></a>
+
+👨‍💻 *TeamLead* проекта - **Нитенко Михаил**
+* GitLab: @yadv18u603
+* Telegram: @xGULZAx
+* VK: А вдруг Антон Александрович увидит и убьёт
 
 ## 💡 По организационным и остальным вопросам <a name="org"></a>
 
