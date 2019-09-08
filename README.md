@@ -9,6 +9,7 @@
   * [ARRgame](#arr)
 * [По организационным и остальным вопросам](#org)
 * [Leaderboard](https://docs.google.com/spreadsheets/d/1r5wZ7WW5BFAgROaxf1SvH3cbg8OA8J4fSu6nSBqjfXE/edit?usp=sharing)
+* [ARRgame board](https://docs.google.com/spreadsheets/d/1NsSevvCq2d52TNeedHo6OGtyP-unvljMqknLzyuJvmI/edit#gid=0)
 ## ✏ По вопросам семинарских проектов <a name="sems"></a>
 ### XOgame <a name="xo"></a>
 
