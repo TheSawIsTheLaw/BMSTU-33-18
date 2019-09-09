@@ -13,43 +13,45 @@ int* creat(const int sizeArray)
     //if (sizeArray < 1)
         //return NO_CORRECT_SIZE_ARRAY;
     
-    int realSize = 0;
-    int* pointUserStart;   
-    pointUserStart = 
-        (int*)calloc((sizeArray + COUNT_NEED_ELEMENT), sizeof(int));
     
+       
+    int* pointUserStart;
+    int allocatSize = 0;
+
+
+    pointUserStart = 
+        (int*)calloc((sizeArray + COUNT_NEED_ELEMENT),  sizeof(int));
     if (pointUserStart)
     {
-        int *newPointSize = realloc(pointUserStart, 
+        int* allocatStart = realloc(pointUserStart,
                 (sizeArray * 2 + COUNT_NEED_ELEMENT));
-        if (newPointSize)
+        if (allocatStart)
         {
-            realSize = sizeArray * 2; 
-            pointUserStart = newPointSize;
-            newPointSize = NULL;
+            pointUserStart = allocatStart;
+            allocatStart = NULL;
+            allocatSize = sizeArray * 2;
         }
         else
-            realSize = sizeArray;
+            allocatSize = sizeArray;
     }
     else
     {
-        puts("Не удалось выделить память!!!");
-        //return MEMORY_ERROR;
+        puts("Не удалось выделить память.");
     }
     
-    //array[0]
-    // размер массива
-    *pointUserStart = sizeArray; 
+    //array[0] - длинна массива, запрошенного пользователем
+    *pointUserStart = sizeArray;
     
-    //array[1]
-    // количество аллоцированных элементов (не учитывая первые три)
-    pointUserStart += 1;
-    *pointUserStart = realSize;
+    //array[1] - количество аллоцированнх элементов(не считая первых 3х)
+    pointUserStart++;
+    *pointUserStart = allocatSize;
     
-    //array[2]
-    // фактическая занятость массива
-    pointUserStart += 1;
+    //array[2] - количество занятых ячеек
+    pointUserStart++;
     *pointUserStart = 0;
+
+    pointUserStart++;
+
     return pointUserStart;
 }
 
