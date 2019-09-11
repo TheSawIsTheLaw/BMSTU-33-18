@@ -7,7 +7,7 @@ build:
   image: gcc
   script:
     - cd ARRgame/functions/
-    - gcc -Wall -Werror -pedantic arrgame_functions_*.c
+    - gcc -Wall -Werror -pedantic -c arrgame_functions_*.c
   only:
     - branches
   except:
