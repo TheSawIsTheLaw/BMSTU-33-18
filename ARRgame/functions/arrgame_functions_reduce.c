@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <omp.h>
 #include "../headers/arrgame_headers_reduce.h"
 
@@ -33,6 +34,7 @@ int reduce(int (*f) (int, int), int *arr)
 {
     if (f == NULL || arr == NULL)
     {
+        puts("INVALID DATA, TRY AGAIN!");
         return 0;
     }
 

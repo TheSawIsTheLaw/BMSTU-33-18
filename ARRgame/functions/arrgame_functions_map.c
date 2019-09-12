@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-
-#include "../headers/arrgame_headers_map.h"
 #include <omp.h>
+#include "../headers/arrgame_headers_map.h"
 
 #define SIZE_ADRS -3
 
