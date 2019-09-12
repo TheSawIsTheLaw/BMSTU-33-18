@@ -17,6 +17,7 @@ build:
     - IMDBBot
     - MDBBot_dockerized
     - master
+    - arrgame_map_filter_reduce
 
 build_openmp:
   stage: build
