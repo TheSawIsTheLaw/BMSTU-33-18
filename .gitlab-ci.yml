@@ -4,10 +4,11 @@ stages:
 
 build:
   stage: build
-  image: gcc
+  image: cppcheck-docker
   script:
     - cd ARRgame/functions/
     - gcc -Wall -Werror -pedantic -c arrgame_functions_*.c
+    - cppcheck --all arrgame_functions_*.c
   only:
     - branches
   except:
