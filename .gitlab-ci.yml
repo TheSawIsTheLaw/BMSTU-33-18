@@ -10,7 +10,7 @@ build:
     - apt-get update -y
     - apt-get install -y cppcheck
     - gcc -Wall -Werror -pedantic -c arrgame_functions_*.c
-    - cppcheck --all arrgame_functions_*.c
+    - cppcheck --enable=all arrgame_functions_*.c
   only:
     - branches
   except:
@@ -23,7 +23,8 @@ build:
 #  image: gcc
 #  script:
 #    - cd ARRgame/tests/
-#    - gcc -Wall -Werror -pedantic -o test *.c
+#    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c
+#    - cppcheck --enable=all arrgame_tests_*.c
 #    - ./test
 #  only:
 #    - branches
