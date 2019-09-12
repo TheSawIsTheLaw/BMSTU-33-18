@@ -3,6 +3,6 @@
 #define _ARRGAME_FUNCTIONS_SORT_H_
 
 void arr_output(int *start, int *endian);
-void quick_sort(int *head, int *tail);
+void sort(int *head, int *tail, int key);
 
 #endif

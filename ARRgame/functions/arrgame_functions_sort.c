@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "../headers/arrgame_functions_sort.h"
 
+#define UP_SORT_KEY 1
+#define DOWN_SORT_KEY -1
+
 void change(int *first, int *second)
 {
     int temp = *first;
@@ -8,17 +11,12 @@ void change(int *first, int *second)
     *second = temp;
 }
 
-
-void quick_sort(int *head, int *tail) // Принимает указатели на сортируемый интервал
+void up_sort(int *head, int *tail)
 {
     int len = tail - head;
     if (head >= tail)
         return;
     int mid = *(head + len / 2);
-    //printf("%ld\n", tail - head);
-    //printf("%ld\n", (((size_t) head + (size_t) tail) / 2));
-    //printf("%d\n", mid);
-    //arr_output(head, tail + 1);
     int *start = head, *end = tail;
     while (start <= end)
     {
@@ -29,12 +27,42 @@ void quick_sort(int *head, int *tail) // Принимает указатели �
         if (start <= end)
         {
             change(start, end);
-            // printf("%d %d %d\n", mid, arr[start], arr[end]);
             start++;
             end--;
-            // arr_print(arr, SIZE);
         }
     }
-    quick_sort(head, end);
-    quick_sort(start, tail);
+    up_sort(head, end);
+    up_sort(start, tail);    
+}
+
+void down_sort(int *head, int *tail)
+{
+    int len = tail - head;
+    if (head >= tail)
+        return;
+    int mid = *(head + len / 2);
+    int *start = head, *end = tail;
+    while (start <= end)
+    {
+        while (*start > mid)
+            start++;
+        while (*end < mid)
+            end--;
+        if (start <= end)
+        {
+            change(start, end);
+            start++;
+            end--;
+        }
+    }
+    down_sort(head, end);
+    down_sort(start, tail); 
+}
+
+void sort(int *head, int *tail, int key) // Принимает указатели на сортируемый интервал
+{
+    if (key == UP_SORT_KEY)
+        up_sort(head, tail);
+    else
+        down_sort(head, tail);
 }
