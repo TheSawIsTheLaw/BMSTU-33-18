@@ -8,11 +8,17 @@ void change(int *first, int *second)
     *second = temp;
 }
 
+
 void quick_sort(int *head, int *tail) // Принимает указатели на сортируемый интервал
 {
+    int len = tail - head;
     if (head >= tail)
         return;
-    int mid = *(int *) (((size_t) head + (size_t) tail) / 2);
+    int mid = *(head + len / 2);
+    //printf("%ld\n", tail - head);
+    //printf("%ld\n", (((size_t) head + (size_t) tail) / 2));
+    //printf("%d\n", mid);
+    //arr_output(head, tail + 1);
     int *start = head, *end = tail;
     while (start <= end)
     {
