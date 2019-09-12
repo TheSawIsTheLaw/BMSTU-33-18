@@ -11,7 +11,7 @@ typedef struct
     int end;
 } args_t;
 
-static void *map_thread(args_t *args)
+static void map_thread(args_t *args)
 {
     for (int *i = args->arr + args->start; i < args->arr + args->end; i++)
     {
