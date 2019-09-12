@@ -1,4 +1,4 @@
-#define AMOUNT_OF_ACTORS 9000000
+#define AMOUNT_OF_ACTORS 1
 
 typedef struct
 {
@@ -8,4 +8,4 @@ typedef struct
     unsigned int len;
 } node;
 
-node graph[AMOUNT_OF_ACTORS];
+static node graph[AMOUNT_OF_ACTORS];
