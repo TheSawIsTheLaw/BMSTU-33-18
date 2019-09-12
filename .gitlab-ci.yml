@@ -1,0 +1,31 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  image: gcc
+  script:
+    - cd ARRgame/functions/
+    - gcc -Wall -Werror -pedantic -c arrgame_functions_*.c
+  only:
+    - branches
+  except:
+    - IMDBBot
+    - MDBBot_dockerized
+    - master
+    - arrgame_ci
+#test:
+#  stage: test
+#  image: gcc
+#  script:
+#    - cd ARRgame/tests/
+#    - gcc -Wall -Werror -pedantic -o test *.c
+#    - ./test
+#  only:
+#    - branches
+#  except:
+#    - IMDBBot
+#    - MDBBot_dockerized
+#    - master
+#    - arrgame_ci
