@@ -12,11 +12,6 @@ typedef struct
     int end;
 } args_t;
 
-static int foo(int acc, int x)
-{
-    return acc + x;
-}
-
 static int reduce_thread(args_t *args)
 {
     int acc = 0;
