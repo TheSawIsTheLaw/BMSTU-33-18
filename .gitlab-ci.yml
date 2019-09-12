@@ -4,9 +4,11 @@ stages:
 
 build:
   stage: build
-  image: docker-cppcheck
+  image: gcc
   script:
     - cd ARRgame/functions/
+    - apt-get update -y
+    - apt-get install -y cppcheck
     - gcc -Wall -Werror -pedantic -c arrgame_functions_*.c
     - cppcheck --all arrgame_functions_*.c
   only:
