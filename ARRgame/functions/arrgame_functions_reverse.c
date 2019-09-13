@@ -20,7 +20,7 @@ void change(int *first, int *second) //Принимает указатели н�
 
 int reverse(int *head, int *tail) //Принимает указатели на интервал, который необходимо перевернуть
 {
-    long long int len = tail - head;
+    long long int len = tail - head + 1;
     
     if (len < MIN_LENGTH)
         return ERROR;
