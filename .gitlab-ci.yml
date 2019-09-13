@@ -17,17 +17,17 @@ build:
     - IMDBBot
     - MDBBot_dockerized
     - master
-#test:
-#  stage: test
-#  image: gcc
-#  script:
-#    - cd ARRgame/tests/
-#    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c
-#    - cppcheck --enable=all arrgame_tests_*.c
-#    - ./test
-#  only:
-#    - branches
-#  except:
-#    - IMDBBot
-#    - MDBBot_dockerized
-#    - master
+test:
+  stage: test
+  image: gcc
+  script:
+    - cd ARRgame/tests/
+    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c
+    - cppcheck --enable=all arrgame_tests_*.c
+    - ./test
+  only:
+    - branches
+  except:
+    - IMDBBot
+    - MDBBot_dockerized
+    - master
