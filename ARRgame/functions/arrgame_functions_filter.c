@@ -4,6 +4,7 @@
 #include "../headers/arrgame_headers_filter.h"
 
 #define SIZE_ADRS -3
+#define FULLNESS_ADRS -1
 
 typedef struct 
 {
@@ -52,5 +53,6 @@ void filter(int (*f) (int), int *arr)
     args.end =  *(arr + SIZE_ADRS);
 
     *(arr + SIZE_ADRS) -= filter_thread(&args);
+    *(arr + FULLNESS_ADRS) = *(arr + SIZE_ADRS);
 }
 
