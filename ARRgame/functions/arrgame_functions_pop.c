@@ -1,11 +1,5 @@
 #include "../headers/arrgame_headers_pop.h"
-
 #include <stdio.h>
-
-typedef pop_args{
-    int *arr;
-    int n;
-};
 
 int pop_base(int *arr, int n)
 {
