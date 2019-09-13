@@ -4,7 +4,7 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
+#include "../headers/arrgame_functions_reverse.h";
 #define ZERO 0
 #define SUCCESS 0
 #define ERROR 1
