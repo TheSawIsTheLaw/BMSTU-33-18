@@ -58,10 +58,12 @@ int indexx(const int x, int* arr_adr, const int start, const int stop)
                 return (start + i);
             i--;
         }
-    else
+	else 
         if (start == stop)
+		{
             if (x == *(get_addr_by_num(arr_adr, start)))
                 return start;
+		}
         else 
             while (start+i < stop)
             {
