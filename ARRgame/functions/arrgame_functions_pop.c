@@ -7,7 +7,7 @@ extern int errno;
 
 int pop_base(int *arr, int n)
 {
-    if (!arr && (*(arr - SERVICE_INFO) - n <= 0 || n < 0))
+    if (!arr || (*(arr - SERVICE_INFO) - n <= 0 || n < 0))
     {
         errno = POS_ERROR;
         return 0;
