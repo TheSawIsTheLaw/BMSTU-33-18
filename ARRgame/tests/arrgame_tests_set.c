@@ -4,11 +4,13 @@
 #define SERVICE_INFO 3
 #define OK 0
 #define POS_ERROR 1
+#define TEST_ERROR 1 
 #define NO 0
 #define YES 1
 
 //delet plsss
 #include <errno.h>
+
 extern int errno;
 
 /*
@@ -24,18 +26,19 @@ Output data:
 */
 int set(int *const array, const int num_to_be_set, const int pos)
 {
-    if (*array - pos <= 0 || pos < 0)
+    if (*(array - SERVICE_INFO) - pos <= 0 || pos < 0)
     {
         errno = POS_ERROR;
     }
 
     else
     {
-        *(array + SERVICE_INFO + pos) = num_to_be_set;
+        *(array + pos) = num_to_be_set;
     }
 
     return OK;
 }
+
 //delet plsss
 
 
@@ -64,17 +67,18 @@ int main()
     int case1[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 6};
     int case1_g[10] = {7, 0xDEADA55, 0xDEADA55, 33, 1, 2, 3, 4, 5, 6};
 
-    int err = set((case1 + SERVICE_INFO), 33, 0);
+    errno = 0;
+    set((case1 + SERVICE_INFO), 33, 0);
 
     printf("First case \n");
     printf("Out: \n");
     print_mas(case1, case1[0] + SERVICE_INFO);
-    printf("err %d\n", err);
+    printf("err %d\n", errno);
     printf("Expected out: \n");
     print_mas(case1_g, case1_g[0] + SERVICE_INFO);
     printf("err 0\n");
 
-    if (same(case1, case1_g) && err == OK)
+    if (same(case1, case1_g) && errno == OK)
         printf("GOOD\n");
     else
     {
@@ -86,17 +90,18 @@ int main()
     int case2[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 6};
     int case2_g[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 6};
 
-    err = set((case2 + SERVICE_INFO), 0xA55, -1);
+    errno = 0;
+    set((case2 + SERVICE_INFO), 0xA55, -1);
 
     printf("\nSecond case \n");
     printf("Out: \n");
     print_mas(case2, case2[0] + SERVICE_INFO);
-    printf("err %d\n", err);
+    printf("err %d\n", errno);
     printf("Expected out: \n");
     print_mas(case2_g, case2_g[0] + SERVICE_INFO);
     printf("err 1\n");
 
-    if (same(case2, case2_g) && err == POS_ERROR)
+    if (same(case2, case2_g) && errno == POS_ERROR)
         printf("GOOD\n");
     else
     {
@@ -108,17 +113,18 @@ int main()
     int case3[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 6};
     int case3_g[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 6};
 
-    err = set((case3 + SERVICE_INFO), 0xA55, 33);
+    errno = 0;
+    set((case3 + SERVICE_INFO), 0xA55, 33);
 
     printf("\nThird case \n");
     printf("Out: \n");
     print_mas(case3, case3[0] + SERVICE_INFO);
-    printf("err %d\n", err);
+    printf("err %d\n", errno);
     printf("Expected out: \n");
     print_mas(case3_g, case3_g[0] + SERVICE_INFO);
     printf("err 1\n");
 
-    if (same(case3, case3_g) && err == POS_ERROR)
+    if (same(case3, case3_g) && errno == POS_ERROR)
         printf("GOOD\n");
     else
     {
@@ -127,6 +133,9 @@ int main()
     }
 
     printf("\nFAILED TESTS: %d", bad_count);
-
-    return OK;
+    
+    if (bad_count > 0)
+        return TEST_ERROR;
+    else
+        return OK;
 }
