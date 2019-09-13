@@ -3,6 +3,6 @@
 
 #include <errno.h>
 
-int index(const int x, int* arr_adr, const int start, const int stop)
+int indexx(const int x, int* arr_adr, const int start, const int stop);
 
 #endif
