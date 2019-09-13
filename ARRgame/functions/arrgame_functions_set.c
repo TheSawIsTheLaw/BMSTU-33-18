@@ -21,14 +21,14 @@ Output data:
 */
 int set(int *const array, const int num_to_be_set, const int pos)
 {
-    if (*array - pos <= 0 || pos < 0)
+    if (*(array - SERVICE_INFO) - pos <= 0 || pos < 0)
     {
         errno = POS_ERROR;
     }
 
     else
     {
-        *(array + SERVICE_INFO + pos) = num_to_be_set;
+        *(array + pos) = num_to_be_set;
     }
 
     return OK;
