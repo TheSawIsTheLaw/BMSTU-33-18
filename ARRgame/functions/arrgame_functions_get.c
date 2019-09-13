@@ -1,9 +1,7 @@
 #include "../headers/arrgame_headers_get.h"
-#include <errno.h>
 
 #define SERVICE_INFO 3
 #define POS_ERROR 1
-#define OK 0
 #define ZERO 0
 
 
@@ -14,11 +12,12 @@ extern int errno; // здесь будет код ошибки
 // При корректной работе в errno кладется 0, иначе ненулевое значение
 int get(const int *const array, const int pos)
 {
-	if (*array - pos <= 0 || pos < 0)
+	if (*(array - SERVICE_INFO) - pos <= 0 || pos < 0) // Ненавижу создателя creat(e). 
+	// Почему-то из-за него я должен переписывать свою функцию, хотя написал раньше
+	// (+ тимлид не выдвинул никаких требований к архитектуре...)
 	{
 		errno = POS_ERROR;
 		return ZERO;
 	}
-	else
-		return *(array + SERVICE_INFO + pos);
+	return *(array + pos);
 }
