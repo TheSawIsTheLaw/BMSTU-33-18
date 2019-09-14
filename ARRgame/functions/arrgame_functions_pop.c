@@ -2,12 +2,13 @@
 #include <errno.h>
 #define OK 0
 #define POS_ERROR 1
-#define SERVICE_INFO 3
+#define MEM_INFO 2
+#define SIZE_INFO 3
 extern int errno;
 
 int pop_base(int *arr, int n)
 {
-    if (!arr || (*(arr - SERVICE_INFO) - n <= 0 || n < 0))
+    if (!arr || (*(arr - SIZE_INFO) - n <= 0 || n < 0))
     {
         errno = POS_ERROR;
         return 0;
@@ -18,7 +19,9 @@ int pop_base(int *arr, int n)
     {
         *(arr + i) = *(arr + i + 1);
     }
-    --*(arr - SERVICE_INFO);
+    *(arr - SIZE_INFO)--;
+    *(arr - MEM_INFO) -= sizeof(int);
+    
     return value;
 }
 
