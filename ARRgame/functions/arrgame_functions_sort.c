@@ -7,7 +7,7 @@
 
 
 #include <stdio.h>
-#include "../headers/arrgame_functions_sort.h"
+#include "../headers/arrgame_headers_sort.h"
 
 #define UP_SORT_KEY 1
 #define DOWN_SORT_KEY -1
