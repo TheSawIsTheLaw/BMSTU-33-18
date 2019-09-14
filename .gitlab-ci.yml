@@ -7,25 +7,42 @@ build:
   image: gcc
   script:
     - cd ARRgame/functions/
+    - apt-get update -y
+    - apt-get install -y cppcheck
     - gcc -Wall -Werror -pedantic -c arrgame_functions_*.c
+    - cppcheck --enable=all arrgame_functions_*.c
   only:
     - branches
   except:
     - IMDBBot
     - MDBBot_dockerized
     - master
-    - arrgame_ci
-#test:
-#  stage: test
-#  image: gcc
-#  script:
-#    - cd ARRgame/tests/
-#    - gcc -Wall -Werror -pedantic -o test *.c
-#    - ./test
-#  only:
-#    - branches
-#  except:
-#    - IMDBBot
-#    - MDBBot_dockerized
-#    - master
-#    - arrgame_ci
+
+build-openmp:
+  stage: build
+  image: gcc
+  script:
+    - cd ARRgame/functions/
+    - apt-get update -y
+    - apt-get install -y cppcheck
+    - gcc -Wall -Werror -pedantic -c -fopenmp arrgame_functions_*.c
+    - cppcheck --enable=all arrgame_functions_*.c
+  only:
+    - arrgame_map_filter_reduce
+
+test:
+  stage: test
+  image: gcc
+  script:
+    - cd ARRgame/tests/
+    - apt-get update -y
+    - apt-get install -y cppcheck
+    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c
+    - cppcheck --enable=all arrgame_tests_*.c
+    - ./test
+  only:
+    - branches
+  except:
+    - IMDBBot
+    - MDBBot_dockerized
+    - master
