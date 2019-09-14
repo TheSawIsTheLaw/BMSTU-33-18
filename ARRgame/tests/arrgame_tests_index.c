@@ -5,5 +5,6 @@
 
 int main(void)
 {
+    //sabur rabotai
     return 0;
 }
