@@ -40,7 +40,7 @@ static void simple_extend(int *arra, const int *const arrb)
     int *const offset_dst = GET_START_PTR(arra) + GET_REC(arra);
     const int *const offset_src = GET_START_PTR(arrb);
 
-    memcpy(offset_dst, offset_src, ncpy*sizeof(int));
+    memcpy(offset_dst, offset_src, ncpy * sizeof(int));
 
     GET_REC(arra) += ncpy;
 }
@@ -52,7 +52,7 @@ static int safe_realloc(int **arra, const size_t desired_size)
 
     const size_t realloc_size = OFFSET_START + desired_size;
 
-    int *const temp = realloc((void*)*arra, realloc_size*sizeof(int));
+    int *const temp = realloc((void*) * arra, realloc_size * sizeof(int));
     if (!temp)
         return EXTEND_REALLOC_FAIL;
 
@@ -66,18 +66,15 @@ int *extend(int *arra, const int *const arrb)
 {
     const int reall_a = GET_REC(arra);
     const int allc_a = GET_ALC(arra);
-
     const int reall_b = GET_REC(arrb);
 
     if (reall_a + reall_b > allc_a)
     {
-        /* если результат не помещается в уже выделенную память,
-           то добавим ещё :p */
         const int rc = safe_realloc(&arra, reall_a + reall_b);
         if (rc != SUCCESS)
         {
             errno = EXTEND_REALLOC_FAIL;
-            return NULL;
+            return (void*)0;
         }
     }
 
