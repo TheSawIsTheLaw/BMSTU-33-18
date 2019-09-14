@@ -14,12 +14,12 @@ int pop_base(int *arr, int n)
         return 0;
     }
     int value = *(arr + n);
-    int kol = *(arr - SERVICE_INFO);
+    int kol = *(arr - SIZE_INFO);
     for (int i = n; i < kol - 1; i++)
     {
         *(arr + i) = *(arr + i + 1);
     }
-    *(arr - SIZE_INFO)--;
+    --*(arr - SIZE_INFO);
     *(arr - MEM_INFO) -= sizeof(int);
     
     return value;
@@ -30,6 +30,6 @@ int var_pop(pop_args in)
     int *arr_out = in.arr ? in.arr : 0;
     int n_out = 0;
     if (arr_out)
-        n_out = in.n ? in.n : *(in.arr - SERVICE_INFO) - 1;
+        n_out = in.n ? in.n : *(in.arr - SIZE_INFO) - 1;
     return pop_base(arr_out, n_out);
 }
