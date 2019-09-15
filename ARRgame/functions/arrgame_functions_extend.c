@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 #include "../headers/arrgame_headers_extend.h"
 
@@ -24,7 +25,6 @@
 
 #define EXTEND_REALLOC_FAIL -602
 
-extern int errno;
 
 /* 
    При нехватки памяти выделяется новая,
