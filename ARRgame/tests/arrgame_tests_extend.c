@@ -36,14 +36,29 @@ int cmp_arrays(int *arra, int *arrb)
     return EQ;
 }
 
+void print_array(int *arr)
+{
+    int realc = GET_REC(arr);
+    for (int i = 0; i < realc; i++)
+        printf("%d ", arr[OFFSET_START + i]);
+
+    printf("\n");
+}
+
 int test_extend(int *arra, int *arrb,
                 int *expected)
 {
     arra = extend(arra, arrb);
 
-    if (cmp_arrays(arra, expected))
+    if (!cmp_arrays(arra, expected))
     {
-        printf("test failed, do something\n");
+        printf("Test failed\n");
+        printf("array a:\n");
+        print_array(arra);
+        printf("array b:\n");
+        print_array(arrb);
+        printf("expected :\n");
+        print_array(expected);
         return TEST_FAILURE;
     }
 
@@ -84,15 +99,20 @@ int first_test_extend()
     
     dumb_create(&arra, 4, a_data);
     dumb_create(&arrb, 3, b_data);
-    dumb_create(&arra, 7, e_data);
+    dumb_create(&expected, 7, e_data);
 
     errc += test_extend(arra, arrb, expected);
+
+    printf("Errc on exit is %d\n", errc);
     
     return errc;
 }
 
 int main(void)
 {
-    return 0;
+    if (first_test_extend())
+        return TEST_FAILURE;
+    
+    return SUCCESS;
 }
 
