@@ -130,6 +130,50 @@ int second_test_extend()
     return errc;
 }
 
+int third_test_extend()
+{
+    int errc = 0;
+
+    int a_data[] = {};
+    int b_data[] = {3, 9, 6};
+    int e_data[] = {3, 9, 6};
+    int *arra;
+    int *arrb;
+    int *expected;
+
+    dumb_create(&arra, 0, a_data);
+    dumb_create(&arrb, 3, b_data);
+    dumb_create(&expected, 3, e_data);
+
+    errc += test_extend(arra, arrb, expected);
+
+    printf("Errc on exit is %d\n", errc);
+
+    return errc;
+}
+
+int second_test_extend()
+{
+    int errc = 0;
+
+    int a_data[] = {1, 5, 8};
+    int b_data[] = {};
+    int e_data[] = {1, 5, 8};
+    int *arra;
+    int *arrb;
+    int *expected;
+    
+    dumb_create(&arra, 3, a_data);
+    dumb_create(&arrb, 0, b_data);
+    dumb_create(&expected, 3, e_data);
+    
+    errc += test_extend(arra, arrb, expected);
+    
+    printf("Errc on exit is %d\n", errc);
+    
+    return errc;
+}
+
 int main(void)
 {
     if (first_test_extend())
