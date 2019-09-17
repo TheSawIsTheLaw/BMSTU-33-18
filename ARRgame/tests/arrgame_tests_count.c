@@ -3,6 +3,8 @@
 #define HIDDEN_ELEMENTS 3
 #define INITIAL 0
 #define CONSTANT 1
+#define ALL_PASSED 0
+#define FAILED 1
 
 // Getting the number that is counting throughout the array, 
 /// also the place where that array is starting and its length (from
@@ -25,7 +27,7 @@ void print_array(int array[], int size)
     printf("\n");
 }
 
-void main()
+int main()
 {
     int counting_errors = 0;
     int result;
@@ -91,4 +93,8 @@ void main()
     }
 
     printf("\nNumber of failed tests: %d", counting_errors);
+    if (counting_errors != 0)
+        return FAILED;
+    else
+        return ALL_PASSED;
 }
