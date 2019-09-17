@@ -20,6 +20,8 @@
 #define TEST_SUCCESS 0
 #define TEST_FAILURE 1
 
+#define TESTS_FAILED -1
+
 #define NOT_EQ 0
 #define EQ 1
 
@@ -88,8 +90,6 @@ void dumb_destroy(int *arr)
 
 int first_test_extend()
 {
-    int errc = 0;
-
     int a_data[] = {1, 4, 2, 3};
     int b_data[] = {5, 4, 1};
     int e_data[] = {1, 4, 2, 3, 5, 4, 1};
@@ -101,17 +101,11 @@ int first_test_extend()
     dumb_create(&arrb, 3, b_data);
     dumb_create(&expected, 7, e_data);
 
-    errc += test_extend(arra, arrb, expected);
-
-    printf("Errc on exit is %d\n", errc);
-    
-    return errc;
+    return test_extend(arra, arrb, expected);
 }
 
 int second_test_extend()
 {
-    int errc = 0;
-    
     int a_data[] = {1};
     int b_data[] = {3, 9, 6};
     int e_data[] = {1, 3, 9, 6};
@@ -123,18 +117,12 @@ int second_test_extend()
     dumb_create(&arrb, 3, b_data);
     dumb_create(&expected, 4, e_data);
     
-    errc += test_extend(arra, arrb, expected);
-    
-    printf("Errc on exit is %d\n", errc);
-    
-    return errc;
+    return test_extend(arra, arrb, expected);
 }
 
 int third_test_extend()
 {
-    int errc = 0;
-
-    int a_data[] = {};
+    int *a_data = NULL;
     int b_data[] = {3, 9, 6};
     int e_data[] = {3, 9, 6};
     int *arra;
@@ -145,19 +133,13 @@ int third_test_extend()
     dumb_create(&arrb, 3, b_data);
     dumb_create(&expected, 3, e_data);
 
-    errc += test_extend(arra, arrb, expected);
-
-    printf("Errc on exit is %d\n", errc);
-
-    return errc;
+    return test_extend(arra, arrb, expected);
 }
 
-int second_test_extend()
+int fourth_test_extend()
 {
-    int errc = 0;
-
     int a_data[] = {1, 5, 8};
-    int b_data[] = {};
+    int *b_data = NULL;
     int e_data[] = {1, 5, 8};
     int *arra;
     int *arrb;
@@ -167,21 +149,27 @@ int second_test_extend()
     dumb_create(&arrb, 0, b_data);
     dumb_create(&expected, 3, e_data);
     
-    errc += test_extend(arra, arrb, expected);
-    
-    printf("Errc on exit is %d\n", errc);
-    
-    return errc;
+    return test_extend(arra, arrb, expected);
 }
 
 int main(void)
 {
-    if (first_test_extend())
-        return TEST_FAILURE;
-    
-    if (second_test_extend())
-        return TEST_FAILURE;
-    
-    return SUCCESS;
+    int errc = 0;
+
+    errc += first_test_extend();
+    errc += second_test_extend();
+    errc += third_test_extend();
+    errc += fourth_test_extend();
+
+    if (errc == 0)
+    {
+        printf("all tests passed succesfully\n");
+        return SUCCESS;
+    }
+    else
+    {
+        printf("Some tests failed miserably\n");
+        return TESTS_FAILED;
+    }
 }
 
