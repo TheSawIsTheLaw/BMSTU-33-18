@@ -39,7 +39,7 @@ test:
     - cd ARRgame/tests/
     - apt-get update -y
     - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c
+    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c ../functions/arrgame_functions_*.c
     - cppcheck --enable=all arrgame_tests_*.c
     - ./test
   only:
