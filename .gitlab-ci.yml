@@ -44,5 +44,7 @@ test:
     - branches
   except:
     - IMDBBot
-    - MDBBot_dockerized
+    - IMDBBot_dockerized
+    - arrgame_dockerized
+    - arrgame_map_filter_reduce
     - master
