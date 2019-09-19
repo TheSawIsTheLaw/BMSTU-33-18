@@ -4,37 +4,127 @@
 #include <stdlib.h>
 
 #ifndef N
-#define N 100 // размер массива (для пользователя)
+#define N 100 // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 #endif
 
 #ifndef OFFSET
-#define OFFSET 3  // фактический индекс 1 элемента
+#define OFFSET 3  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
 #ifndef ARRAY_PART
-#define ARRAY_PART 10  // размер части массива, которую надо отсортировать
+#define ARRAY_PART 10  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
 #ifndef PASSED
-#define PASSED 0  // тест пройден
+#define PASSED 0  // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
 #ifndef FAILURE
-#define FAILURE 1  // тест провален
+#define FAILURE 1  // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
 #ifndef TESTING_DONE
-#define TESTING_DONE 0  // тестирование завершено
+#define TESTING_DONE 0  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
 #ifndef UP_SORT_KEY
-#define UP_SORT_KEY 1  // ключ сортировки по возрастанию
+#define UP_SORT_KEY 1  // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
 #ifndef DOWN_SORT_KEY
-#define DOWN_SORT_KEY -1  // ключ сортировки по убыванию
+#define DOWN_SORT_KEY -1  // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
+void change(int *first, int *second)
+{
+    int temp = *first;
+    *first = *second;
+    *second = temp;
+}
+
+void up_sort(int *head, int *tail)
+{
+    int len = tail - head;
+
+    if (head >= tail)
+    {
+        return;
+    }
+
+    int mid = *(head + len / 2);
+    int *start = head, *end = tail;
+
+    while (start <= end)
+    {
+        while (*start < mid)
+        {
+            start++;
+        }
+
+        while (*end > mid)
+        {
+            end--;
+        }
+
+        if (start <= end)
+        {
+            change(start, end);
+            start++;
+            end--;
+        }
+    }
+
+    up_sort(head, end);
+    up_sort(start, tail);    
+}
+
+void down_sort(int *head, int *tail)
+{
+    int len = tail - head;
+
+    if (head >= tail)
+    {
+        return;
+    }
+
+    int mid = *(head + len / 2);
+    int *start = head, *end = tail;
+
+    while (start <= end)
+    {
+        while (*start > mid)
+        {
+            start++;
+        }
+
+        while (*end < mid)
+        {
+            end--;
+        }
+
+        if (start <= end)
+        {
+            change(start, end);
+            start++;
+            end--;
+        }
+    }
+
+    down_sort(head, end);
+    down_sort(start, tail); 
+}
+
+void sort(int *head, int *tail, int key) // РџСЂРёРЅРёРјР°РµС‚ СѓРєР°Р·Р°С‚РµР»Рё РЅР° СЃРѕСЂС‚РёСЂСѓРµРјС‹Р№ РёРЅС‚РµСЂРІР°Р»
+{
+    if (key == UP_SORT_KEY)
+    {
+        up_sort(head, tail);
+    }
+    else
+    {
+        down_sort(head, tail);
+    }
+}
 
 
 int array_compare(int* a, int* b)
@@ -54,7 +144,7 @@ int ascending_order_testing()
     for (int i = OFFSET; i < N + OFFSET; i++)
         control_array[i] = i - OFFSET;
 
-    // псевдо shuffle
+    // пїЅпїЅпїЅпїЅпїЅпїЅ shuffle
     for (int i = OFFSET; i < N + OFFSET; i++)
         if ((i - OFFSET) % 2 == 0)
             array[i] = i - OFFSET;
@@ -79,7 +169,7 @@ int descending_order_testing()
     for (int i = OFFSET; i < N + OFFSET; i++)
         control_array[i] = N + OFFSET - i - 1;
 
-    // псевдо shuffle
+    // пїЅпїЅпїЅпїЅпїЅпїЅ shuffle
     for (int i = OFFSET; i < N + OFFSET; i++)
         if ((i - OFFSET) % 2 == 0)
             array[i] = i - OFFSET;
@@ -121,7 +211,7 @@ int part_ascend_testing()
         last_elem += 2;
     }
 
-    // псевдо shuffle
+    // пїЅпїЅпїЅпїЅпїЅпїЅ shuffle
     for (int i = OFFSET; i < N + OFFSET; i++)
         if ((i - OFFSET) % 2 == 0)
             array[i] = i - OFFSET;
@@ -163,7 +253,7 @@ int part_descend_testing()
         first_elem -= 2;
     }
 
-    // псевдо shuffle
+    // пїЅпїЅпїЅпїЅпїЅпїЅ shuffle
     for (int i = OFFSET; i < N + OFFSET; i++)
         if ((i - OFFSET) % 2 == 0)
             array[i] = i - OFFSET;
@@ -226,7 +316,7 @@ int main()
 {
     int code;
 
-    // сортировка по возрастанию
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     code = ascending_order_testing();
     printf("ASCENDING ORDER SORTING TESTING:\t");
     if (code == FAILURE)
@@ -234,7 +324,7 @@ int main()
     else
         printf("PASSED!\n");
 
-    // сортировка по убыванию
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     code = descending_order_testing();
     printf("DESCENDING ORDER SORTING TESTING:\t");
     if (code == FAILURE)
@@ -242,7 +332,7 @@ int main()
     else
         printf("PASSED!\n");
     
-    // сортировка по возрастанию части
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     code = part_ascend_testing();
     printf("ASCENDING ORDER (PARTIAL) SORTING TESTING:\t");
     if (code == FAILURE)
@@ -250,7 +340,7 @@ int main()
     else
         printf("PASSED!\n");
     
-    // сортировка по убыванию части
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     code = part_descend_testing();
     printf("DESCENDING ORDER (PARTIAL) SORTING TESTING:\t");
     if (code == FAILURE)
@@ -258,7 +348,7 @@ int main()
     else
         printf("PASSED!\n");
 
-    // сортировка упорядоченного по возрастанию массива
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     code = ascend_sorted_array_testing();
     printf("ASCENDING ORDER SORTED ARRAY TESTING:\t");
     if (code == FAILURE)
@@ -266,7 +356,7 @@ int main()
     else
         printf("PASSED!\n");
 
-    // сортировка упорядоченного по убыванию массива
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     code = descend_sorted_array_testing();
     printf("ASCENDING ORDER SORTED ARRAY TESTING:\t");
     if (code == FAILURE)
@@ -276,4 +366,3 @@ int main()
 
     return TESTING_DONE;
 }
-

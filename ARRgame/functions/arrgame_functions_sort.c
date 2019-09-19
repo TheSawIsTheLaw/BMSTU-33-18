@@ -22,16 +22,27 @@ void change(int *first, int *second)
 void up_sort(int *head, int *tail)
 {
     int len = tail - head;
+
     if (head >= tail)
+    {
         return;
+    }
+
     int mid = *(head + len / 2);
     int *start = head, *end = tail;
+
     while (start <= end)
     {
         while (*start < mid)
+        {
             start++;
+        }
+
         while (*end > mid)
+        {
             end--;
+        }
+
         if (start <= end)
         {
             change(start, end);
@@ -39,6 +50,7 @@ void up_sort(int *head, int *tail)
             end--;
         }
     }
+
     up_sort(head, end);
     up_sort(start, tail);    
 }
@@ -46,16 +58,27 @@ void up_sort(int *head, int *tail)
 void down_sort(int *head, int *tail)
 {
     int len = tail - head;
+
     if (head >= tail)
+    {
         return;
+    }
+
     int mid = *(head + len / 2);
     int *start = head, *end = tail;
+
     while (start <= end)
     {
         while (*start > mid)
+        {
             start++;
+        }
+
         while (*end < mid)
+        {
             end--;
+        }
+
         if (start <= end)
         {
             change(start, end);
@@ -63,6 +86,7 @@ void down_sort(int *head, int *tail)
             end--;
         }
     }
+
     down_sort(head, end);
     down_sort(start, tail); 
 }
@@ -70,7 +94,11 @@ void down_sort(int *head, int *tail)
 void sort(int *head, int *tail, int key) // Принимает указатели на сортируемый интервал
 {
     if (key == UP_SORT_KEY)
+    {
         up_sort(head, tail);
+    }
     else
+    {
         down_sort(head, tail);
+    }
 }
