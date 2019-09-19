@@ -12,11 +12,12 @@
 int count(const int x, int const* start, const int length)
 {
     int counting_element = INITIAL;
-    int const* end = start + length; 
+    int const* end = start + length;
+    
     while (start <= end)
-        if (*start ++ == x)
-            counting_element ++;
-   
+        if (*start++ == x)
+            counting_element++;
+    
     return counting_element;
 }
 
