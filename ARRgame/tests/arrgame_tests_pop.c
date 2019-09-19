@@ -1,4 +1,4 @@
-#include "../headers/arrgame_headers_sort.h"
+//#include "../headers/arrgame_headers_sort.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,10 +7,48 @@
 #define TEST_FAILED 1
 #define ALL_PASSED 0
 #define ERROR_WHILE_TESTING 1
+#include <errno.h>
+#define OK 0
+#define POS_ERROR 1
+#define MEM_INFO 2
+#define SIZE_INFO 3
+
+typedef struct {
+    int *arr;
+    int n;
+} pop_args;
+
+int pop_base(int *arr, int n)
+{
+    if (!arr || (*(arr - SIZE_INFO) - n <= 0 || n < 0))
+    {
+        errno = POS_ERROR;
+        return 0;
+    }
+    int value = *(arr + n);
+    int kol = *(arr - SIZE_INFO);
+    for (int i = n; i < kol - 1; i++)
+    {
+        *(arr + i) = *(arr + i + 1);
+    }
+    --*(arr - SIZE_INFO);
+    *(arr - MEM_INFO) -= sizeof(int);
+    
+    return value;
+}
+
+int var_pop(pop_args in)
+{
+    int *arr_out = in.arr ? in.arr : 0;
+    int n_out = 0;
+    if (arr_out)
+        n_out = in.n ? in.n : *(in.arr - SIZE_INFO) - 1;
+    return pop_base(arr_out, n_out);
+}
 
 int test(int *array, int *array2, int size2, int pop_number)
 {
-    pop(array2, pop_number);
+    pop_base(array2, pop_number);
     int count_pass = 0;
     int pop_number_check = 0;
     for (int i = 0; i < size2; i++)
