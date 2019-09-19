@@ -15,7 +15,7 @@ build:
     - branches
   except:
     - IMDBBot
-    - MDBBot_dockerized
+    - IMDBBot_dockerized
     - master
 
 build-openmp:
@@ -44,7 +44,7 @@ test:
     - branches
   except:
     - IMDBBot
-    - MDBBot_dockerized
+    - IMDBBot_dockerized
     - master
 
 test-openmp:
