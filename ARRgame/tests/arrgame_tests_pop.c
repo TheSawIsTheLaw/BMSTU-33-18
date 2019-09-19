@@ -56,7 +56,7 @@ int test(int *array, int *array2, int size2, int pop_number)
     pop(array2[3], pop_number);
     int count_pass = 0;
     int pop_number_check = 0;
-    for (int i = 0; i < size2; i++)
+    for (int i = 2; i < size2; i++)
     {
         if (i == pop_number)
         {
