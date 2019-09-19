@@ -30,6 +30,6 @@ int var_pop(pop_args in)
     int *arr_out = in.arr ? in.arr : 0;
     int n_out = 0;
     if (arr_out)
-        n_out = in.n ? in.n : *(in.arr - SIZE_INFO) - 1;
+        n_out = in.n ? in.n :0;
     return pop_base(arr_out, n_out);
 }
