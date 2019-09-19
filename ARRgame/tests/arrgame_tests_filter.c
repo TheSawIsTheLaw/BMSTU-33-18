@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <stdio.h>
 #define SIZE_ADRS -3
 #define FULLNESS_ADRS -1
 
@@ -18,7 +18,6 @@ void *create(int size)
 
     if (arr == NULL)
     {
-        puts("ERROR, TRY AGAIN!");
         return NULL;
     }
 
@@ -72,7 +71,7 @@ void filter(int (*f) (int), int *arr)
     *(arr + FULLNESS_ADRS) = *(arr + SIZE_ADRS);
 }
 
-int positive(x)
+int positive(int x)
 {
     if (x >= 0)
         return 1;
@@ -80,7 +79,7 @@ int positive(x)
         return 0;
 }
 
-int bigger_hundred(x)
+int bigger_hundred(int x)
 {
     if (x >= 100)
         return 1;
@@ -88,7 +87,7 @@ int bigger_hundred(x)
         return 0;
 }
 
-int bigger_hund_th(x)
+int bigger_hund_th(int x)
 {
     if (x >= 10000)
         return 1;
@@ -101,7 +100,6 @@ void test_filter()
     int *arr_two = create(100);
     int *arr_three = create(10000);
     int err_counter = 0;
-    int acc;
 
     // Test 1
     for (int i = 0; i < 2;i++)
