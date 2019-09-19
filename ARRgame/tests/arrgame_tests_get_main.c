@@ -1,4 +1,4 @@
-// #include "../headers/arrgame_headers_get.h"
+#include "../headers/arrgame_headers_get.h"
 #include <stdio.h>
 #include <errno.h>
 
@@ -10,15 +10,15 @@
 
 extern int errno;
 
-int get(const int *const array, const int pos)
-{
-    if (*(array - SERVICE_INFO) - pos <= 0 || pos < 0)
-    {
-        errno = POS_ERROR;
-        return ZERO;
-    }
-    return *(array + pos);
-}
+// int get(const int *const array, const int pos)
+// {
+//     if (*(array - SERVICE_INFO) - pos <= 0 || pos < 0)
+//     {
+//         errno = POS_ERROR;
+//         return ZERO;
+//     }
+//     return *(array + pos);
+// }
 
 int main(void)
 {
