@@ -46,10 +46,6 @@ test:
     - branches
   except:
     - IMDBBot
-<<<<<<< HEAD
-    - MDBBot_dockerized
-    - master
-=======
     - IMDBBot_dockerized
     - arrgame_dockerized
     - arrgame_map_filter_reduce
@@ -66,4 +62,3 @@ test-openmp:
     - cppcheck --enable=all arrgame_tests_*.c
   only:
     - arrgame_map_filter_reduce
->>>>>>> arrgame_ci_openmp
