@@ -132,7 +132,53 @@ int main()
         bad_count++;
     }
 
-    printf("\nFAILED TESTS: %d", bad_count);
+    //case 4 - запись совсем до массива
+    int case4[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 6};
+    int case4_g[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 6};
+
+    errno = 0;
+    set((case4 + SERVICE_INFO), 0xA55, -100);
+
+    printf("\nFourth case \n");
+    printf("Out: \n");
+    print_mas(case4, case4[0] + SERVICE_INFO);
+    printf("err %d\n", errno);
+    printf("Expected out: \n");
+    print_mas(case4_g, case4_g[0] + SERVICE_INFO);
+    printf("err 1\n");
+
+    if (same(case4, case4_g) && errno == POS_ERROR)
+        printf("GOOD\n");
+    else
+    {
+        printf("BAD\n");
+        bad_count++;
+    }
+
+    //case 5 - запись в конец
+    int case5[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 6};
+    int case5_g[10] = {7, 0xDEADA55, 0xDEADA55, 0, 1, 2, 3, 4, 5, 11};
+
+    errno = 0;
+    set((case5 + SERVICE_INFO), 11, 6);
+
+    printf("\nFifth case \n");
+    printf("Out: \n");
+    print_mas(case5, case5[0] + SERVICE_INFO);
+    printf("err %d\n", errno);
+    printf("Expected out: \n");
+    print_mas(case5_g, case5_g[0] + SERVICE_INFO);
+    printf("err 0\n");
+
+    if (same(case5, case5_g) && errno == OK)
+        printf("GOOD\n");
+    else
+    {
+        printf("BAD\n");
+        bad_count++;
+    }
+
+    printf("\nFAILED TESTS: %d\n", bad_count);
     
     if (bad_count > 0)
         return TEST_ERROR;
