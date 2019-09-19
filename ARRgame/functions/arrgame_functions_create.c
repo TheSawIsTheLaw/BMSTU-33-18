@@ -10,7 +10,7 @@
 
 int* create(const int sizeArray)
 {
-    if (sizeArray < 0)
+    if (sizeArray <= 0)
         return NULL;
        
     int* pointUserStart;
