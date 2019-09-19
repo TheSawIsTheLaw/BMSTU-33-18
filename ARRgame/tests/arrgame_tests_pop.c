@@ -7,13 +7,16 @@
 #define TEST_FAILED 1
 #define ALL_PASSED 0
 #define ERROR_WHILE_TESTING 1
+
 #include <errno.h>
+
 #define OK 0
 #define POS_ERROR 1
 #define MEM_INFO 2
 #define SIZE_INFO 3
 
-typedef struct {
+typedef struct
+{
     int *arr;
     int n;
 } pop_args;
@@ -33,7 +36,7 @@ int pop_base(int *arr, int n)
     }
     --*(arr - SIZE_INFO);
     *(arr - MEM_INFO) -= sizeof(int);
-    
+
     return value;
 }
 
@@ -42,13 +45,15 @@ int var_pop(pop_args in)
     int *arr_out = in.arr ? in.arr : 0;
     int n_out = 0;
     if (arr_out)
+    {
         n_out = in.n ? in.n : *(in.arr - SIZE_INFO) - 1;
+    }
     return pop_base(arr_out, n_out);
 }
 
 int test(int *array, int *array2, int size2, int pop_number)
 {
-    pop_base(array2, pop_number);
+    pop(array2, pop_number);
     int count_pass = 0;
     int pop_number_check = 0;
     for (int i = 0; i < size2; i++)
@@ -85,9 +90,9 @@ int main(void)
     int failed_test_count = 0;
     int completed_test_count = 0;
     test_count++;
-    int array_1[5] = {1, 2, 0xDEADA52, 4, 5};
-    int array_1_final[4] = {1, 2, 4, 5};
-    if (test(array_1, array_1_final, 4, 2) == TEST_PASSED)
+    int array_1[8] = {5, 0, 0, 1, 2, 0xDEADA52, 4, 5};
+    int array_1_final[7] = {4, 0, 0, 1, 2, 4, 5};
+    if (test(array_1, array_1_final, 7, 5) == TEST_PASSED)
     {
         completed_test_count++;
     }
@@ -95,10 +100,10 @@ int main(void)
     {
         failed_test_count++;
     }
-    int array_2[7] = {0, 0, 0, 0, 0, 0, 0};
+    int array_2[10] = {7, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     test_count++;
-    int array_2_final[6] = {0, 0, 0, 0, 0, 0};
-    if (test(array_2, array_2_final, 6, 5) == TEST_PASSED)
+    int array_2_final[9] = {6, 0, 0, 0, 0, 0, 0, 0, 0};
+    if (test(array_2, array_2_final, 9, 8) == TEST_PASSED)
     {
         completed_test_count++;
     }
@@ -106,10 +111,10 @@ int main(void)
     {
         failed_test_count++;
     }
-    int array_3[3] = {2147483647, -2147483647, 1};
+    int array_3[6] = {3, 0, 0, 2147483647, -2147483647, 1};
     test_count++;
-    int array_3_final[2] = {-2147483647, 1};
-    if (test(array_3, array_3_final, 2, 0) == TEST_PASSED)
+    int array_3_final[5] = {2, 0, 0, -2147483647, 1};
+    if (test(array_3, array_3_final, 5, 3) == TEST_PASSED)
     {
         completed_test_count++;
     }
@@ -117,10 +122,10 @@ int main(void)
     {
         failed_test_count++;
     }
-    int array_4[5] = {-1, -512, -723546, -3241, -544};
+    int array_4[8] = {5, 0, 0, -1, -512, -723546, -3241, -544};
     test_count++;
-    int array_4_final[4] = {-1, -723546, -3241, -544};
-    if (test(array_4, array_4_final, 4, 1) == TEST_PASSED)
+    int array_4_final[7] = {4, 0, 0, -1, -723546, -3241, -544};
+    if (test(array_4, array_4_final, 7, 4) == TEST_PASSED)
     {
         completed_test_count++;
     }
