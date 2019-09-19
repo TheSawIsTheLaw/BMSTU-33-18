@@ -16,6 +16,8 @@ build:
   except:
     - IMDBBot
     - IMDBBot_dockerized
+    - arrgame_dockerized
+    - arrgame_map_filter_reduce
     - master
 
 build-openmp:
@@ -45,6 +47,8 @@ test:
   except:
     - IMDBBot
     - IMDBBot_dockerized
+    - arrgame_dockerized
+    - arrgame_map_filter_reduce
     - master
 
 test-openmp:
