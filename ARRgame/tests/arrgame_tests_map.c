@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define META_DATA 3
 
@@ -75,7 +76,7 @@ void test_map(void)
     int *arr_one = create(2500);
     int *arr_two = create(2500000);
     int err_counter = 0;
-    // 义耱 1
+    //  1
     for (int i = 0; i < 25; i++)
     {
         *(arr + i) = i;
@@ -88,7 +89,7 @@ void test_map(void)
             err_counter++;
         }
     }
-    // 义耱 2
+    //  2
     for (int i = 0; i < 25; i++)
     {
         *(arr + i) = i*1000;
@@ -102,7 +103,7 @@ void test_map(void)
             err_counter++;
         }
     }
-    // 义耱 3
+    //  3
     map(func_zero, arr_one);
     map(func_one, arr_one);
     for (int i = 0; i < 2500; ++i)
@@ -113,7 +114,7 @@ void test_map(void)
         }
     }
 
-    // 义耱 4
+    //  4
     map(func_zero, arr_two);
     map(func_one, arr_two);
     for (int i = 0; i < 2500000; ++i)
