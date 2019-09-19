@@ -62,7 +62,7 @@ int main()
     int kit3[11] = {8, 0xC001BEE5, 0xDEADBEEF, 1, 2, 3, 4, 5, 6, 7, 8};
     int kit3_check[11] = {8, 0xC001BEE5, 0xDEADBEEF, 1, 2, 3, 4, 5, 6, 7, 8};
     
-    reverse(&kit2[7], &kit2[7]);
+    reverse(&kit3[7], &kit3[7]);
     if (equal(kit3, kit3_check))
         printf("3rd test - OK\n");
     else
