@@ -7,7 +7,7 @@
 
 void *create(int size)
 {
-    int *arr = calloc(size * 2 + META_DATA, sizeof(int));
+    int *arr = calloc(size + META_DATA, sizeof(int));
 
     if (arr == NULL)
     {
@@ -16,7 +16,7 @@ void *create(int size)
     }
 
     *arr = size;
-    *(arr + 1) = size * 2;
+    *(arr + 1) = size;
     *(arr + 2) = 0;
 
     return arr + 3;
