@@ -46,3 +46,15 @@ test:
     - IMDBBot
     - MDBBot_dockerized
     - master
+
+test-openmp:
+  stage: test
+  image: gcc
+  script:
+    - cd ARRgame/functions/
+    - apt-get update -y
+    - apt-get install -y cppcheck
+    - gcc -Wall -Werror -pedantic -c -fopenmp arrgame_tests_*.c
+    - cppcheck --enable=all arrgame_functions_*.c
+  only:
+    - arrgame_map_filter_reduce
