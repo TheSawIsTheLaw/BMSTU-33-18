@@ -1,7 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "../headers/arrgame_headers_create.h"
+#include<stdio.h>
+#include<stdlib.h>
+//#include "../headers/arrgame_headers_create.h"
+#define TRUE 1
+#define FALSE 0
 
 #define COUNT_NEED_ELEMENT 3
 
@@ -46,14 +47,40 @@ int* create(const int sizeArray)
     return pointUserStart;
 }
 
-/*
-int main()
+void Test_create(void)
 {
-    int* p = create(10000000);
-    for (int i = 0; i <= 15000000; i++)
-        *(p + i) = i;
-    for (int i = 0; i < 15000000; i++)
-        printf("%d) = %d\n", i, *(p + i));
-    printf("n = %d p-3=%d p-2=%d p-1=%d\n", 5, *(p - 3), *(p - 2), *(p - 1));
-    return 0;
-}*/
+	// Создать массив нулевого размера
+	{
+		int n = 0;
+		printf("Size of arr = 0: ");
+		if (create(n) == NULL)
+			printf("OK\n");
+		else
+			printf("FAIL\n");
+	}
+    // Создать массив отрицательного размера
+    {
+    	int n = -8;
+    	printf("Size of arr < 0: ");
+		if (create(n) == NULL)
+			printf("OK\n");
+		else
+			printf("FAIL\n");
+    }
+    // Создать массив корректного размера
+    {
+    	int n = 8;
+    	printf("Size of arr is correct: ");
+		if (create(n) != NULL)
+			printf("OK\n");
+		else
+			printf("FAIL\n");
+    }
+}
+
+int main(void)
+{
+	Test_create();
+	return 0;
+}
+
