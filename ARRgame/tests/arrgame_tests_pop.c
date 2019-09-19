@@ -43,7 +43,6 @@ int test(int *array, int *array2, int size2, int pop_number)
 
 int main(void)
 {
-    int i;
     int test_count = 0;
     int failed_test_count = 0;
     int completed_test_count = 0;
