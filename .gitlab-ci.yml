@@ -15,9 +15,7 @@ build:
     - branches
   except:
     - IMDBBot
-    - IMDBBot_dockerized
-    - arrgame_dockerized
-    - arrgame_map_filter_reduce
+    - MDBBot_dockerized
     - master
 
 build-openmp:
@@ -39,7 +37,7 @@ test:
     - cd ARRgame/tests/
     - apt-get update -y
     - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c ../functions/arrgame_functions_*.c
+    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c
     - cppcheck --enable=all arrgame_tests_*.c
     - ./test
   only:
@@ -50,15 +48,3 @@ test:
     - arrgame_dockerized
     - arrgame_map_filter_reduce
     - master
-
-test-openmp:
-  stage: test
-  image: gcc
-  script:
-    - cd ARRgame/tests/
-    - apt-get update -y
-    - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -c -fopenmp arrgame_tests_*.c
-    - cppcheck --enable=all arrgame_tests_*.c
-  only:
-    - arrgame_map_filter_reduce
