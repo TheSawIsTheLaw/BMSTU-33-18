@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "../headers/arrgame_headers_clean.h"
 
 #define ZERO  0
