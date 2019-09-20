@@ -9,7 +9,7 @@ int clean(int *p_beg, int *p_end)
 
 	while (p_beg != p_end)
 	{
-		p_beg = NULL;
+		*p_beg = 0;
 		p_beg++;
 	}
 
