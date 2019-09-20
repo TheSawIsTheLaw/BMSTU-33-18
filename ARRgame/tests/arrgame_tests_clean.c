@@ -1,8 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../headers/arrgame_headers_clean.h"
 
 #define ZERO  0
+
+int clean(int *p_beg, int *p_end)
+{
+	int *buf = p_beg;
+
+	while (p_beg != p_end)
+	{
+		*p_beg = 0;
+		p_beg++;
+	}
+
+	free(buf);
+
+	return ZERO;
+}
 
 void test_clean()
 {
