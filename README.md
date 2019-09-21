@@ -7,6 +7,7 @@
   * [STRGame](#STRGame)
   * [IMDBgame](#rec)
   * [ARRgame](#arr)
+  * [MATRIXgame](#matrix)
 * [По организационным и остальным вопросам](#org)
 * [Leaderboard](https://docs.google.com/spreadsheets/d/1r5wZ7WW5BFAgROaxf1SvH3cbg8OA8J4fSu6nSBqjfXE/edit?usp=sharing)
 * [ARRgame board](https://docs.google.com/spreadsheets/d/1NsSevvCq2d52TNeedHo6OGtyP-unvljMqknLzyuJvmI/edit#gid=0)
@@ -39,11 +40,25 @@
 * Telegram: @xGULZAx
 * VK: А вдруг Антон Александрович увидит и убьёт
 
-👨‍💻 * Architect* проекта - **Кононенко Сергей** 
+👨‍💻 *Architect* проекта - **Кононенко Сергей** 
 * GitLab: @ks18u889
 * Telegram: @hackfeed
-## 💡 По организационным и остальным вопросам <a name="org"></a>
+* 
+### MATRIXgame <a name="matrix"></a>>
 
+👨‍💻 *TeamLead* проекта - **Кривозубов Влад**
+* Gitlab: @kvo18u333
+* Telegram: @dliosh
+ 
+👨‍💻 *Arhcitect* проекта - **Топорков Павел**
+* Gitlab: @tpa18u531
+* Telegram: @ptrk09
+
+👨‍💻 *DevOps* проекта - **Кононенко Сергей**
+* Gitlab: @ks18u889
+* Telegram: @hackfeed
+
+## 💡 По организационным и остальным вопросам <a name="org"></a>
 
 🦌 *TeamLead* группы - **Оленев Антон Александрович**
 * GitLab: @aolenev
