@@ -44,7 +44,7 @@
 * GitLab: @ks18u889
 * Telegram: @hackfeed
 * 
-### MATRIXgame <a name="matrix"></a>>
+### MATRIXgame <a name="matrix"></a>
 
 👨‍💻 *TeamLead* проекта - **Кривозубов Влад**
 * Gitlab: @kvo18u333
