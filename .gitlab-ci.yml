@@ -13,6 +13,7 @@ build_matrixgame:
     - cd $MATRIX_FUNCS_PATH
     - gcc -Wall -Werror -c matrixgame_functions_*.c
   after_script:
+    - cd $MATRIX_FUNCS_PATH
     - rm *.o
   only:
     - /^matrixgame_.*$/
@@ -27,5 +28,10 @@ test_matrixgame:
     - gcc -Wall -Werror -c matrixgame_functions_*.c
     - gcc -o test ../../$MATRIX_TESTS_PATH/matrixgame_tests_*.o matrixgame_functions_*.o
     - ./test
+  after_script:
+    - cd $MATRIX_FUNCS_PATH
+    - rm *.o
+    - cd ../../$MATRIX_TESTS_PATH
+    - rm *.o
   only:
     - /^matrixgame_.*$/
