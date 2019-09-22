@@ -10,7 +10,7 @@ build_matrixgame:
   stage: build
   image: gcc
   script:
-    - cd MATRIX_FUNCS_PATH
+    - cd $MATRIX_FUNCS_PATH
     - gcc -Wall -Werror -c matrixgame_functions_*.c
   after_script:
     - rm *.o
@@ -21,11 +21,11 @@ test_matrixgame:
   stage: test
   image: gcc
   script:
-    - cd MATRIX_TESTS_PATH
+    - cd $MATRIX_TESTS_PATH
     - gcc -Wall -Werror -c matrixgame_tests_*.c
-    - cd ../../MATRIX_FUNCS_PATH
+    - cd ../../$MATRIX_FUNCS_PATH
     - gcc -Wall -Werror -c matrixgame_functions_*.c
-    - gcc -o test ../../MATRIX_TESTS_PATH/matrixgame_tests_*.o matrixgame_functions_*.o
+    - gcc -o test ../../$MATRIX_TESTS_PATH/matrixgame_tests_*.o matrixgame_functions_*.o
     - ./test
   only:
     - /^matrixgame_.*$/
