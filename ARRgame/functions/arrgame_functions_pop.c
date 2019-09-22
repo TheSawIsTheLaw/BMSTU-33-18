@@ -16,7 +16,7 @@ Input data:
 
 
 Output data:
-* Return code - OK [and optional modified errno].
+* Return arr[n] [and optional modified errno].
 */
 
 
