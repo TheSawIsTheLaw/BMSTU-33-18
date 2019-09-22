@@ -2,49 +2,36 @@ stages:
   - build
   - test
 
-build:
+variables:
+  MATRIX_FUNCS_PATH: MATRIXgame/functions/
+  MATRIX_TESTS_PATH: MATRIXgame/tests/
+
+build_matrixgame:
   stage: build
   image: gcc
   script:
-    - cd ARRgame/functions/
-    - apt-get update -y
-    - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -c arrgame_functions_*.c
-    - cppcheck --enable=all arrgame_functions_*.c
+    - cd $MATRIX_FUNCS_PATH
+    - gcc -Wall -Werror -c matrixgame_functions_*.c
+  after_script:
+    - cd $MATRIX_FUNCS_PATH
+    - rm *.o
   only:
-    - branches
-  except:
-    - IMDBBot
-    - MDBBot_dockerized
-    - master
+    - /^matrixgame_.*$/
 
-build-openmp:
-  stage: build
-  image: gcc
-  script:
-    - cd ARRgame/functions/
-    - apt-get update -y
-    - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -c -fopenmp arrgame_functions_*.c
-    - cppcheck --enable=all arrgame_functions_*.c
-  only:
-    - arrgame_map_filter_reduce
-
-test:
+test_matrixgame:
   stage: test
   image: gcc
   script:
-    - cd ARRgame/tests/
-    - apt-get update -y
-    - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c
-    - cppcheck --enable=all arrgame_tests_*.c
+    - cd $MATRIX_TESTS_PATH
+    - gcc -Wall -Werror -c matrixgame_tests_*.c
+    - cd ../../$MATRIX_FUNCS_PATH
+    - gcc -Wall -Werror -c matrixgame_functions_*.c
+    - gcc -o test ../../$MATRIX_TESTS_PATH/matrixgame_tests_*.o matrixgame_functions_*.o
     - ./test
+  after_script:
+    - cd $MATRIX_FUNCS_PATH
+    - rm *.o
+    - cd ../../$MATRIX_TESTS_PATH
+    - rm *.o
   only:
-    - branches
-  except:
-    - IMDBBot
-    - IMDBBot_dockerized
-    - arrgame_dockerized
-    - arrgame_map_filter_reduce
-    - master
+    - /^matrixgame_.*$/
