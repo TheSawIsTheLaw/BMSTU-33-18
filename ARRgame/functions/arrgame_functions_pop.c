@@ -6,6 +6,20 @@
 #define SIZE_INFO 3
 extern int errno;
 
+/*
+Delete an array[n] element.
+
+Input data:
+* int *arr - array to be modified.
+* (optional) int n - number to be delete.
+* if n not specifed, function delete arr[0]
+
+
+Output data:
+* Return code - OK [and optional modified errno].
+*/
+
+
 int pop_base(int *arr, int n)
 {
     if (!arr || (*(arr - SIZE_INFO) - n <= 0 || n < 0))
