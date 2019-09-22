@@ -27,6 +27,7 @@ int* create(const int sizeArray)
     else
     {
         puts("Не удалось выделить память.");
+        return NULL;
     }
         
     
@@ -55,5 +56,6 @@ int main()
     for (int i = 0; i < 15000000; i++)
         printf("%d) = %d\n", i, *(p + i));
     printf("n = %d p-3=%d p-2=%d p-1=%d\n", 5, *(p - 3), *(p - 2), *(p - 1));
+    free(p);
     return 0;
 }*/
