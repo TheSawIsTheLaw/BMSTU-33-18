@@ -1,6 +1,7 @@
 #include<stdlib.h>
 
 #include "../headers/matrixgame_headers_insert_el_in_row.h"
+#include "../headers/matrixgame_headers_matrix_t.h"
 #include "../headers/matrixgame_errno.h"
 
 #define MEM_ERR -808
