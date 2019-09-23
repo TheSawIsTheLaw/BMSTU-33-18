@@ -4,6 +4,7 @@
 #include "../headers/matrixgame_errno.h"
 
 #define MEM_ERR -808
+#define EL_IND_ERR -809
 
 /*
   Выделяет дополнительную память для каждой строки матрицы.
@@ -35,12 +36,17 @@ int insert_el_in_row(matrix_t *const matrix, int index_row, int index_column, in
 {
     if (one_pos_shifting(matrix))
     {
-        for (int i = (matrix->columns) - 1; i > index_column; i--)
-            (matrix->matrix)[index_row][i] = (matrix->matrix)[index_row][i - 1];
+        if (index_row < matrix->rows && index_column < matrix->columns)
+        {
+            for (int i = (matrix->columns) - 1; i > index_column; i--)
+                (matrix->matrix)[index_row][i] = (matrix->matrix)[index_row][i - 1];
 
-        (matrix->matrix)[index_row][index_column] = el;
+            (matrix->matrix)[index_row][index_column] = el;
     
-        return 0;
+            return 0;
+        }
+
+        return EL_IND_ERR;
     }
 
     return MEM_ERR;
