@@ -45,3 +45,4 @@ int insert_el_in_row(matrix_t *const matrix, int index_row, int index_column, in
 
     return MEM_ERR;
 }
+
