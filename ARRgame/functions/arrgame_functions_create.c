@@ -41,7 +41,7 @@ int* create(const int sizeArray)
     pointUserStart = pointUserStart + 1;
     *pointUserStart = 0;
 
-    pointUserStart = pointUserStart + 3;
+    pointUserStart = pointUserStart + 1;
     
     return pointUserStart;
 }
