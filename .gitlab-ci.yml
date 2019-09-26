@@ -60,7 +60,7 @@ test_matrixgame_openmp:
     - gcc -Wall -Werror -c -fopenmp matrixgame_tests_*.c
     - cd ../../$MATRIX_FUNCS_PATH
     - gcc -Wall -Werror -c -fopenmp matrixgame_functions_*.c
-    - gcc -o test ../../$MATRIX_TESTS_PATH/matrixgame_tests_*.o matrixgame_functions_*.o
+    - gcc -fopenmp -o test ../../$MATRIX_TESTS_PATH/matrixgame_tests_*.o matrixgame_functions_*.o
     - ./test
   after_script:
     - cd $MATRIX_FUNCS_PATH
