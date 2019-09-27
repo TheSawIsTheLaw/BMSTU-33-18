@@ -37,6 +37,8 @@ test_matrixgame:
   stage: test
   image: gcc
   script:
+    - apt update -y
+    - apt install libperlio-gzip-perl libjson-perl -y
     - git clone https://github.com/linux-test-project/lcov
     - cd lcov/
     - make install
