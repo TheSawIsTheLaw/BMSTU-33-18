@@ -25,10 +25,13 @@ int get_by_pos(const matrix_t *const init_matrix,
         return DIMENSION_OUT_OF_RANGE_ERROR;
     }
 
-    if (*(init_matrix->matrix + index_row) + index_column)
+    for (int row = 0; row < init_matrix->rows; ++row)
     {
-        return *(*(init_matrix->matrix + index_row) + index_column);
+        if (!(init_matrix->matrix + row))
+        {
+            return FALSE_POINTER_ERROR;
+        }
     }
 
-    return FALSE_POINTER_ERROR;
+    return *(*(init_matrix->matrix + index_row) + index_column);
 }
