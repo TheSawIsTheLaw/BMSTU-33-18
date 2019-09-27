@@ -7,10 +7,10 @@
 
 typedef int mtype;
 
-/*
-  Освобождает выделнную за диапазаном указателей память.
-  @start - указатель на начало диапазона указателей.
-  @end - указатель на конец диапазона указателей.
+/**
+ * \brief Освобождает выделнную за диапазаном указателей память.
+ * \param[in] start - Указатель на начало диапазона указателей
+ * \param[in] end - Указатель на конец диапазона указателей.
  */
 static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
 {
@@ -19,14 +19,18 @@ static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
 }
 
 #define MEM_ALLOC_FAILURE -101  /* Ошибка выделения памяти */
+#define SUCCESS 0               /* успех */
 
-/*
-  Выделяет память для матрицы, описанной в переданной
-  через указатель структуре matrix_t.
-  @matrix - указатель на структуру, описывающую матрицу.
-  @columns - число столбцов
-  @rows - число строчек
-  @return Возвращает MEM_ALLOC_FAILURE, если не хватает памяти или 0, если успех.
+/**
+ * \brief Создаёт матрицу
+ * \details Выделяет память для матрицы, описанной в переданной
+ *             через указатель структуре matrix_t
+ * \param[out] matrix - Указатель на структуру, описывающую матрицу
+ * \param[in] rows - Число столбцов
+ * \param[in] columns - Число строчек
+ * \return Код ошибки
+ * \retval SUCCESS Успех, без ошибки
+ * \retval MEM_ALLOC_FAILURE Ошибка при выделении памяти
  */
 int create_matrix(matrix_t *const matrix, const int rows, const int columns)
 {
