@@ -1,8 +1,12 @@
+#include <stdio.h>
+
 #include "../headers/matrixgame_headers_get_by_pos.h"
 #include "../headers/matrixgame_headers_create_matrix.h"
 #include "../headers/matrixgame_headers_free_matrix.h"
-#include <stdio.h>
 
+/*
+Terminal colored output.
+*/
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
 #define ANSI_COLOR_RESET "\x1b[0m"
@@ -13,6 +17,12 @@
 #define PASSED 0
 #define FAILED 1
 
+/*
+Fill matrix with sequence of numbers for 0 to rows * cols - 1.
+
+Input data:
+* matrix_t *const to_fill - matrix to be filled.
+*/
 void fill_matrix(matrix_t *const to_fill)
 {
     int filled = 0;
@@ -27,6 +37,13 @@ void fill_matrix(matrix_t *const to_fill)
     }
 }
 
+/*
+Debug output for matrix.
+
+Input data:
+* const matrix_t *const to_output - matrix to be outputed.
+*/
+/*
 void output_matrix(const matrix_t *const to_output)
 {
     for (int row = 0; row < to_output->rows; ++row)
@@ -38,11 +55,15 @@ void output_matrix(const matrix_t *const to_output)
         printf("\n");
     }
 }
+*/
 
 int matrixgame_get_by_pos_test()
 {
     int err_cnt = 0;
 
+    /*
+    Test case 0. Normal mode.
+    */
     matrix_t test_matrix_0;
     create_matrix(&test_matrix_0, 5, 5);
     fill_matrix(&test_matrix_0);
@@ -58,6 +79,9 @@ int matrixgame_get_by_pos_test()
         printf(ANSI_COLOR_GREEN "TEST #0 PASSED\n" ANSI_COLOR_RESET);
     }
 
+    /*
+    Test case 1. Normal mode.
+    */
     matrix_t test_matrix_1;
     create_matrix(&test_matrix_1, 5, 5);
     fill_matrix(&test_matrix_1);
@@ -73,6 +97,9 @@ int matrixgame_get_by_pos_test()
         printf(ANSI_COLOR_GREEN "TEST #1 PASSED\n" ANSI_COLOR_RESET);
     }
 
+    /*
+    Test case 2. Normal mode.
+    */
     free_matrix(&test_matrix_1);
 
     matrix_t test_matrix_2;
@@ -92,6 +119,9 @@ int matrixgame_get_by_pos_test()
 
     free_matrix(&test_matrix_2);
 
+    /*
+    Test case 3. Negative rows count.
+    */
     matrix_t test_matrix_3;
     create_matrix(&test_matrix_3, 5, 5);
     fill_matrix(&test_matrix_3);
@@ -109,6 +139,9 @@ int matrixgame_get_by_pos_test()
 
     free_matrix(&test_matrix_3);
 
+    /*
+    Test case 4. Negative columns count.
+    */
     matrix_t test_matrix_4;
     create_matrix(&test_matrix_4, 5, 5);
     fill_matrix(&test_matrix_4);
@@ -126,6 +159,9 @@ int matrixgame_get_by_pos_test()
 
     free_matrix(&test_matrix_4);
 
+    /*
+    Test case 5. Rows out of range.
+    */
     matrix_t test_matrix_5;
     create_matrix(&test_matrix_5, 5, 5);
     fill_matrix(&test_matrix_5);
@@ -143,6 +179,9 @@ int matrixgame_get_by_pos_test()
 
     free_matrix(&test_matrix_5);
 
+    /*
+    Test case 6. Columns out of range.
+    */
     matrix_t test_matrix_6;
     create_matrix(&test_matrix_6, 5, 5);
     fill_matrix(&test_matrix_6);
