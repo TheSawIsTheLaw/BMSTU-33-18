@@ -54,7 +54,7 @@ test_matrixgame:
     - git config user.email $GITLAB_USER_EMAIL
     - git add ${CI_COMMIT_REF_NAME}_codecoverage/
     - git commit -m "Add codecoverage directory for $CI_COMMIT_REF_NAME function"
-    - git push origin HEAD:$CI_COMMIT_REF_NAME
+    - git push origin $CI_COMMIT_REF_NAME
   after_script:
     - rm -rf lcov/
     - cd $MATRIX_FUNCS_PATH
