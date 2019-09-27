@@ -197,7 +197,26 @@ int matrixgame_get_by_pos_test()
         printf(ANSI_COLOR_GREEN "TEST #6 PASSED\n" ANSI_COLOR_RESET);
     }
 
-    free_matrix(&test_matrix_6);
+    /*
+    Test case 7. NULL pointer execution.
+    */
+    matrix_t test_matrix_7;
+    create_matrix(&test_matrix_7, 5, 5);
+    fill_matrix(&test_matrix_7);
+    test_matrix_7.matrix = NULL;
+
+    if (get_by_pos(&test_matrix_7, 0, 1) != FALSE_POINTER_ERROR)
+    {
+        printf(ANSI_COLOR_RED "TEST #7 FAILED\n" ANSI_COLOR_RESET);
+        err_cnt++;
+    }
+
+    else
+    {
+        printf(ANSI_COLOR_GREEN "TEST #7 PASSED\n" ANSI_COLOR_RESET);
+    }
+
+    free_matrix(&test_matrix_7);
 
     if (err_cnt)
     {
