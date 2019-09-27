@@ -5,6 +5,7 @@ stages:
 variables:
   MATRIX_FUNCS_PATH: MATRIXgame/functions/
   MATRIX_TESTS_PATH: MATRIXgame/tests/
+  CODECOVERAGE: _codecoverage
 
 build_matrixgame:
   stage: build
@@ -36,17 +37,26 @@ test_matrixgame:
   stage: test
   image: gcc
   script:
+    - apt update -y
+    - apt install lcov -y
     - cd $MATRIX_TESTS_PATH
-    - gcc -Wall -Werror -c matrixgame_tests_*.c
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c matrixgame_tests_*.c
     - cd ../../$MATRIX_FUNCS_PATH
-    - gcc -Wall -Werror -c matrixgame_functions_*.c
-    - gcc -o test ../../$MATRIX_TESTS_PATH/matrixgame_tests_*.o matrixgame_functions_*.o
-    - ./test
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c matrixgame_functions_*.c
+    - gcc -lgcov --coverage -o test.exe ../../$MATRIX_TESTS_PATH/matrixgame_tests_*.o matrixgame_functions_*.o
+    - ./test.exe
+    - lcov -t "test" -o test.info -c -d .
+    - genhtml -o ${CI_COMMIT_REF_NAME}_codecoverage test.info
+    - git config user.name "$GITLAB_USER_NAME"
+    - git config user.email $GITLAB_USER_EMAIL
+    - git add ${CI_COMMIT_REF_NAME}_codecoverage/
+    - git commit -m "Add codecoverage directory for $CI_COMMIT_REF_NAME function"
+    - git push
   after_script:
     - cd $MATRIX_FUNCS_PATH
-    - rm *.o
+    - rm *.o *.gcda *.gcno *.exe
     - cd ../../$MATRIX_TESTS_PATH
-    - rm *.o
+    - rm *.o *.gcda *.gcno
   only:
     - /^matrixgame_.*$/
   except:
