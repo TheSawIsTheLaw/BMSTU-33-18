@@ -19,7 +19,7 @@ int get_by_pos(const matrix_t *const init_matrix,
                const int index_row,
                const int index_column)
 {
-    if (init_matrix->rows > index_row || init_matrix->columns > index_column ||
+    if (init_matrix->rows - 1 < index_row || init_matrix->columns - 1 < index_column ||
         index_row < 0 || index_column < 0)
     {
         return DIMENSION_OUT_OF_RANGE_ERROR;
