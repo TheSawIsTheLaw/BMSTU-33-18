@@ -5,8 +5,8 @@
 #include "../headers/matrixgame_headers_matrix_t.h"
 #include "../headers/matrixgame_errno.h"
 
-#define MEM_ERR -808
-#define EL_IND_ERR -809
+#define MEM_ERR -808  // Memory error: array of pointers or values was not allocated right.
+#define EL_IND_ERR -809  // Element index error: element's index is not coorect. 
 
 /*int **matrix_allocate(int **matrix, const int row_num, const int col_num)
 {
