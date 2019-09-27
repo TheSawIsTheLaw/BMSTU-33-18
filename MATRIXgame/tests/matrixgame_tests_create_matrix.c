@@ -30,7 +30,7 @@ void write_all(matrix_t *const sample)
 {
     for (int j = 0; j < sample->rows; j++)
         for (int i = 0; i < sample->columns; i++)
-            sample->matrix[j][i] = (j+1) * (i+2);
+            sample->matrix[j][i] = (j + 1) * (i + 2);
 }
 
 void print_plain(int *const *const sample,
@@ -42,18 +42,17 @@ void print_plain(int *const *const sample,
             printf("%5d ", sample[j][i]);
         printf("\n");
     }
-    
 }
 
 int alloc_plain(int ***sample,
-                 const int rows, const int columns)
+                const int rows, const int columns)
 {
     (*sample) = malloc(sizeof(int *) * rows);
     if (!(*sample))
         return MALLOC_FAILURE;
 
     for (int i = 0; i < rows; i++)
-        if(!(*(*sample + i) = malloc(sizeof(int) * columns)))
+        if (!(*(*sample + i) = malloc(sizeof(int) * columns)))
             return MALLOC_FAILURE;
 
     return NOERR;
@@ -67,13 +66,13 @@ void free_plain(int ***sample,
 
     free(*sample);
 }
-            
+
 void write_plain(int *const *const sample,
                  const int rows, const int columns)
 {
     for (int j = 0; j < rows; j++)
         for (int i = 0; i < columns; i++)
-            sample[j][i] = (j+1) * (i+2);
+            sample[j][i] = (j + 1) * (i + 2);
 }
 
 void free_all(matrix_t *const sample)
@@ -106,20 +105,20 @@ int test_create(const int rows, const int cols)
     if (rc)
         return rc;
 
-    write_plain((int**)expected, rows, cols);
+    write_plain((int **)expected, rows, cols);
     write_all(&result);
-    
-    if (compare_matrixes(&result, (int**)expected))
+
+    if (compare_matrixes(&result, (int **)expected))
     {
         printf("Failed test on size %d rows %d cols\n", rows, cols);
         printf("expected: \n");
-        print_plain((int**)expected, rows, cols);
+        print_plain((int **)expected, rows, cols);
         printf("result was: \n");
         print_all(&result);
 
         free_plain(&expected, rows, cols);
         free_all(&result);
-        
+
         return TEST_FAILED;
     }
     else
@@ -132,7 +131,7 @@ int test_create(const int rows, const int cols)
 
 #define TEST_COUNT 3
 
-int main(void)
+/*int main(void)
 {
     int errc = 0;
 
@@ -147,4 +146,4 @@ int main(void)
     }
     
     return NOERR;
-}
+}*/
