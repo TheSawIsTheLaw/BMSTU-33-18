@@ -57,6 +57,6 @@ int create_matrix(matrix_t *const matrix, const int rows, const int columns)
     matrix->columns = columns;
     matrix->rows = rows;
 
-    return 0;
+    return SUCCESS;
 }
 
