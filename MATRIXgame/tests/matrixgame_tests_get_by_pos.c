@@ -230,8 +230,12 @@ int main()
 {
     if (matrixgame_get_by_pos_test() != PASSED)
     {
+        printf(ANSI_COLOR_RED "\nTHERE IS SOME FAILED TESTS\n" ANSI_COLOR_RESET);
+
         return FAILED;
     }
+
+    printf(ANSI_COLOR_GREEN "\nALL TESTS PASSED\n" ANSI_COLOR_RESET);
 
     return PASSED;
 }
