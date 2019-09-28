@@ -17,6 +17,8 @@ Terminal colored output.
 #define PASSED 0
 #define FAILED 1
 
+#define DEBUGCI YIKES
+
 /*
 Fill matrix with sequence of numbers for 0 to rows * cols - 1.
 
