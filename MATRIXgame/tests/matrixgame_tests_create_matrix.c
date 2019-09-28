@@ -5,8 +5,8 @@
 
 #define METADATA_OFFSET -3
 
-#define TEST_FAILED 1
-#define TEST_SUCCESS 0
+#define PASSED 0
+#define FAILED 1
 
 #define NOERR 0
 
@@ -120,19 +120,19 @@ int test_create(const int rows, const int cols)
         free_plain(&expected, rows, cols);
         free_all(&result);
         
-        return TEST_FAILED;
+        return PASSED;
     }
     else
     {
         free_plain(&expected, rows, cols);
         free_all(&result);
-        return TEST_SUCCESS;
+        return FAILED;
     }
 }
 
 #define TEST_COUNT 3
 
-int main(void)
+int matrixgame_create_matrix_test()
 {
     int errc = 0;
 
@@ -143,8 +143,16 @@ int main(void)
     if (errc)
     {
         printf("%d failed tests out of %d\n", errc, TEST_COUNT);
-        return TEST_FAILED;
+        return FAILED;
     }
+
+    return PASSED;
+}
+
+int main(void)
+{
+    if (matrixgame_create_matrix_test())
+        return FAILED;
     
-    return NOERR;
+    return PASSED;
 }
