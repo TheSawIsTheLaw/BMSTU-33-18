@@ -39,7 +39,7 @@ test_matrixgame:
   stage: test
   image: gcc
   before_script:
-    - rm -rf ${MATRIX_TESTS_PATH}/${CI_COMMIT_REF_NAME}_codecoverage/
+    - rm -rf ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
