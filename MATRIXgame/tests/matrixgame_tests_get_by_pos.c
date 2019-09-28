@@ -14,6 +14,8 @@ Terminal colored output.
 #define DIMENSION_OUT_OF_RANGE_ERROR 218
 #define FALSE_POINTER_ERROR 219
 
+#define DEBUG_CI YIKES
+
 #define PASSED 0
 #define FAILED 1
 
