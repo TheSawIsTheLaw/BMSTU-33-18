@@ -25,6 +25,7 @@ static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
  * \brief Создаёт матрицу
  * \details Выделяет память для матрицы, описанной в переданной
  *             через указатель структуре matrix_t
+ *
  * \param[out] matrix - Указатель на структуру, описывающую матрицу
  * \param[in] rows - Число столбцов
  * \param[in] columns - Число строчек
