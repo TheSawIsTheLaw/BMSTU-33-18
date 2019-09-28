@@ -16,7 +16,8 @@ build_matrixgame:
     - cd $MATRIX_FUNCS_PATH
     - rm *.o
   only:
-    - /^matrixgame_.*$/
+    changes:
+      - ${MATRIX_FUNCS_PATH}/*.c
   except:
     - matrixgame_transpose
 
@@ -36,8 +37,7 @@ test_matrixgame:
   stage: test
   image: gcc
   before_script:
-    - cd $MATRIX_TESTS_PATH
-    - rm -rf ${CI_COMMIT_REF_NAME}_codecoverage/
+    - rm -rf ${MATRIX_TESTS_PATH}/${CI_COMMIT_REF_NAME}_codecoverage/
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
@@ -64,7 +64,8 @@ test_matrixgame:
     - cd ../../$MATRIX_TESTS_PATH
     - rm *.o *.gcda *.gcno
   only:
-    - /^matrixgame_.*$/
+    changes:
+      - ${MATRIX_TESTS_PATH}/*.c
   except:
     - matrixgame_transpose
 
@@ -72,8 +73,7 @@ test_matrixgame_openmp:
   stage: test
   image: gcc
   before_script:
-    - cd $MATRIX_TESTS_PATH
-    - rm -rf ${CI_COMMIT_REF_NAME}_codecoverage/
+    - rm -rf $MATRIX_TESTS_PATH/${CI_COMMIT_REF_NAME}_codecoverage/
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
