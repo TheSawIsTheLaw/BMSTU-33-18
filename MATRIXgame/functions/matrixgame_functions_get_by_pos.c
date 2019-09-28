@@ -27,9 +27,12 @@ int get_by_pos(const matrix_t *const init_matrix,
 
     for (int row = 0; row < init_matrix->rows; ++row)
     {
-        if (!(init_matrix->matrix + row))
+        for (int col = 0; col < init_matrix->columns; ++col)
         {
-            return FALSE_POINTER_ERROR;
+            if (!(init_matrix->matrix + row))
+            {
+                return FALSE_POINTER_ERROR;
+            }
         }
     }
 
