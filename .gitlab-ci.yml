@@ -20,9 +20,9 @@ build_matrixgame:
     refs:
       - /^matrixgame_.*$/
     changes:
-      - ${MATRIX_FUNCS_PATH}/*.c
-      - ${MATRIX_HEADERS_PATH}/*.h
-      - ${MATRIX_TESTS_PATH}/*.c
+      - ${MATRIX_FUNCS_PATH}*.c
+      - ${MATRIX_HEADERS_PATH}*.h
+      - ${MATRIX_TESTS_PATH}*.c
   except:
     refs:
       - matrixgame_transpose
@@ -40,9 +40,9 @@ build_matrixgame_openmp:
     refs:
       - matrixgame_transpose
     changes:
-      - ${MATRIX_FUNCS_PATH}/*.c
-      - ${MATRIX_HEADERS_PATH}/*.h
-      - ${MATRIX_TESTS_PATH}/*.c
+      - ${MATRIX_FUNCS_PATH}*.c
+      - ${MATRIX_HEADERS_PATH}*.h
+      - ${MATRIX_TESTS_PATH}*.c
 
 test_matrixgame:
   stage: test
@@ -78,9 +78,9 @@ test_matrixgame:
     refs:
       - /^matrixgame_.*$/
     changes:
-      - ${MATRIX_FUNCS_PATH}/*.c
-      - ${MATRIX_HEADERS_PATH}/*.h
-      - ${MATRIX_TESTS_PATH}/*.c
+      - ${MATRIX_FUNCS_PATH}*.c
+      - ${MATRIX_HEADERS_PATH}*.h
+      - ${MATRIX_TESTS_PATH}*.c
   except:
     - matrixgame_transpose
 
@@ -118,6 +118,6 @@ test_matrixgame_openmp:
     refs:
       - matrixgame_transpose
     changes:
-      - ${MATRIX_FUNCS_PATH}/*.c
-      - ${MATRIX_HEADERS_PATH}/*.h
-      - ${MATRIX_TESTS_PATH}/*.c
+      - ${MATRIX_FUNCS_PATH}*.c
+      - ${MATRIX_HEADERS_PATH}*.h
+      - ${MATRIX_TESTS_PATH}*.c
