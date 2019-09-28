@@ -17,10 +17,10 @@ build_matrixgame:
     - cd $MATRIX_FUNCS_PATH
     - rm *.o
   only:
+    refs:
+      - /^matrixgame_.*$/
     changes:
-      - ${MATRIX_FUNCS_PATH}*.c
-      - ${MATRIX_HEADERS_PATH}*.h
-      - ${MATRIX_TESTS_PATH}*.c
+      - MATRIXgame/**/*.{c, h}
   except:
     refs:
       - matrixgame_transpose
@@ -38,9 +38,7 @@ build_matrixgame_openmp:
     refs:
       - matrixgame_transpose
     changes:
-      - ${MATRIX_FUNCS_PATH}*.c
-      - ${MATRIX_HEADERS_PATH}*.h
-      - ${MATRIX_TESTS_PATH}*.c
+      - MATRIXgame/**/*.{c, h}
 
 test_matrixgame:
   stage: test
@@ -73,13 +71,12 @@ test_matrixgame:
     - cd ../../$MATRIX_TESTS_PATH
     - rm *.o *.gcda *.gcno
   only:
-    changes:
-      - ${MATRIX_FUNCS_PATH}*.c
-      - ${MATRIX_HEADERS_PATH}*.h
-      - ${MATRIX_TESTS_PATH}*.c
-  except:
     refs:
-      - matrixgame_transpose
+      - /^matrixgame_.*$/
+    changes:
+      - MATRIXgame/**/*.{c, h}
+  except:
+    - matrixgame_transpose
 
 test_matrixgame_openmp:
   stage: test
@@ -115,6 +112,4 @@ test_matrixgame_openmp:
     refs:
       - matrixgame_transpose
     changes:
-      - ${MATRIX_FUNCS_PATH}*.c
-      - ${MATRIX_HEADERS_PATH}*.h
-      - ${MATRIX_TESTS_PATH}*.c
+      - MATRIXgame/**/*.{c, h}
