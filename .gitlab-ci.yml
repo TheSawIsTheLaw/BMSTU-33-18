@@ -12,7 +12,7 @@ build_matrixgame:
   script:
     - gcc -Wall -Werror -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
   after_script:
-    - rm ${MATRIX_FUNCS_PATH}*.o
+    - rm *.o
   only:
     refs:
       - /^matrixgame_.*$/
@@ -28,7 +28,7 @@ build_matrixgame_openmp:
   script:
     - gcc -Wall -Werror -c -fopenmp ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
   after_script:
-    - rm ${MATRIX_FUNCS_PATH}*.o
+    - rm *.o
   only:
     refs:
       - matrixgame_transpose
