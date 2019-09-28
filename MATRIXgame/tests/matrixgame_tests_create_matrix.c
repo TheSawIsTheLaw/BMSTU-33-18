@@ -120,13 +120,13 @@ int test_create(const int rows, const int cols)
         free_plain(&expected, rows, cols);
         free_all(&result);
         
-        return PASSED;
+        return FAILED;
     }
     else
     {
         free_plain(&expected, rows, cols);
         free_all(&result);
-        return FAILED;
+        return PASSED;
     }
 }
 
