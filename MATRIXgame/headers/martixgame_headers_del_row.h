@@ -3,6 +3,6 @@
 
 #include "matrixgame_headers_matrix_t.h"
 
-matrix_t *del_row(const matrix_t *const edit_matrix, const int index_row)
+int del_row(matrix_t *edit_matrix, const int index_row);
 
 #endif
