@@ -1,9 +1,9 @@
 #include <stdlib.h>
 
 #include "../headers/matrixgame_headers_matrix_t.h"
-#include "../headers/matrixgame_headers_del_row.h"
-#include "../../ARRgame/headers/arrgame_headers_pop.h"
-#include "../../ARRgame/functions/arrgame_functions_pop.c"
+#include "../headers/martixgame_headers_del_row.h"
+// #include "../../ARRgame/headers/arrgame_headers_pop.h"
+// #include "../../ARRgame/functions/arrgame_functions_pop.c"
 
 
 #define INDEX_OUT_OF_RANGE_ERROR 318
@@ -35,7 +35,7 @@ void matr_realloc(int **matrix, int rows)
 }
 
 
-matrix_t *get_by_pos(const matrix_t *const edit_matrix, const int index_row)
+matrix_t *del_row(const matrix_t *const edit_matrix, const int index_row)
 {
     if (edit_matrix->rows - 1 < index_row || index_row < 0)
         return INDEX_OUT_OF_RANGE_ERROR;
@@ -53,7 +53,8 @@ matrix_t *get_by_pos(const matrix_t *const edit_matrix, const int index_row)
 
     edit_matrix->rows -= 1;
 
-    pop_base(edit_matrix->matrix, index_row);
+    for (int i = index_row; i < edit_matrix->rows - 1)
+        *(edit_matrix->matrix + i) = *(edit_matrix->matrix + i + 1);
     
     int error = matr_realloc(edit_matrix->matrix, edit_matrix->rows);
     if (error)
@@ -61,4 +62,3 @@ matrix_t *get_by_pos(const matrix_t *const edit_matrix, const int index_row)
 
     return edit_matrix;
 }
-
