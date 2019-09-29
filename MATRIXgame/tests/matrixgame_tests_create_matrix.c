@@ -1,12 +1,27 @@
-#include "../headers/matrixgame_headers_matrix_t.h"
-#include "../headers/matrixgame_headers_create_matrix.h"
+/* #include "../headers/matrixgame_headers_matrix_t.h" */
+/* #include "../headers/matrixgame_headers_create_matrix.h" */
+
 #include <stdio.h>
 #include <stdlib.h>
 
+void *faulty_malloc(const int in)
+{
+    if (in > 0)
+        return malloc(in);
+    else
+        return NULL;
+}
+
+#define malloc(x) faulty_malloc(x)
+
+#include "../functions/matrixgame_functions_create_matrix.c"
+
+#undef malloc
+
 #define METADATA_OFFSET -3
 
-#define TEST_FAILED 1
-#define TEST_SUCCESS 0
+#define PASSED 0
+#define FAILED 1
 
 #define NOERR 0
 
@@ -120,31 +135,64 @@ int test_create(const int rows, const int cols)
         free_plain(&expected, rows, cols);
         free_all(&result);
         
-        return TEST_FAILED;
+        return FAILED;
     }
     else
     {
         free_plain(&expected, rows, cols);
         free_all(&result);
-        return TEST_SUCCESS;
+        return PASSED;
     }
 }
 
-#define TEST_COUNT 3
+int test_malloc_fail()
+{
+    matrix_t result;
+    int rc;
+    rc = create_matrix(&result, -100, 5);
+    if (rc == NOERR)
+        return FAILED;
+    else
+        return PASSED;
+}
 
-int main(void)
+int test_create_fail()
+{
+    matrix_t result;
+    int rc;
+    rc = create_matrix(&result, 5, -100);
+    if (rc == NOERR)
+        return FAILED;
+    else
+        return PASSED;
+}
+    
+
+#define TEST_COUNT 5
+
+int matrixgame_create_matrix_test()
 {
     int errc = 0;
 
     errc += test_create(5, 6);
     errc += test_create(1, 5);
     errc += test_create(4, 1);
+    errc += test_malloc_fail();
+    errc += test_create_fail();
 
     if (errc)
     {
         printf("%d failed tests out of %d\n", errc, TEST_COUNT);
-        return TEST_FAILED;
+        return FAILED;
     }
+
+    return PASSED;
+}
+
+int main(void)
+{
+    if (matrixgame_create_matrix_test())
+        return FAILED;
     
-    return NOERR;
+    return PASSED;
 }
