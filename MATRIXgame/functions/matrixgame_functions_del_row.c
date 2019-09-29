@@ -20,7 +20,7 @@ Input data:
 
 Output data:
 * Edited matrix_t sample or return code - INDEX_OUT_OF_RANGE_ERROR or 
-FALSE_POINTER_ERROR.
+FALSE_POINTER_ERROR or REALLOC_ERROR.
 */
 
 void matr_realloc(int **matrix, int rows)
