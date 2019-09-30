@@ -29,6 +29,7 @@ int check_print(matrix_t matrix)
                 check = ERROR;
         }
     }
+    fclose(file_ptr);
     return SUCCESS;
 }
 int main()
