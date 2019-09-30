@@ -6,9 +6,6 @@
 #define ERROR -1
 #define SUCCESS 0
 
-
-
-
 void array_matrix(matrix_t *matrix)
 {
     for (int i = 0; i < matrix -> rows; i++)
@@ -53,14 +50,23 @@ int main()
     int check = check_print(matrixor);
     
     if (check == SUCCESS)
-    {
         printf("Тест пройден\n");
-        return SUCCESS;
-    }
     else
     {
         printf("Тест завален\n");
         return SUCCESS;
     }
+    matrix_t matrixor_2;
+    matrixor_2.rows = 0;
+    check = print_matrix(&matrixor_2, stdout);
+    if (check == ERROR)
+        printf("Тест пройден\n");
+    
+    matrix_t matrixor_3;
+    matrixor_3.columns = 0;
+    check = print_matrix(&matrixor_3, stdout);
+    if (check == ERROR)
+        printf("Тест пройден\n");
+    
     return SUCCESS;
 }
