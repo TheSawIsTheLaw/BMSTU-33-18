@@ -10,10 +10,10 @@
  */
 int print_matrix(const matrix_t *const matrix)
 {
-    if (matrix -> rows < 0)
+    if (matrix -> rows <= 0)
         return ERROR;
     
-    if (matrix -> columns < 0)
+    if (matrix -> columns <= 0)
         return ERROR;
 
     for (int i = 0; i < matrix -> rows; i++)
