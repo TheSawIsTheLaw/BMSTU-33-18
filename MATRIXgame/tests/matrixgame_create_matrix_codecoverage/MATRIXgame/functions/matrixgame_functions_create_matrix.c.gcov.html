@@ -31,18 +31,18 @@
             <td class="headerValue">test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">19</td>
             <td class="headerCovTableEntry">20</td>
-            <td class="headerCovTableEntryLo">60.0 %</td>
+            <td class="headerCovTableEntryHi">95.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-09-28 14:57:53</td>
+            <td class="headerValue">2019-09-30 20:09:11</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">1</td>
             <td class="headerCovTableEntry">2</td>
-            <td class="headerCovTableEntryLo">50.0 %</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -74,11 +74,11 @@
 <a name="12"><span class="lineNum">      12 </span>            :  * \param[in] start - Указатель на начало диапазона указателей</a>
 <a name="13"><span class="lineNum">      13 </span>            :  * \param[in] end - Указатель на конец диапазона указателей.</a>
 <a name="14"><span class="lineNum">      14 </span>            :  */</a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineNoCov">          0 : static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">          1 : static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)</span></a>
 <a name="16"><span class="lineNum">      16 </span>            : {</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineNoCov">          0 :     for (; start &lt; end; start++)</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          1 :     for (; start &lt; end; start++)</span></a>
 <a name="18"><span class="lineNum">      18 </span><span class="lineNoCov">          0 :         free(*start);</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineNoCov">          0 : }</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">          1 : }</span></a>
 <a name="20"><span class="lineNum">      20 </span>            : </a>
 <a name="21"><span class="lineNum">      21 </span>            : #define MEM_ALLOC_FAILURE -101  /* Ошибка выделения памяти */</a>
 <a name="22"><span class="lineNum">      22 </span>            : #define SUCCESS 0               /* успех */</a>
@@ -95,23 +95,23 @@
 <a name="33"><span class="lineNum">      33 </span>            :  * \retval SUCCESS Успех, без ошибки</a>
 <a name="34"><span class="lineNum">      34 </span>            :  * \retval MEM_ALLOC_FAILURE Ошибка при выделении памяти</a>
 <a name="35"><span class="lineNum">      35 </span>            :  */</a>
-<a name="36"><span class="lineNum">      36 </span><span class="lineCov">          3 : int create_matrix(matrix_t *const matrix, const int rows, const int columns)</span></a>
+<a name="36"><span class="lineNum">      36 </span><span class="lineCov">          5 : int create_matrix(matrix_t *const matrix, const int rows, const int columns)</span></a>
 <a name="37"><span class="lineNum">      37 </span>            : {</a>
-<a name="38"><span class="lineNum">      38 </span><span class="lineCov">          3 :     void *temp = malloc(sizeof(mtype*) * rows);</span></a>
-<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          3 :     if (!temp)</span></a>
-<a name="40"><span class="lineNum">      40 </span><span class="lineNoCov">          0 :         return MEM_ALLOC_FAILURE;</span></a>
+<a name="38"><span class="lineNum">      38 </span><span class="lineCov">          5 :     void *temp = malloc(sizeof(mtype*) * rows);</span></a>
+<a name="39"><span class="lineNum">      39 </span><span class="lineCov">          5 :     if (!temp)</span></a>
+<a name="40"><span class="lineNum">      40 </span><span class="lineCov">          1 :         return MEM_ALLOC_FAILURE;</span></a>
 <a name="41"><span class="lineNum">      41 </span>            : </a>
-<a name="42"><span class="lineNum">      42 </span><span class="lineCov">          3 :     matrix-&gt;matrix = (mtype**)temp;</span></a>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">          4 :     matrix-&gt;matrix = (mtype**)temp;</span></a>
 <a name="43"><span class="lineNum">      43 </span>            : </a>
-<a name="44"><span class="lineNum">      44 </span><span class="lineCov">          3 :     mtype *const *const end = matrix-&gt;matrix + rows;</span></a>
-<a name="45"><span class="lineNum">      45 </span><span class="lineCov">         13 :     for (mtype** cur = matrix-&gt;matrix; cur &lt; end; cur++)</span></a>
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">          4 :     mtype *const *const end = matrix-&gt;matrix + rows;</span></a>
+<a name="45"><span class="lineNum">      45 </span><span class="lineCov">         14 :     for (mtype** cur = matrix-&gt;matrix; cur &lt; end; cur++)</span></a>
 <a name="46"><span class="lineNum">      46 </span>            :     {</a>
-<a name="47"><span class="lineNum">      47 </span><span class="lineCov">         10 :         temp = create(columns);</span></a>
-<a name="48"><span class="lineNum">      48 </span><span class="lineCov">         10 :         if (!temp)</span></a>
+<a name="47"><span class="lineNum">      47 </span><span class="lineCov">         11 :         temp = create(columns);</span></a>
+<a name="48"><span class="lineNum">      48 </span><span class="lineCov">         11 :         if (!temp)</span></a>
 <a name="49"><span class="lineNum">      49 </span>            :         {</a>
-<a name="50"><span class="lineNum">      50 </span><span class="lineNoCov">          0 :             clean_up_row_pointers(matrix-&gt;matrix, cur);</span></a>
-<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :             free(matrix-&gt;matrix);</span></a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :             return MEM_ALLOC_FAILURE;</span></a>
+<a name="50"><span class="lineNum">      50 </span><span class="lineCov">          1 :             clean_up_row_pointers(matrix-&gt;matrix, cur);</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">          1 :             free(matrix-&gt;matrix);</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineCov">          1 :             return MEM_ALLOC_FAILURE;</span></a>
 <a name="53"><span class="lineNum">      53 </span>            :         }</a>
 <a name="54"><span class="lineNum">      54 </span>            :         </a>
 <a name="55"><span class="lineNum">      55 </span><span class="lineCov">         10 :         *cur = (mtype*)temp;</span></a>
