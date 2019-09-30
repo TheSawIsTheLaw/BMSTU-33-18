@@ -3,23 +3,24 @@
 #include "../headers/matrixgame_headers_matrix_t.h"
 #include "../headers/matrixgame_headers_create_matrix.h"
 #include "../../ARRgame/headers/arrgame_headers_create.h"
-#include "../../ARRgame/functions/arrgame_functions_create.c"
+#include "../../ARRgame/headers/arrgame_headers_clean.h"
 
 typedef int mtype;
+
+#define MEM_ALLOC_FAILURE -101  /* Ошибка выделения памяти */
+#define SERVICE_DATA_OFFSET -3  /* длинна метаданых в arrgame */
+#define SUCCESS 0               /* успех */
 
 /**
  * \brief Освобождает выделнную за диапазаном указателей память.
  * \param[in] start - Указатель на начало диапазона указателей
  * \param[in] end - Указатель на конец диапазона указателей.
  */
-static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
+static void clean_up_row_pointers(mtype *const * start, mtype *const *const end, const int len)
 {
     for (; start < end; start++)
-        free(*start);
+        free((*start) + SERVICE_DATA_OFFSET);
 }
-
-#define MEM_ALLOC_FAILURE -101  /* Ошибка выделения памяти */
-#define SUCCESS 0               /* успех */
 
 /**
  * \brief Создаёт матрицу
@@ -47,7 +48,7 @@ int create_matrix(matrix_t *const matrix, const int rows, const int columns)
         temp = create(columns);
         if (!temp)
         {
-            clean_up_row_pointers(matrix->matrix, cur);
+            clean_up_row_pointers(matrix->matrix, cur, columns);
             free(matrix->matrix);
             return MEM_ALLOC_FAILURE;
         }
