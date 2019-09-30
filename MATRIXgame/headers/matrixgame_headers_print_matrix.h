@@ -3,7 +3,7 @@
 
 #include "matrixgame_headers_matrix_t.h"
 
-int print_matrix(const matrix_t *const matrix);
+int print_matrix(const matrix_t *const matrix, FILE *file);
 
 #endif
 
