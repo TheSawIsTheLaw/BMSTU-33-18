@@ -16,7 +16,7 @@ typedef int mtype;
  * \param[in] start - Указатель на начало диапазона указателей
  * \param[in] end - Указатель на конец диапазона указателей.
  */
-static void clean_up_row_pointers(mtype *const * start, mtype *const *const end, const int len)
+static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
 {
     for (; start < end; start++)
         free((*start) + SERVICE_DATA_OFFSET);
@@ -48,7 +48,7 @@ int create_matrix(matrix_t *const matrix, const int rows, const int columns)
         temp = create(columns);
         if (!temp)
         {
-            clean_up_row_pointers(matrix->matrix, cur, columns);
+            clean_up_row_pointers(matrix->matrix, cur);
             free(matrix->matrix);
             return MEM_ALLOC_FAILURE;
         }
