@@ -16,15 +16,19 @@ void array_matrix(matrix_t *matrix)
             matrix -> matrix[i][j] = i + j;
 }
 
-int compare_matrix(matrix_t matrix)
+int check_print(matrix_t matrix)
 {
-    int need_matrix[2][3] = {{0, 1, 2}, {1, 2, 3}};
-    for (int i = 0; i < matrix.rows; i++)
-        for (int j = 0; j < matrix.columns; j++)
+    FILE *file_ptr = fopen("1.txt", "r");
+    int element, check = ERROR;
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 3; j++)
         {
-            if (matrix.matrix[i][j] != need_matrix[i][j])
-                return ERROR;
+            fscanf(file_ptr, "%d", &element);
+            if (element != matrix.matrix[i][j])
+                check = ERROR;
         }
+    }
     return SUCCESS;
 }
 int main()
@@ -32,26 +36,30 @@ int main()
     matrix_t matrixor;
     matrixor.rows = 2;
     matrixor.columns = 3;
+    
     matrixor.matrix = (int**)calloc(matrixor.rows, sizeof(int*));
     for (int i = 0; i < matrixor.rows; i++)
         matrixor.matrix[i] = (int*)calloc(matrixor.columns, sizeof(int));
+    
     array_matrix(&matrixor);
-    int check = ERROR;
-    print_matrix(&matrixor);
-    check = SUCCESS;
-    if (check == ERROR)
-    {
-        printf("Тест завален\n");
-        return ERROR;
-    }
-    check = compare_matrix(matrixor);
+    
+    FILE *file_ptr = fopen("1.txt", "w");
+    
+    print_matrix(&matrixor, file_ptr);
+    
+    fclose(file_ptr);
+    
+    int check = check_print(matrixor);
+    
     if (check == SUCCESS)
     {
         printf("Тест пройден\n");
         return SUCCESS;
     }
     else
-        return ERROR;
+    {
+        printf("Тест завален\n");
+        return SUCCESS;
+    }
     return SUCCESS;
 }
-
