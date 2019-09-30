@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2019-09-30 20:50:29</td>
+            <td class="headerValue">2019-09-30 21:07:19</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -72,10 +72,10 @@
 <a name="10"><span class="lineNum">      10 </span>            :  */</a>
 <a name="11"><span class="lineNum">      11 </span><span class="lineCov">          1 : int print_matrix(const matrix_t *const matrix)</span></a>
 <a name="12"><span class="lineNum">      12 </span>            : {</a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">          1 :     if (matrix -&gt; rows &lt; 0)</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">          1 :     if (matrix -&gt; rows &lt;= 0)</span></a>
 <a name="14"><span class="lineNum">      14 </span><span class="lineNoCov">          0 :         return ERROR;</span></a>
 <a name="15"><span class="lineNum">      15 </span>            :     </a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">          1 :     if (matrix -&gt; columns &lt; 0)</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">          1 :     if (matrix -&gt; columns &lt;= 0)</span></a>
 <a name="17"><span class="lineNum">      17 </span><span class="lineNoCov">          0 :         return ERROR;</span></a>
 <a name="18"><span class="lineNum">      18 </span>            : </a>
 <a name="19"><span class="lineNum">      19 </span><span class="lineCov">          3 :     for (int i = 0; i &lt; matrix -&gt; rows; i++)</span></a>
