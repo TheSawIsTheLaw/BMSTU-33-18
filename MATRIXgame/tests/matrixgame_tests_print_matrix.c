@@ -16,14 +16,14 @@ void array_matrix(matrix_t *matrix)
 int check_print(matrix_t matrix)
 {
     FILE *file_ptr = fopen("1.txt", "r");
-    int element, check = ERROR;
+    int element;
     for (int i = 0; i < 2; i++)
     {
         for (int j = 0; j < 3; j++)
         {
             fscanf(file_ptr, "%d", &element);
             if (element != matrix.matrix[i][j])
-                check = ERROR;
+                return ERROR;
         }
     }
     fclose(file_ptr);
