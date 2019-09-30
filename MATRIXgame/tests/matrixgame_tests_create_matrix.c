@@ -1,22 +1,8 @@
-/* #include "../headers/matrixgame_headers_matrix_t.h" */
-/* #include "../headers/matrixgame_headers_create_matrix.h" */
+#include "../headers/matrixgame_headers_matrix_t.h"
+#include "../headers/matrixgame_headers_create_matrix.h"
 
 #include <stdio.h>
 #include <stdlib.h>
-
-void *faulty_malloc(const int in)
-{
-    if (in > 0)
-        return malloc(in);
-    else
-        return NULL;
-}
-
-#define malloc(x) faulty_malloc(x)
-
-#include "../functions/matrixgame_functions_create_matrix.c"
-
-#undef malloc
 
 #define METADATA_OFFSET -3
 
