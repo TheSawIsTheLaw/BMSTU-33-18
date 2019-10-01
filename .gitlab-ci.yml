@@ -21,6 +21,7 @@ build_matrixgame:
   except:
     refs:
       - matrixgame_transpose
+      - matrixgame_codecoverage
 
 build_matrixgame_openmp:
   stage: build
@@ -38,8 +39,6 @@ build_matrixgame_openmp:
 test_matrixgame:
   stage: test
   image: gcc
-  before_script:
-    - rm -rf ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
@@ -70,12 +69,11 @@ test_matrixgame:
       - MATRIXgame/**/*.{c, h}
   except:
     - matrixgame_transpose
+    - matrixgame_codecoverage
 
 test_matrixgame_openmp:
   stage: test
   image: gcc
-  before_script:
-    - rm -rf ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
