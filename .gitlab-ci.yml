@@ -38,8 +38,6 @@ build_matrixgame_openmp:
 test_matrixgame:
   stage: test
   image: gcc
-  before_script:
-    - rm -rf ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
@@ -55,14 +53,14 @@ test_matrixgame:
     - ./test.exe
     - lcov -t "test" -o test.info -c -d .
     - genhtml -o ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
-    - git config user.name "$GITLAB_USER_NAME"
-    - git config user.email $GITLAB_USER_EMAIL
-    - git add ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
-    - git commit -m "Add codecoverage directory for $CI_COMMIT_REF_NAME function"
-    - git push https://${DEPLOY_USER}:${DEPLOY_TOKEN}@git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev.git HEAD:$CI_COMMIT_REF_NAME
   after_script:
     - rm -rf lcov/
     - rm *.o *.gcda *.gcno *.exe
+  artifacts:
+    name: codecoverage
+    paths:
+      - ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage
+    when: on_success
   only:
     refs:
       - /^matrixgame_.*$/
@@ -74,8 +72,6 @@ test_matrixgame:
 test_matrixgame_openmp:
   stage: test
   image: gcc
-  before_script:
-    - rm -rf ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
@@ -91,14 +87,14 @@ test_matrixgame_openmp:
     - ./test.exe
     - lcov -t "test" -o test.info -c -d .
     - genhtml -o ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
-    - git config user.name "$GITLAB_USER_NAME"
-    - git config user.email $GITLAB_USER_EMAIL
-    - git add ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
-    - git commit -m "Add codecoverage directory for $CI_COMMIT_REF_NAME function"
-    - git push https://${DEPLOY_USER}:${DEPLOY_TOKEN}@git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev.git HEAD:$CI_COMMIT_REF_NAME
   after_script:
     - rm -rf lcov/
     - rm *.o *.gcda *.gcno *.exe
+  artifacts:
+    name: codecoverage
+    paths:
+      - ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage
+    when: on_success
   only:
     refs:
       - matrixgame_transpose
