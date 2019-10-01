@@ -16,8 +16,6 @@ build_matrixgame:
   only:
     refs:
       - /^matrixgame_.*$/
-    changes:
-      - MATRIXgame/**/*.{c, h}
   except:
     refs:
       - matrixgame_transpose
@@ -32,8 +30,6 @@ build_matrixgame_openmp:
   only:
     refs:
       - matrixgame_transpose
-    changes:
-      - MATRIXgame/**/*.{c, h}
 
 test_matrixgame:
   stage: test
@@ -64,8 +60,6 @@ test_matrixgame:
   only:
     refs:
       - /^matrixgame_.*$/
-    changes:
-      - MATRIXgame/**/*.{c, h}
   except:
     - matrixgame_transpose
 
@@ -98,5 +92,3 @@ test_matrixgame_openmp:
   only:
     refs:
       - matrixgame_transpose
-    changes:
-      - MATRIXgame/**/*.{c, h}
