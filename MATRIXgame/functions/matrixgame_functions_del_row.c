@@ -14,7 +14,7 @@
 Deletes chosen row. First row has number 1.
 
 Input data:
-* const matrix_t *const matrix - matrix struct where need to delete row.
+* matrix_t *matrix - matrix struct where need to delete row.
 * const int index_row - index of row to be deleted.
 
 Output data:
@@ -28,6 +28,7 @@ int matr_realloc(int **matrix, const int rows)
     if (!tmp)
         return REALLOC_ERROR;
     matrix = (int**)tmp;
+    tmp = NULL;
     return OK;
 }
 
