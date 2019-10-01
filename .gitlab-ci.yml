@@ -59,7 +59,7 @@ test_matrixgame:
     - git config user.email $GITLAB_USER_EMAIL
     - git add ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
     - git commit -m "Add codecoverage directory for $CI_COMMIT_REF_NAME function"
-    - git push https://${DEPLOY_USER}:${DEPLOY_TOKEN}@git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev.git HEAD:$CI_COMMIT_REF_NAME
+    - git push https://${DEPLOY_USER}:${DEPLOY_TOKEN}@git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev.git HEAD:matrixgame_codecoverage
   after_script:
     - rm -rf lcov/
     - rm *.o *.gcda *.gcno *.exe
@@ -95,7 +95,7 @@ test_matrixgame_openmp:
     - git config user.email $GITLAB_USER_EMAIL
     - git add ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage/
     - git commit -m "Add codecoverage directory for $CI_COMMIT_REF_NAME function"
-    - git push https://${DEPLOY_USER}:${DEPLOY_TOKEN}@git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev.git HEAD:$CI_COMMIT_REF_NAME
+    - git push https://${DEPLOY_USER}:${DEPLOY_TOKEN}@git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev.git HEAD:matrixgame_codecoverage
   after_script:
     - rm -rf lcov/
     - rm *.o *.gcda *.gcno *.exe
