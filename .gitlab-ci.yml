@@ -47,8 +47,10 @@ test_matrixgame:
     - cd lcov/
     - make install
     - cd ..
-    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${MATRIX_TESTS_PATH}matrixgame_tests_*.c
-    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+    - export CUR_FUNC="echo $CI_COMMIT_REF_NAME | sed -'/matrixgame_//'"
+    - gcc -Wall -Werror -c ${MATRIX_TESTS_PATH}*tests_${CUR_FUNC}.c
+    - gcc -Wall -Werror -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${MATRIX_FUNCS_PATH}*functions_${CUR_FUNC}.c
     - gcc -lgcov --coverage -o test.exe matrixgame_tests_*.o matrixgame_functions_*.o
     - ./test.exe
     - lcov -t "test" -o test.info -c -d .
@@ -81,8 +83,10 @@ test_matrixgame_openmp:
     - cd lcov/
     - make install
     - cd ..
-    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -fopenmp -c ${MATRIX_TESTS_PATH}matrixgame_tests_*.c
-    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -fopenmp -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+    - export CUR_FUNC="echo $CI_COMMIT_REF_NAME | sed -'/matrixgame_//'"
+    - gcc -Wall -Werror -fopenmp -c ${MATRIX_TESTS_PATH}*tests_${CUR_FUNC}.c
+    - gcc -Wall -Werror -fopenmp -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -fopenmp -c ${MATRIX_FUNCS_PATH}*functions_${CUR_FUNC}.c
     - gcc -lgcov --coverage -fopenmp -o test.exe matrixgame_tests_*.o matrixgame_functions_*.o
     - ./test.exe
     - lcov -t "test" -o test.info -c -d .
