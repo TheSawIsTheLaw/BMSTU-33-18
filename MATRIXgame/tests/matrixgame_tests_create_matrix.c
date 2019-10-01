@@ -131,7 +131,7 @@ int test_create(const int rows, const int cols)
 
 #define TEST_COUNT 3
 
-/*int main(void)
+int main(void)
 {
     int errc = 0;
 
@@ -144,6 +144,6 @@ int test_create(const int rows, const int cols)
         printf("%d failed tests out of %d\n", errc, TEST_COUNT);
         return TEST_FAILED;
     }
-    
+
     return NOERR;
-}*/
+}
