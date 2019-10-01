@@ -1,3 +1,5 @@
+[![Pipeline status](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/matrixgame_get_by_pos/pipeline.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/matrixgame_get_by_pos) [![Coverage report](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/matrixgame_get_by_pos/coverage.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/matrixgame_get_by_pos)
+
 ### Общее описание задачи
 Пишем набор функций для работы с матрицей, которая удовлетворяет нижеуказанным свойствам:
 
