@@ -3,6 +3,7 @@
 
 #include<stdlib.h>
 
+#define NO_ERR 0
 #define PASSED 0
 #define FAILED 1
 
