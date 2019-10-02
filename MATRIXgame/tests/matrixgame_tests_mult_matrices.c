@@ -7,7 +7,7 @@
 #define OK 0
 #define MALLOC_ERROR 3
 #define FILE_ERROR 4
-#define MATRIX_DATA_FILE "tests/file_with_matrices.txt"
+#define MATRIX_DATA_FILE "MATRIXgame/tests/file_with_matrices.txt"
 // макроопределения из файла с функцией
 #define OK 0 // Код корректного выполнения функции
 #define SIZE_ERROR 217 // Размеры 3 матриц (2 множителей и результата) не корректны для проведения матричного умножения
