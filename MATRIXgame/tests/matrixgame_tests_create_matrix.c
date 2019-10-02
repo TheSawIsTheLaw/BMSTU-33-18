@@ -151,7 +151,7 @@ int test_create_fail()
 {
     matrix_t result;
     int rc;
-    rc = create_matrix(&result, KILO(100), MEGA(256));
+    rc = create_matrix(&result, MEGA(512), KILO(64));
     if (rc == NOERR)
         return FAILED;
     else
