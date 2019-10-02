@@ -17,18 +17,15 @@
 // Appending one row at the bottom of the matrix
 int append_row(matrix_t *const matrix)
 {
-    int *new_row = (int *)calloc(matrix->columns, sizeof(int));
-    if (!new_row)
-        return APPEND_ROW_ERROR;
-
     matrix->matrix = (int **)realloc(matrix->matrix,  (matrix->rows + 1) * sizeof(int *));
     if (!matrix->matrix)
         return EXTEND_MATRIX_ERROR;
     
-    *((matrix->matrix) + matrix->rows) = new_row;
-    (matrix->rows)++;
+    *((matrix->matrix) + matrix->rows) = (int *)calloc(matrix->columns, sizeof(int));
+    if (!*((matrix->matrix) + matrix->rows))
+        return APPEND_ROW_ERROR;
 
-    free(new_row);
+    (matrix->rows)++;
 
     return SUCCESS;
 }
@@ -40,7 +37,7 @@ int check_indices(const matrix_t *const matrix, const int i, const int j)
     if ((i < 0) || (j < 0))
         return INVALID_INDICES;
     
-    if ((matrix->rows <= i) || (matrix->columns <= j))
+    if ((matrix->rows < i) || (matrix->columns <= j))
         return INVALID_INDICES;
     
     return VALID_INDICES;
