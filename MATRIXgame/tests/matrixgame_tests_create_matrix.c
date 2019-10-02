@@ -147,18 +147,29 @@ int test_malloc_fail()
         return PASSED;
 }
 
-int test_create_fail()
+int test_create_fail_midway()
 {
     matrix_t result;
     int rc;
-    rc = create_matrix(&result, MEGA(512), KILO(64));
+    rc = create_matrix(&result, MEGA(32), MEGA(900));
     if (rc == NOERR)
         return FAILED;
     else
         return PASSED;
 }
 
-#define TEST_COUNT 5
+int test_create_fail()
+{
+    matrix_t result;
+    int rc;
+    rc = create_matrix(&result, 5, -100);
+    if (rc == NOERR)
+        return FAILED;
+    else
+        return PASSED;
+}
+
+#define TEST_COUNT 6
 
 int matrixgame_create_matrix_test()
 {
@@ -169,6 +180,7 @@ int matrixgame_create_matrix_test()
     errc += test_create(4, 1);
     errc += test_malloc_fail();
     errc += test_create_fail();
+    errc += test_create_fail_midway();
 
     if (errc)
     {
