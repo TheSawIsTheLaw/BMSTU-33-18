@@ -5,5 +5,8 @@
 
 #define SIZE_ERROR 217 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> matrixgame_ci
 #endif
