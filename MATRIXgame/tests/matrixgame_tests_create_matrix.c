@@ -4,6 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define STEP 1024
+#define KILO(x) x * STEP
+#define MEGA(x) KILO(x) * STEP
+#define GIGA(x) MEGA(x) * STEP
+
 #define METADATA_OFFSET -3
 
 #define PASSED 0
@@ -146,13 +151,12 @@ int test_create_fail()
 {
     matrix_t result;
     int rc;
-    rc = create_matrix(&result, 5, -100);
+    rc = create_matrix(&result, 5, MEGA(512));
     if (rc == NOERR)
         return FAILED;
     else
         return PASSED;
 }
-    
 
 #define TEST_COUNT 5
 
