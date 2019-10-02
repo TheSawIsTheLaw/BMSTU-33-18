@@ -12,7 +12,6 @@
 int my_realloc(matrix_t *matrix)
 {
     matrix->rows += 1;
-
     matrix->matrix = (int**)realloc(matrix->matrix,matrix->rows * sizeof(int*));
 
     if (matrix->matrix == NULL)
@@ -52,11 +51,11 @@ int add_row(matrix_t *matrix, const int index)
     if (rc != OK)
         return rc;
 
-    // сдвигаем строки
+    // Сдвигаем строки
     for (int i = matrix->rows; i > index; i--)
         *(matrix->matrix + i) = *(matrix->matrix + i - 1);
 
-    // обнуляем новую строку
+    // Обнуляем новую строку
     for (int j = 0; j < matrix->columns; ++j)
         *(*((matrix->matrix) + index) + j) = 0;
 
