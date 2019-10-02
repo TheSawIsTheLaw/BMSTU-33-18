@@ -3,7 +3,7 @@
 
 #include "matrixgame_headers_matrix_t.h"
 
-int is_index_correct(const int rows && const int columns && const int index_row, const int index_column);
+int is_index_correct(const int rows, const int columns, const int index_row, const int index_column);
 
 int one_pos_shifting(matrix_t *const matrix);
 
