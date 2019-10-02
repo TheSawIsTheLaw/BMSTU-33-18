@@ -61,7 +61,7 @@ int insert_el_in_row(matrix_t *const matrix, int index_row, int index_column, in
 
             *(*((matrix->matrix) + index_row) + index_column) = el;
     
-            return NO_ERROR;
+            return NO_ERR;
         }
 
         return EL_IND_ERR;
