@@ -102,7 +102,6 @@ int test_common(void)
     int col[10] = {1,2,3,4,5,6,7,8,9,0};
     if (add_column(&test_matrix, col))
     {
-        free_matrix(&test_matrix);
         return FAIL;
     }
     if (test_matrix.columns == (MCC+1))
