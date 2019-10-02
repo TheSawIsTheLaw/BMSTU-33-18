@@ -1,6 +1,8 @@
 #include "../headers/matrixgame_headers_insert_el_in_row.h"
 #include "../headers/matrixgame_headers_matrix_t.h"
 
+#include<stdlib.h>
+
 #define PASSED 0
 #define FAILED 1
 
@@ -60,8 +62,20 @@ int matrixgame_insert_el_in_row_test()
     insert_el_in_row(&tmp_matrix, index_row, index_column, el);
 
     if (matrix_compare(tmp_matrix, res_matrix))
+    {
+        for (int i = 0; i < tmp_matrix.rows; i++)
+            free(tmp_matrix.matrix[i]);
+
+        free(tmp_matrix.matrix);
+        
         return PASSED;
-  
+    }
+
+    for (int i = 0; i < tmp_matrix.rows; i++)
+        free(tmp_matrix.matrix[i]);
+
+    free(tmp_matrix.matrix);
+    
     return FAILED;
 }
 
