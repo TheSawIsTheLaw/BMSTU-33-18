@@ -5,6 +5,8 @@
 #include "../headers/matrixgame_errno.h"
 
 #define R_I 1  // Right input.
+
+#define NO_ERR 0  // No errors.
 #define MEM_ERR -808  // Memory error: array of pointers or values was not allocated right.
 #define EL_IND_ERR -809  // Element index error: element's index is not coorect. 
 
@@ -59,7 +61,7 @@ int insert_el_in_row(matrix_t *const matrix, int index_row, int index_column, in
 
             *(*((matrix->matrix) + index_row) + index_column) = el;
     
-            return 0;
+            return NO_ERROR;
         }
 
         return EL_IND_ERR;
