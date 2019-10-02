@@ -2,8 +2,7 @@
 
 #include "../headers/matrixgame_headers_matrix_t.h"
 #include "../headers/matrixgame_headers_create_matrix.h"
-#include "../../ARRgame/headers/arrgame_headers_create.h"
-#include "../../ARRgame/headers/arrgame_headers_clean.h"
+#include "../../ARRgame/functions/arrgame_functions_create.c"
 
 typedef int mtype;
 
