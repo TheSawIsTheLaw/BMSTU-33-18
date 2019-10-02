@@ -6,7 +6,9 @@
 
 #define CORRECT_COLOMN_ERROR  1  /*Некорректное значение столбца для удаления*/
 #define REALLOC_ERROR 2  /*Ошибка перевыделения памяти*/
-#define SUCCESS 0   /*успех*/
+#define NOT_CORRECT_MATRIX 3  /*Некорректный указатель на матрицу*/
+#define NOT_CORRECT_ARRAY 4  /*Некорректный указатель на массив*/
+#define SUCCESS 0   /*Успех*/
 
 /**
  * \brief Уменьшает размер каждой из строк матрицы на 1
@@ -45,7 +47,18 @@ int del_column(matrix_t *const m, const int column)
     {
         return CORRECT_COLOMN_ERROR;
     }
+
+    if (m == NULL)
+        return NOT_CORRECT_MATRIX;
+
     int** p = m->matrix;
+
+    for(int i = 0; i < m->rows; i++)
+    {
+        if (*(p + i) == NULL)
+            return NOT_CORRECT_ARRAY;
+    }
+
 
     for(int i = 0; i < m->rows; i++)
     {
