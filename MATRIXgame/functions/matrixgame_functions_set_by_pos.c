@@ -2,6 +2,8 @@
 
 // The index of a row/column is not valid (that number is more or less than possible)
 #define RANGE_ERROR 11
+// False pointer
+#define POINTER_ERROR 12
 // Normal work without errors
 #define PASSED 0
 
@@ -18,7 +20,8 @@ int set_by_pos(const matrix_t *const init_matrix, const int index_row, const int
 {
     if (index_row < INITIAL || index_column < INITIAL || index_row >= init_matrix->rows || index_column >= init_matrix->columns)
         return RANGE_ERROR;
-
+    if (!(init_matrix->matrix + index_row))
+    	return POINTER_ERROR;
     *(*(init_matrix->matrix + index_row) + index_column) = el;
 
     return PASSED;
