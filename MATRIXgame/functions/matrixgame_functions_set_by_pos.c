@@ -20,8 +20,18 @@ int set_by_pos(const matrix_t *const init_matrix, const int index_row, const int
 {
     if (index_row < INITIAL || index_column < INITIAL || index_row >= init_matrix->rows || index_column >= init_matrix->columns)
         return RANGE_ERROR;
-    if (!(init_matrix->matrix + index_row))
-    	return POINTER_ERROR;
+        
+    for (int row = INITIAL; row < init_matrix->rows; ++row)
+    {
+        for (int column = INITIAL; column < init_matrix->columns; ++column)
+        {
+            if (!(init_matrix->matrix + row))
+            {
+                return POINTER_ERROR;
+            }
+        }
+    }
+
     *(*(init_matrix->matrix + index_row) + index_column) = el;
 
     return PASSED;
