@@ -29,17 +29,6 @@ int matrix_cmp(const matrix_t *const matrix1, const matrix_t *const matrix2)
     return 1;
 }
 
-int print_matrix(matrix_t *const matrix)
-{
-    for (int i = 0; i < matrix->rows; i++)
-    {
-        for (int j = 0; j < matrix->columns; j++)
-            printf("%d   ", matrix->matrix[i][j]);
-        puts("\n");
-    }
-            
-}
-
 int create_matrix(matrix_t *const matrix, const int rows, const int columns)
 {
     matrix->rows = rows;
