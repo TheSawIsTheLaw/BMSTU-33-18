@@ -68,7 +68,7 @@ int matrixgame_set_by_pos_test()
     if (set_by_pos(&matrix_5, 2, -3, 23) != RANGE_ERROR)
         number_of_errors ++;
     free_matrix(&matrix_5);
-/*
+
     // Test 6: false pointer
     matrix_t matrix_6;
     create_matrix(&matrix_6, 5, 5);
@@ -77,7 +77,7 @@ int matrixgame_set_by_pos_test()
     if (set_by_pos(&matrix_6, 2, 3, 10) != POINTER_ERROR)
         number_of_errors ++;
     free_matrix(&matrix_6);
-
+/*
     // Test 7: normal work (low boundary)
     matrix_t matrix_7;
     create_matrix(&matrix_7, 5, 5);
@@ -95,7 +95,7 @@ int matrixgame_set_by_pos_test()
     if (*(*(matrix_8.matrix + 4) + 4) != 20)
         number_of_errors ++;
     free_matrix(&matrix_8);
-  */  
+*/  
     if (number_of_errors)
         return FAILED;
     return PASSED;
