@@ -27,7 +27,7 @@ int input_matrix(matrix_t *matrix)
     
     for (i = 0; i < matrix -> rows; i++)
         for (j = 0; j < matrix -> columns; j++)
-            scanf("%d", matrix -> matrix[i][j]);
+            scanf("%d", &matrix -> matrix[i][j]);
    
     return OK;
 }
