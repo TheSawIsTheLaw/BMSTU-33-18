@@ -151,7 +151,7 @@ int test_create_fail_midway()
 {
     matrix_t result;
     int rc;
-    rc = create_matrix(&result, MEGA(32), MEGA(900));
+    rc = create_matrix(&result, MEGA(32), MEGA(128));
     if (rc == NOERR)
         return FAILED;
     else
