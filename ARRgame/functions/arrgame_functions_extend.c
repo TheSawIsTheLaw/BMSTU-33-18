@@ -1,8 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
-#include <errno.h>
 
-#include "../headers/arrgame_headers_extend.h"
+#include "../headers/arrgame.h"
 
 /*
   OFFSET_LEN - длина массива, запрошенная пользователем
@@ -25,7 +24,7 @@
 
 #define EXTEND_REALLOC_FAIL -602
 
-int *extend(int *arra, const int *const arrb);
+int *arrgame_extend(int *arra, const int *const arrb);
 
 
 /*
@@ -36,7 +35,7 @@ int *extend(int *arra, const int *const arrb);
 static void simple_extend(int *arra, const int *const arrb)
 {
     const int ncpy = GET_REC(arrb);
-    
+
     int *const offset_dst = GET_START_PTR(arra) + GET_REC(arra);
     const int *const offset_src = GET_START_PTR(arrb);
 
@@ -70,13 +69,13 @@ static int safe_realloc(int **arra, const size_t desired_size)
   extend - прибавляет элементы массива arrb к массиву arra
   @*arra - указатель на заголовок расширяемого массива
   @*arrb - указатель на заголовок прибавляемого массива
-  
+
   При расширении адрес расширяемого массива arra может изменится.
 
-  @return возвращает указатель на новую область памяти, 
+  @return возвращает указатель на новую область памяти,
   или NULL и код ошибки в errno.
 */
-int *extend(int *arra, const int *const arrb)
+int *arrgame_extend(int *arra, const int *const arrb)
 {
     const int reall_a = GET_REC(arra);
     const int allc_a = GET_ALC(arra);
@@ -87,7 +86,6 @@ int *extend(int *arra, const int *const arrb)
         const int rc = safe_realloc(&arra, reall_a + reall_b);
         if (rc != SUCCESS)
         {
-            errno = EXTEND_REALLOC_FAIL;
             return (void*)0;
         }
     }

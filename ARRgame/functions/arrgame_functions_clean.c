@@ -1,9 +1,8 @@
-#include <stdio.h>
 #include <stdlib.h>
 
-#include "../headers/arrgame_headers_clean.h"
+#include "../headers/arrgame.h"
 
-int clean(int *p_beg, int *p_end)
+int arrgame_clean(int *p_beg, int *p_end)
 {
 	int *buf = p_beg;
 
