@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 #include "../headers/arrgame_headers_leftappend.h"
+//#include "arrgame_functions_create.c"
+
 
 #define FALSE_SIZE -111
 
@@ -61,26 +63,32 @@ int *leftappend(int *array, int element)
 
 /*int main(void)
 {
-    int array2[4] = { 0 };
-    int *array = &array[0];
-    array = (int *) calloc(4, sizeof(int));
-    *array = 2;
-    *(array + 1) = 2;
-    *(array + 2) = 2;
-    *(array + 3) = 8;
-    *(array + 4) = 9;
-    array = array + 3;
+    int *array = create(100);
     
-    for (int i = -4; i < 6; i++)
+    printf("%d %d %d\n\n", *(array - 1), *(array - 2), *(array - 3));
+    
+    for (int i = 0; i < 100; i++)
+    {
+        *(array - 1) += 1;
+        array[i] = i * 2;
+    }
+    
+    for (int i = 0; i < 100; i++)
         printf("\n %d) %d \n", i, array[i]);
     array = leftappend(array, 67);
+    array = leftappend(array, 67);
+    array = leftappend(array, 67);
+    array = leftappend(array, 67);
+    array = leftappend(array, 67);
     printf("\n %d \n", *array);
-    for (int i = -4; i < 6; i++)
+    
+    printf("%d %d %d\n\n", *(array - 1), *(array - 2), *(array - 3));
+    
+    for (int i = 0; i <= 100; i++)
         printf("\n %d) %d \n", i, array[i]);
-    array = leftappend(array, 900);
-    printf("\n %d \n", *array);
-    for (int i = -3; i < 5; i++)
-        printf("\n %d) %d \n", i, array[i]);
+    
+    
+    
     return 0;
-}
-*/
+}*/
+
