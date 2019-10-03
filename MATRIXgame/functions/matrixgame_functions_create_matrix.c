@@ -1,3 +1,8 @@
+/**
+ * \file matrixgame_functions_create_matrix.c
+ * \brief Функция, создающая матрицу
+ */
+
 #include <stdlib.h>
 
 #include "../headers/matrixgame_headers_matrix_t.h"
@@ -6,14 +11,29 @@
 
 typedef int mtype;
 
-#define MEM_ALLOC_FAILURE -101  /* Ошибка выделения памяти */
-#define SERVICE_DATA_OFFSET -3  /* длинна метаданых в arrgame */
-#define SUCCESS 0               /* успех */
+/**
+ * \def MEM_ALLOC_FAILURE
+ * \brief Код ошибки: выделить память не удалось
+ */
+#define MEM_ALLOC_FAILURE -101
+/**
+ * \def SERVICE_DATA_OFFSET
+ * \brief Сервисная переменная метаданых из ARRgame
+ */
+#define SERVICE_DATA_OFFSET -3
+/**
+ * \def SUCCESS
+ * \brief Код удачного завершения подпрограммы или программы
+ */
+#define SUCCESS 0
 
 /**
- * \brief Освобождает выделнную за диапазаном указателей память.
- * \param[in] start - Указатель на начало диапазона указателей
- * \param[in] end - Указатель на конец диапазона указателей.
+ * \fn static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
+ *
+ * \param mtype *const * start Указатель на начало диапозона указателей
+ * \param mtype *const *const end Указатель на конец диапазона указателей
+ *
+ * \brief Освобождает выделенную за диапазаном указателей память
  */
 static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
 {
@@ -22,16 +42,16 @@ static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
 }
 
 /**
- * \brief Создаёт матрицу
- * \details Выделяет память для матрицы, описанной в переданной
- *             через указатель структуре matrix_t
+ * \fn int create_matrix(matrix_t *const matrix, const int rows, const int columns)
  *
- * \param[out] matrix - Указатель на структуру, описывающую матрицу
- * \param[in] rows - Число столбцов
- * \param[in] columns - Число строчек
- * \return Код ошибки
- * \retval SUCCESS Успех, без ошибки
- * \retval MEM_ALLOC_FAILURE Ошибка при выделении памяти
+ * \param matrix_t *const matrix Указатель для создания матрицы
+ * \param const int rows Количество строк матрицы
+ * \param const int columns Количество столбцов матрицы
+ *
+ * \brief Создаёт матрицу
+ *
+ * \return Код ошибки (отличное от нуля число) или
+ * успешного завершения
  */
 int create_matrix(matrix_t *const matrix, const int rows, const int columns)
 {
@@ -51,7 +71,7 @@ int create_matrix(matrix_t *const matrix, const int rows, const int columns)
             free(matrix->matrix);
             return MEM_ALLOC_FAILURE;
         }
-        
+
         *cur = (mtype*)temp;
     }
 
