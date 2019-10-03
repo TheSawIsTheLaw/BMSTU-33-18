@@ -1,3 +1,7 @@
+/**
+ * \file matrixgame_functions_add_column.c
+ * \brief Функция, добавляющая столбец матрице
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -5,11 +9,28 @@
 #include "../headers/matrixgame_headers_add_column.h"
 #include "../headers/matrixgame_headers_matrix_t.h"
 
-#define OK 0
-#define ERR 111
 /**
-* \brief Освобождение памяти, если realloc не сработал
-* \param[in] matrix - указатель на структуру, описывающую матрицу
+ * \def OK
+ * \brief Код удачного завершения подпрограммы или программы
+ */
+#define OK 0
+/**
+ * \def SIZE_ERROR
+ * \brief Код ошибки: в функцию были переданы некорректные данные или память
+ * не была выделена
+ */
+#define ERR 111
+
+/**
+* \fn static void free_matr(matrix_t *const matrix)
+*
+* \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+* functions_create_matrix)
+*
+* \brief Освобождение памяти при некорректной работе realloc
+*
+* \return Код ошибки (отличное от нуля число) или
+* успешного выполнения
 */
 static void free_matr(matrix_t *const matrix)
 {
@@ -18,9 +39,17 @@ static void free_matr(matrix_t *const matrix)
         free(*((matrix->matrix)+ i ) - 3);
     }
 }
+
 /**
-* \brief Добавление памяти под столбец
-* \param[in] matrix - указатель на структуру, описывающую матрицу
+* \fn static int add_mem_for_vect(matrix_t *const matrix)
+*
+* \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+* functions_create_matrix)
+*
+* \brief Выделение памяти под новый столбец
+*
+* \return Код ошибки (отличное от нуля число) или
+* успешного выполнения
 */
 static int add_mem_for_vect(matrix_t *const matrix)
 {
@@ -38,18 +67,21 @@ static int add_mem_for_vect(matrix_t *const matrix)
     }
     return OK;
 }
+
 /**
-* \brief Добавляет столбец
-* \details Выделяет память для переданного столбца
+* \fn int add_column(matrix_t *const matrix, int vect[])
 *
-* \param[in] matrix - указатель на структуру, описывающую матрицу
-* \param[in] vect - указатель на нулевой элемент столбца
-* \return Код ошибки
-* \retval OK Успех
-* \retval ERR Ошибка
-*/
-/*
- Допущение - количество элементов в инициализированном столбце должно совпадать с количеством рядов матрицы
+* \details Количество элементов в инициализированном столбце должно совпадать
+* с количеством рядов матрицы
+*
+* \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+* functions_create_matrix)
+* \param int vect[] Вектор-столбец, который будет добавлен к матрице
+*
+* \brief Добавление задонного столбца к матрице
+*
+* \return Код ошибки (отличное от нуля число) или
+* успешного выполнения
 */
 int add_column(matrix_t *const matrix, int vect[])
 {
