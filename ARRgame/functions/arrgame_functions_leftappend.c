@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../headers/arrgame_headers_leftappend.h"
-//#include "arrgame_functions_create.c"
-
+#include "../headers/arrgame.h"
 
 #define FALSE_SIZE -111
 
@@ -17,7 +15,7 @@ static int wident_array(int *array, const int new_size)
     }
     else
         return FALSE_SIZE;
-    
+
     return new_size;
 }
 
@@ -25,15 +23,15 @@ static void add_by_pos(int *array, const int size, const int element, int *const
 {
     for (int *i = array + size ; i >= index; i--)
         *(i + 1) = *i;
-    
+
     (*(array - 1))++;
 
     *array = element;
 }
 
-int *leftappend(int *array, int element)
+int *arrgame_leftappend(int *array, int element)
 {
-    int real_size = *(array - 2); 
+    int real_size = *(array - 2);
     int cur_size = *(array - 1);
     int temp_size = 0;
 
@@ -43,7 +41,7 @@ int *leftappend(int *array, int element)
 
         if (temp_size < 0)
         {
-            puts("Не удалось добавить элемент!");
+            fprintf(stderr, "Не удалось добавить элемент!");
             return NULL;
         }
         else
@@ -54,41 +52,8 @@ int *leftappend(int *array, int element)
     cur_size++;
     if (cur_size > *(array - 3))
         *(array - 3) = cur_size;
-    
+
     *(array - 2) = real_size;
-    
+
     return array;
 }
-
-
-/*int main(void)
-{
-    int *array = create(100);
-    
-    printf("%d %d %d\n\n", *(array - 1), *(array - 2), *(array - 3));
-    
-    for (int i = 0; i < 100; i++)
-    {
-        *(array - 1) += 1;
-        array[i] = i * 2;
-    }
-    
-    for (int i = 0; i < 100; i++)
-        printf("\n %d) %d \n", i, array[i]);
-    array = leftappend(array, 67);
-    array = leftappend(array, 67);
-    array = leftappend(array, 67);
-    array = leftappend(array, 67);
-    array = leftappend(array, 67);
-    printf("\n %d \n", *array);
-    
-    printf("%d %d %d\n\n", *(array - 1), *(array - 2), *(array - 3));
-    
-    for (int i = 0; i <= 100; i++)
-        printf("\n %d) %d \n", i, array[i]);
-    
-    
-    
-    return 0;
-}*/
-
