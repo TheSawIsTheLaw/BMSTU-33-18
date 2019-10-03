@@ -41,7 +41,7 @@ int matrixgame_functions_free_matrix_test_2()
 {
     matrix_t tmp_matrix;
 
-    if (free_matrix(&tmp_matrix == MAIN_POINTER_NULL)
+    if (free_matrix(&tmp_matrix) == MAIN_POINTER_NULL)
         return PASSED;
 
     return FAILED;
