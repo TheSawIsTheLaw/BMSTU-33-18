@@ -105,7 +105,7 @@ int check_indices(const matrix_t *const matrix, const int i, const int j)
  * количеству строк
  *
  * \return Код ошибки (отличное от нуля число) или
- * успешного завершения проверки
+ * успешного завершения
  */
 int insert_el_in_col(matrix_t *const matrix, const int index_row, const int index_column, const int el)
 {
