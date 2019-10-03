@@ -1,6 +1,18 @@
+/**
+ * \file matrixgame_functions_get_by_pos.c
+ * \brief Функция, возвращающая значение ячейки матрицы
+ */
 #include "../headers/matrixgame_headers_get_by_pos.h"
 
+/**
+ * \def DIMENSION_OUT_OF_RANGE_ERROR
+ * \brief Код ошибки: выход за пределы матрицы
+ */
 #define DIMENSION_OUT_OF_RANGE_ERROR 218
+/**
+ * \def FALSE_POINTER_ERROR
+ * \brief Код ошибки: в функцию был передан пустой указатель
+ */
 #define FALSE_POINTER_ERROR 219
 
 /*
@@ -12,9 +24,22 @@ Input data:
 * const int index_column - index of needed elements's column.
 
 Output data:
-* Found element or return code - DIMENSION_OUT_OF_RANGE_ERROR or 
+* Found element or return code - DIMENSION_OUT_OF_RANGE_ERROR or
 FALSE_POINTER_ERROR.
 */
+/**
+ * \fn int get_by_pos(const matrix_t *const init_matrix, const int index_row,
+ * const int index_column)
+ *
+ * \param const matrix_t *const init_matrix Особо заданная матрица (см. matrixgame_
+ * functions_create_matrix)
+ * \param const int index_row Индекс строки искомой ячейки матрицы
+ * \param const int index_column Индекс столбца искомой ячейки матрицы
+ *
+ * \brief Возвращает значение заданной ячейки
+ *
+ * \return Значение ячейки
+ */
 int get_by_pos(const matrix_t *const init_matrix,
                const int index_row,
                const int index_column)
