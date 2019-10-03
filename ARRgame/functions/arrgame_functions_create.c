@@ -18,11 +18,11 @@ int* create(const int sizeArray)
 
 
     pointUserStart = 
-        (int*)calloc((sizeArray * 2) + COUNT_NEED_ELEMENT,  sizeof(int));
+        (int*)calloc((sizeArray) + COUNT_NEED_ELEMENT,  sizeof(int));
     
     if (pointUserStart)
     {
-        allocatSize = sizeArray * 2;
+        allocatSize = sizeArray;
     }
     else
     {
@@ -42,7 +42,7 @@ int* create(const int sizeArray)
     pointUserStart = pointUserStart + 1;
     *pointUserStart = 0;
 
-    pointUserStart = pointUserStart + 3;
+    pointUserStart = pointUserStart + 1;
     
     return pointUserStart;
 }
