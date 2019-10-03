@@ -13,6 +13,13 @@
 #define ALL_PASSED 0
 #define FAILED 1
 
+void input_matrix(matrix_t *matrix)
+{
+    for (int i = ZERO; i < matrix -> rows; i++)
+        for (int j = ZERO; j < matrix -> columns; j++)
+            matrix -> matrix[i][j] = i;
+}
+
 int matrixgame_input_matrix_tests()
 {
     int error = ZERO;
