@@ -44,7 +44,7 @@ int matrixgame_del_row_test()
     create_matrix(&test_matrix_0, 3, 3);
     fill_matrix(&test_matrix_0);
 
-    del_row(&test_matrix_0, 1);
+    del_row(&test_matrix_0, 0);
 
     if (count_matrix(&test_matrix_0) != 15)
     {
@@ -58,7 +58,7 @@ int matrixgame_del_row_test()
     create_matrix(&test_matrix_1, 5, 5);
     fill_matrix(&test_matrix_1);
 
-    del_row(&test_matrix_1, 5);
+    del_row(&test_matrix_1, 4);
 
     if (count_matrix(&test_matrix_1) != 50)
     {
@@ -73,7 +73,7 @@ int matrixgame_del_row_test()
     create_matrix(&test_matrix_2, 2, 2);
     fill_matrix(&test_matrix_2);
 
-    del_row(&test_matrix_2, 2);
+    del_row(&test_matrix_2, 1);
 
     if (count_matrix(&test_matrix_2) != 2)
     {
@@ -88,7 +88,7 @@ int matrixgame_del_row_test()
     create_matrix(&test_matrix_3, 6, 6);
     fill_matrix(&test_matrix_3);
 
-    del_row(&test_matrix_3, 5);
+    del_row(&test_matrix_3, 4);
 
     if (count_matrix(&test_matrix_3) != 96)
     {
