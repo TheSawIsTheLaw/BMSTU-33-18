@@ -42,7 +42,7 @@ int del_row(matrix_t *edit_matrix, const int index_row)
 
     for (int row = 0; row < edit_matrix->rows; ++row)
     {
-        if (!(edit_matrix->matrix + row))
+        if (!(*(edit_matrix->matrix + row)))
         {
             return FALSE_POINTER_ERROR;
         }
