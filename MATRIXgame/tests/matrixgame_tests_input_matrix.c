@@ -21,21 +21,21 @@ int matrixgame_input_matrix_tests()
     matrix_t matrix1;
     create_matrix(&matrix1, 10, 5);
     matrix1.matrix = NULL;
-    if (input_matrix(matrix1) == POINT_ERROR)
+    if (input_matrix(&matrix1) == POINT_ERROR)
         error++;
     free_matrix(&matrix1);
     
     /*Test 2: incorrect input*/
     matrix_t matrix2;
     create_matrix(&matrix2, 10, 5);
-    if (input_matrix(matrix2) != OK)
+    if (input_matrix(&matrix2) != OK)
         error++;
     free_matrix(&matrix2);
     
     /*Test 3: correct input*/
     matrix_t matrix3;
     create_matrix(&matrix3, 4, 4);
-    if (input_matrix(matrix3) != OK)
+    if (input_matrix(&matrix3) != OK)
         error++;
     free_matrix(&matrix3);
 
@@ -50,12 +50,12 @@ int main()
 {
     if (matrixgame_input_matrix_tests() == ALL_PASSED)
     {
-        puts("All tests passed (success)\n");
+        puts("All tests passed (success)");
         return ALL_PASSED;
     }
     else
     {
-        puts("Not all the tests passed (failure)\n");
+        puts("Not all the tests passed (failure)");
         return FAILED;
     }
 }
