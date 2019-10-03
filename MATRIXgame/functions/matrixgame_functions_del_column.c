@@ -1,18 +1,50 @@
+/**
+ * \file matrixgame_functions_del_col.c
+ * \brief Функция, удаляющая столбец матрицы
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 
 #include "../headers/matrixgame_headers_matrix_t.h"
 #include "../headers/matrixgame_headers_del_column.h"
 
-#define CORRECT_COLOMN_ERROR  1  /*Некорректное значение столбца для удаления*/
-#define REALLOC_ERROR 2  /*Ошибка перевыделения памяти*/
-#define NOT_CORRECT_MATRIX 3  /*Некорректный указатель на матрицу*/
-#define NOT_CORRECT_ARRAY 4  /*Некорректный указатель на массив*/
+/**
+ * \def CORRECT_COLOMN_ERROR
+ * \brief Код ошибки: некорректное значение столбца для удаления
+ */
+#define CORRECT_COLOMN_ERROR  1
+/**
+ * \def REALLOC_ERROR
+ * \brief Код ошибки: перераспределить память не удалось
+ */
+#define REALLOC_ERROR 2
+/**
+ * \def NOT_CORRECT_MATRIX
+ * \brief Код ошибки: в функцию был передан некорректный указатель на матрицу
+ */
+#define NOT_CORRECT_MATRIX 3
+/**
+ * \def NOT_CORRECT_ARRAY
+ * \brief Код ошибки: в функцию был передан некорректный указатель на массив
+ */
+#define NOT_CORRECT_ARRAY 4
+/**
+ * \def SUCCESS
+ * \brief Код удачного завершения подпрограммы или программы
+ */
 #define SUCCESS 0   /*Успех*/
 
 /**
- * \brief Уменьшает размер каждой из строк матрицы на 1
- * \param[in] m - Указатель на структуру, описывающую матрицу
+ * \fn int resize_matrix(matrix_t *const m)
+ *
+ * \param matrix_t *const m Особо заданная матрица (см. matrixgame_
+ * functions_create_matrix)
+ *
+ * \brief Функция, уменьшающая количество столбцов в матрице на единицу
+ *
+ * \return Код ошибки (отличное от нуля число) или
+ * успешного завершения
  */
 int resize_matrix(matrix_t *const m)
 {
@@ -33,13 +65,16 @@ int resize_matrix(matrix_t *const m)
 }
 
 /**
- * \brief Удаляет столбец
- * \param[in] m - Указатель на структуру, описывающую матрицу
- * \param[in] column - Номер удаляемого столбца
- * \return Код ошибки
- * \retval SUCCESS Успех, без ошибки
- * \retval REALLOC_ERROR Ошибка перевыделения памяти
-  * \retval CORRECT_COLOMN_ERROR Некорректное значение столбца для удаления
+ * \fn int del_column(matrix_t *const m, const int column)
+ *
+ * \param matrix_t *const m Особо заданная матрица (см. matrixgame_
+ * functions_create_matrix)
+ * \param const int column Номер удаляемого столбца
+ *
+ * \brief Функция, удаляющая определённый столбец матрицы
+ *
+ * \return Код ошибки (отличное от нуля число) или
+ * успешного завершения
  */
 int del_column(matrix_t *const m, const int column)
 {
