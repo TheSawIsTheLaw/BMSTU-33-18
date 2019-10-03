@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../headers/leftappend.h"
+#include "../headers/arrgame_headers_leftappend.h"
 //#include "arrgame_functions_create.c"
 
 
