@@ -22,17 +22,7 @@ int matrixgame_functions_free_matrix_test_1()
         (tmp_matrix.matrix)[i] = (int *) malloc(tmp_matrix.columns * sizeof(int));
 
     if (free_matrix(&tmp_matrix) == OK)
-    {
-        for (int i = 0; i < tmp_matrix.rows; i++)
-            free(tmp_matrix.matrix[i]);
-        free(tmp_matrix.matrix);
-
         return PASSED;
-    }
-
-    for (int i = 0; i < tmp_matrix.rows; i++)
-        free(tmp_matrix.matrix[i]);
-    free(tmp_matrix.matrix);
 
     return FAILED;
 }
@@ -55,10 +45,7 @@ int matrixgame_functions_free_matrix_test_3()
     tmp_matrix.matrix = (int **) malloc(tmp_matrix.rows * sizeof(int *));
 
     if (free_matrix(&tmp_matrix) == SOME_ARE_NULL)
-    {
-        free(tmp_matrix.matrix);
         return PASSED;
-    }   
 
     return FAILED;
 }
