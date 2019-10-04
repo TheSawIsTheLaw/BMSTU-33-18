@@ -14,7 +14,7 @@
 
 int input_matrix(matrix_t *matrix)
 {
-    if (!matrix)
+    if (matrix -> matrix == NULL)
         return POINT_ERROR;
     
     if (matrix -> rows <= 0)
