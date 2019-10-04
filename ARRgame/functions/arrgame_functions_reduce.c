@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <omp.h>
+//#include <omp.h>
 
 #include "../headers/arrgame.h"
 
@@ -17,7 +17,7 @@ static int reduce_thread(args_t *args)
 {
     int acc = 0;
 
-    #pragma omp parallel for reduction (+ : acc)
+    //#pragma omp parallel for reduction (+ : acc)
     for (int i = 0; i < args->end; i++)
     {
         acc = args->f(acc, *((args->arr) + i));
