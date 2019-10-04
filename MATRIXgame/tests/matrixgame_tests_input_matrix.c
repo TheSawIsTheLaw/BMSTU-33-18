@@ -47,13 +47,13 @@ int main(int argc, const char * argv[])
     matrix2.rows = 3;
     matrix2.columns = 3;
     
-    matrix1.matrix = (int**)malloc(matrix1.rows, sizeof(int*));
+    matrix1.matrix = (int**)calloc(matrix1.rows, sizeof(int*));
     for (int i = 0; i < matrix1.rows; i++)
-        matrix1.matrix[i] = (int*)malloc(matrix1.columns, sizeof(int));
+        matrix1.matrix[i] = (int*)calloc(matrix1.columns, sizeof(int));
     
-    matrix2.matrix = (int**)malloc(matrix2.rows, sizeof(int*));
+    matrix2.matrix = (int**)calloc(matrix2.rows, sizeof(int*));
     for (int i = 0; i < matrix2.rows; i++)
-        matrix2.matrix[i] = (int*)malloc(matrix2.columns, sizeof(int));
+        matrix2.matrix[i] = (int*)calloc(matrix2.columns, sizeof(int));
     
     int test = matrixgame_input_matrix_tests(&matrix1, &matrix2);
     
