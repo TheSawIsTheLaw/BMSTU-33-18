@@ -2,49 +2,93 @@ stages:
   - build
   - test
 
-build:
+variables:
+  MATRIX_FUNCS_PATH: MATRIXgame/functions/
+  MATRIX_TESTS_PATH: MATRIXgame/tests/
+
+build_matrixgame:
   stage: build
   image: gcc
   script:
-    - cd ARRgame/functions/
-    - apt-get update -y
-    - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -c arrgame_functions_*.c
-    - cppcheck --enable=all arrgame_functions_*.c
+    - gcc -Wall -Werror -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+  after_script:
+    - rm *.o
   only:
-    - branches
+    refs:
+      - /^matrixgame_.*$/
   except:
-    - IMDBBot
-    - MDBBot_dockerized
-    - master
+    refs:
+      - matrixgame_transpose
 
-build-openmp:
+build_matrixgame_openmp:
   stage: build
   image: gcc
   script:
-    - cd ARRgame/functions/
-    - apt-get update -y
-    - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -c -fopenmp arrgame_functions_*.c
-    - cppcheck --enable=all arrgame_functions_*.c
+    - gcc -Wall -Werror -c -fopenmp ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+  after_script:
+    - rm *.o
   only:
-    - arrgame_map_filter_reduce
+    refs:
+      - matrixgame_transpose
 
-test:
+test_matrixgame:
   stage: test
   image: gcc
   script:
-    - cd ARRgame/tests/
-    - apt-get update -y
-    - apt-get install -y cppcheck
-    - gcc -Wall -Werror -pedantic -o test arrgame_tests_*.c
-    - cppcheck --enable=all arrgame_tests_*.c
-    - ./test
+    - apt update -y
+    - apt install libperlio-gzip-perl libjson-perl -y
+    - git clone https://github.com/linux-test-project/lcov
+    - cd lcov/
+    - make install
+    - cd ..
+    - export CUR_FUNC=$(echo "$CI_COMMIT_REF_NAME" | sed 's/matrixgame_//')
+    - gcc -Wall -Werror -c ${MATRIX_TESTS_PATH}*tests_${CUR_FUNC}.c
+    - gcc -Wall -Werror -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${MATRIX_FUNCS_PATH}*functions_${CUR_FUNC}.c
+    - gcc -lgcov --coverage -o test.exe matrixgame_tests_*.o matrixgame_functions_*.o
+    - ./test.exe
+    - lcov -t "test" -o test.info -c -d .
+    - genhtml -o ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
+  after_script:
+    - rm -rf lcov/
+    - rm *.o *.gcda *.gcno *.exe
+  artifacts:
+    name: codecoverage
+    paths:
+      - ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage
+    when: on_success
   only:
-    - branches
+    refs:
+      - /^matrixgame_.*$/
   except:
-    - IMDBBot
-    - IMDBBot_dockerized
-    - arrgame_dockerized
-    - arrgame_map_filter_reduce
-    - master
+    - matrixgame_transpose
+
+test_matrixgame_openmp:
+  stage: test
+  image: gcc
+  script:
+    - apt update -y
+    - apt install libperlio-gzip-perl libjson-perl -y
+    - git clone https://github.com/linux-test-project/lcov
+    - cd lcov/
+    - make install
+    - cd ..
+    - export CUR_FUNC=$(echo "$CI_COMMIT_REF_NAME" | sed 's/matrixgame_//')
+    - gcc -Wall -Werror -fopenmp -c ${MATRIX_TESTS_PATH}*tests_${CUR_FUNC}.c
+    - gcc -Wall -Werror -fopenmp -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -fopenmp -c ${MATRIX_FUNCS_PATH}*functions_${CUR_FUNC}.c
+    - gcc -lgcov --coverage -fopenmp -o test.exe matrixgame_tests_*.o matrixgame_functions_*.o
+    - ./test.exe
+    - lcov -t "test" -o test.info -c -d .
+    - genhtml -o ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
+  after_script:
+    - rm -rf lcov/
+    - rm *.o *.gcda *.gcno *.exe
+  artifacts:
+    name: codecoverage
+    paths:
+      - ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage
+    when: on_success
+  only:
+    refs:
+      - matrixgame_transpose
