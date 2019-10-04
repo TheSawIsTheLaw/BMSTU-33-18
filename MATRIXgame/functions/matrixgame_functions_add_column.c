@@ -15,9 +15,9 @@
 * \brief  ,  realloc  
 * \param[in] matrix -   ,  
 */
-int free_matr(matrix_t *to_free)
+static int free_matr(matrix_t *to_free)
 {
-    int ec = OK;
+    int ec = OK; 
     if (to_free->matrix)
     {
         for (int i = 0; i < to_free->rows; i++)
