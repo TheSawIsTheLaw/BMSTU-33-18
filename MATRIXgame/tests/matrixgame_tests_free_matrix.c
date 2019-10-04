@@ -60,7 +60,6 @@ int matrixgame_functions_free_matrix_test_3()
         return PASSED;
     }   
 
-    free(tmp_matrix.matrix);
     return FAILED;
 }
 
