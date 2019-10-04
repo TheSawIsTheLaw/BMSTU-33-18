@@ -57,10 +57,10 @@ int main()
         return FAILED;
     }
 
-    if (matrixgame_functions_free_matrix_test_2() != PASSED)
+/*    if (matrixgame_functions_free_matrix_test_2() != PASSED)
     {
         return FAILED;
-    }
+    }*/
 
     if (matrixgame_functions_free_matrix_test_3() != PASSED)
     {
