@@ -4,12 +4,8 @@
  */
 
 #include <stdlib.h>
-#include <omp.h>
 
-#include "../headers/matrixgame_headers_matrix_t.h"
-#include "../headers/matrixgame_headers_transpose.h"
-#include "../headers/matrixgame_headers_create_matrix.h"
-#include "../headers/matrixgame_headers_free_matrix.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def OK
@@ -25,7 +21,7 @@
  * \def SOME_ARE_NULL
  * \brief Код ошибки: в функцию был передан указатель
  * на массив с NULL указателем
- */ 
+ */
 #define SOME_ARE_NULL 507
 /**
  * \def MAIN_POINTER_NULL
@@ -55,7 +51,7 @@ static int data_check(matrix_t *const matrix)
     {
         return SIZE_ERROR;
     }
-    
+
     if (matrix->matrix == NULL)
     {
         return SOME_ARE_NULL;
@@ -77,7 +73,7 @@ static int data_check(matrix_t *const matrix)
  *
  * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * 
+ *
  * \param matrix_t *const new_matrix Особо заданная матрица, куда будет
  * записан результат транспонирования
  *
@@ -85,10 +81,8 @@ static int data_check(matrix_t *const matrix)
  */
 static void transpose_matrix(matrix_t *const matrix, matrix_t *const new_matrix)
 {
-    #pragma omp parallel for 
     for (int i = 0; i < matrix->rows; i++)
     {
-        #pragma omp parallel for
         for (int j = 0; j < matrix->columns; j++)
         {
             *(*(new_matrix->matrix + j) + i) = *(*(matrix->matrix + i) + j);
@@ -107,7 +101,7 @@ static void transpose_matrix(matrix_t *const matrix, matrix_t *const new_matrix)
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int transpose(matrix_t *const matrix)
+int matrixgame_transpose(matrix_t *const matrix)
 {
     matrix_t new_matrix;
     int code_error;
@@ -116,14 +110,14 @@ int transpose(matrix_t *const matrix)
     {
         return code_error;
     }
-    
-    if ((code_error = create_matrix(&new_matrix, matrix->columns, matrix->rows)))
+
+    if ((code_error = matrixgame_create_matrix(&new_matrix, matrix->columns, matrix->rows)))
     {
         return code_error;
     }
-    
+
     transpose_matrix(matrix, &new_matrix);
-    if ((code_error = free_matrix(matrix)))
+    if ((code_error = matrixgame_free_matrix(matrix)))
     {
         return code_error;
     }
@@ -132,4 +126,3 @@ int transpose(matrix_t *const matrix)
 
     return OK;
 }
-

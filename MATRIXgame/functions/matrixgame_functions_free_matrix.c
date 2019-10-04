@@ -1,6 +1,4 @@
-#include "../headers/matrixgame_headers_free_matrix.h"
-#include "../headers/matrixgame_errno.h"
-#include <stdio.h>
+#include "../headers/matrixgame.h"
 #include <stdlib.h>
 
 /**
@@ -40,7 +38,7 @@
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int free_matrix(matrix_t *to_free)
+int matrixgame_free_matrix(matrix_t *to_free)
 {
     int ec = OK;
     if (to_free->matrix)
@@ -70,18 +68,3 @@ int free_matrix(matrix_t *to_free)
     }
     return ec;
 }
-/*
-int main()
-{
-        matrix_t test;
-        test.matrix = malloc(sizeof(int**) * 4);
-        test.rows = 4;
-        test.matrix[0] = malloc(12 * sizeof(int));
-        test.matrix[0] = test.matrix[0] + SERVICE_INFO;
-        test.matrix[1] = NULL;
-        test.matrix[2] = malloc(12 * sizeof(int));
-        test.matrix[2] = test.matrix[2] + SERVICE_INFO;
-        test.matrix[3] = NULL;
-
-        free_matrix(&test);
-}*/

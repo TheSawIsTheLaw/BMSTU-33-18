@@ -2,7 +2,7 @@
  * \file matrixgame_functions_get_by_pos.c
  * \brief Функция, возвращающая значение ячейки матрицы
  */
-#include "../headers/matrixgame_headers_get_by_pos.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def DIMENSION_OUT_OF_RANGE_ERROR
@@ -40,7 +40,7 @@ FALSE_POINTER_ERROR.
  *
  * \return Значение ячейки
  */
-int get_by_pos(const matrix_t *const init_matrix,
+int matrixgame_get_by_pos(const matrix_t *const init_matrix,
                const int index_row,
                const int index_column)
 {

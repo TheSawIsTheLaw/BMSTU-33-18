@@ -2,11 +2,10 @@
  * \file matrixgame_functions_add_row.c
  * \brief Функция, добавляющая элемент строчку матрице
  */
-#include <stdio.h>
 #include <stdlib.h>
 
-#include "../headers/matrixgame_headers_add_row.h"
-#include "../headers/matrixgame_headers_matrix_t.h"
+#include "../headers/matrixgame.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def OK
@@ -40,7 +39,7 @@
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int my_realloc(matrix_t *matrix)
+static int my_realloc(matrix_t *matrix)
 {
     matrix->rows += 1;
     matrix->matrix = (int**)realloc(matrix->matrix,matrix->rows * sizeof(int*));
@@ -67,7 +66,7 @@ int my_realloc(matrix_t *matrix)
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int add_row(matrix_t *matrix, const int index)
+int matrixgame_add_row(matrix_t *matrix, const int index)
 {
     int rc = OK;
 
@@ -103,4 +102,3 @@ int add_row(matrix_t *matrix, const int index)
 
     return rc;
 }
-

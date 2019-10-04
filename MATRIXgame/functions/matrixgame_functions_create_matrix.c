@@ -4,10 +4,9 @@
  */
 
 #include <stdlib.h>
+#include <arrgame.h>
 
-#include "../headers/matrixgame_headers_matrix_t.h"
-#include "../headers/matrixgame_headers_create_matrix.h"
-#include "../../ARRgame/functions/arrgame_functions_create.c"
+#include "../headers/matrixgame.h"
 
 typedef int mtype;
 
@@ -53,7 +52,7 @@ static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int create_matrix(matrix_t *const matrix, const int rows, const int columns)
+int matrixgame_create_matrix(matrix_t *const matrix, const int rows, const int columns)
 {
     void *temp = malloc(sizeof(mtype*) * rows);
     if (!temp)
@@ -64,7 +63,7 @@ int create_matrix(matrix_t *const matrix, const int rows, const int columns)
     mtype *const *const end = matrix->matrix + rows;
     for (mtype** cur = matrix->matrix; cur < end; cur++)
     {
-        temp = create(columns);
+        temp = arrgame_create(columns);
         if (!temp)
         {
             clean_up_row_pointers(matrix->matrix, cur);
@@ -80,4 +79,3 @@ int create_matrix(matrix_t *const matrix, const int rows, const int columns)
 
     return SUCCESS;
 }
-

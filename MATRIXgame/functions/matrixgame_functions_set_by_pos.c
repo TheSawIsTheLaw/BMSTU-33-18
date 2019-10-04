@@ -3,7 +3,7 @@
  * \brief Функция, устанавливающее значение в определённой ячейке матрицы
  */
 
-#include "../headers/matrixgame_headers_set_by_pos.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def RANGE_ERROR
@@ -38,7 +38,7 @@
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int set_by_pos(const matrix_t *const init_matrix, const int index_row, const int index_column, const int el)
+int matrixgame_set_by_pos(const matrix_t *const init_matrix, const int index_row, const int index_column, const int el)
 {
     if (index_row < INITIAL || index_column < INITIAL || index_row >= init_matrix->rows || index_column >= init_matrix->columns)
         return RANGE_ERROR;
