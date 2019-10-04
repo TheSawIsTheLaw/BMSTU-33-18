@@ -7,21 +7,49 @@
 
 #define OK 0
 #define ERR 111
+
+#define SOME_ARE_NULL 507
+#define MAIN_POINTER_NULL 411
+#define SERVICE_INFO 3
 /**
-* \brief Освобождение памяти, если realloc не сработал
-* \param[in] matrix - указатель на структуру, описывающую матрицу
+* \brief  ,  realloc  
+* \param[in] matrix -   ,  
 */
-void free_matr(matrix_t *const matrix)
+int free_matr(matrix_t *to_free)
 {
-    for (int i = 0; i < matrix -> rows; i ++)
+    int ec = OK;
+    if (to_free->matrix)
     {
-        free(*((matrix->matrix)+ i ));
+        for (int i = 0; i < to_free->rows; i++)
+        {
+            if (*(to_free->matrix + i))
+            {
+                *(to_free->matrix + i) -= SERVICE_INFO;
+                free(*(to_free->matrix + i));
+                *(to_free->matrix + i) = NULL;
+            }
+            else
+            {
+                ec = SOME_ARE_NULL;
+            }
+        }
+
+        free(to_free->matrix);
+        to_free->rows = 0;
+        to_free->columns = 0;
+        to_free->matrix = NULL;
     }
-    free(matrix->matrix);
+    else
+    {
+        ec = MAIN_POINTER_NULL;
+    }
+    
+    return ec;
 }
+
 /**
-* \brief Добавление памяти под столбец
-* \param[in] matrix - указатель на структуру, описывающую матрицу
+* \brief    
+* \param[in] matrix -   ,  
 */
 int add_mem_for_vect(matrix_t *const matrix)
 {
@@ -35,17 +63,17 @@ int add_mem_for_vect(matrix_t *const matrix)
     return OK;
 }
 /**
-* \brief Добавляет столбец
-* \details Выделяет память для переданного столбца
+* \brief  
+* \details     
 *
-* \param[in] matrix - указатель на структуру, описывающую матрицу
-* \param[in] vect - указатель на нулевой элемент столбца
-* \return Код ошибки
-* \retval OK Успех
-* \retval ERR Ошибка
+* \param[in] matrix -   ,  
+* \param[in] vect -     
+* \return  
+* \retval OK 
+* \retval ERR 
 */
 /*
- Допущение - количество элементов в инициализированном столбце должно совпадать с количеством рядов матрицы
+  -           
 */
 int add_column(matrix_t *const matrix, int vect[])
 {
