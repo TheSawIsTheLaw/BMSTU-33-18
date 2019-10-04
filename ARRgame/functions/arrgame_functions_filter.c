@@ -1,12 +1,12 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <omp.h>
-#include "../headers/arrgame_headers_filter.h"
+#include <stdlib.h>
+
+#include "../headers/arrgame.h"
 
 #define SIZE_ADRS -3
 #define FULLNESS_ADRS -1
 
-typedef struct 
+typedef struct
 {
     int (*f) (int);
     int *arr;
@@ -39,20 +39,19 @@ static int filter_thread(args_t *const args)
     return remove_size;
 }
 
-void filter(int (*f) (int), int *arr)
-{ 
+void arrgame_filter(int (*f) (int), int *arr)
+{
     if (f == NULL || arr == NULL)
     {
-        puts("INVALID DATA, TRY AGAIN!");
+        fprintf(stderr, "Error: pointers must be != NULL.\n");
         return;
     }
 
     args_t args;
     args.f = f;
-    args.arr = arr; 
+    args.arr = arr;
     args.end =  *(arr + SIZE_ADRS);
 
     *(arr + SIZE_ADRS) -= filter_thread(&args);
     *(arr + FULLNESS_ADRS) = *(arr + SIZE_ADRS);
 }
-
