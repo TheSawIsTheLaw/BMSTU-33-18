@@ -8,6 +8,9 @@
 /*
 функция черненко copy-paste
 */
+#define SOME_ARE_NULL 507
+#define MAIN_POINTER_NULL 411
+#define SERVICE_INFO 3
 
 #include "../../ARRgame/functions/arrgame_functions_create.c"
 
@@ -16,6 +19,38 @@ typedef int mtype;
 #define MEM_ALLOC_FAILURE -101  
 #define SERVICE_DATA_OFFSET -3  
 #define SUCCESS 0               
+
+static int free_matr(matrix_t *to_free)
+{
+    int ec = OK; 
+    if (to_free->matrix)
+    {
+        for (int i = 0; i < to_free->rows; i++)
+        {
+            if (*(to_free->matrix + i))
+            {
+                *(to_free->matrix + i) -= SERVICE_INFO;
+                free(*(to_free->matrix + i));
+                *(to_free->matrix + i) = NULL;
+            }
+            else
+            {
+                ec = SOME_ARE_NULL;
+            }
+        }
+
+        free(to_free->matrix);
+        to_free->rows = 0;
+        to_free->columns = 0;
+        to_free->matrix = NULL;
+    }
+    else
+    {
+        ec = MAIN_POINTER_NULL;
+    }
+    
+    return ec;
+}
 
 static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
 {
