@@ -27,6 +27,7 @@ int* create(const int sizeArray)
     else
     {
         puts("Не удалось выделить память.");
+        return NULL;
     }
         
     
