@@ -3,6 +3,7 @@
 
 #include "../headers/matrixgame_headers_input_matrix.h"
 #include "../headers/matrixgame_headers_matrix_t.h"
+#include "../headers/matrixgame_headers_free_matrix.h"
 
 #define ROW_ERROR 1
 #define COLUMN_ERROR 2
@@ -24,14 +25,12 @@ int matrixgame_input_matrix_tests(matrix_t *matrix1, matrix_t *matrix2)
     matrix1 = NULL;
     if (input_matrix(matrix1) == POINT_ERROR)
         error_null++;
+    free(&matrix1);
     
-    /*Test 2: incorrect input*/
+    /*Test 2: correct input*/
     if (input_matrix(matrix2) != OK)
         error++;
-    
-    /*Test 3: correct input*/
-    if (input_matrix(matrix2) != OK)
-        error++;
+    free(&matrix2);
     
     if (error && error_null)
         return FAILED;
