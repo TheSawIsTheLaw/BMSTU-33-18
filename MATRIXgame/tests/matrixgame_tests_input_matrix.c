@@ -57,8 +57,6 @@ int main(int argc, const char * argv[])
     
     int test = matrixgame_input_matrix_tests(&matrix1, &matrix2);
     
-    free(&matrix2);
-    
     if (test == ALL_PASSED)
     {
         puts("All tests passed (success)");
