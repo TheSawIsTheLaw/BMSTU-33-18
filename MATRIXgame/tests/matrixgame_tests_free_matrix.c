@@ -27,7 +27,7 @@ int matrixgame_functions_free_matrix_test_1()
     return FAILED;
 }
 
-int matrixgame_functions_free_matrix_test_2()
+/*int matrixgame_functions_free_matrix_test_2()
 {
     matrix_t tmp_matrix;
 
@@ -35,7 +35,7 @@ int matrixgame_functions_free_matrix_test_2()
         return PASSED;
 
     return FAILED;
-}
+}*/
 
 int matrixgame_functions_free_matrix_test_3()
 {
