@@ -25,12 +25,10 @@ int matrixgame_input_matrix_tests(matrix_t *matrix1, matrix_t *matrix2)
     matrix1 = NULL;
     if (input_matrix(matrix1) == POINT_ERROR)
         error_null++;
-    free(&matrix1);
     
     /*Test 2: correct input*/
     if (input_matrix(matrix2) != OK)
         error++;
-    free(&matrix2);
     
     if (error && error_null)
         return FAILED;
@@ -60,11 +58,15 @@ int main(int argc, const char * argv[])
     
     if (matrixgame_input_matrix_tests(&matrix1, &matrix2) == ALL_PASSED)
     {
+        free(&matrix1);
+        free(&matrix2);
         puts("All tests passed (success)");
         return ALL_PASSED;
     }
     else
     {
+        free(&matrix1);
+        free(&matrix2);
         puts("Not all the tests passed (failure)");
         return FAILED;
     }
