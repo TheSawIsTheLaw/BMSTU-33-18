@@ -15,3 +15,7 @@
 
 * Тестерам по вопросам формата функций тестирования обращаться к @ks18u889.
 
+### Индивидуальная работа команды
+ 
+https://docs.google.com/spreadsheets/d/1eXGn2rsnkvXE4_eZxvizO_F8k8ZPqvwJRZh5Qcy72LU/edit#gid=0
+
