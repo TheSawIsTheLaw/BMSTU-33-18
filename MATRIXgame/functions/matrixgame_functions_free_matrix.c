@@ -1,3 +1,8 @@
+/**
+ * \file matrixgame_functions_free_matrix.c
+ * \brief Функция, выполняющая освобождения памяти под матрицей
+ */
+
 #include "../headers/matrixgame.h"
 #include <stdlib.h>
 
