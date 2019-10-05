@@ -1,12 +1,17 @@
 WAY := functions
 WAY_TO_HEADER := headers
 INSTALL_WAY := usr
-CHANGELOG := (1.0-1) stable; urgency=medium
+VERSION := 1.0.1
+CHANGELOG := $(VERSION) stable; urgency=medium
 MD5 := md5deep -r $(INSTALL_WAY) > DEBIAN/md5sums
-ARCH := amd64
+ARCHITECTURE := amd64
 DEB_CONTROL := DEBIAN/control
 DEB_MAINTAINER := Romanov Alexey <romanov.alexey2000@gmail.com>
 DEB_DEPENDS := bash, sed (>= 3.02-8)
+ARCH_MAINTAINER := Kononenko Sergey <hackfeed@inbox.ru>
+ARCH_ARCHITECTURE := x86_64
+ARCH_LICENSE := GPL
+CUR_DIR := echo $(pwd)
 
 CFILES := $(wildcard $(WAY)/*.c)
 COMPILER := gcc	
@@ -29,21 +34,24 @@ deb:
 	echo "Package: $(RUN_ARGS)" > $(RUN_ARGS)/DEBIAN/control
 	echo "Version: 1.0-1" >> $(RUN_ARGS)/$(DEB_CONTROL)
 	echo "Section: libs" >> $(RUN_ARGS)/$(DEB_CONTROL)
-	echo "Architecture: $(ARCH)" >> $(RUN_ARGS)/$(DEB_CONTROL)
+	echo "Architecture: $(ARCHITECTURE)" >> $(RUN_ARGS)/$(DEB_CONTROL)
 	echo "Depends: $(DEB_DEPENDS)" >> $(RUN_ARGS)/$(DEB_CONTROL)
 	echo "Maintainer: $(DEB_MAINTAINER)" >> $(RUN_ARGS)/$(DEB_CONTROL)
 	echo "Description: $(RUN_ARGS) libary" >> $(RUN_ARGS)/$(DEB_CONTROL)
 	cp lib$(RUN_ARGS).so $(RUN_ARGS)/$(INSTALL_WAY)/lib
 	cp $(WAY_TO_HEADER)/$(RUN_ARGS).h $(RUN_ARGS)/$(INSTALL_WAY)/include
 	fakeroot dpkg-deb --build $(RUN_ARGS)
-	mv $(RUN_ARGS).deb $(RUN_ARGS)_1.0-1_$(ARCH).deb
+	mv $(RUN_ARGS).deb $(RUN_ARGS)_$(VERSION)_$(ARCHITECTURE).deb
 	rm -R $(RUN_ARGS)
 
 rpm:
 	echo 'todo'
 
 pacman:
-	echo 'todo'
+	make lib matrixgame
+	tar -czvf matrixgame.tar.gz libmatrixgame.so headers/matrixgame.h
+	makepkg -g >> PKGBUILD && makepkg -c
+	rm -r matrixgame.tar.gz
 	
 clean:
 	rm *.d *.o *.exe *.out
