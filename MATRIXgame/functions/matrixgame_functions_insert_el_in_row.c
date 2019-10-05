@@ -36,10 +36,10 @@
 /**
  * \fn int is_index_correct(const int rows, const int columns, const int index_row, const int index_column)
  *
- * \param const int rows Количество доступных строк в переданной матрице
- * \param const int columns Количество доступных столбцов в переданной матрице
- * \param const int index_row Переданный в функцию индекс строки вставки
- * \param const int index_column Переданный в функцию индекс столбца вставки
+ * \param const int rows - Количество доступных строк в переданной матрице
+ * \param const int columns - Количество доступных столбцов в переданной матрице
+ * \param const int index_row - Переданный в функцию индекс строки вставки
+ * \param const int index_column - Переданный в функцию индекс столбца вставки
  *
  * \brief Проверка корректности переданных в функцию данных
  *
@@ -61,7 +61,7 @@ static int is_index_correct(const int rows, const int columns, const int index_r
 /**
  * \fn int append_row(matrix_t *const matrix)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Добавляет строки матрице
@@ -93,11 +93,11 @@ static int one_pos_shifting(matrix_t *const matrix)
 /**
  * \fn int insert_el_in_row(matrix_t *const matrix, int index_row, int index_column, int el)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int index_row Индекс строки вставки
- * \param const int index_column Индекс столбца вставки
- * \param const int el Элемент вставки
+ * \param const int index_row - Индекс строки вставки
+ * \param const int index_column - Индекс столбца вставки
+ * \param const int el - Элемент вставки
  *
  * \brief Функция, добавляющая элемент в строку матрицы с её расширением по
  * количеству столбцов

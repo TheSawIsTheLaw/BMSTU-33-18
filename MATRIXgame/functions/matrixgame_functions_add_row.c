@@ -31,7 +31,7 @@
 /**
  * \fn int my_realloc(matrix_t *matrix)
  *
- * \param matrix_t *matrix Указатель на особо заданную матрицу (см. matrixgame_
+ * \param matrix_t *matrix - Указатель на особо заданную матрицу (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Выделяет память под новую строку
@@ -57,9 +57,9 @@ static int my_realloc(matrix_t *matrix)
 /**
  * \fn int add_row(matrix_t *matrix, const int index)
  *
- * \param matrix_t *matrix Указатель на особо заданную матрицу (см. matrixgame_
+ * \param matrix_t *matrix - Указатель на особо заданную матрицу (см. matrixgame_
  * functions_create_matrix)
- * \param const int index Индекс вставки новой строки
+ * \param const int index - Индекс вставки новой строки
  *
  * \brief Вставляет новую строку в матрицу
  *

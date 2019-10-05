@@ -31,10 +31,10 @@
  * \fn int mult_matrices(const matrix_t *const matrix1, const matrix_t *const matrix2,
  * matrix_t *const res)
  *
- * \param const matrix_t *const matrix1 Особо заданная матрица (см. matrixgame_
+ * \param const matrix_t *const matrix1 - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const matrix_t *const matrix2 Особо заданная матрица
- * \param matrix_t *const res Особо заданная матрица результата
+ * \param const matrix_t *const matrix2 - Особо заданная матрица
+ * \param matrix_t *const res - Особо заданная матрица результата
  *
  * \brief Производит перемножение матриц matrix1 и matrix2, результат передаётся в res
  *

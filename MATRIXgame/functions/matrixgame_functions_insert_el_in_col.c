@@ -44,7 +44,7 @@
 /**
  * \fn int append_row(matrix_t *const matrix)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Добавляет строку к матрице снизу
@@ -70,10 +70,10 @@ static int append_row(matrix_t *const matrix)
 /**
  * \fn int check_indices(const matrix_t *const matrix, const int i, const int j)
  *
- * \param const matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param const matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int i Индекс строки
- * \param const int j Индекс столбца
+ * \param const int i - Индекс строки
+ * \param const int j - Индекс столбца
  *
  * \brief Проверка индекса
  *
@@ -94,11 +94,11 @@ static int check_indices(const matrix_t *const matrix, const int i, const int j)
 /**
  * \fn int insert_el_in_col(matrix_t *const matrix, const int index_row, const int index_column, const int el)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int index_row Индекс строки вставки
- * \param const int index_column Индекс столбца вставки
- * \param const int el Элемент вставки
+ * \param const int index_row - Индекс строки вставки
+ * \param const int index_column - Индекс столбца вставки
+ * \param const int el - Элемент вставки
  *
  * \brief Функция, добавляющая элемент в столбец матрицы с её расширением по
  * количеству строк

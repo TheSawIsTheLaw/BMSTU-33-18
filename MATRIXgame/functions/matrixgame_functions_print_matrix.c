@@ -21,9 +21,9 @@
 /**
  * \fn int append_row(matrix_t *const matrix)
  *
- * \param const matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param const matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param FILE *file Десриптор файла вывода
+ * \param FILE *file - Дескриптор файла вывода
  *
  * \brief Выводит матрицу в файл
  *
