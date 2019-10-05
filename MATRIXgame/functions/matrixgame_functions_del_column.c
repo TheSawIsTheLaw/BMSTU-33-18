@@ -36,7 +36,7 @@
 /**
  * \fn int resize_matrix(matrix_t *const m)
  *
- * \param matrix_t *const m Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const m - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Функция, уменьшающая количество столбцов в матрице на единицу
@@ -65,9 +65,9 @@ static int resize_matrix(matrix_t *const m)
 /**
  * \fn int del_column(matrix_t *const m, const int column)
  *
- * \param matrix_t *const m Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const m - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int column Номер удаляемого столбца
+ * \param const int column - Номер удаляемого столбца
  *
  * \brief Функция, удаляющая определённый столбец матрицы
  *

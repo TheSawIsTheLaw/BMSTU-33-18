@@ -31,10 +31,10 @@ FALSE_POINTER_ERROR.
  * \fn int get_by_pos(const matrix_t *const init_matrix, const int index_row,
  * const int index_column)
  *
- * \param const matrix_t *const init_matrix Особо заданная матрица (см. matrixgame_
+ * \param const matrix_t *const init_matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int index_row Индекс строки искомой ячейки матрицы
- * \param const int index_column Индекс столбца искомой ячейки матрицы
+ * \param const int index_row - Индекс строки искомой ячейки матрицы
+ * \param const int index_column - Индекс столбца искомой ячейки матрицы
  *
  * \brief Возвращает значение заданной ячейки
  *

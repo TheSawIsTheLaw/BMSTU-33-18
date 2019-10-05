@@ -29,8 +29,8 @@ typedef int mtype;
 /**
  * \fn static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
  *
- * \param mtype *const * start Указатель на начало диапозона указателей
- * \param mtype *const *const end Указатель на конец диапазона указателей
+ * \param mtype *const * start - Указатель на начало диапозона указателей
+ * \param mtype *const *const end - Указатель на конец диапазона указателей
  *
  * \brief Освобождает выделенную за диапазаном указателей память
  */
@@ -43,9 +43,9 @@ static void clean_up_row_pointers(mtype *const * start, mtype *const *const end)
 /**
  * \fn int create_matrix(matrix_t *const matrix, const int rows, const int columns)
  *
- * \param matrix_t *const matrix Указатель для создания матрицы
- * \param const int rows Количество строк матрицы
- * \param const int columns Количество столбцов матрицы
+ * \param matrix_t *const matrix - Указатель для создания матрицы
+ * \param const int rows - Количество строк матрицы
+ * \param const int columns - Количество столбцов матрицы
  *
  * \brief Создаёт матрицу
  *

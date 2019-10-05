@@ -32,7 +32,7 @@
 /**
  * \fn static int data_check(matrix_t *const matrix)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Проверка переданных в функцию данных
@@ -71,10 +71,10 @@ static int data_check(matrix_t *const matrix)
 /**
  * \fn static void transpose_matrix(matrix_t *const matrix, matrix_t *const new_matrix)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
- * \param matrix_t *const new_matrix Особо заданная матрица, куда будет
+ * \param matrix_t *const new_matrix - Особо заданная матрица, куда будет
  * записан результат транспонирования
  *
  * \brief Транспонирование матрицы
@@ -93,7 +93,7 @@ static void transpose_matrix(matrix_t *const matrix, matrix_t *const new_matrix)
 /**
  * \fn int transpose(matrix_t *const matrix)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Функция вызова выполнения транспонирования матрицы для пользователя

@@ -27,11 +27,11 @@
 /**
  * \fn int set_by_pos(const matrix_t *const init_matrix, const int index_row, const int index_column, const int el)
  *
- * \param const matrix_t *const init_matrix Особо заданная матрица (см. matrixgame_
+ * \param const matrix_t *const init_matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int index_row Индекс строки передачи значения
- * \param const int index_column Индекс столбца передачи значения
- * \param const int el Передаваемое в ячейку значение
+ * \param const int index_row - Индекс строки передачи значения
+ * \param const int index_column - Индекс столбца передачи значения
+ * \param const int el - Передаваемое в ячейку значение
  *
  * \brief Устанавливает значение элемента матрицы
  *

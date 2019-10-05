@@ -1,3 +1,8 @@
+/**
+ * \file matrixgame_functions_free_matrix.c
+ * \brief Функция, выполняющая освобождения памяти под матрицей
+ */
+
 #include "../headers/matrixgame.h"
 #include <stdlib.h>
 
@@ -30,7 +35,7 @@
 /**
  * \fn int free_matrix(matrix_t *to_free)
  *
- * \param matrix_t *to_free Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *to_free - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Освобождает память под матрицей
