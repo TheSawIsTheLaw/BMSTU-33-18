@@ -26,7 +26,7 @@ int *arrgame_create(const int sizeArray)
     }
     else
     {
-        fprintf(stderr, "Не удалось выделить память.");
+        puts("Не удалось выделить память.");
         return NULL;
     }
 
