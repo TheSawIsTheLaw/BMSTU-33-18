@@ -11,6 +11,7 @@
 // Коды возврата
 #define OK 0
 #define WRONG_DIMS 500
+#define WRONG_KEY_ERROR 501
 
 void change(int *const row, const int index_1, const int index_2)
 {
@@ -139,7 +140,7 @@ int to_step(matrix_t *const field, const char key)
             {
                 return error_code;
             }
-            
+
             break;
         case DOWN:
             if ((error_code = sum_vertical(field, sum_right_row)))
@@ -148,6 +149,8 @@ int to_step(matrix_t *const field, const char key)
             }
 
             break;
+        default:
+            return WRONG_KEY_ERROR;
     }
 
     return OK;
