@@ -41,6 +41,8 @@ int matrixgame_print_matrix(const matrix_t *const matrix, FILE *file);
 int matrixgame_set_by_pos(const matrix_t *const init_matrix,
     const int index_row, const int index_column, const int el);
 
+int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir);
+
 int matrixgame_transpose(matrix_t *const matrix);
 
 #endif
