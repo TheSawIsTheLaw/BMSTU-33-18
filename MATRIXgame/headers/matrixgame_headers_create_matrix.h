@@ -3,6 +3,6 @@
 
 #include "matrixgame_headers_matrix_t.h"
 
-int create_matrix(matrix_t *const matrix, const int rows, const int columns);
+int matrixgame_create_matrix(matrix_t *const matrix, const int rows, const int columns);
 
 #endif
