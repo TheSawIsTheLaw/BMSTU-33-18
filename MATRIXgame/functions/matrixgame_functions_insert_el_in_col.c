@@ -6,8 +6,7 @@
 
 #include <stdlib.h>
 
-#include "../headers/matrixgame_headers_insert_el_in_col.h"
-#include "../headers/matrixgame_headers_matrix_t.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def SUCCESS
@@ -45,7 +44,7 @@
 /**
  * \fn int append_row(matrix_t *const matrix)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Добавляет строку к матрице снизу
@@ -53,7 +52,7 @@
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения проверки
  */
-int append_row(matrix_t *const matrix)
+static int append_row(matrix_t *const matrix)
 {
     matrix->matrix = (int **)realloc(matrix->matrix,  (matrix->rows + 1) * sizeof(int *));
     if (!matrix->matrix)
@@ -71,17 +70,17 @@ int append_row(matrix_t *const matrix)
 /**
  * \fn int check_indices(const matrix_t *const matrix, const int i, const int j)
  *
- * \param const matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param const matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int i Индекс строки
- * \param const int j Индекс столбца
+ * \param const int i - Индекс строки
+ * \param const int j - Индекс столбца
  *
  * \brief Проверка индекса
  *
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения проверки
  */
-int check_indices(const matrix_t *const matrix, const int i, const int j)
+static int check_indices(const matrix_t *const matrix, const int i, const int j)
 {
     if ((i < 0) || (j < 0))
         return INVALID_INDICES;
@@ -95,11 +94,11 @@ int check_indices(const matrix_t *const matrix, const int i, const int j)
 /**
  * \fn int insert_el_in_col(matrix_t *const matrix, const int index_row, const int index_column, const int el)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int index_row Индекс строки вставки
- * \param const int index_column Индекс столбца вставки
- * \param const int el Элемент вставки
+ * \param const int index_row - Индекс строки вставки
+ * \param const int index_column - Индекс столбца вставки
+ * \param const int el - Элемент вставки
  *
  * \brief Функция, добавляющая элемент в столбец матрицы с её расширением по
  * количеству строк
@@ -107,7 +106,7 @@ int check_indices(const matrix_t *const matrix, const int i, const int j)
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int insert_el_in_col(matrix_t *const matrix, const int index_row, const int index_column, const int el)
+int matrixgame_insert_el_in_col(matrix_t *const matrix, const int index_row, const int index_column, const int el)
 {
     if (append_row(matrix) == SUCCESS)
     {

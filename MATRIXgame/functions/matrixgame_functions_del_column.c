@@ -4,10 +4,8 @@
  */
 
 #include <stdlib.h>
-#include <stdio.h>
 
-#include "../headers/matrixgame_headers_matrix_t.h"
-#include "../headers/matrixgame_headers_del_column.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def CORRECT_COLOMN_ERROR
@@ -38,7 +36,7 @@
 /**
  * \fn int resize_matrix(matrix_t *const m)
  *
- * \param matrix_t *const m Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const m - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Функция, уменьшающая количество столбцов в матрице на единицу
@@ -46,7 +44,7 @@
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int resize_matrix(matrix_t *const m)
+static int resize_matrix(matrix_t *const m)
 {
     int** p = m->matrix;
     m->columns--;
@@ -67,16 +65,16 @@ int resize_matrix(matrix_t *const m)
 /**
  * \fn int del_column(matrix_t *const m, const int column)
  *
- * \param matrix_t *const m Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const m - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int column Номер удаляемого столбца
+ * \param const int column - Номер удаляемого столбца
  *
  * \brief Функция, удаляющая определённый столбец матрицы
  *
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int del_column(matrix_t *const m, const int column)
+int matrixgame_del_column(matrix_t *const m, const int column)
 {
     if (column >= m->columns || column < 0)
     {
@@ -100,5 +98,6 @@ int del_column(matrix_t *const m, const int column)
         for (int j = column; j < m->columns - 1; ++j)
             *(*(p + i) + j) = *(*(p + i) + j + 1);
     }
+
     return resize_matrix(m);
 }

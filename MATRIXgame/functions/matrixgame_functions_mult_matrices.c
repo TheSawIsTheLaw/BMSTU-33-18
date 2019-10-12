@@ -3,9 +3,7 @@
  * \brief Функция умножения матриц
  */
 
-#include "../headers/matrixgame_headers_matrix_t.h"
-#include "../headers/matrixgame_headers_mult_matrices.h"
-#include <stdio.h>
+#include "../headers/matrixgame.h"
 
 /**
  * \def OK
@@ -33,17 +31,17 @@
  * \fn int mult_matrices(const matrix_t *const matrix1, const matrix_t *const matrix2,
  * matrix_t *const res)
  *
- * \param const matrix_t *const matrix1 Особо заданная матрица (см. matrixgame_
+ * \param const matrix_t *const matrix1 - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const matrix_t *const matrix2 Особо заданная матрица
- * \param matrix_t *const res Особо заданная матрица результата
+ * \param const matrix_t *const matrix2 - Особо заданная матрица
+ * \param matrix_t *const res - Особо заданная матрица результата
  *
  * \brief Производит перемножение матриц matrix1 и matrix2, результат передаётся в res
  *
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения проверки
  */
-int mult_matrices(const matrix_t *const matrix1, const matrix_t *const matrix2,
+int matrixgame_mult_matrices(const matrix_t *const matrix1, const matrix_t *const matrix2,
                   matrix_t *const res)
 {
     if (!matrix1 || !matrix2 || !res)
