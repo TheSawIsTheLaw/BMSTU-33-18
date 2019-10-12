@@ -10,6 +10,7 @@
 #define POINTER_ERROR 12
 #define SIZE_ERROR 13
 #define PASSED 0
+#define FAILED 1
 
 // To refer to the begining of something
 #define INITIAL 0
