@@ -64,10 +64,10 @@ int matrixgame_shift_matrix_test()
 
   // Test 1: normal work, "up"
   matrix_t matrix_1;
-  create_matrix(&matrix_1, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_1, SIZE, SIZE);
   make_zero(&matrix_1);
   matrix_t matrix_1_result;
-  create_matrix(&matrix_1_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_1_result, SIZE, SIZE);
   make_zero(&matrix_1_result);
 
   *(*(matrix_1.matrix + 0) + 3) = 4;
@@ -83,15 +83,15 @@ int matrixgame_shift_matrix_test()
   shift_matrix(&matrix_1, 'u');
   if (compare_matrix(&matrix_1, &matrix_1_result) != EQUAL)
     number_of_errors ++;
-  free_matrix(&matrix_1);
-  free_matrix(&matrix_1_result);
+  matrixgame_free_matrix(&matrix_1);
+  matrixgame_free_matrix(&matrix_1_result);
 
   // Test 2: normal work, "down"
   matrix_t matrix_2;
-  create_matrix(&matrix_2, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_2, SIZE, SIZE);
   make_zero(&matrix_2);
   matrix_t matrix_2_result;
-  create_matrix(&matrix_2_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_2_result, SIZE, SIZE);
   make_zero(&matrix_2_result);
 
   *(*(matrix_2.matrix + 0) + 3) = 4;
@@ -107,15 +107,15 @@ int matrixgame_shift_matrix_test()
   shift_matrix(&matrix_2, 'd');
   if (compare_matrix(&matrix_2, &matrix_2_result) != EQUAL)
     number_of_errors ++;
-  free_matrix(&matrix_2); 
-  free_matrix(&matrix_2_result);
+  matrixgame_free_matrix(&matrix_2); 
+  matrixgame_free_matrix(&matrix_2_result);
 
   // Test 3: normal work, "right"
   matrix_t matrix_3;
-  create_matrix(&matrix_3, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_3, SIZE, SIZE);
   make_zero(&matrix_3);
   matrix_t matrix_3_result;
-  create_matrix(&matrix_3_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_3_result, SIZE, SIZE);
   make_zero(&matrix_3_result);
 
   *(*(matrix_3.matrix + 0) + 3) = 4;
@@ -133,15 +133,15 @@ int matrixgame_shift_matrix_test()
   shift_matrix(&matrix_3, 'r');
   if (compare_matrix(&matrix_3, &matrix_3_result) != EQUAL)
     number_of_errors ++;
-  free_matrix(&matrix_3); 
-  free_matrix(&matrix_3_result);
+  matrixgame_free_matrix(&matrix_3); 
+  matrixgame_free_matrix(&matrix_3_result);
 
   // Test 4: normal work, "left"
   matrix_t matrix_4;
-  create_matrix(&matrix_4, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_4, SIZE, SIZE);
   make_zero(&matrix_4);
   matrix_t matrix_4_result;
-  create_matrix(&matrix_4_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_4_result, SIZE, SIZE);
   make_zero(&matrix_4_result);
 
   *(*(matrix_4.matrix + 0) + 3) = 4;
@@ -159,32 +159,32 @@ int matrixgame_shift_matrix_test()
   shift_matrix(&matrix_4, 'l');
   if (compare_matrix(&matrix_4, &matrix_4_result) != EQUAL)
     number_of_errors ++;
-  free_matrix(&matrix_4); 
-  free_matrix(&matrix_4_result);
+  matrixgame_free_matrix(&matrix_4); 
+  matrixgame_free_matrix(&matrix_4_result);
 
   // Test 5: error about direction
   matrix_t matrix_5;
-  create_matrix(&matrix_5, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_5, SIZE, SIZE);
   make_zero(&matrix_5);
   if (shift_matrix(&matrix_5, 'z') != DIRECTION_ERROR)
     number_of_errors ++;
-  free_matrix(&matrix_5); 
+  matrixgame_free_matrix(&matrix_5); 
 
   // Test 6: error about false pointer
   matrix_t matrix_6;
-  create_matrix(&matrix_6, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_6, SIZE, SIZE);
   make_zero(&matrix_6);
   matrix_6.matrix = NULL;
   if (shift_matrix(&matrix_6, 'u') != POINTER_ERROR)
     number_of_errors ++;
-  free_matrix(&matrix_6);
+  matrixgame_free_matrix(&matrix_6);
 
   // Test 7: matrix is full and isn't going to change
   matrix_t matrix_7;
-  create_matrix(&matrix_7, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_7, SIZE, SIZE);
   make_zero(&matrix_7);
   matrix_t matrix_7_result;
-  create_matrix(&matrix_7_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_7_result, SIZE, SIZE);
   make_zero(&matrix_7_result);
 
   full_fill_matrix(&matrix_7);
@@ -193,18 +193,18 @@ int matrixgame_shift_matrix_test()
 
   if (compare_matrix(&matrix_7, &matrix_7_result) != EQUAL)
      number_of_errors ++;
-  free_matrix(&matrix_7); 
-  free_matrix(&matrix_7_result);
+  matrixgame_free_matrix(&matrix_7); 
+  matrixgame_free_matrix(&matrix_7_result);
 
   // Test 8: matrix is not of a right size
   matrix_t matrix_8;
-  create_matrix(&matrix_8, SIZE + 1, SIZE);
+  matrixgame_create_matrix(&matrix_8, SIZE + 1, SIZE);
   matrix_8.rows = SIZE + 1;
   matrix_8.columns = SIZE;
   make_zero(&matrix_8);
   if (shift_matrix(&matrix_8, 'd') != SIZE_ERROR)
       number_of_errors ++;
-  free_matrix(&matrix_8);
+  matrixgame_free_matrix(&matrix_8);
 
   if (number_of_errors)
     return FAILED;
