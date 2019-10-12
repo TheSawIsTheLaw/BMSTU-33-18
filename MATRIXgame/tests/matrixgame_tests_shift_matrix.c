@@ -1,6 +1,4 @@
-#include "../headers/matrixgame_headers_shift_matrix.h"
-#include "../headers/matrixgame_headers_create_matrix.h"
-#include "../headers/matrixgame_headers_free_matrix.h"
+#include "../headers/matrixgame.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,7 +78,7 @@ int matrixgame_shift_matrix_test()
   *(*(matrix_1_result.matrix + 0) + 3) = 4;
   *(*(matrix_1_result.matrix + 1) + 2) = 16;
 
-  shift_matrix(&matrix_1, 'u');
+  matrixgame_shift_matrix(&matrix_1, 'u');
   if (compare_matrix(&matrix_1, &matrix_1_result) != EQUAL)
     number_of_errors ++;
   matrixgame_free_matrix(&matrix_1);
@@ -104,7 +102,7 @@ int matrixgame_shift_matrix_test()
   *(*(matrix_2_result.matrix + 3) + 3) = 4;
   *(*(matrix_2_result.matrix + 3) + 2) = 16;
   
-  shift_matrix(&matrix_2, 'd');
+  matrixgame_shift_matrix(&matrix_2, 'd');
   if (compare_matrix(&matrix_2, &matrix_2_result) != EQUAL)
     number_of_errors ++;
   matrixgame_free_matrix(&matrix_2); 
@@ -130,7 +128,7 @@ int matrixgame_shift_matrix_test()
   *(*(matrix_3_result.matrix + 3) + 3) = 8;
   *(*(matrix_3_result.matrix + 0) + 2) = 64;
 
-  shift_matrix(&matrix_3, 'r');
+  matrixgame_shift_matrix(&matrix_3, 'r');
   if (compare_matrix(&matrix_3, &matrix_3_result) != EQUAL)
     number_of_errors ++;
   matrixgame_free_matrix(&matrix_3); 
@@ -156,7 +154,7 @@ int matrixgame_shift_matrix_test()
   *(*(matrix_4_result.matrix + 0) + 0) = 4;
   *(*(matrix_4_result.matrix + 3) + 1) = 64;
   
-  shift_matrix(&matrix_4, 'l');
+  matrixgame_shift_matrix(&matrix_4, 'l');
   if (compare_matrix(&matrix_4, &matrix_4_result) != EQUAL)
     number_of_errors ++;
   matrixgame_free_matrix(&matrix_4); 
@@ -166,7 +164,7 @@ int matrixgame_shift_matrix_test()
   matrix_t matrix_5;
   matrixgame_create_matrix(&matrix_5, SIZE, SIZE);
   make_zero(&matrix_5);
-  if (shift_matrix(&matrix_5, 'z') != DIRECTION_ERROR)
+  if (matrixgame_shift_matrix(&matrix_5, 'z') != DIRECTION_ERROR)
     number_of_errors ++;
   matrixgame_free_matrix(&matrix_5); 
 
@@ -175,7 +173,7 @@ int matrixgame_shift_matrix_test()
   matrixgame_create_matrix(&matrix_6, SIZE, SIZE);
   make_zero(&matrix_6);
   matrix_6.matrix = NULL;
-  if (shift_matrix(&matrix_6, 'u') != POINTER_ERROR)
+  if (matrixgame_shift_matrix(&matrix_6, 'u') != POINTER_ERROR)
     number_of_errors ++;
   matrixgame_free_matrix(&matrix_6);
 
@@ -189,7 +187,7 @@ int matrixgame_shift_matrix_test()
 
   full_fill_matrix(&matrix_7);
   full_fill_matrix(&matrix_7_result);
-  shift_matrix(&matrix_7, 'l');
+  matrixgame_shift_matrix(&matrix_7, 'l');
 
   if (compare_matrix(&matrix_7, &matrix_7_result) != EQUAL)
      number_of_errors ++;
@@ -202,7 +200,7 @@ int matrixgame_shift_matrix_test()
   matrix_8.rows = SIZE + 1;
   matrix_8.columns = SIZE;
   make_zero(&matrix_8);
-  if (shift_matrix(&matrix_8, 'd') != SIZE_ERROR)
+  if (matrixgame_shift_matrix(&matrix_8, 'd') != SIZE_ERROR)
       number_of_errors ++;
   matrixgame_free_matrix(&matrix_8);
 

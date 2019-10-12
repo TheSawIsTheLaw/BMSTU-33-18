@@ -2,7 +2,7 @@
  * \file matrixgame_functions_shift_matrix.c
  * \brief Функция, смещающая ненулевые элементы матрицы к одному краю
  */
-#include "../headers/matrixgame_headers_shift_matrix.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def DIRECTION_ERROR
@@ -34,7 +34,7 @@
 // The minimal step in moving through matrix
 #define STEP 1
 /**
- * \fn int shift_matrix(matrix_t *init_matrix, const char dir)
+ * \fn int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir)
  *
  * \param matrix_t *init_matrix Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
@@ -46,7 +46,7 @@
  * код успешного завершения
  */
 
-int shift_matrix(matrix_t *init_matrix, const char dir)
+int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir)
 {
    // Error: given symbol can't tell the direction
    if (dir != 'l' && dir != 'r' && dir != 'u' && dir != 'd')
