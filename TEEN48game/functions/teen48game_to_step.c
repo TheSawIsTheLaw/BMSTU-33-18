@@ -63,9 +63,8 @@ void sum_left_row(int *const row, const int size)
     {
         if (*(row + i) == *(row + i + 1))
         {
-            *(row + i) = *(row + i + 1) * 2;
+            *(row + i) *= 2;
             move_left(row, i, size);
-            i--;
         }   
     }
 }
@@ -76,9 +75,8 @@ void sum_right_row(int *const row, const int size)
     {
         if (*(row + i) == *(row + i - 1))
         {
-            *(row + i) = *(row + i - 1) * 2;
+            *(row + i) *= 2;
             move_right(row, i, size);
-            i++;
         }   
     }
 }
@@ -87,7 +85,7 @@ void sum_horizontal(matrix_t *const field, void (*move_side)(int *const, const i
 {
     for (int i = 0; i < field -> rows; i++)
     {
-        for (int j = 0; j < field -> columns; j++)
+        for (int j = 0; j <= field -> columns / 2; j++)
         {
             (*move_side)(*(field -> matrix + i), field -> columns);
         }
