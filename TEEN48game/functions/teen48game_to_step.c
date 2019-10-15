@@ -1,17 +1,4 @@
 #include "../f_headers/teen48game_to_step.h"
-#include "../../MATRIXgame/headers/matrixgame_headers_matrix_t.h"
-#include "../../MATRIXgame/headers/matrixgame_headers_transpose.h"
-
-// Ключи
-#define UP 'u'
-#define DOWN 'd'
-#define LEFT 'l'
-#define RIGHT 'r'
-
-// Коды возврата
-#define OK 0
-#define WRONG_DIMS 500
-#define WRONG_KEY_ERROR 501
 
 void change(int *const row, const int index_1, const int index_2)
 {
@@ -85,10 +72,7 @@ void sum_horizontal(matrix_t *const field, void (*move_side)(int *const, const i
 {
     for (int i = 0; i < field -> rows; i++)
     {
-        for (int j = 0; j <= field -> columns / 2; j++)
-        {
-            (*move_side)(*(field -> matrix + i), field -> columns);
-        }
+        (*move_side)(*(field -> matrix + i), field -> columns);
     }
 }
 
@@ -103,7 +87,7 @@ int sum_vertical(matrix_t *const field, void (*move_side)(int *const, const int)
         return error_code;
     }
 
-    sum_horizonatal(field, move_side);
+    sum_horizontal(field, move_side);
 
     // Обратный поворот
     if ((error_code = transpose(field)))
@@ -131,7 +115,7 @@ int to_step(matrix_t *const field, const char key)
             sum_horizontal(field, sum_left_row);
             break;
         case RIGHT:
-            sum_horizonatal(field, sum_right_row);
+            sum_horizontal(field, sum_right_row);
             break;
         case UP:
             if ((error_code = sum_vertical(field, sum_left_row)))
