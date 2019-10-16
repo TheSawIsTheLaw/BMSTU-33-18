@@ -15,7 +15,7 @@ build_teen48game_func:
     - apt update -y
     - wget http://catfella.space/pkg/matrixgame_1_0-1_amd64.deb
     - dpkg -i matrixgame_1_0-1_amd64.deb
-    - gcc -Wall -Werror -c ${TEEN48GAME_FUNCS_PATH}${CI_COMMIT_REF_NAME}.c
+    - gcc -Wall -Werror -c ${TEEN48GAME_FUNCS_PATH}${CI_COMMIT_REF_NAME}.c -larrgame -lmatrixgame
   after_script:
     - rm *.o
   only:
@@ -33,7 +33,7 @@ build_teen48game_strat:
     - apt update -y
     - wget http://catfella.space/pkg/matrixgame_1_0-1_amd64.deb
     - dpkg -i matrixgame_1_0-1_amd64.deb
-    - gcc -Wall -Werror -c ${TEEN48GAME_PLAYERS_PATH}${CI_COMMIT_REF_NAME}.c
+    - gcc -Wall -Werror -c ${TEEN48GAME_PLAYERS_PATH}${CI_COMMIT_REF_NAME}.c -larrgame -lmatrixgame
   after_script:
     - rm *.o
   only:
@@ -52,9 +52,9 @@ test_teen48game_func:
     - cd lcov/
     - make install
     - cd ..
-    - gcc -Wall -Werror -c ${TEEN48GAME_FUNCS_TESTS_PATH}${CI_COMMIT_REF_NAME}_tests.c
-    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${TEEN48GAME_FUNCS_PATH}${CI_COMMIT_REF_NAME}.c
-    - gcc -lgcov --coverage -o test.exe ${CI_COMMIT_REF_NAME}_tests.o ${CI_COMMIT_REF_NAME}.o
+    - gcc -Wall -Werror -c ${TEEN48GAME_FUNCS_TESTS_PATH}${CI_COMMIT_REF_NAME}_tests.c -larrgame -lmatrixgame
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${TEEN48GAME_FUNCS_PATH}${CI_COMMIT_REF_NAME}.c -larrgame -lmatrixgame
+    - gcc -lgcov --coverage -o test.exe ${CI_COMMIT_REF_NAME}_tests.o ${CI_COMMIT_REF_NAME}.o -larrgame -lmatrixgame
     - ./test.exe
     - lcov -t "test" -o test.info -c -d .
     - genhtml -o ${TEEN48GAME_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
@@ -86,9 +86,9 @@ test_teen48game_strat:
     - cd lcov/
     - make install
     - cd ..
-    - gcc -Wall -Werror -c ${TEEN48GAME_PLAYERS_TESTS_PATH}${CI_COMMIT_REF_NAME}_tests.c
-    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${TEEN48GAME_PLAYERS_PATH}${CI_COMMIT_REF_NAME}.c
-    - gcc -lgcov --coverage -o test.exe ${CI_COMMIT_REF_NAME}_tests.o ${CI_COMMIT_REF_NAME}.o
+    - gcc -Wall -Werror -c ${TEEN48GAME_PLAYERS_TESTS_PATH}${CI_COMMIT_REF_NAME}_tests.c -larrgame -lmatrixgame
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${TEEN48GAME_PLAYERS_PATH}${CI_COMMIT_REF_NAME}.c -larrgame -lmatrixgame
+    - gcc -lgcov --coverage -o test.exe ${CI_COMMIT_REF_NAME}_tests.o ${CI_COMMIT_REF_NAME}.o -larrgame -lmatrixgame
     - ./test.exe
     - lcov -t "test" -o test.info -c -d .
     - genhtml -o ${TEEN48GAME_PLAYERS_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
