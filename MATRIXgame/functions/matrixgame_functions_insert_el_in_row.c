@@ -3,11 +3,9 @@
  * \brief Функция, добавляющая элемент в строку матрицы с её расширением по
  * количеству столбцов
  */
-#include<stdlib.h>
+#include <stdlib.h>
 
-#include "../headers/matrixgame_headers_insert_el_in_row.h"
-#include "../headers/matrixgame_headers_matrix_t.h"
-#include "../headers/matrixgame_errno.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def R_I
@@ -38,17 +36,17 @@
 /**
  * \fn int is_index_correct(const int rows, const int columns, const int index_row, const int index_column)
  *
- * \param const int rows Количество доступных строк в переданной матрице
- * \param const int columns Количество доступных столбцов в переданной матрице
- * \param const int index_row Переданный в функцию индекс строки вставки
- * \param const int index_column Переданный в функцию индекс столбца вставки
+ * \param const int rows - Количество доступных строк в переданной матрице
+ * \param const int columns - Количество доступных столбцов в переданной матрице
+ * \param const int index_row - Переданный в функцию индекс строки вставки
+ * \param const int index_column - Переданный в функцию индекс столбца вставки
  *
  * \brief Проверка корректности переданных в функцию данных
  *
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения проверки
  */
-int is_index_correct(const int rows, const int columns, const int index_row, const int index_column)
+static int is_index_correct(const int rows, const int columns, const int index_row, const int index_column)
 {
     if (index_row >= 0 && index_column >= 0 && index_row <= rows && index_column <= columns)
         return R_I;
@@ -63,7 +61,7 @@ int is_index_correct(const int rows, const int columns, const int index_row, con
 /**
  * \fn int append_row(matrix_t *const matrix)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Добавляет строки матрице
@@ -71,7 +69,7 @@ int is_index_correct(const int rows, const int columns, const int index_row, con
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int one_pos_shifting(matrix_t *const matrix)
+static int one_pos_shifting(matrix_t *const matrix)
 {
     matrix->columns = matrix->columns + 1;
 
@@ -95,11 +93,11 @@ int one_pos_shifting(matrix_t *const matrix)
 /**
  * \fn int insert_el_in_row(matrix_t *const matrix, int index_row, int index_column, int el)
  *
- * \param matrix_t *const matrix Особо заданная матрица (см. matrixgame_
+ * \param matrix_t *const matrix - Особо заданная матрица (см. matrixgame_
  * functions_create_matrix)
- * \param const int index_row Индекс строки вставки
- * \param const int index_column Индекс столбца вставки
- * \param const int el Элемент вставки
+ * \param const int index_row - Индекс строки вставки
+ * \param const int index_column - Индекс столбца вставки
+ * \param const int el - Элемент вставки
  *
  * \brief Функция, добавляющая элемент в строку матрицы с её расширением по
  * количеству столбцов
@@ -107,7 +105,7 @@ int one_pos_shifting(matrix_t *const matrix)
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int insert_el_in_row(matrix_t *const matrix, int index_row, int index_column, int el)
+int matrixgame_insert_el_in_row(matrix_t *const matrix, int index_row, int index_column, int el)
 {
     if (one_pos_shifting(matrix) != MEM_ERR)
     {

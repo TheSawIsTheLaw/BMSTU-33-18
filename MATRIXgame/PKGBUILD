@@ -1,0 +1,14 @@
+pkgname='matrixgame'
+pkgver=1.0.1
+pkgrel=1
+pkgdesc='MATRIXgame library'
+arch=('x86_64')
+license=('BMSTU')
+source=('matrixgame.tar.gz')
+package() {
+    depends=('arrgame>=1.0.1')
+    mkdir -p $pkgdir/usr/include $pkgdir/usr/lib
+    install -D -m755 libmatrixgame.so $pkgdir/usr/lib
+    install -D -m755 headers/matrixgame.h $pkgdir/usr/include
+}
+md5sums=('6715d61e7112ee238e33e8a92a3402cf')
