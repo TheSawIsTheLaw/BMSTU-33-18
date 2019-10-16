@@ -13,8 +13,8 @@ build_teen48game_func:
   image: gcc
   script:
     - apt update -y
-    - yes | sh -c "$(wget -O- http://catfella.space/pkg/arrgame_deb_download.sh)"
-    - yes | sh -c "$(wget -O- http://catfella.space/pkg/matrixgame_deb_download.sh)"
+    - wget http://catfella.space/pkg/matrixgame_1_0-1_amd64.deb
+    - dpkg -i matrixgame_1_0-1_amd64.deb
     - gcc -Wall -Werror -c ${TEEN48GAME_FUNCS_PATH}${CI_COMMIT_REF_NAME}.c
   after_script:
     - rm *.o
@@ -31,8 +31,8 @@ build_teen48game_strat:
   image: gcc
   script:
     - apt update -y
-    - yes | sh -c "$(wget -O- http://catfella.space/pkg/arrgame_deb_download.sh)"
-    - yes | sh -c "$(wget -O- http://catfella.space/pkg/matrixgame_deb_download.sh)"
+    - wget http://catfella.space/pkg/matrixgame_1_0-1_amd64.deb
+    - dpkg -i matrixgame_1_0-1_amd64.deb
     - gcc -Wall -Werror -c ${TEEN48GAME_PLAYERS_PATH}${CI_COMMIT_REF_NAME}.c
   after_script:
     - rm *.o
@@ -46,8 +46,8 @@ test_teen48game_func:
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
-    - yes | sh -c "$(wget -O- http://catfella.space/pkg/arrgame_deb_download.sh)"
-    - yes | sh -c "$(wget -O- http://catfella.space/pkg/matrixgame_deb_download.sh)"
+    - wget http://catfella.space/pkg/matrixgame_1_0-1_amd64.deb
+    - dpkg -i matrixgame_1_0-1_amd64.deb
     - git clone https://github.com/linux-test-project/lcov
     - cd lcov/
     - make install
@@ -80,8 +80,8 @@ test_teen48game_strat:
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
-    - yes | sh -c "$(wget -O- http://catfella.space/pkg/arrgame_deb_download.sh)"
-    - yes | sh -c "$(wget -O- http://catfella.space/pkg/matrixgame_deb_download.sh)"
+    - wget http://catfella.space/pkg/matrixgame_1_0-1_amd64.deb
+    - dpkg -i matrixgame_1_0-1_amd64.deb
     - git clone https://github.com/linux-test-project/lcov
     - cd lcov/
     - make install
