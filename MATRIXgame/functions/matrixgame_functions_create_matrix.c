@@ -63,7 +63,7 @@ int matrixgame_create_matrix(matrix_t *const matrix, const int rows, const int c
     mtype *const *const end = matrix->matrix + rows;
     for (mtype** cur = matrix->matrix; cur < end; cur++)
     {
-        temp = create(columns);
+        temp = arrgame_create(columns);
         if (!temp)
         {
             clean_up_row_pointers(matrix->matrix, cur);

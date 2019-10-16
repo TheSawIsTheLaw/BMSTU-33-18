@@ -25,20 +25,20 @@ void move_left(int *const row, const int index, const int size)
         *(row + i) = *(row + i + 1); 
     }
 
-    if (!*(row + size - 1))
-    {
+    if (*(row + size - 1))
+    { 
         *(row + size - 1) = 0;
     }
 }
 
-void move_right(int *const row, const int index, const int size)
+void move_right(int *const row, const int index)
 {
     for (int i = index; i > 0; i--)
     {
         *(row + i) = *(row + i - 1);
     }
 
-    if (!*(row))
+    if (*(row))
     {
         *(row) = 0;
     }
@@ -46,24 +46,24 @@ void move_right(int *const row, const int index, const int size)
 
 void sum_left_row(int *const row, const int size)
 {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size - 1; i++)
     {
         if (*(row + i) == *(row + i + 1))
         {
             *(row + i) *= 2;
-            move_left(row, i, size);
+            move_left(row, i + 1, size);
         }   
     }
 }
 
 void sum_right_row(int *const row, const int size)
 {
-    for (int i = size - 1; i > 0; i++)
+    for (int i = size - 1; i > 0; i--)
     {
         if (*(row + i) == *(row + i - 1))
         {
             *(row + i) *= 2;
-            move_right(row, i, size);
+            move_right(row, i - 1);
         }   
     }
 }
@@ -82,7 +82,7 @@ int sum_vertical(matrix_t *const field, void (*move_side)(int *const, const int)
 
     // Поворот на 90 градусов влево
     reverse_rows(field);
-    if ((error_code = transpose(field)))
+    if ((error_code = matrixgame_transpose(field)))
     {
         return error_code;
     }
@@ -90,7 +90,7 @@ int sum_vertical(matrix_t *const field, void (*move_side)(int *const, const int)
     sum_horizontal(field, move_side);
 
     // Обратный поворот
-    if ((error_code = transpose(field)))
+    if ((error_code = matrixgame_transpose(field)))
     {
         return error_code;
     }
@@ -100,11 +100,11 @@ int sum_vertical(matrix_t *const field, void (*move_side)(int *const, const int)
     return error_code;
 }
 
-int to_step(matrix_t *const field, const char key)
+int to_step(matrix_t *const matrix, const char key)
 {
     int error_code = OK;
 
-    if (field -> rows <= 0 || field -> columns <= 0)
+    if (matrix -> rows <= 0 || matrix -> columns <= 0)
     {
         return WRONG_DIMS;
     }
@@ -112,20 +112,20 @@ int to_step(matrix_t *const field, const char key)
     switch (key)
     {
         case LEFT:
-            sum_horizontal(field, sum_left_row);
+            sum_horizontal(matrix, sum_left_row);
             break;
         case RIGHT:
-            sum_horizontal(field, sum_right_row);
+            sum_horizontal(matrix, sum_right_row);
             break;
         case UP:
-            if ((error_code = sum_vertical(field, sum_left_row)))
+            if ((error_code = sum_vertical(matrix, sum_left_row)))
             {
                 return error_code;
             }
 
             break;
         case DOWN:
-            if ((error_code = sum_vertical(field, sum_right_row)))
+            if ((error_code = sum_vertical(matrix, sum_right_row)))
             {
                 return error_code;
             }

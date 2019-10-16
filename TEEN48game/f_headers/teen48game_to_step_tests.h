@@ -3,8 +3,7 @@
 #define _TEEN48GAME_TO_STEP_TESTS_H_
 
 #include <stdio.h>
-#include "../../MATRIXgame/headers/matrixgame_headers_create_matrix.h"
-#include "../../MATRIXgame/headers/matrixgame_headers_free_matrix.h"
+#include "../../MATRIXgame/headers/matrixgame.h"
 #include "../f_headers/teen48game_to_step.h"
 #include "../f_headers/teen48game_to_step_tests.h"
 
@@ -41,7 +40,7 @@
 #define RESULT_9 "0 16 8 8 16 8 4 2 2 4 8 16 0 0 0 64"
 
 #define INPUT_10 "2 4 4 4 8 2 2 2 4 8 16 16 4 8 16"
-#define RESULT_10 "0 0 0 0 2 4 8 8 2 4 4 8 32 4 8 16"
+#define RESULT_10 "0 0 0 2 4 8 8 2 4 4 8 32 4 8 16"
 
 // up
 

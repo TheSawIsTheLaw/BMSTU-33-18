@@ -31,24 +31,28 @@ void fill_from_file(const char *const filename, matrix_t *const data)
     }
 }
 
-int matrices_are_equal(const matrix_t *const first, const matrix_t *const second)
+int matrices_are_equal(const matrix_t first, const matrix_t second)
 {
-    if (first -> rows != second -> rows)
-    {
+    if (first.rows != second.rows)
+    {   
+        printf("here1\n");
         return ERRORS_DETECTED;
     }
 
-    if (first -> columns != second -> columns)
+    if (first.columns != second.columns)
     {
+        printf("here2\n");
         return ERRORS_DETECTED;
     }    
 
-    for (int i = 0; i < first -> rows; i++)
+    for (int i = 0; i < first.rows; i++)
     {
-        for (int j = 0; j < first -> rows; j++)
+        for (int j = 0; j < first.columns; j++)
         {
-            if (*(*(first -> matrix + i) + j) != *(*(second -> matrix + i) + j))
+            if (*(*(first.matrix + i) + j) != *(*(second.matrix + i) + j))
             {
+                printf("here3\n");
+                printf("%d != %d %d - index\n", *(*(first.matrix + i) + j), *(*(second.matrix + i) + j), i);
                 return ERRORS_DETECTED;
             }
         }
@@ -61,56 +65,53 @@ int test_case(const int rows,\
               const int cols,\
               const char *const input_string, const char *const result_string, const char key)
 {
-    matrix_t *matrix = NULL, *result_matrix = NULL; 
+    matrix_t matrix, result_matrix; 
     int function_result = 0;
 
-    matrix -> rows = result_matrix -> rows = rows;
-    matrix -> columns = result_matrix -> columns = cols;
-
-    if ((function_result = create_matrix(matrix, matrix -> rows, matrix -> columns)) != OK)
+    if ((function_result = matrixgame_create_matrix(&matrix, rows, cols)) != OK)
     {
         return function_result;
     }
 
-    if ((function_result = create_matrix(result_matrix, result_matrix -> rows, result_matrix -> columns)) != OK)
+    if ((function_result = matrixgame_create_matrix(&result_matrix, rows, cols)) != OK)
     {
-        free_matrix(matrix);
+        matrixgame_free_matrix(&matrix);
         return function_result;
     }
-    
+
     if ((function_result  = fill_file(INPUT_FILE, input_string)) != OK)
     {
-        free_matrix(matrix);
-        free_matrix(result_matrix);
+        matrixgame_free_matrix(&matrix);
+        matrixgame_free_matrix(&result_matrix);
         return function_result;
     }
 
     if ((function_result  = fill_file(RESULT_FILE, result_string)) != OK)
     {
-        free_matrix(matrix);
-        free_matrix(result_matrix);
+        matrixgame_free_matrix(&matrix);
+        matrixgame_free_matrix(&result_matrix);
         return function_result;
     }
 
-    fill_from_file(INPUT_FILE, matrix);
-    fill_from_file(RESULT_FILE, result_matrix);
+    fill_from_file(INPUT_FILE, &matrix);
+    fill_from_file(RESULT_FILE, &result_matrix);
 
-    if (to_step(matrix, key) != OK)
+    if (to_step(&matrix, key) != OK)
     {
-        free_matrix(matrix);
-        free_matrix(result_matrix);
+        matrixgame_free_matrix(&matrix);
+        matrixgame_free_matrix(&result_matrix);
         return ERRORS_DETECTED;
     }
 
     if (matrices_are_equal(matrix, result_matrix) != OK)
     {
-        free_matrix(matrix);
-        free_matrix(result_matrix);
+        matrixgame_free_matrix(&matrix);
+        matrixgame_free_matrix(&result_matrix);
         return ERRORS_DETECTED;
     }
 
-    free_matrix(matrix);
-    free_matrix(result_matrix);
+    matrixgame_free_matrix(&matrix);
+    matrixgame_free_matrix(&result_matrix);
 
     return OK;
 }
@@ -120,7 +121,6 @@ int main()
     
     int errors_counter = 0;
     printf("UNIT TESTING\n");
-
     // Тест 1
 
     if (test_case(4, 4, INPUT_1, RESULT_1, 'l') != OK)
@@ -231,7 +231,7 @@ int main()
 
     // Тест 10
 
-    if (test_case(4, 4, INPUT_10, RESULT_10, 'r') != OK)
+    if (test_case(1, 15, INPUT_10, RESULT_10, 'r') != OK)
     {
         errors_counter++;
         printf("TEST10.....FAILED\n");

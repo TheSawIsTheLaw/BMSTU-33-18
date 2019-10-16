@@ -3,8 +3,7 @@
 #define _TEENGAME48GAME_TO_STEP_H_
 
 #include "../f_headers/teen48game_to_step.h"
-#include "../../MATRIXgame/headers/matrixgame_headers_matrix_t.h"
-#include "../../MATRIXgame/headers/matrixgame_headers_transpose.h"
+#include "../../MATRIXgame/headers/matrixgame.h"
 
 // Ключи
 #define UP 'u'
