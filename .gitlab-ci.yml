@@ -3,92 +3,103 @@ stages:
   - test
 
 variables:
-  MATRIX_FUNCS_PATH: MATRIXgame/functions/
-  MATRIX_TESTS_PATH: MATRIXgame/tests/
+  TEEN48GAME_FUNCS_PATH: TEEN48game/functions/
+  TEEN48GAME_FUNCS_TESTS_PATH: TEEN48game/f_tests/
+  TEEN48GAME_PLAYERS_PATH: TEEN48game/players
+  TEEN48GAME_PLAYERS_TESTS_PATH: TEEN48game/p_tests
 
-build_matrixgame:
+build_teen48game_func:
   stage: build
   image: gcc
   script:
-    - gcc -Wall -Werror -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+    - apt update -y
+    - yes | sh -c "$(wget -O- http://catfella.space/pkg/arrgame_deb_download.sh)"
+    - yes | sh -c "$(wget -O- http://catfella.space/pkg/matrixgame_deb_download.sh)"
+    - gcc -Wall -Werror -c ${TEEN48GAME_FUNCS_PATH}${CI_COMMIT_REF_NAME}.c
   after_script:
     - rm *.o
   only:
     refs:
-      - /^matrixgame_.*$/
+      - /^teen48game_.*$/
   except:
     refs:
-      - matrixgame_transpose
+      - /^teen48game_player_.*$/
+      - teen48game_ci
 
-build_matrixgame_openmp:
+build_teen48game_strat:
   stage: build
   image: gcc
   script:
-    - gcc -Wall -Werror -c -fopenmp ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
+    - apt update -y
+    - yes | sh -c "$(wget -O- http://catfella.space/pkg/arrgame_deb_download.sh)"
+    - yes | sh -c "$(wget -O- http://catfella.space/pkg/matrixgame_deb_download.sh)"
+    - gcc -Wall -Werror -c ${TEEN48GAME_PLAYERS_PATH}${CI_COMMIT_REF_NAME}.c
   after_script:
     - rm *.o
   only:
     refs:
-      - matrixgame_transpose
+      - /^teen48game_player_.*$/
 
-test_matrixgame:
+test_teen48game_func:
   stage: test
   image: gcc
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
+    - yes | sh -c "$(wget -O- http://catfella.space/pkg/arrgame_deb_download.sh)"
+    - yes | sh -c "$(wget -O- http://catfella.space/pkg/matrixgame_deb_download.sh)"
     - git clone https://github.com/linux-test-project/lcov
     - cd lcov/
     - make install
     - cd ..
-    - export CUR_FUNC=$(echo "$CI_COMMIT_REF_NAME" | sed 's/matrixgame_//')
-    - gcc -Wall -Werror -c ${MATRIX_TESTS_PATH}*tests_${CUR_FUNC}.c
-    - gcc -Wall -Werror -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
-    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${MATRIX_FUNCS_PATH}*functions_${CUR_FUNC}.c
-    - gcc -lgcov --coverage -o test.exe matrixgame_tests_*.o matrixgame_functions_*.o
+    - gcc -Wall -Werror -c ${TEEN48GAME_FUNCS_TESTS_PATH}${CI_COMMIT_REF_NAME}_tests.c
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${TEEN48GAME_FUNCS_PATH}${CI_COMMIT_REF_NAME}.c
+    - gcc -lgcov --coverage -o test.exe ${CI_COMMIT_REF_NAME}_tests.o ${CI_COMMIT_REF_NAME}.o
     - ./test.exe
     - lcov -t "test" -o test.info -c -d .
-    - genhtml -o ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
+    - genhtml -o ${TEEN48GAME_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
   after_script:
     - rm -rf lcov/
     - rm *.o *.gcda *.gcno *.exe
   artifacts:
     name: codecoverage
     paths:
-      - ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage
+      - ${TEEN48GAME_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage
     when: on_success
   only:
     refs:
-      - /^matrixgame_.*$/
+      - /^teen48game_.*$/
   except:
-    - matrixgame_transpose
+    refs:
+      - /^teen48game_player_.*$/
+      - teen48game_ci
 
-test_matrixgame_openmp:
+test_teen48game_strat:
   stage: test
   image: gcc
   script:
     - apt update -y
     - apt install libperlio-gzip-perl libjson-perl -y
+    - yes | sh -c "$(wget -O- http://catfella.space/pkg/arrgame_deb_download.sh)"
+    - yes | sh -c "$(wget -O- http://catfella.space/pkg/matrixgame_deb_download.sh)"
     - git clone https://github.com/linux-test-project/lcov
     - cd lcov/
     - make install
     - cd ..
-    - export CUR_FUNC=$(echo "$CI_COMMIT_REF_NAME" | sed 's/matrixgame_//')
-    - gcc -Wall -Werror -fopenmp -c ${MATRIX_TESTS_PATH}*tests_${CUR_FUNC}.c
-    - gcc -Wall -Werror -fopenmp -c ${MATRIX_FUNCS_PATH}matrixgame_functions_*.c
-    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -fopenmp -c ${MATRIX_FUNCS_PATH}*functions_${CUR_FUNC}.c
-    - gcc -lgcov --coverage -fopenmp -o test.exe matrixgame_tests_*.o matrixgame_functions_*.o
+    - gcc -Wall -Werror -c ${TEEN48GAME_PLAYERS_TESTS_PATH}${CI_COMMIT_REF_NAME}_tests.c
+    - gcc -Wall -Werror -fprofile-arcs -ftest-coverage -c ${TEEN48GAME_PLAYERS_PATH}${CI_COMMIT_REF_NAME}.c
+    - gcc -lgcov --coverage -o test.exe ${CI_COMMIT_REF_NAME}_tests.o ${CI_COMMIT_REF_NAME}.o
     - ./test.exe
     - lcov -t "test" -o test.info -c -d .
-    - genhtml -o ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
+    - genhtml -o ${TEEN48GAME_PLAYERS_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage test.info
   after_script:
     - rm -rf lcov/
     - rm *.o *.gcda *.gcno *.exe
   artifacts:
     name: codecoverage
     paths:
-      - ${MATRIX_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage
+      - ${TEEN48GAME_PLAYERS_TESTS_PATH}${CI_COMMIT_REF_NAME}_codecoverage
     when: on_success
   only:
     refs:
-      - matrixgame_transpose
+      - /^teen48game_player_.*$/
