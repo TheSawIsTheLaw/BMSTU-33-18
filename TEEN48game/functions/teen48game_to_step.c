@@ -112,26 +112,55 @@ int to_step(matrix_t *const matrix, const char key)
     switch (key)
     {
         case LEFT:
+
+            if (matrixgame_shift_matrix(matrix, LEFT) != OK)
+            {
+                return MOVE_ERROR;
+            }
+
             sum_horizontal(matrix, sum_left_row);
             break;
+
         case RIGHT:
+
+            if (matrixgame_shift_matrix(matrix, RIGHT) != OK)
+            {
+                return MOVE_ERROR;
+            }
+
             sum_horizontal(matrix, sum_right_row);
             break;
+
         case UP:
+
+            if (matrixgame_shift_matrix(matrix, UP) != OK)
+            {
+                return MOVE_ERROR;
+            }
+
             if ((error_code = sum_vertical(matrix, sum_left_row)))
             {
                 return error_code;
             }
 
             break;
+
         case DOWN:
+
+            if (matrixgame_shift_matrix(matrix, DOWN) != OK)
+            {
+                return MOVE_ERROR;
+            }
+
             if ((error_code = sum_vertical(matrix, sum_right_row)))
             {
                 return error_code;
             }
 
             break;
+
         default:
+        
             return WRONG_KEY_ERROR;
     }
 

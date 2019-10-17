@@ -15,6 +15,7 @@
 #define OK 0
 #define WRONG_DIMS 500
 #define WRONG_KEY_ERROR 501
+#define MOVE_ERROR 502
 
 int to_step(matrix_t *const field, const char key);
 
