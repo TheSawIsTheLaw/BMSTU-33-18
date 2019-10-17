@@ -3,7 +3,7 @@
 #define _TEEN48GAME_TO_STEP_TESTS_H_
 
 #include <stdio.h>
-#include "../../MATRIXgame/headers/matrixgame.h"
+#include <matrixgame.h>
 #include "../f_headers/teen48game_to_step.h"
 #include "../f_headers/teen48game_to_step_tests.h"
 
