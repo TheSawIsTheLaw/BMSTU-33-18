@@ -12,8 +12,6 @@
 
 // To refer to the begining of something
 #define INITIAL 0
-// The matrix size
-#define SIZE 4
 // Matrixes are not equal
 #define NOT_EQUAL 1
 // Matrixes are equal
@@ -45,9 +43,9 @@ int compare_matrix(const matrix_t *const matrix1, const matrix_t *const matrix2)
 void full_fill_matrix(matrix_t *init_matrix)
 {
   int value = 2;
-  for (int i = INITIAL; i < SIZE; i ++)
+  for (int i = INITIAL; i < init_matrix->rows; i ++)
   {
-    for (int j = INITIAL; j < SIZE; j ++)
+    for (int j = INITIAL; j < init_matrix->columns; j ++)
     {
       *(*(init_matrix->matrix + i) + j) = value;
       value *= 2;
@@ -62,23 +60,27 @@ int matrixgame_shift_matrix_test()
 
   // Test 1: normal work, "up"
   matrix_t matrix_1;
-  matrixgame_create_matrix(&matrix_1, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_1, 4, 3);
   make_zero(&matrix_1);
   matrix_t matrix_1_result;
-  matrixgame_create_matrix(&matrix_1_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_1_result, 4, 3);
+  //matrix_1.rows = 4;
+  //matrix_1.columns = 3;
   make_zero(&matrix_1_result);
 
-  *(*(matrix_1.matrix + 0) + 3) = 4;
-  *(*(matrix_1.matrix + 1) + 2) = 2;
-  *(*(matrix_1.matrix + 2) + 2) = 16;
-  *(*(matrix_1.matrix + 3) + 0) = 8;
-
-  *(*(matrix_1_result.matrix + 0) + 0) = 8;
-  *(*(matrix_1_result.matrix + 0) + 2) = 2;
-  *(*(matrix_1_result.matrix + 0) + 3) = 4;
-  *(*(matrix_1_result.matrix + 1) + 2) = 16;
+  *(*(matrix_1.matrix + 0) + 2) = 4;
+  *(*(matrix_1.matrix + 1) + 0) = 2;
+  *(*(matrix_1.matrix + 2) + 1) = 3;
+  *(*(matrix_1.matrix + 3) + 0) = 1;
+  
+  *(*(matrix_1_result.matrix + 1) + 0) = 1;
+  *(*(matrix_1_result.matrix + 0) + 0) = 2;
+  *(*(matrix_1_result.matrix + 0) + 2) = 4;
+  *(*(matrix_1_result.matrix + 0) + 1) = 3;
+  
 
   matrixgame_shift_matrix(&matrix_1, 'u');
+  
   if (compare_matrix(&matrix_1, &matrix_1_result) != EQUAL)
     number_of_errors ++;
   matrixgame_free_matrix(&matrix_1);
@@ -86,22 +88,24 @@ int matrixgame_shift_matrix_test()
 
   // Test 2: normal work, "down"
   matrix_t matrix_2;
-  matrixgame_create_matrix(&matrix_2, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_2, 5, 4);
   make_zero(&matrix_2);
   matrix_t matrix_2_result;
-  matrixgame_create_matrix(&matrix_2_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_2_result, 5, 4);
   make_zero(&matrix_2_result);
 
   *(*(matrix_2.matrix + 0) + 3) = 4;
   *(*(matrix_2.matrix + 1) + 2) = 2;
-  *(*(matrix_2.matrix + 2) + 2) = 16;
-  *(*(matrix_2.matrix + 3) + 0) = 8;
+  *(*(matrix_2.matrix + 2) + 2) = 3;
+  *(*(matrix_2.matrix + 3) + 0) = 1;
+  *(*(matrix_2.matrix + 0) + 0) = 5;
   
-  *(*(matrix_2_result.matrix + 3) + 0) = 8;
-  *(*(matrix_2_result.matrix + 2) + 2) = 2;
-  *(*(matrix_2_result.matrix + 3) + 3) = 4;
-  *(*(matrix_2_result.matrix + 3) + 2) = 16;
-  
+  *(*(matrix_2_result.matrix + 4) + 0) = 1;
+  *(*(matrix_2_result.matrix + 3) + 2) = 2;
+  *(*(matrix_2_result.matrix + 4) + 3) = 4;
+  *(*(matrix_2_result.matrix + 4) + 2) = 3;
+  *(*(matrix_2_result.matrix + 3) + 0) = 5;
+
   matrixgame_shift_matrix(&matrix_2, 'd');
   if (compare_matrix(&matrix_2, &matrix_2_result) != EQUAL)
     number_of_errors ++;
@@ -110,23 +114,25 @@ int matrixgame_shift_matrix_test()
 
   // Test 3: normal work, "right"
   matrix_t matrix_3;
-  matrixgame_create_matrix(&matrix_3, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_3, 4, 7);
   make_zero(&matrix_3);
   matrix_t matrix_3_result;
-  matrixgame_create_matrix(&matrix_3_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_3_result, 4, 7);
   make_zero(&matrix_3_result);
 
   *(*(matrix_3.matrix + 0) + 3) = 4;
+  *(*(matrix_3.matrix + 0) + 4) = 8;
   *(*(matrix_3.matrix + 1) + 2) = 2;
-  *(*(matrix_3.matrix + 2) + 2) = 16;
-  *(*(matrix_3.matrix + 3) + 0) = 8;
+  *(*(matrix_3.matrix + 2) + 2) = 3;
+  *(*(matrix_3.matrix + 3) + 0) = 1;
   *(*(matrix_3.matrix + 0) + 1) = 64;
-  
-  *(*(matrix_3_result.matrix + 0) + 3) = 4;
-  *(*(matrix_3_result.matrix + 1) + 3) = 2;
-  *(*(matrix_3_result.matrix + 2) + 3) = 16;
-  *(*(matrix_3_result.matrix + 3) + 3) = 8;
-  *(*(matrix_3_result.matrix + 0) + 2) = 64;
+
+  *(*(matrix_3_result.matrix + 0) + 5) = 4;
+  *(*(matrix_3_result.matrix + 0) + 6) = 8;
+  *(*(matrix_3_result.matrix + 1) + 6) = 2;
+  *(*(matrix_3_result.matrix + 2) + 6) = 3;
+  *(*(matrix_3_result.matrix + 3) + 6) = 1;
+  *(*(matrix_3_result.matrix + 0) + 4) = 64;
 
   matrixgame_shift_matrix(&matrix_3, 'r');
   if (compare_matrix(&matrix_3, &matrix_3_result) != EQUAL)
@@ -136,24 +142,24 @@ int matrixgame_shift_matrix_test()
 
   // Test 4: normal work, "left"
   matrix_t matrix_4;
-  matrixgame_create_matrix(&matrix_4, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_4, 4, 7);
   make_zero(&matrix_4);
   matrix_t matrix_4_result;
-  matrixgame_create_matrix(&matrix_4_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_4_result, 4, 7);
   make_zero(&matrix_4_result);
 
   *(*(matrix_4.matrix + 0) + 3) = 4;
   *(*(matrix_4.matrix + 1) + 2) = 2;
-  *(*(matrix_4.matrix + 2) + 2) = 16;
-  *(*(matrix_4.matrix + 3) + 0) = 8;
-  *(*(matrix_4.matrix + 3) + 3) = 64;
+  *(*(matrix_4.matrix + 2) + 2) = 3;
+  *(*(matrix_4.matrix + 3) + 0) = 1;
+  *(*(matrix_4.matrix + 3) + 6) = 64;
 
-  *(*(matrix_4_result.matrix + 3) + 0) = 8;
+  *(*(matrix_4_result.matrix + 3) + 0) = 1;
   *(*(matrix_4_result.matrix + 1) + 0) = 2;
-  *(*(matrix_4_result.matrix + 2) + 0) = 16;
+  *(*(matrix_4_result.matrix + 2) + 0) = 3;
   *(*(matrix_4_result.matrix + 0) + 0) = 4;
   *(*(matrix_4_result.matrix + 3) + 1) = 64;
-  
+
   matrixgame_shift_matrix(&matrix_4, 'l');
   if (compare_matrix(&matrix_4, &matrix_4_result) != EQUAL)
     number_of_errors ++;
@@ -162,7 +168,7 @@ int matrixgame_shift_matrix_test()
 
   // Test 5: error about direction
   matrix_t matrix_5;
-  matrixgame_create_matrix(&matrix_5, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_5, 2, 3);
   make_zero(&matrix_5);
   if (matrixgame_shift_matrix(&matrix_5, 'z') != DIRECTION_ERROR)
     number_of_errors ++;
@@ -170,39 +176,61 @@ int matrixgame_shift_matrix_test()
 
   // Test 6: error about false pointer
   matrix_t matrix_6;
-  matrixgame_create_matrix(&matrix_6, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_6, 2, 3);
   make_zero(&matrix_6);
   matrix_6.matrix = NULL;
   if (matrixgame_shift_matrix(&matrix_6, 'u') != POINTER_ERROR)
     number_of_errors ++;
   matrixgame_free_matrix(&matrix_6);
 
-  // Test 7: matrix is full and isn't going to change
+  // Test 7: matrix is full and isn't changing
   matrix_t matrix_7;
-  matrixgame_create_matrix(&matrix_7, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_7, 5, 3);
   make_zero(&matrix_7);
   matrix_t matrix_7_result;
-  matrixgame_create_matrix(&matrix_7_result, SIZE, SIZE);
+  matrixgame_create_matrix(&matrix_7_result, 5, 3);
   make_zero(&matrix_7_result);
 
   full_fill_matrix(&matrix_7);
   full_fill_matrix(&matrix_7_result);
-  matrixgame_shift_matrix(&matrix_7, 'l');
 
+  matrixgame_shift_matrix(&matrix_7, 'l');
   if (compare_matrix(&matrix_7, &matrix_7_result) != EQUAL)
-     number_of_errors ++;
+    number_of_errors ++;
   matrixgame_free_matrix(&matrix_7); 
   matrixgame_free_matrix(&matrix_7_result);
 
   // Test 8: matrix is not of a right size
   matrix_t matrix_8;
-  matrixgame_create_matrix(&matrix_8, SIZE + 1, SIZE);
-  matrix_8.rows = SIZE + 1;
-  matrix_8.columns = SIZE;
+  matrixgame_create_matrix(&matrix_8, 3, 4);
+  matrix_8.rows = 3;
+  matrix_8.columns = -4;
   make_zero(&matrix_8);
   if (matrixgame_shift_matrix(&matrix_8, 'd') != SIZE_ERROR)
       number_of_errors ++;
   matrixgame_free_matrix(&matrix_8);
+
+  // Test 9: elements can't move down (only one row exists)
+  matrix_t matrix_9;
+  matrixgame_create_matrix(&matrix_9, 1, 3);
+  make_zero(&matrix_9);
+  matrix_t matrix_9_result;
+  matrixgame_create_matrix(&matrix_9_result, 1, 3);
+  make_zero(&matrix_9_result);
+
+  *(*(matrix_9.matrix + 0) + 0) = 4;
+  *(*(matrix_9.matrix + 0) + 1) = 2;
+  
+  *(*(matrix_9_result.matrix + 0) + 1) = 2;
+  *(*(matrix_9_result.matrix + 0) + 0) = 4;
+  
+
+  matrixgame_shift_matrix(&matrix_9, 'd');
+  if (compare_matrix(&matrix_9, &matrix_9_result) != EQUAL)
+    number_of_errors ++;
+  matrixgame_free_matrix(&matrix_9); 
+  matrixgame_free_matrix(&matrix_9_result);
+
 
   if (number_of_errors)
     return FAILED;

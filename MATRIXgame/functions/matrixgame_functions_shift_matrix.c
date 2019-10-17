@@ -29,8 +29,6 @@
 #define INITIAL 0
 // Zero element in matrix
 #define EMPTY 0
-// The matrix size
-#define SIZE 4
 // The minimal step in moving through matrix
 #define STEP 1
 /**
@@ -55,15 +53,15 @@ int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir)
    }
 
    // Error: matrix is not of a right size
-   if (init_matrix->rows != SIZE || init_matrix->columns != SIZE)
+   if (init_matrix->rows < 1 || init_matrix->columns < 1)
    {
        return SIZE_ERROR;
    }
 
    // Error: false pointer 
-   for (int i = INITIAL; i < SIZE; ++i)
+   for (int i = INITIAL; i < init_matrix->rows; ++i)
    {
-        for (int j = INITIAL; j < SIZE; ++j)
+        for (int j = INITIAL; j < init_matrix->columns; ++j)
         {
             if (!(init_matrix->matrix + i))
             {
@@ -76,12 +74,12 @@ int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir)
    if (dir == 'u')
    {
     // Going for three times (for matrix 4x4) - element can't move more than that
-    for (int times = INITIAL; times < SIZE - 1; times ++)
+    for (int times = INITIAL; times < init_matrix->rows - 1; times ++)
     {
       // Changing places with upper element if the move have to be done
-        for (int i = 1; i < SIZE; i ++)
+        for (int i = 1; i < init_matrix->rows; i ++)
         {
-            for (int j = INITIAL; j < SIZE; j ++)
+            for (int j = INITIAL; j < init_matrix->columns; j ++)
             {
                 if ((*(*(init_matrix->matrix + i - STEP) + j) == EMPTY) && (*(*(init_matrix->matrix + i) + j) != EMPTY))
                 {
@@ -96,11 +94,11 @@ int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir)
    // Direction: down
    if (dir == 'd')
    {
-    for (int times = INITIAL; times < SIZE - 1; times ++)
+    for (int times = INITIAL; times < init_matrix->rows - 1; times ++)
     {
-        for (int i = SIZE - 2; i > -1; i --)
+        for (int i = init_matrix->rows - 2; i > -1; i --)
         {
-            for (int j = INITIAL; j < SIZE; j ++)
+            for (int j = INITIAL; j < init_matrix->columns; j ++)
             {
                 if ((*(*(init_matrix->matrix + i + STEP) + j) == EMPTY) && (*(*(init_matrix->matrix + i) + j) != EMPTY))
                 {
@@ -115,11 +113,11 @@ int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir)
    // Direction: right
    if (dir == 'r')
    {
-    for (int times = INITIAL; times < SIZE - 1; times ++)
+    for (int times = INITIAL; times < init_matrix->columns - 1; times ++)
     {
-        for (int i = SIZE - 2; i > -1; i --)
+        for (int i = init_matrix->columns - 2; i > -1; i --)
         {
-            for (int j = INITIAL; j < SIZE; j ++)
+            for (int j = INITIAL; j < init_matrix->rows; j ++)
             {
                 if ((*(*(init_matrix->matrix + j) + i + STEP) == EMPTY) && (*(*(init_matrix->matrix + j) + i) != EMPTY))
                 {
@@ -134,11 +132,11 @@ int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir)
    // Direction: left
    if (dir == 'l')
    {
-    for (int times = INITIAL; times < SIZE - 1; times ++)
+    for (int times = INITIAL; times < init_matrix->columns - 1; times ++)
     {
-        for (int i = 1; i < SIZE; i ++)
+        for (int i = 1; i < init_matrix->columns; i ++)
         {
-            for (int j = INITIAL; j < SIZE; j ++)
+            for (int j = INITIAL; j < init_matrix->rows; j ++)
             {
                 if ((*(*(init_matrix->matrix + j) + i - STEP) == EMPTY) && (*(*(init_matrix->matrix + j) + i) != EMPTY))
                 {
@@ -149,6 +147,6 @@ int matrixgame_shift_matrix(matrix_t *init_matrix, const char dir)
         }
     }
    }
-  
+ 
    return PASSED;
 }
