@@ -172,7 +172,7 @@ int matrixgame_shift_matrix_test()
   make_zero(&matrix_5);
   if (matrixgame_shift_matrix(&matrix_5, 'z') != DIRECTION_ERROR)
     number_of_errors ++;
-  free_matrix(&matrix_5); 
+  matrixgame_free_matrix(&matrix_5); 
 
   // Test 6: error about false pointer
   matrix_t matrix_6;
@@ -228,8 +228,8 @@ int matrixgame_shift_matrix_test()
   matrixgame_shift_matrix(&matrix_9, 'd');
   if (compare_matrix(&matrix_9, &matrix_9_result) != EQUAL)
     number_of_errors ++;
-  free_matrix(&matrix_9); 
-  free_matrix(&matrix_9_result);
+  matrixgame_free_matrix(&matrix_9); 
+  matrixgame_free_matrix(&matrix_9_result);
 
 
   if (number_of_errors)
