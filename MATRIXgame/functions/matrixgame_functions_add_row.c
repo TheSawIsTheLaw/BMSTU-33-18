@@ -2,11 +2,10 @@
  * \file matrixgame_functions_add_row.c
  * \brief Функция, добавляющая элемент строчку матрице
  */
-#include <stdio.h>
 #include <stdlib.h>
 
-#include "../headers/matrixgame_headers_add_row.h"
-#include "../headers/matrixgame_headers_matrix_t.h"
+#include "../headers/matrixgame.h"
+#include "../headers/matrixgame.h"
 
 /**
  * \def OK
@@ -32,7 +31,7 @@
 /**
  * \fn int my_realloc(matrix_t *matrix)
  *
- * \param matrix_t *matrix Указатель на особо заданную матрицу (см. matrixgame_
+ * \param matrix_t *matrix - Указатель на особо заданную матрицу (см. matrixgame_
  * functions_create_matrix)
  *
  * \brief Выделяет память под новую строку
@@ -40,7 +39,7 @@
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int my_realloc(matrix_t *matrix)
+static int my_realloc(matrix_t *matrix)
 {
     matrix->rows += 1;
     matrix->matrix = (int**)realloc(matrix->matrix,matrix->rows * sizeof(int*));
@@ -58,16 +57,16 @@ int my_realloc(matrix_t *matrix)
 /**
  * \fn int add_row(matrix_t *matrix, const int index)
  *
- * \param matrix_t *matrix Указатель на особо заданную матрицу (см. matrixgame_
+ * \param matrix_t *matrix - Указатель на особо заданную матрицу (см. matrixgame_
  * functions_create_matrix)
- * \param const int index Индекс вставки новой строки
+ * \param const int index - Индекс вставки новой строки
  *
  * \brief Вставляет новую строку в матрицу
  *
  * \return Код ошибки (отличное от нуля число) или
  * успешного завершения
  */
-int add_row(matrix_t *matrix, const int index)
+int matrixgame_add_row(matrix_t *matrix, const int index)
 {
     int rc = OK;
 
@@ -103,4 +102,3 @@ int add_row(matrix_t *matrix, const int index)
 
     return rc;
 }
-
