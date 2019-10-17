@@ -80,11 +80,11 @@ int matrixgame_shift_matrix_test()
   
 
   matrixgame_shift_matrix(&matrix_1, 'u');
-  print_matrix(&matrix_1);printf("\n");
+  
   if (compare_matrix(&matrix_1, &matrix_1_result) != EQUAL)
     number_of_errors ++;
-  free_matrix(&matrix_1);
-  free_matrix(&matrix_1_result);
+  matrixgame_free_matrix(&matrix_1);
+  matrixgame_free_matrix(&matrix_1_result);
 
   // Test 2: normal work, "down"
   matrix_t matrix_2;
