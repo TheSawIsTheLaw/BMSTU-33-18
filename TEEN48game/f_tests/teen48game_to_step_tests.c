@@ -404,6 +404,8 @@ int main()
         printf("TEST25.....PASSED\n");
     }    
 
+    // Тест 26
+
     if (test_case(3, 3, 3, 3, INPUT_24, RESULT_24, 'p') == OK)
     {
         errors_counter++;
@@ -412,6 +414,34 @@ int main()
     else
     {
         printf("TEST26.....PASSED\n");
+    }
+
+    // Тест 27
+
+    matrix_t *field = NULL;
+
+    if (to_step(field, LEFT) == OK)
+    {
+        printf("TEST27.....FAILED\n");
+    }
+    else
+    {
+        printf("TEST27.....PASSED\n");
+    }
+
+    // Тест 28
+
+    matrix_t field_1;
+    field_1.columns = -1;
+    field_1.rows = -1;
+
+    if (to_step(&field_1, LEFT) == OK)
+    {
+        printf("TEST28.....FAILED\n");
+    }
+    else
+    {
+        printf("TEST28.....PASSED\n");
     }
 
     return errors_counter;
