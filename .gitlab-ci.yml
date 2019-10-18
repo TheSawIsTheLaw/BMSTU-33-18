@@ -5,7 +5,7 @@ stages:
 variables:
   TEEN48GAME_FUNCS_PATH: TEEN48game/functions/
   TEEN48GAME_FUNCS_TESTS_PATH: TEEN48game/f_tests/
-  TEEN48GAME_PLAYERS_PATH: TEEN48game/players
+  TEEN48GAME_PLAYERS_PATH: TEEN48game/players/
   TEEN48GAME_PLAYERS_TESTS_PATH: TEEN48game/p_tests
 
 build_teen48game_main:
