@@ -104,6 +104,11 @@ int to_step(matrix_t *const matrix, const char key)
 {
     int error_code = OK;
 
+    if (matrix == NULL)
+    {
+        return WRONG_ARGUMENT;
+    }
+
     if (matrix -> rows <= 0 || matrix -> columns <= 0)
     {
         return WRONG_DIMS;
