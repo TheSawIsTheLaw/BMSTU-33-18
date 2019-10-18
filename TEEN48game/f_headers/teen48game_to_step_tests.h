@@ -3,9 +3,16 @@
 #define _TEEN48GAME_TO_STEP_TESTS_H_
 
 #include <stdio.h>
+
+#define LOCAL_DEPLOY 0
+
+#if LOCAL_DEPLOY
+#include "../../MATRIXgame/headers/matrixgame.h"
+#else
 #include <matrixgame.h>
+#endif
+
 #include "../f_headers/teen48game_to_step.h"
-#include "../f_headers/teen48game_to_step_tests.h"
 
 #define INPUT_FILE "input.txt"
 #define RESULT_FILE "result.txt"
@@ -169,6 +176,36 @@
                    4\
                    4\
                    16" 
+
+// Negatives
+
+#define INPUT_21  "8 16 8\
+                   16 8 16\
+                   2 4 2"
+
+#define RESULT_21 "16 16 16\
+                   32 32 32\
+                   64 64 64"
+
+#define INPUT_22  "8 16 32\
+                   8 16 32\
+                   8 16 32\
+                   8 16 32"
+
+#define RESULT_22 "8 16 32\
+                   8 16 32\
+                   8 16 32"
+
+#define INPUT_23  "8 16 32 64\
+                   8 16 32 64\
+                   8 16 32 64"
+
+#define RESULT_23 "8 16 32\
+                   8 16 32\
+                   8 16 32"
+
+#define INPUT_24 ""
+#define RESULT_24 ""
 
 #define OK 0
 #define ERRORS_DETECTED 1
