@@ -1,9 +1,0 @@
-### Статистика по написанным на данный момент функциям
-`to_step` - @kvo18u333  
-[![Pipeline status](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/teen48game_to_step/pipeline.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/teen48game_to_step) [![Coverage report](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/teen48game_to_step/coverage.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/teen48game_to_step)  
-`gorandom` - @ks18u889, @seao18u910  
-[![Pipeline status](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/teen48game_gorandom/pipeline.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/teen48game_gorandom) [![Coverage report](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/teen48game_gorandom/coverage.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/teen48game_gorandom)  
-`init_matrices` - @pla18u811  
-[![Pipeline status](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/teen48game_init_matrices/pipeline.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/teen48game_init_matrices) [![Coverage report](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/teen48game_init_matrices/coverage.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/teen48game_init_matrices)  
-`copy_field` - @sas18u476, @akr18u630  
-[![Pipeline status](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/teen48game_copy_field/pipeline.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/teen48game_copy_field) [![Coverage report](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/badges/teen48game_copy_field/coverage.svg)](https://git.iu7.bmstu.ru/aolenev/iu7-cprog-sems-2019-aolenev/commits/teen48game_copy_field)  
