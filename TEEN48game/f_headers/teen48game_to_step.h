@@ -2,7 +2,7 @@
 
 #define _TEENGAME48GAME_TO_STEP_H_
 
-#define LOCAL_DEPLOY 1
+#define LOCAL_DEPLOY 0
 
 #include "../f_headers/teen48game_to_step.h"
 
