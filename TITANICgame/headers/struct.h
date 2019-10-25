@@ -40,12 +40,11 @@ typedef struct
 	char embarked; // Место (C - Cherbourg, S - Southampton, Q = Queenstown)
 }passenger;
 
-struct node
+typedef struct node
 {
-  node* yes;
-  node* no;
+  struct node* yes;
+  struct node* no;
   bool (*decision)(struct passenger);
-}
-
+}node;
 
 #endif
