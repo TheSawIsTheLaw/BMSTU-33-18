@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "headers/struct.h"
+#include "../headers/struct.h"
 
 #define TESTSET 418
 #define TRAINSET 891
