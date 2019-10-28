@@ -33,8 +33,8 @@ typedef struct
 	int pclass;					  // Класс пассажира (1, 2, 3).
 	char name[MAX_STRING_LEN];	// Имя.
 	char surname[MAX_STRING_LEN]; // фамилия.
-	char status;				  // Mr, Mrs
-	char sex;					  // w - Девочка, m - Мальчик.
+	char status[MAX_STRING_LEN];  // Mr, Mrs, Master
+	char sex;					  // male, female
 	float age;					  // Возраст.
 	unsigned int siblings_sp;	 // Кол-во братьев или сестер (в сумме) на корабле.
 	unsigned int parch;			  // Кол-во детей/родителей на корабле.
