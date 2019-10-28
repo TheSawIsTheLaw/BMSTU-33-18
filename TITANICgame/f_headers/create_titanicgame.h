@@ -5,6 +5,6 @@
 #include "../headers/struct.h"
 #include <stdlib.h>
 
-node* сreate(bool (*func)(passenger info));
+node *create(bool (*func)(passenger info));
 
 #endif
