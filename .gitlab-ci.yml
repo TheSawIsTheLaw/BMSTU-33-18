@@ -18,11 +18,10 @@ build_titanicgame_func:
     - rm *.o
   only:
     refs:
-      - /^.*titanicgame$/
+      - /^.*_titanicgame$/
   except:
     refs:
       - /^.*_d6n_tree_titanicgame$/
-      - titanicgame_ci
 
 build_titanicgame_strat:
   stage: build
@@ -67,7 +66,6 @@ test_titanicgame_func:
   except:
     refs:
       - /^.*_d6n_tree_titanicgame$/
-      - titanicgame_ci
 
 test_titanicgame_strat:
   stage: test
