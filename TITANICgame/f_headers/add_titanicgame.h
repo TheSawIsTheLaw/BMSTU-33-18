@@ -3,7 +3,6 @@
 #define _ADD_TITANIC_GAME_H_
 
 #include "../headers/struct.h"
-#include "../f_headers/create_titanicgame.h"
 #include "stdlib.h"
 #include "stdio.h"
 
