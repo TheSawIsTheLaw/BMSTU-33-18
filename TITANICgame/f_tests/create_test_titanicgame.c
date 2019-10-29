@@ -12,19 +12,21 @@ bool some_func(passenger info)
 int main()
 {
     node *root = NULL;
-    int errors_counter = 0;
-
+    
     // Тест 1
     if ((root = create(&some_func)) == NULL)
     {
+        printf("TEST1.....FAILED\n");
         return NOT_ALLOCATED;
     }
 
     if (root -> no != NULL || root -> yes != NULL)
     {
+        printf("TEST1.....FAILED\n");
         return NOT_INIT;
     }
-    
+
+    printf("TEST1.....PASSED\n");
     free(root);    
 
     return OK; 
