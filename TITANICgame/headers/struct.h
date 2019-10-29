@@ -34,7 +34,7 @@ typedef struct
 	char name[MAX_STRING_LEN];	// Имя.
 	char surname[MAX_STRING_LEN]; // фамилия.
 	char status[MAX_STRING_LEN];  // Mr, Mrs, Master
-	char sex;					  // male, female
+	char sex[MAX_STRING_LEN];					  // male, female
 	float age;					  // Возраст.
 	unsigned int siblings_sp;	 // Кол-во братьев или сестер (в сумме) на корабле.
 	unsigned int parch;			  // Кол-во детей/родителей на корабле.
