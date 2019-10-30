@@ -3,90 +3,9 @@
 #include <string.h>
 #include "../f_headers/survival_titanicgame.h"
 #include "../headers/struct.h"
-
-int add(node *parent, bool choice, node *new_node)
-{
-    if (!parent)
-    {
-        return PARENT_IS_EMPTY;
-    }
-
-    if (!new_node)
-    {
-        return NODE_IS_EMPTY;
-    }
-
-    if (choice)
-    {
-        parent -> yes = new_node;
-    }
-    else
-    {
-        parent -> no = new_node;
-    }
-
-    return OK;
-}
-
-node* create(bool (*decision)(passenger info))
-{
-    node *new = NULL;
-
-    if ((new = malloc(sizeof(node))) == NULL)
-    {
-        return NULL;
-    }
-
-    new -> no = NULL;
-    new -> yes = NULL;
-    new -> decision = decision;
-
-    return new;
-}
-
-bool check_age(passenger a)
-{
-    if (a.age > 17)
-        return TRUE;
-    return FALSE;
-}
-
-bool check_sex(passenger a)
-{
-    if (strcmp(a.sex, "male") == 0)
-        return TRUE;
-    return FALSE;
-}
-
-bool check_pclass(passenger a)
-{
-    if (a.pclass == 1)
-        return TRUE;
-    return FALSE;
-}
-
-bool check_parch(passenger a)
-{
-    if (a.parch > 0)
-        return TRUE;
-    return FALSE;
-}
-
-node* decision_tree()
-{
-    node *root = create(&check_age);
-    node *yes = create(&check_sex);
-    node *yes_yes = create(&check_pclass);
-    node *no = create(&check_parch);
-    node *no_yes = create(&check_sex);
-
-    add(root, TRUE, yes);
-    add(yes, TRUE, yes_yes);
-    add(root, FALSE, no);
-    add(no, TRUE, no_yes);
-    
-    return root;
-}
+#include "../f_headers/add_titanicgame.h"
+#include "../f_headers/create_titanicgame.h"
+#include "../f_headers/delete_titanicgame.h"
 
 int check_survival(const passenger a, node* root)
 {
@@ -148,53 +67,18 @@ int check_void(node* (*decision_tree)(), passenger *people)
     int percent = check_arr(people, 3, 0, root);
     int fc = check_arr(people, 3, 1, root);
     if (fc == FOPEN_ERROR)
+    {
+        delete(root);
         return fc;
+    }
+    delete(root);
     return percent;
 }
 
-int main(int args, char **argv)
+int main()
 {
     passenger people[ARR_SIZE];  //structs array
-    char func_name[FUNC_NAME];
-    strcpy(func_name, argv[1]);
-    
 
-    people[0].passenger_id = 1;
-    people[0].survived = 1;
-    people[0].pclass = 1;
-    strcpy(people[0].name, "Mr Owen Harris");
-    strcpy(people[0].sex, "male");
-    people[0].age = 22;
-    people[0].siblings_sp = 1;
-    people[0].parch = 0;
-    strcpy(people[0].ticket, "A/5 21171");
-    people[0].fare = 7.25;
-    people[0].embarked = 'S';
-
-    people[1].passenger_id = 2;
-    people[1].survived = 0;
-    people[1].pclass = 1;
-    strcpy(people[1].name, "Mrs Owen Harris");
-    strcpy(people[1].sex, "female");
-    people[1].age = 15;
-    people[1].siblings_sp = 1;
-    people[1].parch = 0;
-    strcpy(people[1].ticket, "A/5 21171");
-    people[1].fare = 7.25;
-    people[1].embarked = 'S';
-
-    people[2].passenger_id = 3;
-    people[2].survived = 1;
-    people[2].pclass = 3;
-    strcpy(people[2].name, "Mr Owen Harris");
-    strcpy(people[2].sex, "female");
-    people[2].age = 25;
-    people[2].siblings_sp = 1;
-    people[2].parch = 0;
-    strcpy(people[2].ticket, "A/5 21171");
-    people[2].fare = 7.25;
-    people[2].embarked = 'S';
-
-    int result = check_void(&decision_tree, people);
+    int result = check_void(&function_name, people);
     printf("%d", result);
 }
