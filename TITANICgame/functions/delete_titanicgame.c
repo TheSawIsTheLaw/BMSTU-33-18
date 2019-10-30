@@ -1,4 +1,4 @@
-#include "delete_titanicgame.h"
+#include "../f_headers/delete_titanicgame.h"
 #include <stdio.h>
 
 #define VERTEX_ERROR 17
