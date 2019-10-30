@@ -6,8 +6,8 @@
 
 typedef enum
 {
-	FALSE,
-	TRUE
+    FALSE,
+    TRUE
 } bool;
 
 /*
@@ -28,25 +28,25 @@ Embarked Where the passenger got on the ship
 */
 typedef struct
 {
-	unsigned int passenger_id;	// id пассажира.
-	int survived;				  // Признак (1 - выжил / 0 - не выжил)
-	int pclass;					  // Класс пассажира (1, 2, 3)
-	char name[MAX_STRING_LEN];	// Имя Фамилия Статус
-	char sex[MAX_STRING_LEN];	// male, female
-	float age;					  // Возраст
-	unsigned int siblings_sp;	 // Кол-во братьев или сестер (в сумме) на корабле
-	unsigned int parch;			  // Кол-во детей/родителей на корабле
-	char ticket[MAX_STRING_LEN];  // Билет
-	float fare;
-	char cabin[MAX_STRING_LEN];
-	char embarked; // Место (C - Cherbourg, S - Southampton, Q = Queenstown)
+    unsigned int passenger_id;   // id пассажира.
+    int survived;                // Признак (1 - выжил / 0 - не выжил)
+    int pclass;                  // Класс пассажира (1, 2, 3)
+    char name[MAX_STRING_LEN];   // Имя Фамилия Статус
+    char sex[MAX_STRING_LEN];    // male, female
+    float age;                   // Возраст
+    unsigned int siblings_sp;    // Кол-во братьев или сестер (в сумме) на корабле
+    unsigned int parch;          // Кол-во детей/родителей на корабле
+    char ticket[MAX_STRING_LEN]; // Билет
+    float fare;
+    char cabin[MAX_STRING_LEN];
+    char embarked; // Место (C - Cherbourg, S - Southampton, Q = Queenstown)
 } passenger;
 
 typedef struct node
 {
-	struct node *yes;
-	struct node *no;
-	bool (*decision)(passenger);
+    struct node *yes;
+    struct node *no;
+    bool (*decision)(passenger);
 } node;
 
 #endif
