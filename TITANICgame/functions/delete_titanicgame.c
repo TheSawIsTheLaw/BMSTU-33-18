@@ -1,5 +1,5 @@
 #include "../f_headers/delete_titanicgame.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 #define VERTEX_ERROR 17
 #define OK 0
