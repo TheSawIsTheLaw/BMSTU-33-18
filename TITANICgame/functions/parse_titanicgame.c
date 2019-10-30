@@ -6,7 +6,6 @@
 
 #define TESTSET 418
 #define TRAINSET 891
-#define UNDEFINED 4
 
 #define OK 0
 
@@ -26,7 +25,7 @@ char *get_field(char *const line, int field)
 
 int compare_none(char *const str)
 {
-    if (strcmp(str, "None"))
+    if (!strcmp(str, "None"))
     {
         return 1;
     }
@@ -34,94 +33,154 @@ int compare_none(char *const str)
     return 0;
 }
 
-void parse(passenger *const test_p, passenger *const train_p)
+void parse_set(passenger *const set, const int set_len, FILE *f)
 {
-    FILE *test = fopen("data/test.csv", "r");
-    FILE *train = fopen("data/train.csv", "r");
-
-    for (int data = 0; data < TRAINSET; ++data)
+    for (int data = 0; data < set_len; ++data)
     {
         char line[MAX_STRING_LEN], tmp[MAX_STRING_LEN], field[MAX_STRING_LEN];
-        fgets(line, MAX_STRING_LEN, train);
+        fgets(line, MAX_STRING_LEN, f);
         strcpy(tmp, line);
 
         strcpy(field, get_field(tmp, 1));
         if (compare_none(field))
         {
-            train_p[data].passenger_id = -1;
+            set[data].passenger_id = -1;
         }
         else
         {
-            train_p[data].passenger_id = atoi(field);
+            set[data].passenger_id = atoi(field);
         }
         strcpy(tmp, line);
 
         strcpy(field, get_field(tmp, 2));
         if (compare_none(field))
         {
-            train_p[data].survived = -1;
+            set[data].survived = -1;
         }
         else
         {
-            train_p[data].survived = atoi(field);
+            set[data].survived = atoi(field);
         }
         strcpy(tmp, line);
 
         strcpy(field, get_field(tmp, 3));
         if (compare_none(field))
         {
-            train_p[data].pclass = -1;
+            set[data].pclass = -1;
         }
         else
         {
-            train_p[data].pclass = atoi(field);
+            set[data].pclass = atoi(field);
         }
         strcpy(tmp, line);
 
         strcpy(field, get_field(tmp, 4));
         if (compare_none(field))
         {
-            strcpy(train_p[data].name, "\0");
+            strcpy(set[data].name, "\0");
         }
         else
         {
-            strcpy(train_p[data].name, field);
+            strcpy(set[data].name, field);
         }
         strcpy(tmp, line);
 
         strcpy(field, get_field(tmp, 5));
         if (compare_none(field))
         {
-            strcpy(train_p[data].surname, "\0");
+            strcpy(set[data].sex, "\0");
         }
         else
         {
-            strcpy(train_p[data].surname, field);
+            strcpy(set[data].sex, field);
         }
         strcpy(tmp, line);
 
         strcpy(field, get_field(tmp, 6));
         if (compare_none(field))
         {
-            strcpy(train_p[data].status, "\0");
+            set[data].age = -1.0;
         }
         else
         {
-            strcpy(train_p[data].status, field);
+            set[data].age = atof(field);
         }
         strcpy(tmp, line);
 
         strcpy(field, get_field(tmp, 7));
         if (compare_none(field))
         {
-            strcpy(train_p[data].sex, "\0");
+            set[data].siblings_sp = -1;
         }
         else
         {
-            strcpy(train_p[data].sex, field);
+            set[data].siblings_sp = atoi(field);
         }
         strcpy(tmp, line);
+
+        strcpy(field, get_field(tmp, 8));
+        if (compare_none(field))
+        {
+            set[data].parch = -1;
+        }
+        else
+        {
+            set[data].parch = atoi(field);
+        }
+        strcpy(tmp, line);
+
+        strcpy(field, get_field(tmp, 9));
+        if (compare_none(field))
+        {
+            strcpy(set[data].ticket, "\0");
+        }
+        else
+        {
+            strcpy(set[data].ticket, field);
+        }
+        strcpy(tmp, line);
+
+        strcpy(field, get_field(tmp, 10));
+        if (compare_none(field))
+        {
+            set[data].fare = -1;
+        }
+        else
+        {
+            set[data].fare = atof(field);
+        }
+        strcpy(tmp, line);
+
+        strcpy(field, get_field(tmp, 11));
+        if (compare_none(field))
+        {
+            strcpy(set[data].cabin, "\0");
+        }
+        else
+        {
+            strcpy(set[data].cabin, field);
+        }
+        strcpy(tmp, line);
+
+        strcpy(field, get_field(tmp, 12));
+        if (compare_none(field))
+        {
+            set[data].embarked = '\0';
+        }
+        else
+        {
+            set[data].embarked = field[0];
+        }
     }
+}
+
+void parse(passenger *const test_p, passenger *const train_p)
+{
+    FILE *test = fopen("TITANICgame/data/test.csv", "r");
+    FILE *train = fopen("TITANICgame/data/train.csv", "r");
+
+    parse_set(test_p, TESTSET, test);
+    parse_set(train_p, TRAINSET, train);
 
     fclose(test);
     fclose(train);
