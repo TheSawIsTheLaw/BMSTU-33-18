@@ -1,0 +1,6 @@
+#include "../functions/xo_func_anti_cheat_Toporkov_Sarkisov.h"
+#include "../functions/xo_func_bf_formation.h"
+#include "../functions/xo_func_check_win_Krivozubov.h"
+#include "../functions/xo_func_check_win_Prokhorova.h"
+#include "../functions/xo_func_copy_battlefield.h"
+#include "../functions/xo_func_print_battlefield_Lemeshkin.h"
