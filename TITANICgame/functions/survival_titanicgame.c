@@ -56,7 +56,7 @@ int check_arr(passenger *data, const int size, const int flag, node* root)
             fprintf(f, "%d,%d\n", data[i].passenger_id, result);
     }
     fclose(f);
-    int percent = (sum / size) * PERCENT;
+    int percent = ((sum * 1.0) / size) * PERCENT;
     
     return percent;
 }
@@ -79,6 +79,6 @@ int main()
 {
     passenger people[ARR_SIZE];  //structs array
 
-    int result = check_void(&function_name, people);
+    int result = check_void(function_name, people);
     printf("%d", result);
 }
