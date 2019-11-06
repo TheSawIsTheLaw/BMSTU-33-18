@@ -68,10 +68,10 @@ int check_void(node* (*decision_tree)(), passenger *people)
     int fc = check_arr(people, 3, 1, root);
     if (fc == FOPEN_ERROR)
     {
-        delete(root);
+        delete_vertex(root);
         return fc;
     }
-    delete(root);
+    delete_vertex(root);
     return percent;
 }
 
