@@ -3,6 +3,22 @@
 #define OK 0
 #define ERRORS_DETECTED 1
 
+node* create(bool (*decision)(passenger info))
+{
+    node *new = NULL;
+    
+    if ((new = malloc(sizeof(node))) == NULL)
+    {
+        return NULL;
+    }
+
+    new -> no = NULL;
+    new -> yes = NULL;
+    new -> decision = decision;
+
+    return new;
+}
+
 bool some_func(passenger info)
 {
     return OK;

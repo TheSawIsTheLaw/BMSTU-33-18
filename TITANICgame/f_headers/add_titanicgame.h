@@ -4,6 +4,7 @@
 
 #include "../headers/struct.h"
 #include "stdlib.h"
+#include "stdio.h"
 
 int add(node *root, bool choice, node *new_node);
 
