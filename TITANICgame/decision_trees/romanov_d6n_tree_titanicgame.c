@@ -1,5 +1,6 @@
 #include <string.h>
-#include "../headers/struct.h"
+
+#include "../d_trees_headers/romanov_d6n_tree_titanicgame.h"
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
 
@@ -46,7 +47,7 @@ bool alive(passenger chelik)
     return TRUE;
 }
 
-node *romanov__d6n_tree_titanic_game()
+node *romanov_d6n_tree_titanicgame()
 {
     node *root = create(check_grade);
     node *first_second_grade = create(check_sex);
