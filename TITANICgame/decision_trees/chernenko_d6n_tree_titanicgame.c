@@ -22,12 +22,23 @@ bool class_split(passenger sample)
         return FALSE;
 }
 
+bool check_master(passenger sample)
+{
+    if (strstr(sample.name, "Master") != NULL)
+        return TRUE;
+    else
+        return FALSE;
+}
+    
+
 node *chernenko_d6n_tree_titanicgame()
 {
     node *root = create(sex_split);
     node *if_female = create(class_split);
+    node *if_male = create(check_master);
 
     add(root, TRUE, if_female);
+    add(root, FALSE, if_male);
     
     return root;
 }
