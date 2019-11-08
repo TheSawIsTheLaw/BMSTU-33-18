@@ -78,7 +78,7 @@ test_titanicgame_strat:
     - gcc -Wall -Werror -c ${TITANICGAME_FUNCS_PATH}*.c
     - gcc -o run.exe *.o
     - ./run.exe > result.txt
-    - echo YOUR PREDICTION RATE IS '\033[1;32m' $(cat result.txt) % '\033[0m'
+    - echo YOUR PREDICTION RATE IS $(cat result.txt)%
   after_script:
     - rm *.o *.exe
   artifacts:
