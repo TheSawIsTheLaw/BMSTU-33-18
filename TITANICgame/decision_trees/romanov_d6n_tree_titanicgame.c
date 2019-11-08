@@ -6,6 +6,7 @@
 
 bool check_age(passenger chelik)
 {
+    return FALSE;
     if (chelik.age < 16)
     {
         return TRUE;
