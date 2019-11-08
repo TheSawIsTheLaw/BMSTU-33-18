@@ -4,6 +4,7 @@
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
 
+/*
 bool check_age(passenger chelik)
 {
     if (chelik.age < 16)
@@ -23,6 +24,7 @@ bool check_sex(passenger chelik)
 
     return FALSE;
 }
+*/
 
 bool check_grade(passenger chelik)
 {
@@ -34,14 +36,21 @@ bool check_grade(passenger chelik)
     return FALSE;
 }
 
+bool dead(passenger chelik)
+{
+    return FALSE;
+}
+
 node *romanov_d6n_tree_titanicgame()
 {
     node *root = create(check_grade);
-    node *first_second_grade = create(check_sex);
-    node *first_second_grade_not_woman = create(check_age);
+    node *dead_ = create(dead);
+    //node *first_second_grade = create(check_sex);
+    //node *first_second_grade_not_woman = create(check_age);
 
-    add(root, FALSE, first_second_grade);
-    add(first_second_grade, FALSE, first_second_grade_not_woman);
+    add(root, FALSE, dead_);
+    //add(first_second_grade, FALSE, first_second_grade_not_woman);
 
     return root;
 }
+
