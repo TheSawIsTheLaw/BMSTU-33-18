@@ -1,7 +1,10 @@
 #include "string.h"
 
 #include "../headers/struct.h"
+#include "../f_headers/add_titanicgame.h"
+#include "../f_headers/create_titanicgame.h"
 #include "../d_trees_headers/chernenko_d6n_tree_titanicgame.h"
+
 
 bool sex_split(passenger sample)
 {
