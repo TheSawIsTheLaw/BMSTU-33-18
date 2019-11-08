@@ -7,7 +7,7 @@
 
 #define EPS 0.001
 
-#define AGE_MAX_FOR_FIND 11.0
+#define AGE_MAX_FOR_FIND 14.0
 #define AGE_MIN_FOR_FIND 0.0
 #define MIN_FARE_FOR_FIND 62.5
 
@@ -46,14 +46,23 @@ bool get_info_class(passenger solver)
     return FALSE;
 }
 
+bool get_info_parch(passenger solver)
+{
+    if ((solver.parch + solver.siblings_sp == 0))
+        return TRUE;
+    return FALSE;
+}
+
 node* toporkov_d6n_tree_titanicgame()
 {
     node *root = create(get_info_sex);
     node *age = create(get_info_age);
     node *fare = create(get_info_fare);
+    node *parch = create(get_info_parch);
 
     add(root, FALSE, age);
     add(age, FALSE, fare);
+    add(fare, FALSE, parch);
 
     return root;
 }
