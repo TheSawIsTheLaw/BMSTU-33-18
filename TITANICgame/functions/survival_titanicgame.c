@@ -82,6 +82,6 @@ int main()
     passenger train[TRAINSET], test[TESTSET];  //structs array
 
     parse(test, train);
-    int result = check_void(function_name, test, train);
+    int result = check_void(function_name, train, test);
     printf("%d", result);
 }
