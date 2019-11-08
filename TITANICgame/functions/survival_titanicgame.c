@@ -12,11 +12,11 @@ int check_survival(const passenger a, node* root)
 {
     node* pt = root;
     bool result = FALSE;
-    
+
     while (pt != NULL)
     {
         result = pt -> decision(a);
-        
+
         if ((pt -> no == NULL) && (pt -> yes == NULL))
             return result;
         if (result == FALSE)
@@ -58,7 +58,7 @@ int check_arr(passenger *data, const int size, const int flag, node* root)
     }
     fclose(f);
     int percent = ((sum * 1.0) / size) * PERCENT;
-    
+
     return percent;
 }
 
