@@ -3,6 +3,8 @@
 #define STRUCT_H
 
 #define MAX_STRING_LEN 256
+#define TESTSET 418
+#define TRAINSET 891
 
 typedef enum
 {
