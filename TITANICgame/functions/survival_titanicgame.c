@@ -6,6 +6,9 @@
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
 #include "../f_headers/delete_titanicgame.h"
+#include "../d_trees_headers/member_name_header.h"
+#include "../f_headers/parse_titanicgame.h"
+
 
 int check_survival(const passenger a, node* root)
 {
@@ -39,7 +42,7 @@ int check_survival(const passenger a, node* root)
 int check_arr(passenger *data, const int size, const int flag, node* root)
 {
     FILE *f;
-    f = fopen("TITANICgame/submission/submission.csv", "w");
+    f = fopen("./TITANICgame/submission/submission.csv", "w");
     if (f == NULL)
     {
         return FOPEN_ERROR;
@@ -61,11 +64,11 @@ int check_arr(passenger *data, const int size, const int flag, node* root)
     return percent;
 }
 
-int check_void(node* (*decision_tree)(), passenger *people)
+int check_void(node* (*decision_tree)(), passenger *train, passenger *test)
 {
     node* root = decision_tree();
-    int percent = check_arr(people, 3, 0, root);
-    int fc = check_arr(people, 3, 1, root);
+    int percent = check_arr(train, TRAINSET, 0, root);
+    int fc = check_arr(test, TESTSET, 1, root);
     if (fc == FOPEN_ERROR)
     {
         delete_vertex(root);
@@ -75,10 +78,12 @@ int check_void(node* (*decision_tree)(), passenger *people)
     return percent;
 }
 
+
 int main()
 {
-    passenger people[ARR_SIZE];  //structs array
+    passenger train[TRAINSET], test[TESTSET];  //structs array
 
-    int result = check_void(function_name, people);
+    parse(test, train);
+    int result = check_void(function_name, train, test);
     printf("%d", result);
 }
