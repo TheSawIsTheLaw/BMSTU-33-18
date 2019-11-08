@@ -61,8 +61,8 @@ node* toporkov_d6n_tree_titanicgame()
     node *parch = create(get_info_parch);
 
     add(root, FALSE, age);
-    add(age, FALSE, fare);
-    add(fare, FALSE, parch);
+    add(age, FALSE, parch);
+    add(parch, FALSE, fare);
 
     return root;
 }
