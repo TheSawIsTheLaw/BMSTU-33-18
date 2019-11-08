@@ -3,7 +3,7 @@
 #include <string.h>
 #include "../f_headers/survival_titanicgame.h"
 #include "../headers/struct.h"
-#include "../f_headers/add_titanicgame.h"
+#include "f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
 #include "../f_headers/delete_titanicgame.h"
 #include "../d_trees_headers/member_name_header.h"
