@@ -6,7 +6,7 @@
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
 #include "../f_headers/delete_titanicgame.h"
-#include "../d_trees_headers/romanov_d6n_tree_titanicgame.h"
+#include "../d_trees_headers/member_name_header.h"
 
 int check_survival(const passenger a, node* root)
 {
@@ -80,6 +80,6 @@ int main()
 {
     passenger people[ARR_SIZE];  //structs array
 
-    int result = check_void(romanov_d6n_tree_titanicgame, people);
+    int result = check_void(function_name, people);
     printf("%d", result);
 }
