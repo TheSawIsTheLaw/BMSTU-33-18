@@ -7,7 +7,7 @@
 
 #define EPS 0.001
 
-#define AGE_MAX_FOR_FIND 14.0
+#define AGE_MAX_FOR_FIND 11.0
 #define AGE_MIN_FOR_FIND 0.0
 #define MIN_FARE_FOR_FIND 62.5
 
