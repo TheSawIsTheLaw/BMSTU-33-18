@@ -71,11 +71,9 @@ test_titanicgame_strat:
   image: gcc
   script:
     - apt update -y
-    - sed -i -e 's/function_name/'${CI_COMMIT_REF_NAME}'/'
-      -e 's/member_name_header/'${CI_COMMIT_REF_NAME}'/'
-      ${TITANICGAME_FUNCS_PATH}survival_titanicgame.c
+    - sed -i 's/function_name/${CI_COMMIT_REF_NAME}/' ${TITANICGAME_FUNCTIONS_PATH}survival_titanicgame.c
     - gcc -Wall -Werror -c ${TITANICGAME_PLAYERS_PATH}${CI_COMMIT_REF_NAME}.c
-    - gcc -Wall -Werror -c ${TITANICGAME_FUNCS_PATH}survival_titanicgame.c
+    - gcc -Wall -Werror -c ${TITANICGAME_FUNCTIONS_PATH}survival_titanicgame.c
     - gcc -o run.exe *.o
     - ./run.exe > result.txt
     - echo YOUR PREDICTION RATE IS '\033[1;32m' $(cat result.txt) % '\033[0m'
@@ -84,7 +82,7 @@ test_titanicgame_strat:
   artifacts:
     name: kagglepurp
     paths:
-      - TITANICgame/submission/submission.csv
+      - TITANICgame/submission.csv
     when: on_success
   only:
     refs:
