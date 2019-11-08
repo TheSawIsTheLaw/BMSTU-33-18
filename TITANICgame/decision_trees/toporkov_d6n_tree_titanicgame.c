@@ -54,8 +54,8 @@ node* toporkov_d6n_tree_titanicgame()
     node *class = create(get_info_class);
 
     add(root, FALSE, age);
-    add(age, FALSE, class);
-    add(class, FALSE, fare);
+    add(age, FALSE, fare);
+    add(fare, FALSE, class);
 
     return root;
 }
