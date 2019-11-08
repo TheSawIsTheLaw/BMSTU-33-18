@@ -5,18 +5,18 @@
 #include "../headers/struct.h"
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
-#include "TITANICgame/f_headers/delete_titanicgame.h"
-#include "TITANICgame/d_trees_headers/member_name_header.h"
+#include "../f_headers/delete_titanicgame.h"
+#include "../d_trees_headers/romanov_d6n_tree_titanicgame.h"
 
 int check_survival(const passenger a, node* root)
 {
     node* pt = root;
     bool result = FALSE;
-    
+
     while (pt != NULL)
     {
         result = pt -> decision(a);
-        
+
         if ((pt -> no == NULL) && (pt -> yes == NULL))
             return result;
         if (result == FALSE)
@@ -40,7 +40,7 @@ int check_survival(const passenger a, node* root)
 int check_arr(passenger *data, const int size, const int flag, node* root)
 {
     FILE *f;
-    f = fopen("TITANICgame/submission/submission.csv", "w");
+    f = fopen("../submission/submission.csv", "w");
     if (f == NULL)
     {
         return FOPEN_ERROR;
@@ -58,7 +58,7 @@ int check_arr(passenger *data, const int size, const int flag, node* root)
     }
     fclose(f);
     int percent = ((sum * 1.0) / size) * PERCENT;
-    
+
     return percent;
 }
 
@@ -80,6 +80,6 @@ int main()
 {
     passenger people[ARR_SIZE];  //structs array
 
-    int result = check_void(function_name, people);
+    int result = check_void(romanov_d6n_tree_titanicgame, people);
     printf("%d", result);
 }
