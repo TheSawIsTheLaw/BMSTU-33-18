@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "TITANICgame/f_headers/survival_titanicgame.h"
-#include "TITANICgame/headers/struct.h"
-#include "TITANICgame/f_headers/add_titanicgame.h"
-#include "TITANICgame/f_headers/create_titanicgame.h"
+#include "../f_headers/survival_titanicgame.h"
+#include "../headers/struct.h"
+#include "../f_headers/add_titanicgame.h"
+#include "../f_headers/create_titanicgame.h"
 #include "TITANICgame/f_headers/delete_titanicgame.h"
 #include "TITANICgame/d_trees_headers/member_name_header.h"
 
