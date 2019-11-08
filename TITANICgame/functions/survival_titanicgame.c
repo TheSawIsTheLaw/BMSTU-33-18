@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "TITANICgame/f_headers/survival_titanicgame.h"
-#include "TITANICgame/headers/struct.h"
-#include "TITANICgame/f_headers/add_titanicgame.h"
-#include "TITANICgame/f_headers/create_titanicgame.h"
-#include "TITANICgame/f_headers/delete_titanicgame.h"
-#include "TITANICgame/d_trees_headers/member_name_header.h"
+#include "../f_headers/survival_titanicgame.h"
+#include "../headers/struct.h"
+#include "../f_headers/add_titanicgame.h"
+#include "../f_headers/create_titanicgame.h"
+#include "../f_headers/delete_titanicgame.h"
+#include "../d_trees_headers/member_name_header.h"
 
 int check_survival(const passenger a, node* root)
 {
@@ -40,7 +40,7 @@ int check_survival(const passenger a, node* root)
 int check_arr(passenger *data, const int size, const int flag, node* root)
 {
     FILE *f;
-    f = fopen("TITANICgame/submission/submission.csv", "w");
+    f = fopen("./TITANICgame/submission/submission.csv", "w");
     if (f == NULL)
     {
         return FOPEN_ERROR;
