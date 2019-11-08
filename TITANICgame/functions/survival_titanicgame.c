@@ -7,7 +7,7 @@
 #include "../f_headers/create_titanicgame.h"
 #include "../f_headers/delete_titanicgame.h"
 #include "../d_trees_headers/member_name_header.h"
-#include "../f_headres/parse_titanicgame.h"
+#include "../f_headers/parse_titanicgame.h"
 
 
 int check_survival(const passenger a, node* root)
