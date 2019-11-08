@@ -5,7 +5,6 @@
 #include "../d_trees_headers/chelyadinov_d6n_tree_titanicgame.h"
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
-#include "../headers/struct.h"
 
 bool check_age(passenger man)
 {
