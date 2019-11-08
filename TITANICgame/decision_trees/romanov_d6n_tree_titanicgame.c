@@ -41,7 +41,7 @@ node *romanov_d6n_tree_titanicgame()
     node *first_second_grade = create(check_sex);
     node *first_second_grade_not_woman = create(check_age);
 
-    add(root, FALSE, first_second_grade);
+    add(root, TRUE, first_second_grade);
     add(first_second_grade, FALSE, first_second_grade_not_woman);
 
     return root;
