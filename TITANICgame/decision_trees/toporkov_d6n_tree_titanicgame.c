@@ -39,15 +39,23 @@ bool get_info_fare(passenger solver)
     return FALSE;
 }
 
+bool get_info_class(passenger solver)
+{
+    if (solver.pclass < 3)
+        return TRUE;
+    return FALSE;
+}
+
 node* toporkov_d6n_tree_titanicgame()
 {
     node *root = create(get_info_sex);
     node *age = create(get_info_age);
     node *fare = create(get_info_fare);
+    node *class = create(get_info_class);
 
     add(root, FALSE, age);
-    add(age, FALSE, fare);
+    add(age, FALSE, class);
+    add(class, FALSE, fare);
 
     return root;
 }
-
