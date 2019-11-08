@@ -82,7 +82,7 @@ test_titanicgame_strat:
   artifacts:
     name: kagglepurp
     paths:
-      - TITANICgame/submission.csv
+      - TITANICgame/submission/submission.csv
     when: on_success
   only:
     refs:
