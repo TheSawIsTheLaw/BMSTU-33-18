@@ -6,7 +6,11 @@
 
 bool check_age(passenger chelik)
 {
-    return FALSE;
+    if (chelik.age == -1)
+    {
+        return FALSE;
+    }
+
     if (chelik.age < 16)
     {
         return TRUE;
@@ -37,12 +41,12 @@ bool check_grade(passenger chelik)
 
 node *romanov_d6n_tree_titanicgame()
 {
-    node *root = create(check_grade);
-    node *first_second_grade = create(check_sex);
-    node *first_second_grade_not_woman = create(check_age);
+    node *root = create(check_age);
+    node *grade = create(check_grade);
+    node *third_grade = create(check_sex);
 
-    add(root, TRUE, first_second_grade);
-    add(first_second_grade, FALSE, first_second_grade_not_woman);
+    add(root, TRUE, grade);
+    add(root, FALSE, third_grade);
 
     return root;
 }
