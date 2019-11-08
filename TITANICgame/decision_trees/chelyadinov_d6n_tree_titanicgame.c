@@ -37,7 +37,7 @@ bool check_pclass(passenger man)
 {
   int rand_p;
   rand_p = rand() % 100 + 1;
-  if (man.pclass == 1 && i >= 70)
+  if (man.pclass == 1 && rand_p >= 70)
   {
     return TRUE;
   }
