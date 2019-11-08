@@ -40,11 +40,7 @@ int check_survival(const passenger a, node* root)
 int check_arr(passenger *data, const int size, const int flag, node* root)
 {
     FILE *f;
-<<<<<<< HEAD
-    f = fopen("../submission/submission.csv", "w");
-=======
     f = fopen("./TITANICgame/submission/submission.csv", "w");
->>>>>>> titanicgame_ci
     if (f == NULL)
     {
         return FOPEN_ERROR;
