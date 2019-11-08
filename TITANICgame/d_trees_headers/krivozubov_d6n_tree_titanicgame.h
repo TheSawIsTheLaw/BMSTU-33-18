@@ -7,4 +7,6 @@
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
 
+node *krivozubov_d6n_tree_titanicgame();
+
 #endif 
