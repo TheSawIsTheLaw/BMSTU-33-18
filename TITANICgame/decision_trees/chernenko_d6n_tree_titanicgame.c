@@ -29,16 +29,25 @@ bool check_master(passenger sample)
     else
         return FALSE;
 }
-    
+
+bool check_class(passenger sample)
+{
+    if (sample.pclass == 1)
+        return TRUE;
+    else
+        return FALSE;
+}
 
 node *chernenko_d6n_tree_titanicgame()
 {
     node *root = create(sex_split);
     node *if_female = create(class_split);
     node *if_male = create(check_master);
+    node *class_check = create(check_class);
 
     add(root, TRUE, if_female);
     add(root, FALSE, if_male);
+    add(if_male, TRUE, class_check);
     
     return root;
 }
