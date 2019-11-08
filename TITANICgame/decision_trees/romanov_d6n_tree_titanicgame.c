@@ -4,9 +4,6 @@
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
 
-#define FIRST_GRADE 3330
-#define SECOND_GRADE 65
-
 bool check_age(passenger chelik)
 {
     if (chelik.age < 16)
@@ -29,7 +26,7 @@ bool check_sex(passenger chelik)
 
 bool check_grade(passenger chelik)
 {
-    if (chelik.fare >= SECOND_GRADE)
+    if (chelik.pclass >= 2)
     {
         return TRUE;
     }
