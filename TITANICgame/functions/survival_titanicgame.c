@@ -62,11 +62,11 @@ int check_arr(passenger *data, const int size, const int flag, node* root)
     return percent;
 }
 
-int check_void(node* (*decision_tree)(), passenger *people)
+int check_void(node* (*decision_tree)(), passenger *train, passenger *test)
 {
     node* root = decision_tree();
-    int percent = check_arr(people, 3, 0, root);
-    int fc = check_arr(people, 3, 1, root);
+    int percent = check_arr(train, TRAINSET, 0, root);
+    int fc = check_arr(test, TESTSET, 1, root);
     if (fc == FOPEN_ERROR)
     {
         delete_vertex(root);
@@ -76,10 +76,12 @@ int check_void(node* (*decision_tree)(), passenger *people)
     return percent;
 }
 
+
 int main()
 {
-    passenger people[ARR_SIZE];  //structs array
+    passenger train[TRAINSET], test[TESTSET];  //structs array
 
-    int result = check_void(function_name, people);
+    parse(test, train);
+    int result = check_void(function_name, train, test);
     printf("%d", result);
 }
