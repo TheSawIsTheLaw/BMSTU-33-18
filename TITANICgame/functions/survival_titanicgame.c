@@ -1,3 +1,8 @@
+/**
+ * \file survival_titanicgame.c
+ * \brief Выживание титаникгейм. Я код ревьюер? Надеюсь, что нет. Потому что я уже ничего тут не понимаю. (unction does smth)
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,6 +13,14 @@
 #include "TITANICgame/f_headers/delete_titanicgame.h"
 #include "TITANICgame/d_trees_headers/member_name_header.h"
 
+/**
+ * \fn int check_survival(const passenger a, node* root)
+ *
+ * \param const passenger a - особая структура данных, описывающая пассажира судьбу ("unique" passenger's sruct)
+ * \param node* root - узел (node(who))
+ *
+ * \brief ПрОвЕрИтЬ ВыЖиЛ (check survival (who))
+ */
 int check_survival(const passenger a, node* root)
 {
     node* pt = root;
@@ -37,6 +50,16 @@ int check_survival(const passenger a, node* root)
     return result;
 }
 
+/**
+ * \fn int check_arr(passenger *data, const int size, const int flag, node* root)
+ *
+ * \param passenger *data - информация о пассажире (passenger's info)
+ * \param const int size - РаЗмЕр (чего?) (size of smth...)
+ * \param const int flag - флаг вам в руки, господа и дамы, с такими комментариями (шучу, их не было!)))0)) ) (flag)
+ * \param node* root - узел (node)
+ *
+ * \brief Проверяет массив, наверное (array check) 
+ */
 int check_arr(passenger *data, const int size, const int flag, node* root)
 {
     FILE *f;
@@ -62,6 +85,14 @@ int check_arr(passenger *data, const int size, const int flag, node* root)
     return percent;
 }
 
+/**
+ * \fn int check_void(node* (*decision_tree)(), passenger *people)
+ *
+ * \param node* (*decision_tree)() - указатель на функцию принятия решений (ointer to function of choices)
+ * \param passenger *people - пассажиры люди (who) (?array? of passengers)
+ *
+ * \brief Проверить ПуСтОтУ... (void, we need your sphere now!)
+ */
 int check_void(node* (*decision_tree)(), passenger *people)
 {
     node* root = decision_tree();
@@ -76,6 +107,11 @@ int check_void(node* (*decision_tree)(), passenger *people)
     return percent;
 }
 
+/**
+ * \fn int main(void)
+ *
+ * \brief Точка входа в программу (entry)
+ */
 int main()
 {
     passenger people[ARR_SIZE];  //structs array

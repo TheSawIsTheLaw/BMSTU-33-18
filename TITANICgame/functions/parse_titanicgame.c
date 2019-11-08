@@ -1,14 +1,38 @@
+/**
+ * \file parse_titanicgame.c
+ * \brief Функция "парсит" файл данных. (Function parses datafile)
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
 #include "../headers/struct.h"
 
+/**
+ * \def TESTSET
+ * \brief Значение сета
+ */
 #define TESTSET 418
+/**
+ * \def TRAINSET
+ * \brief Значение сета
+ */
 #define TRAINSET 891
 
+/**
+ * \def OK
+ * \brief Код удачного заверщения программы, подпрограммы (Success :) )
+ */
 #define OK 0
 
+/**
+ * \fn void delete_vertex(node *vertex)
+ *
+ * \param node *vertex - указатель на удаляемую вершину (pointer to vertex)
+ *
+ * \brief Удаляет вершину (deletes a node)
+ */
 char *get_field(char *const line, int field)
 {
     char *tok;
@@ -23,6 +47,13 @@ char *get_field(char *const line, int field)
     return NULL;
 }
 
+/**
+ * \fn int compare_none(char *const str)
+ *
+ * \param node *vertex - указатель на строку (pointer to string)
+ *
+ * \brief Задаёт поле неопределённости (MAGIC)
+ */
 int compare_none(char *const str)
 {
     if (!strcmp(str, "None"))
@@ -33,6 +64,15 @@ int compare_none(char *const str)
     return 0;
 }
 
+/**
+ * \fn void parse_set(passenger *const set, const int set_len, FILE *f)
+ *
+ * \param passenger *const set - указатель на сет (set's pointer)
+ * \param const int set_len - длина сета (set's lenght)
+ * \param FILE *f - обрабатываемый файл (descriptor)
+ *
+ * \brief Парсит сет (parses set)
+ */
 void parse_set(passenger *const set, const int set_len, FILE *f)
 {
     for (int data = 0; data < set_len; ++data)
@@ -174,6 +214,14 @@ void parse_set(passenger *const set, const int set_len, FILE *f)
     }
 }
 
+/**
+ * \fn void parse(passenger *const test_p, passenger *const train_p)
+ *
+ * \param passenger *const test_p
+ * \param passenger *const train_p 
+ *
+ * \brief Парсит файл (parses file)
+ */
 void parse(passenger *const test_p, passenger *const train_p)
 {
     FILE *test = fopen("TITANICgame/data/test.csv", "r");
