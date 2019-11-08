@@ -2,7 +2,7 @@
 #include "../f_headers/add_titanicgame.h"
 #include "../f_headers/create_titanicgame.h"
 
-bool dead(passenger dead)
+bool dead(passenger deadly)
 {
     return FALSE;
 }
