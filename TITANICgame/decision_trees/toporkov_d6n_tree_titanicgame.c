@@ -25,7 +25,10 @@ bool get_info_sex(passenger solver)
 
 bool get_info_age(passenger solver)
 {
-    if ((solver.age - AGE_MAX_FOR_FIND < EPS) && (solver.age - AGE_MIN_FOR_FIND > EPS))
+    if (solver.age == -1)
+        return FALSE;
+        
+    if ((solver.age - AGE_MAX_FOR_FIND < EPS))
         return TRUE;
 
     return FALSE;
