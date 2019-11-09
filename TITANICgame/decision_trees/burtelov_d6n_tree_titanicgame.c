@@ -6,7 +6,7 @@
 
 #define AGE_CHILDREN 13
 #define AGE_TEENAGER 20
-#define AGE_MIDDLE 47
+#define AGE_MIDDLE 50
 
 //Gender
 bool check_gender(passenger lucky)
@@ -89,7 +89,7 @@ bool check_class_ch(passenger lucky)
             return FALSE;
         else if (lucky.siblings_sp == 0 && lucky.parch == 0)
             return FALSE;
-        else if (lucky.siblings_sp >= 1 && lucky.parch == 0)
+        else if (lucky.siblings_sp >= 1)
             return TRUE;
         else if (lucky.parch >=1)
             return TRUE;
@@ -100,9 +100,9 @@ bool check_class_ch(passenger lucky)
             return FALSE;
         else if (lucky.siblings_sp == 0 && lucky.parch == 0)
             return FALSE;
-        else if (lucky.siblings_sp >= 5 && lucky.parch == 2)
+        else if (lucky.siblings_sp >= 4 && lucky.parch == 2)
             return FALSE;
-        else if (lucky.siblings_sp >= 3 && lucky.parch == 1)
+        else if (lucky.siblings_sp >= 2 && lucky.parch == 1)
             return TRUE;
         else if (lucky.parch >=2)
             return TRUE;
@@ -115,9 +115,9 @@ bool check_class_mid_f(passenger lucky)
 {
     if (lucky.pclass == 1 || lucky.pclass == 2)
     {
-        if (lucky.parch <= 4)
+        if (lucky.parch <= 3)
             return TRUE;
-        else if (lucky.parch <= 6 && lucky.embarked == 'C')
+        else if (lucky.parch <= 4 && lucky.embarked == 'C')
             return TRUE;
         else
             return FALSE;
@@ -140,14 +140,14 @@ bool check_class_mid_m(passenger lucky)
     {
         if (lucky.parch == 0 && lucky.siblings_sp == 0)
             return TRUE;
-        if (lucky.parch <= 1 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
+        if (lucky.parch <= 1 && lucky.siblings_sp <= 1 && lucky.embarked == 'C')
             return TRUE;
         else
             return FALSE;
     }
     else if (lucky.pclass == 2)
     {
-        if (lucky.parch == 0 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
+        if (lucky.parch <= 1 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
             return TRUE;
         else if (lucky.parch == 1 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
             return TRUE;
@@ -182,7 +182,12 @@ bool check_class_old_f(passenger lucky)
             return FALSE;
     }
     else if (lucky.pclass == 3)
-        return FALSE;
+    {   
+        if (lucky.parch == 0 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
+            return TRUE;
+        else
+            return FALSE;
+    }
     
     return FALSE;
 }
@@ -199,7 +204,7 @@ bool check_class_old_m(passenger lucky)
     else if (lucky.pclass == 2)
         {
             if (lucky.parch == 0 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
-            return TRUE;
+                return TRUE;
         }
     else if (lucky.pclass == 3)
         return FALSE;
