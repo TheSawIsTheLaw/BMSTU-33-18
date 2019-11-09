@@ -77,8 +77,8 @@ bool check_class_baby(passenger lucky)
                 else if (lucky.parch >= 2)
             return TRUE;
     }
-    else
-        return FALSE;
+    
+    return FALSE;
 }
 
 bool check_class_ch(passenger lucky)
@@ -107,8 +107,8 @@ bool check_class_ch(passenger lucky)
         else if (lucky.parch >=2)
             return TRUE;
     }
-    else
-        return FALSE;
+    
+    return FALSE;
 }
 
 bool check_class_mid_f(passenger lucky)
@@ -131,6 +131,7 @@ bool check_class_mid_f(passenger lucky)
         else
             return FALSE;
     }
+    return FALSE;
 }
 
 bool check_class_mid_m(passenger lucky)
@@ -159,6 +160,7 @@ bool check_class_mid_m(passenger lucky)
         else
             return FALSE;
     }
+    return FALSE;
 }
 
 bool check_class_old_f(passenger lucky)
@@ -176,6 +178,8 @@ bool check_class_old_f(passenger lucky)
         return FALSE;
     else if (lucky.pclass == 3)
         return FALSE;
+    
+    return FALSE;
 }
 
 bool check_class_old_m(passenger lucky)
@@ -191,6 +195,8 @@ bool check_class_old_m(passenger lucky)
         return FALSE;
     else if (lucky.pclass == 3)
         return FALSE;
+
+    return FALSE;
 }
 
 node* burtelov_d6n_tree_titanicgame()
