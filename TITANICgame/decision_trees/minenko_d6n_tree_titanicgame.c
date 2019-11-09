@@ -7,8 +7,8 @@
 bool check_sex(passenger human)
 {
     if (strcmp(human.sex, "male") == 0)
-        return TRUE;
-    return FALSE;
+        return FALSE;
+    return TRUE;
 }
 
 node* minenko_d6n_tree_titanicgame()
