@@ -19,7 +19,7 @@ bool check_parch(passenger a);
 node* decision_tree();
 int check_survival(const passenger a, node* root);
 int check_arr(passenger *data, const int size, const int flag, node* root);
-int check_void(node* (*decision_tree)(), passenger *people);
+int check_void(node* (*decision_tree)(), passenger *train, passenger *test);
 
 #endif
 
