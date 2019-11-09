@@ -52,7 +52,8 @@ bool check_old(passenger lucky)
         return FALSE;
 }
 
-//CLASS
+//CLASS && данные о родственниках
+//Class baby
 bool check_class_baby(passenger lucky)
 {
     if (lucky.pclass == 1 || lucky.pclass == 2)
@@ -80,7 +81,7 @@ bool check_class_baby(passenger lucky)
     
     return FALSE;
 }
-
+//Class children
 bool check_class_ch(passenger lucky)
 {
     if (lucky.pclass == 1 || lucky.pclass == 2)
@@ -110,7 +111,7 @@ bool check_class_ch(passenger lucky)
     
     return FALSE;
 }
-
+//Class female age = middle
 bool check_class_mid_f(passenger lucky)
 {
     if (lucky.pclass == 1 || lucky.pclass == 2)
@@ -133,7 +134,7 @@ bool check_class_mid_f(passenger lucky)
     }
     return FALSE;
 }
-
+//Class male age = middle
 bool check_class_mid_m(passenger lucky)
 {
     if (lucky.pclass == 1)
@@ -162,7 +163,7 @@ bool check_class_mid_m(passenger lucky)
     }
     return FALSE;
 }
-
+//Class ОЛДЫ_Female age = old
 bool check_class_old_f(passenger lucky)
 {
     if (lucky.pclass == 1)
@@ -191,7 +192,7 @@ bool check_class_old_f(passenger lucky)
     
     return FALSE;
 }
-
+//Class ОЛДЫ_Male age = old
 bool check_class_old_m(passenger lucky)
 {
     if (lucky.pclass == 1)
