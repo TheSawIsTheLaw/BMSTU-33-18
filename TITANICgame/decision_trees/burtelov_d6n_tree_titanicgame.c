@@ -72,7 +72,7 @@ bool check_class_baby(passenger lucky)
             return FALSE;
         else if (lucky.siblings_sp == 0 && lucky.parch == 0)
             return FALSE;
-        else if (lucky.siblings_sp >= 3 && (lucky.parch >= 1 && lucky.parch <= 2)
+        else if (lucky.siblings_sp >= 3 && (lucky.parch >= 1 && lucky.parch <= 2))
             return FALSE;
                 else if (lucky.parch >= 2)
             return TRUE;
