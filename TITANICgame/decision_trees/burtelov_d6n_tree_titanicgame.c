@@ -138,9 +138,9 @@ bool check_class_mid_m(passenger lucky)
 {
     if (lucky.pclass == 1)
     {
-        if (lucky.parch <= 1 && lucky.siblings_sp == 0)
+        if (lucky.parch == 0 && lucky.siblings_sp == 0)
             return TRUE;
-        if (lucky.parch <= 2 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
+        if (lucky.parch <= 1 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
             return TRUE;
         else
             return FALSE;
@@ -149,13 +149,13 @@ bool check_class_mid_m(passenger lucky)
     {
         if (lucky.parch == 0 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
             return TRUE;
+        else if (lucky.parch == 1 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
+            return TRUE;
         return FALSE;
     }
     else if (lucky.pclass == 3)
     {
-        if (lucky.parch <= 1 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
-            return TRUE;
-        else if (lucky.parch <= 0 && lucky.siblings_sp == 0)
+        if (lucky.parch == 0 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
             return TRUE;
         else
             return FALSE;
@@ -167,15 +167,20 @@ bool check_class_old_f(passenger lucky)
 {
     if (lucky.pclass == 1)
     {
-        if (lucky.parch <= 2 && lucky.siblings_sp <= 1)
+        if (lucky.parch <= 1 && lucky.siblings_sp <= 1)
             return TRUE;
-        else if (lucky.parch <= 3 && lucky.siblings_sp <= 2 && lucky.embarked == 'C')
+        else if (lucky.parch <= 2 && lucky.siblings_sp <= 1 && lucky.embarked == 'C')
             return TRUE;
         else
             return FALSE;
     }
     else if (lucky.pclass == 2)
-        return FALSE;
+    {
+        if (lucky.parch == 1 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
+            return TRUE;
+        else
+            return FALSE;
+    }
     else if (lucky.pclass == 3)
         return FALSE;
     
@@ -192,7 +197,10 @@ bool check_class_old_m(passenger lucky)
             return FALSE;
     }
     else if (lucky.pclass == 2)
-        return FALSE;
+        {
+            if (lucky.parch == 0 && lucky.siblings_sp == 0 && lucky.embarked == 'C')
+            return TRUE;
+        }
     else if (lucky.pclass == 3)
         return FALSE;
 
