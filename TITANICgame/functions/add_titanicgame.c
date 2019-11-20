@@ -1,5 +1,19 @@
+/**
+ * \file add_titanicgame.c
+ * \brief Функция соединяет узлы между собой. (Function connects nodes)
+ */
+
 #include "../f_headers/add_titanicgame.h"
 
+/**
+ * \fn int add(node *parent, bool choice, node *new_node)
+ *
+ * \param node *parent - родительский узел
+ * \param bool choice - направление присоединения
+ * \param node *new_node - дочерний узел
+ *
+ * \brief Cоединяет узлы между собой (connects nodes)
+ */
 int add(node *parent, bool choice, node *new_node)
 {
     if (!parent)
