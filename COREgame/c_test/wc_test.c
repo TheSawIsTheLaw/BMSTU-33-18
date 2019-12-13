@@ -6,21 +6,21 @@
 
 int test_dl(int argc, char** argv)
 {
-	fprot wcptr = get_wc();
+    fprot wcptr = get_wc();
 
-	if (wcptr)
-		return wcptr(argc, argv);
-	return -1;
+    if (wcptr)
+        return wcptr(argc, argv);
+    return -1;
 }
 
 int test_link(int argc, char** argv)
 {
-	return wc(argc, argv);
+    return wc(argc, argv);
 }
 
 int main(int argc, char** argv)
 {
-	test_dl(argc, argv);
-	
-	test_link(argc, argv);
+    test_dl(argc, argv);
+    
+    test_link(argc, argv);
 }
