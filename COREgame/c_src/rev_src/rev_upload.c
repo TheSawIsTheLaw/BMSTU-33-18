@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <dlfcn.h>
-//../../c_src_headers/rev_headers/
-#include "rev_upload.h"
+
+#include "../../c_src_headers/rev_headers/rev_upload.h"
 
 
 
@@ -23,5 +23,3 @@ fprot get_rev(void)
 
     return f_ptr;
 }
-
-
