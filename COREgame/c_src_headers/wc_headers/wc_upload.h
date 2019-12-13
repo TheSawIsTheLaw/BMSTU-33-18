@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define WCLIBNAME "libwc.so"
-#define WCNAME "core_wc"
+#define WCLIBNAME "./libwc.so"
+#define WCNAME "wc"
 
 typedef int (*fprot)(int argc, char *argv[]);
 
