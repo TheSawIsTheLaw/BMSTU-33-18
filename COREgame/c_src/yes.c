@@ -18,18 +18,18 @@
 int
 yes(char *argv)
 {
-	char outstr[OUTSTRMAXLEN];
-	if (argv == NULL)
+    char outstr[OUTSTRMAXLEN];
+    if (argv == NULL)
     {
-	    strcpy(outstr,"y");
-	}
-	else
-	{
-		strcpy(outstr, argv);
-	}
-	
-	while(fprintf(stdout, "%s" , outstr) > 0)
-	    continue;
-	   
-	return EXIT_FAILURE;
+        strcpy(outstr,"y");
+    }
+    else
+    {
+        strcpy(outstr, argv);
+    }
+    
+    while(printf("%s", outstr) > 0)
+        continue;
+       
+    return EXIT_FAILURE;
 }
