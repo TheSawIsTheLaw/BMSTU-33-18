@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define WCLIBNAME "./libwc.so"
+#define WCLIBNAME "./libs/libcore.so"
 #define WCNAME "wc"
 
 typedef int (*fprot)(int argc, char *argv[]);
