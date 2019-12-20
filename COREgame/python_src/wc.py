@@ -3,7 +3,7 @@ from ctypes import *
 import sys
 
 def wc_py(argc, argv)
-    wclink = CDLL("./libs/libcore.so")
+    wclink = CDLL("../libs/libcore.so")
     wc = wclink.wc
 
     LP_c_char = POINTER(c_char)
