@@ -1,8 +1,8 @@
+#include <stdio.h>
 #include "../c_src_headers/yes_link.h"
-#include <string.h>
+
 int main()
 {
-	char* teststr;
-	strcpy(teststr, "clown");
-	yes(teststr);
+	printf("idk how to do test properly\n");
+	return 1;
 }

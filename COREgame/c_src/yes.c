@@ -4,8 +4,8 @@
 
 
 #include <string.h>
+#include <stdio.h>
 #include "../c_src_headers/yes_link.h"
-
 #define EXIT_FAILURE 1
 #define OUTSTRMAXLEN 255
 
