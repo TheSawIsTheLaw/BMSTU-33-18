@@ -16,10 +16,10 @@ static: libcore.a
 shared: libcore.so
 	mv ./libcore.so ../libs
 
-libcore.a: $(patsubst %.c, %.o, $(wildcard ../c_src_headers/*.c))  $(HEADERS)
+libcore.a: $(patsubst %.c, %.o, $(wildcard ../c_src/*.c))  $(HEADERS)
 	ar rc $(STATIC_NAME) $(@)  
  
-libcore.so: $(patsubst %.c, %.o, $(wildcard ../c_src_headers/*.c)) $(HEADERS)
+libcore.so: $(patsubst %.c, %.o, $(wildcard ../c_src/*.c)) $(HEADERS)
 	$(COMPILER) -shared $(GET_APP) $(SHARED_NAME) $(@)
 
 %.o: %.c
