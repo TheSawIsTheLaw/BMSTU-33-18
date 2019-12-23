@@ -1,13 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../headers/ui.h"
+#include "../include/ui.h"
 
-#define WIDTH 900
-#define HEIGHT 500
+#define WND_WIDTH 1000
+#define WND_HEIGHT 800
 
-// Окно формы
+// Окна
 uiWindow *wndMain;
+uiWindow *wndAccount;
+uiWindow *wndService;
+uiWindow *wndChat;
+uiWindow *wndCards;
+
+// Кнопки
+uiButton *btnKillAccount;
+uiButton *btnKillService;
+uiButton *btnKillChat;
+uiButton *btnKillCards;
+uiButton *btnSendMoney;
+
+// Лейблы
+uiLabel *lblChat;
+
+// Ентри
+uiEntry *entChat;
+uiEntry *entCardInfo;
+uiEntry *entFindMain;
+uiEntry *entFindService;
+
+// Картинки
+uiImage *imgMain;
+uiImage *imgAccount;
+uiImage *imgService;
+uiImage *imgChat;
+uiImage *imgCards;
 
 // Штатное закрытие окна
 static int onClosing(uiWindow *w, void *data) 
@@ -24,6 +51,8 @@ static int onShouldQuit(void *data)
     return EXIT_FAILURE;
 }
 
+//static int account_wnd
+
 int main(void) 
 {
     uiInitOptions options;
@@ -38,7 +67,7 @@ int main(void)
         return EXIT_FAILURE;
     }
 
-    wndMain = uiNewWindow("OleneffBank", WIDTH, HEIGHT, 0);
+    wndMain = uiNewWindow("OleneffBank", WND_WIDTH, WND_HEIGHT, 0);
     uiWindowSetMargined(wndMain, 1); // 2 параметр -  пкм меню (0, 1)
 
     uiWindowOnClosing(wndMain, onClosing, NULL);
