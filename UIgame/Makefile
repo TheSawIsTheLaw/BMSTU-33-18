@@ -1,8 +1,8 @@
 CC = gcc
 CFILES = $(wildcard src/*.c)
-FLAGS = -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=c99 -O3 -Wno-unused-parameter -Wno-switch
-LIBNAME = libui.so.0
-LINKING_FLAGS =  -Wl,-undefined,error -Wl,--as-needed -Wl,-O1 -Wl,--start-group $(LIBNAME) -Wl,--end-group '-Wl,-rpath,$$ORIGIN/'
+COMPILE_FLAGS = -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=c99 -O3 -Wno-unused-parameter -Wno-switch
+LIBNAME = 
+LINKING_FLAGS = 
 
 ifeq ($(OS),Windows_NT)
 	LIBNAME = libui.dll
@@ -28,7 +28,7 @@ build: $(patsubst %.c,%.c.o,$(CFILES))
 	$(CC) -o uigame.exe $^ $(LINKING_FLAGS)
 
 %.c.o: %.c
-	$(CC) $(FLAGS) -MD -MQ $< -MF $<.d -o $<.o -c $<
+	$(CC) $(COMPILE_FLAGS) -MD -MQ $< -MF $<.d -o $<.o -c $<
 
 run: uigame.exe
 	./uigame.exe
