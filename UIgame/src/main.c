@@ -51,8 +51,6 @@ static int onShouldQuit(void *data)
     return EXIT_FAILURE;
 }
 
-//static int account_wnd
-
 int main(void) 
 {
     uiInitOptions options;
