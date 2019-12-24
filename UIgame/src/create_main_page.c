@@ -2,6 +2,6 @@
 
 void createMainPage(uiTab *mainTab)
 {
-	uiBox *mainPage = uiNewVerticalBox();
+    uiBox *mainPage = uiNewVerticalBox();
     uiTabAppend(mainTab, "Главная страница", uiControl(mainPage));
 }
