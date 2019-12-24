@@ -59,7 +59,7 @@ int main(void)
     uiWindowSetChild(wndMain, uiControl(bxMain));
 
     mainTab = uiNewTab();
-	uiBoxAppend(bxMain, uiControl(mainTab), 1);
+    uiBoxAppend(bxMain, uiControl(mainTab), 1);
     createMainPage(mainTab);
 
     uiControlShow(uiControl(wndMain));
