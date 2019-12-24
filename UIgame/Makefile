@@ -30,7 +30,7 @@ build: $(patsubst %.c,%.c.o,$(CFILES))
 %.c.o: %.c
 	$(CC) $(COMPILE_FLAGS) -MD -MQ $< -MF $<.d -o $<.o -c $<
 
-run: uigame.exe
+run: build
 	./uigame.exe
 
 clean:

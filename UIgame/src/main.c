@@ -2,42 +2,27 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/ui.h"
+#include "../include/create_acc_wnd.h"
 
-#define WND_WIDTH 1000
-#define WND_HEIGHT 800
+#define WND_WIDTH 1440
+#define WND_HEIGHT 1025
 
 // Окна
 uiWindow *wndMain;
-uiWindow *wndAccount;
-uiWindow *wndService;
-uiWindow *wndChat;
-uiWindow *wndCards;
 
 // Кнопки
-uiButton *btnKillAccount;
-uiButton *btnKillService;
-uiButton *btnKillChat;
-uiButton *btnKillCards;
-uiButton *btnSendMoney;
-
-// Лейблы
-uiLabel *lblChat;
+uiButton *btnCreateAccount;
+uiButton *btnCreateService;
+uiButton *btnCreateChat;
 
 // Ентри
-uiEntry *entChat;
-uiEntry *entCardInfo;
 uiEntry *entFindMain;
-uiEntry *entFindService;
 
-// Картинки
-uiImage *imgMain;
-uiImage *imgAccount;
-uiImage *imgService;
-uiImage *imgChat;
-uiImage *imgCards;
+// Группа элементов
+uiBox *bxMain;
 
 // Штатное закрытие окна
-static int onClosing(uiWindow *w, void *data) 
+static int onClosing(uiWindow *w, void *data)
 {
     uiControlDestroy(uiControl(wndMain));
     uiQuit();
@@ -45,20 +30,20 @@ static int onClosing(uiWindow *w, void *data)
 }
 
 // Вынужденное закрытие окна
-static int onShouldQuit(void *data) 
+static int onShouldQuit(void *data)
 {
     uiControlDestroy(uiControl(wndMain));
     return EXIT_FAILURE;
 }
 
-int main(void) 
+int main(void)
 {
     uiInitOptions options;
     const char *err;
 
     memset(&options, 0, sizeof(uiInitOptions));
     err = uiInit(&options);
-    if (err != NULL) 
+    if (err != NULL)
     {
         fprintf(stderr, "Error initializing libui: %s", err);
         uiFreeInitError(err);
@@ -71,8 +56,16 @@ int main(void)
     uiWindowOnClosing(wndMain, onClosing, NULL);
     uiOnShouldQuit(onShouldQuit, wndMain);
 
+    btnCreateAccount = createAccBtn();
+
+    bxMain = uiNewHorizontalBox();
+    uiBoxSetPadded(bxMain, 1);
+    uiWindowSetChild(wndMain, uiControl(bxMain));
+    /* Добавить вызов ещё 2х кнопок и таблицы */
+
+    uiBoxAppend(bxMain, uiControl(btnCreateAccount), 0);
+
     uiControlShow(uiControl(wndMain));
     uiMain();
     return EXIT_SUCCESS;
 }
-
