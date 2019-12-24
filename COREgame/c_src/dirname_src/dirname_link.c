@@ -3,8 +3,8 @@
 */
 
 #include <stdio.h>
-#include <string.h>
-#include "../c_src_headers/dirname_link.h"
+#include <stdlib.h>
+#include "../../c_src_headers/dirname_headers/dirname_link.h"
 
 #define OK 0
 #define INVALID_ARG 1
