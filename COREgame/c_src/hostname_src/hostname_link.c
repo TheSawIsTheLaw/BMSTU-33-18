@@ -39,7 +39,7 @@ int is_wrong_format(const char *buf)
     return OK;
 }
 
-int _hostname_(const char *const buffer, char *const new_hostname)
+int hostname(const char *const buffer, char *const new_hostname)
 {
     if (!new_hostname)
     {

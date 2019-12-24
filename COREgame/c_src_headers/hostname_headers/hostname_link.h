@@ -18,6 +18,6 @@
 
 #define MAX_HOSTNAME_LENGTH 30
 
-int _hostname_(const char *const buffer, char *const hostname);
+int hostname(const char *const buffer, char *const hostname);
 
 #endif 
