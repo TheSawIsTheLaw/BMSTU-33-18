@@ -22,7 +22,7 @@ static_upload: libcore.so libcore_upload.a
 	mv ./libcore_upload.a ../libs
 
 libcore.a: ../c_src/*_src/*_link.c $(LINK_HEADERS)
-	$(COMPILER) $(GET_OBJECT) ../c_src/*_src/*_link.c
+	$(COMPILER) $(GET_OBJECT) ../c_src/*_src/*_link.c 
 	ar rc $(STATIC_NAME) ./*_link.o
  
 libcore.so: ../c_src/*_src/*_link.c $(LINK_HEADERS)

@@ -109,6 +109,7 @@ int main()
 
     sethostname(current_hostname, strlen(current_hostname));
 
+    
     fprintf(stdout, "6) Testing upload\n");
 
     if ((func = get_hostname()) == NULL)
