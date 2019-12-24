@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../include/ui.h"
-#include "../include/create_acc_wnd.h"
+#include "../include/create_main_page.h"
 
 #define WND_WIDTH 1440
 #define WND_HEIGHT 1025
@@ -10,12 +10,10 @@
 // Окна
 uiWindow *wndMain;
 
-// Кнопки
-uiButton *btnCreateAccount;
-uiButton *btnCreateService;
-uiButton *btnCreateChat;
+// Tab
+uiTab *mainTab;
 
-// Ентри
+// Entry
 uiEntry *entFindMain;
 
 // Группа элементов
@@ -56,14 +54,13 @@ int main(void)
     uiWindowOnClosing(wndMain, onClosing, NULL);
     uiOnShouldQuit(onShouldQuit, wndMain);
 
-    btnCreateAccount = createAccBtn();
-
     bxMain = uiNewHorizontalBox();
     uiBoxSetPadded(bxMain, 1);
     uiWindowSetChild(wndMain, uiControl(bxMain));
-    /* Добавить вызов ещё 2х кнопок и таблицы */
 
-    uiBoxAppend(bxMain, uiControl(btnCreateAccount), 0);
+    mainTab = uiNewTab();
+	uiBoxAppend(bxMain, uiControl(mainTab), 1);
+    createMainPage(mainTab);
 
     uiControlShow(uiControl(wndMain));
     uiMain();
