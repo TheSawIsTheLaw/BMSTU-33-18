@@ -6,12 +6,12 @@ int iswnbspace (wint_t wc)
     return (wc == 0x00A0 || wc == 0x2007 || wc == 0x202F || wc == 0x2060);
 }
 
-static int isnbspace (int c)
+int isnbspace (int c)
 {
     return iswnbspace (btowc (c));
 }
 
-static void write_counts (long long lines, long long words, long long chars,
+void write_counts (long long lines, long long words, long long chars,
     long long bytes, long long linelength, const char *file)
 {
     if (print_lines)
@@ -34,7 +34,7 @@ static void write_counts (long long lines, long long words, long long chars,
     putchar ('\n');
 }
 
-static bool do_wc (int fd, char const *file_x, off_t current_pos)
+bool do_wc (int fd, char const *file_x, off_t current_pos)
 {
     bool ok = true;
     char buf[BUFFER_SIZE + 1];
@@ -112,7 +112,7 @@ static bool do_wc (int fd, char const *file_x, off_t current_pos)
     return ok;
 }
 
-static bool wc_file (char const *file)
+bool wc_file (char const *file)
 {
     int fd = open (file, O_RDONLY);
     if (fd == -1)

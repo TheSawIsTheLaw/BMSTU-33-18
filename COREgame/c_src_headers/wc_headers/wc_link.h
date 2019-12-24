@@ -22,17 +22,17 @@
 
 /* Cumulative number of lines, words, chars and bytes in all files so far.
    max_line_length is the maximum over all files processed so far.*/
-static long long total_lines;
-static long long total_words;
-static long long total_chars;
-static long long total_bytes;
-static long long max_line_length;
+long long total_lines;
+long long total_words;
+long long total_chars;
+long long total_bytes;
+long long max_line_length;
 
 /* Which counts to print. */
-static bool print_lines, print_words, print_chars, print_bytes;
-static bool print_linelength;
+bool print_lines, print_words, print_chars, print_bytes;
+bool print_linelength;
 
-static struct option const longopts[] =
+struct option const longopts[] =
 {
     {"bytes", no_argument, NULL, 'c'},
     {"chars", no_argument, NULL, 'm'},
@@ -42,10 +42,10 @@ static struct option const longopts[] =
 };
 
 int wc (int argc, char **argv);
-static bool wc_file (char const *file);
-static bool do_wc (int fd, char const *file_x, off_t current_pos);
-static void write_counts (long long lines, long long words, long long chars,
+bool wc_file (char const *file);
+bool do_wc (int fd, char const *file_x, off_t current_pos);
+void write_counts (long long lines, long long words, long long chars,
     long long bytes, long long linelength, const char *file);
-static int isnbspace (int c);
+int isnbspace (int c);
 int iswnbspace (wint_t wc);
 #endif // WC_H
