@@ -4,8 +4,6 @@
 
 #include "../../c_src_headers/rev_headers/rev_link.h"
 
- 
-
 static void rev_src(FILE *fp)
 {
     static char *line = NULL;
