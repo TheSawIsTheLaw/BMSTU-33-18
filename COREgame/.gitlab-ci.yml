@@ -6,7 +6,6 @@ build:
   stage: build
   image: gcc
   script:
-    - apt install -y make
     - git checkout $(CI_COMMIT_REF_NAME)
     - cd ./COREgame/build
     - make
