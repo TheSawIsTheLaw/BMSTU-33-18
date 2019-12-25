@@ -1,0 +1,25 @@
+stages:
+  - build
+  #- test
+
+build:
+  stage: build
+  image: gcc
+  script:
+    - apt install -y make
+    - git checkout CI_COMMIT_REF_NAME
+    - cd ./build
+    - make
+    - make clean
+
+#test:
+#  stage: test
+#  image: gcc
+#  script:
+#    - apt install -y make
+#    - git checkout CI_COMMIT_REF_NAME
+#    - cd ./build
+#    - make
+#    - gcc -Wall -Werror -c  ../c_test/*_test.c
+#    - gcc -o  *_test ./*_test.o ./*_upload.o -L../libs/ -lcore -Wl,-rpath,../libs/ -ldl
+#    - ./*_test
