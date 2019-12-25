@@ -8,7 +8,7 @@ build:
   script:
     - apt install -y make
     - git checkout CI_COMMIT_REF_NAME
-    - cd ./build
+    - cd ./COREgame/build
     - make
     - make clean
 
