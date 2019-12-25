@@ -2,7 +2,7 @@
 
 fprot get_dirname(void)
 {
-    void *wc_lib = dlopen("libdirname.so", RTLD_LAZY);
+    void *wc_lib = dlopen("../../libs/libcore.so", RTLD_LAZY);
     if (!wc_lib)
     {
         fprintf(stderr, "failed to open lib %s\n", "libdirname.so");
