@@ -1,4 +1,4 @@
-#include "c_src_headers/cksum_link.h"
+#include "../../c_src_headers/cksum_headers/cksum_link.h"
 
 #define BUFLEN (1 << 16)
 

@@ -1,7 +1,7 @@
 import os
 import ctypes
 
-lib = ctypes.CDLL("libs/libcksum.so")
+lib = ctypes.CDLL("../libs/libcore.so")
 libc = ctypes.cdll.LoadLibrary("libc.so.6")
 
 
@@ -12,6 +12,6 @@ def test_cksum(file, opt):
 
 
 if __name__ == "__main__":
-    test_cksum("c_src/cksum_src/cksum_link.c", "--help")
-    test_cksum("c_src/cksum_src/cksum_link.c", "--version")
-    test_cksum("c_src/cksum_src/cksum_link.c", "stdin")
+    test_cksum("../c_src/cksum_src/cksum_link.c", "--help")
+    test_cksum("../c_src/cksum_src/cksum_link.c", "--version")
+    test_cksum("../c_src/cksum_src/cksum_link.c", "stdin")
