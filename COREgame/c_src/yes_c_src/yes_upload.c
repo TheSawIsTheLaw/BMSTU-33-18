@@ -19,3 +19,4 @@ fprot get_yes()
     }
     
     return yes_util;
+}
