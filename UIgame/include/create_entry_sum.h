@@ -6,5 +6,5 @@
 #include "../include/ui.h"
 #include "../include/create_main_page.h"
 
-static void create_entry_sum(void);
+static uiEntry* create_entry_sum(void);
 #endif

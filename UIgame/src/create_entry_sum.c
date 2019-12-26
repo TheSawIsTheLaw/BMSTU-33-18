@@ -7,10 +7,9 @@
 
 uiEntry *entrySum;
 
-static void create_entry_sum(void)
+static uiEntry* create_entry_sum(void)
 {
     entrySum = uiNewEntry();
-    uiBoxAppend(bxMain, uiControl(entrySum),0);
     uiEntrySetText(entrySum, "Sum");
-    return;
+    return entrySum;
 }
