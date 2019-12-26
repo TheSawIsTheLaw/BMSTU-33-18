@@ -4,7 +4,6 @@
 #include "../include/ui.h"
 #include "../include/checkEntryCard.h"
 
-
 int checkEntryCard(const char *string)
 {
     int count = 0;
