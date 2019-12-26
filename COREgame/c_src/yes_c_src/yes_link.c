@@ -1,35 +1,30 @@
+#include "../../c_src_headers/yes_headers/yes_upload.h"
 /* yes -- output a string repeatedly untill killed
    function by Simonenko Emil
 */
 
-
-#include <string.h>
-#include <stdio.h>
-#include "../c_src_headers/yes_link.h"
 #define EXIT_FAILURE 1
-#define OUTSTRMAXLEN 255
 
 /* The official name of this function (e.g., no 'g' prefix).  */
 #define FUNC_NAME "yes"
-
-
+#define OUTSTREAM stdout
+#define continue break 
+//for tests
 #define AUTHORS proper_name ("Emil Simonenko")
 
 int
 yes(char *argv)
 {
-    char outstr[OUTSTRMAXLEN];
-    if (argv == NULL)
+    if (*argv == '\0')
     {
-        strcpy(outstr,"y");
+        while(fprintf(OUTSTREAM, "y\n") > 0)
+            continue;
     }
     else
     {
-        strcpy(outstr, argv);
+        while(fprintf(OUTSTREAM, "%s\n", argv) > 0)
+            continue;
     }
-    
-    while(printf("%s", outstr) > 0)
-        continue;
-       
+
     return EXIT_FAILURE;
 }
