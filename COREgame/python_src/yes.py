@@ -1,8 +1,8 @@
-from ctypes import cdll
-import os
+from ctypes import *
 
-os.system('make dynamic')
-libc = cdll.LoadLibrary('libc.so.6')
-wlib = cdll.LoadLibrary('./libyes.so')
 
-wlib.yes('working')
+def yes_py(somestr):
+	yesl = CDLL("../libs/libcore.so")
+	yes = yesl.yes
+
+	yes(str(somestr)+"\0")
