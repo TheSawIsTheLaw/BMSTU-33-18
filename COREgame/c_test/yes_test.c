@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "../c_src_headers/yes_link.h"
+#include "../c_src_headers/yes_headers/yes_link.h"
 
 int main()
 {
