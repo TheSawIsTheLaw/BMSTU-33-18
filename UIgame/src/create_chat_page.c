@@ -3,13 +3,32 @@
 static uiBox *chtBox;
 static uiEntry *chtEntry;
 
-static void on_anime_press(uiButton *but, void *data)
+static void onSend(uiButton *but, void *data)
 {
     (void)but;
     (void)data;
-    
+
+    struct passwd *p = getpwuid(getuid());
+    time_t now = time(0);
+    char *msg = ctime(&now);
+    strcat(msg, p->pw_name);
+    msg[strlen(msg)] = '\n';
+    strcat(msg, uiEntryText(chtEntry));
+
     uiBox *newBox = uiNewHorizontalBox();
-    uiLabel *newLabel = uiNewLabel(uiEntryText(chtEntry));
+    uiLabel *newLabel = uiNewLabel(msg);
+
+    uiBoxSetPadded(newBox, 1);
+
+    uiBoxAppend(newBox, uiControl(newLabel), 1);
+    uiBoxAppend(chtBox, uiControl(newBox), 0);
+
+    msg = ctime(&now);
+    strcat(msg, "Bot Anton\n");
+    strcat(msg, "Извините! Merge request'ы сегодня больше не принимаем!");
+
+    newBox = uiNewHorizontalBox();
+    newLabel = uiNewLabel(msg);
 
     uiBoxSetPadded(newBox, 1);
 
@@ -33,10 +52,10 @@ void createChatPage(uiTab *parentTab)
     uiButton *sndButton = uiNewButton("Send");
     chtEntry = uiNewEntry();
 
-    uiButtonOnClicked(sndButton, on_anime_press, NULL);
+    uiButtonOnClicked(sndButton, onSend, NULL);
 
     uiBoxAppend(conBox, uiControl(sndButton), 1);
     uiBoxAppend(conBox, uiControl(chtEntry), 1);
-    
+
     uiTabAppend(parentTab, CHAT_TAB_NAME, uiControl(verBox));
 }
