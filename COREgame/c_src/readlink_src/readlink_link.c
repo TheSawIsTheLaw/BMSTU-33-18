@@ -5,8 +5,33 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-#include "util.h"
 #include "../../c_src_headers/readlink_headers/readlink_link.h"
+
+char *argv0;
+
+#define ARGBEGIN	for (argv0 = *argv, argv++, argc--;\
+					argv[0] && argv[0][0] == '-'\
+					&& argv[0][1];\
+					argc--, argv++) {\
+				char argc_;\
+				char **argv_;\
+				int brk_;\
+				if (argv[0][1] == '-' && argv[0][2] == '\0') {\
+					argv++;\
+					argc--;\
+					break;\
+				}\
+				for (brk_ = 0, argv[0]++, argv_ = argv;\
+						argv[0][0] && !brk_;\
+						argv[0]++) {\
+					if (argv_ != argv)\
+						break;\
+					argc_ = argv[0][0];\
+					switch (argc_)
+
+#define ARGEND			}\
+			}
+
 
 static void eprintf(char *spec, ...)
 {
