@@ -8,7 +8,7 @@
 /* The official name of this function (e.g., no 'g' prefix).  */
 #define FUNC_NAME "yes"
 #define OUTSTREAM stdout
-//#define continue break(for tests)
+#define continue break //for tests
 #define AUTHORS proper_name ("Emil Simonenko")
 
 int
