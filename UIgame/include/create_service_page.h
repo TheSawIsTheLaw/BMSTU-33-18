@@ -3,6 +3,6 @@
 
 #include "ui.h"
 
-void createServicePage(uiTab *mainTab);
+void createServicePage(uiTab *mainTab, uiWindow *parent);
 
 #endif
