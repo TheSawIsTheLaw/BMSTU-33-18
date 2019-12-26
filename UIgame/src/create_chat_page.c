@@ -11,6 +11,8 @@ static void on_anime_press(uiButton *but, void *data)
     uiBox *newBox = uiNewHorizontalBox();
     uiLabel *newLabel = uiNewLabel(uiEntryText(chtEntry));
 
+    uiBoxSetPadded(newBox, 1);
+
     uiBoxAppend(newBox, uiControl(newLabel), 1);
     uiBoxAppend(chtBox, uiControl(newBox), 0);
 }
@@ -28,7 +30,7 @@ void createChatPage(uiTab *parentTab)
     uiBoxAppend(verBox, uiControl(chtBox), 1);
     uiBoxAppend(verBox, uiControl(conBox), 0);
 
-    uiButton *sndButton = uiNewButton("anime");
+    uiButton *sndButton = uiNewButton("Send");
     chtEntry = uiNewEntry();
 
     uiButtonOnClicked(sndButton, on_anime_press, NULL);
