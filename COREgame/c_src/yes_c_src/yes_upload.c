@@ -1,4 +1,6 @@
 #include "../../c_src_headers/yes_headers/yes_upload.h"
+#define OUTSTREAM stderr
+
 fprot get_yes()
 {
     void *lib = NULL;
@@ -6,13 +8,13 @@ fprot get_yes()
     
     if (!(lib = dlopen("../libs/libcore.so", RTLD_LAZY)))
     {
-        printf("lib isnt loaded\n");
+        fprintf(OUTSTREAM, "lib isnt loaded\n");
         return NULL; //*
     }
     
     if (!(yes_util = dlsym(lib, "yes")))
     {
-        printf("function not reachable\n");
+        fprintf(OUTSTREAM, "function not reachable\n");
         return NULL; //*
     }
     

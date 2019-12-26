@@ -14,14 +14,14 @@
 int
 yes(char *argv)
 {
-    if (argv == "\0")
+    if (*argv == '\0')
     {
-        while(printf(OUTSTREAM, "y\n\0") > 0)
+        while(fprintf(OUTSTREAM, "y\n\0") > 0)
             continue;
     }
     else
     {
-        while(printf(OUTSTREAM, "%s\n", argv) > 0)
+        while(fprintf(OUTSTREAM, "%s\n", argv) > 0)
             continue;
     }
 
