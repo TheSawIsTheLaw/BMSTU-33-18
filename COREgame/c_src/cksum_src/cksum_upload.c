@@ -1,6 +1,6 @@
 #include "../../c_src_headers/cksum_headers/cksum_upload.h"
 
-uint32_t *get_cksum()
+void get_cksum()
 {
     uint32_t (*cksum)(FILE *, const char *);
     void *cksum_lib = dlopen("../../libs/libcore.so", RTLD_LAZY);
@@ -16,6 +16,4 @@ uint32_t *get_cksum()
         fprintf(stderr, "failed to find cksum\n");
         return NULL;
     }
-
-    return cksum;
 }

@@ -5,6 +5,6 @@
 #include <inttypes.h>
 #include <dlfcn.h>
 
-uint32_t *get_cksum();
+void get_cksum();
 
 #endif
