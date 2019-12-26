@@ -7,13 +7,13 @@ void get_cksum()
     if (!cksum_lib)
     {
         fprintf(stderr, "failed to open lib %s\n", "libcore.so");
-        return NULL;
+        return;
     }
 
     cksum = dlsym(cksum_lib, "cksum");
     if (!cksum)
     {
         fprintf(stderr, "failed to find cksum\n");
-        return NULL;
+        return;
     }
 }
