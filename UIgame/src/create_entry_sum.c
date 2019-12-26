@@ -7,9 +7,9 @@
 
 uiEntry *entrySum;
 
-static uiEntry* create_entry_sum(void)
+uiEntry* create_entry_sum(void)
 {
     entrySum = uiNewEntry();
-    uiEntrySetText(entrySum, "Sum");
+    uiEntrySetText(entrySum, "Сумма");
     return entrySum;
 }
