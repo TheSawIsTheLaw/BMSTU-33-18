@@ -8,4 +8,6 @@
 #define CARDS_TOTAL 5
 #define COLS_TOTAL 3
 
+uiControl *createMainWndTable(void);
+
 #endif

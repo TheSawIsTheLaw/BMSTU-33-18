@@ -4,7 +4,7 @@ static void cinema_onMsgBoxClicked(uiButton *b, void *data)
 {
     uiMsgBox((uiWindow *)data,
              "Отличный день, чтобы сходить в кино!",
-             "(хотя я бы на твоем месте зашел на вкладку \"баланс\" и задумался)");
+             "(Хотя я бы на твоем месте зашел на вкладку \"баланс\" и задумался)");
 }
 
 static void restaurant_onMsgBoxClicked(uiButton *b, void *data)
@@ -68,11 +68,11 @@ void createServicePage(uiTab *servTab, uiWindow *parent)
     uiBoxAppend(servPage, uiControl(grid), 0);
 
     uiLabel *free_space = uiNewLabel("");
-    uiGridAppend(grid, uiControl(free_space), 0, 0, 20, 200,
+    uiGridAppend(grid, uiControl(free_space), 0, 0, 20, 20,
                  1, uiAlignCenter, 0, uiAlignCenter);
 
     uiEntry *src_entr = uiNewSearchEntry();
-    uiGridAppend(grid, uiControl(src_entr), 20, 0, 40, 25,
+    uiGridAppend(grid, uiControl(src_entr), 25, 0, 40, 25,
                  1, uiAlignFill, 0, uiAlignCenter);
 
     uiButton *btn;

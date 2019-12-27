@@ -6,7 +6,7 @@ static uiTableModel *model;
 static int modelNumColums(uiTableModelHandler *handler, uiTableModel *model)
 {
     return COLS_TOTAL;
-} 
+}
 
 static int modelNumRows(uiTableModelHandler *handler, uiTableModel *model)
 {
@@ -42,10 +42,10 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
                 strcpy(buf, "\n\n\t\t     Oleneff Kids\n\n");
                 break;
         }
-        
+
         return uiNewTableValueString(buf);
     }
-    
+
     if (col == 1)
     {
         switch (row)
@@ -72,7 +72,7 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
 
     if (col == 3)
     {
-        return uiNewTableValueString("\n\n|||\n\n"); 
+        return uiNewTableValueString("\n\n|||\n\n");
     }
 
     return uiNewTableValueString(buf);
@@ -109,7 +109,7 @@ uiControl *createMainWndTable(void)
 
     memset(&params, 0, sizeof(uiTableParams));
     params.Model = model;
-    params.RowBackgroundColorModelColumn = 3; 
+    params.RowBackgroundColorModelColumn = 3;
     mainWndTable = uiNewTable(&params);
 
     uiTableAppendTextColumn(mainWndTable, "\n\t\t\tКарта \t\t\t\n", 0, uiTableModelColumnNeverEditable, NULL);
@@ -118,7 +118,7 @@ uiControl *createMainWndTable(void)
 
     space = uiNewLabel("");
     uiGridAppend(grid, uiControl(space), 0, 0, 30, 100, 1, uiAlignCenter, 0, uiAlignCenter);
-    uiGridAppend(grid, uiControl(mainWndTable), 25, 30, 70, 77, 1, uiAlignFill, 0, uiAlignFill);
+    uiGridAppend(grid, uiControl(mainWndTable), 8, 20, 70, 77, 1, uiAlignFill, 0, uiAlignFill);
 
     return uiControl(hBox);
 }
