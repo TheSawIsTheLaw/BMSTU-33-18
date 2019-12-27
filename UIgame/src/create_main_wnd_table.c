@@ -130,11 +130,11 @@ uiControl *createMainWndTable(void)
 
     uiTableAppendTextColumn(mainWndTable, "\n\t\t\tКарта \t\t\t\n", 0, uiTableModelColumnNeverEditable, NULL);
     uiTableAppendTextColumn(mainWndTable, "\n\t\t\t Баланс          \t\t\n", 1, uiTableModelColumnNeverEditable, NULL);
-    uiTableAppendButtonColumn(mainWndTable, "\n\t\t   К операциям\t\t\n", 3, 1);
+    uiTableAppendButtonColumn(mainWndTable, "\n\t\t\tК операциям  \t\n", 3, 1);
 
     space = uiNewLabel("");
     uiGridAppend(grid, uiControl(space), 0, 0, 30, 100, 1, uiAlignCenter, 0, uiAlignCenter);
-    uiGridAppend(grid, uiControl(mainWndTable), 50, 30, 70, 90, 1, uiAlignFill, 0, uiAlignFill);
+    uiGridAppend(grid, uiControl(mainWndTable), 25, 30, 70, 85, 1, uiAlignFill, 0, uiAlignFill);
 
     return uiControl(hBox);
 }
