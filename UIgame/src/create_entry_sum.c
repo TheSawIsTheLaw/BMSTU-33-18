@@ -10,6 +10,6 @@ uiEntry *entrySum;
 uiEntry* create_entry_sum(void)
 {
     entrySum = uiNewEntry();
-    uiEntrySetText(entrySum, "Сумма");
+    uiEntrySetText(entrySum, "Введите сумму");
     return entrySum;
 }
