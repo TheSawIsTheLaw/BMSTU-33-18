@@ -4,6 +4,7 @@
 
 #include "../c_src_headers/readlink_headers/readlink_link.h"
 #include "../c_src_headers/readlink_headers/readlink_upload.h"
+#include "../c_test_headers/readlink_test.h"
 
 #define ARGC 3
 #define STRL 24
@@ -50,7 +51,7 @@ int test_link(void)
     return result;
 }
 
-int main(void)
+int readlink_test(void)
 {
     if (test_dl())
         return -1;
