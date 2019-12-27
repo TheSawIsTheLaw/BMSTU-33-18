@@ -71,7 +71,9 @@ void createServicePage(uiTab *servTab, uiWindow *parent)
     uiGridAppend(grid, uiControl(free_space), 0, 0, 20, 200,
                  1, uiAlignCenter, 0, uiAlignCenter);
 
-    // здесь должен быть поиск....
+    uiEntry *src_entr = uiNewSearchEntry();
+    uiGridAppend(grid, uiControl(src_entr), 20, 0, 40, 25,
+                 1, uiAlignFill, 0, uiAlignCenter);
 
     uiButton *btn;
     btn = (uiNewButton("Kино"));
