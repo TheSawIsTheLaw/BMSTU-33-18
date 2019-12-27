@@ -1,37 +1,90 @@
 #include "../include/create_main_wnd_table.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 static uiWindow *mainWnd;
 static uiTableModelHandler handler;
 static uiTableModel *model;
 
 static int modelNumColums(uiTableModelHandler *handler, uiTableModel *model)
 {
-    return 4;
+    return COLS_TOTAL;
 } 
 
 static int modelNumRows(uiTableModelHandler *handler, uiTableModel *model)
 {
-    return 5;
+    return CARDS_TOTAL;
 }
 
-static uiTableValueType modelColumnType(uiTableModelHandler *mh, uiTableModel *m, int column)
+static uiTableValueType modelColumnType(uiTableModelHandler *handler, uiTableModel *model, int column)
 {
 	return uiTableValueTypeString;
 }
 
-static uiTableValue *modelCellValue(uiTableModelHandler *mh, uiTableModel *m, int row, int col)
+static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *model, int row, int col)
 {
-	char buf[256];
+    char buf[256];
+
+    if (col == 0)
+    {
+        switch (row)
+        {
+            case 0:
+                strcpy(buf, "\n\n\t      Oleneff Platinum\n\n");
+                break;
+            case 1:
+                strcpy(buf, "\n\n\t\tOleneff Black\n\n");
+                break;
+            case 2:
+                strcpy(buf, "\n\n\t\t    Visa Gold\n\n");
+                break;
+            case 3:
+                strcpy(buf, "\n\n\tMaster Card Business\n\n");
+                break;
+            case 4:
+                strcpy(buf, "\n\n\t\t  Oleneff Kids\n\n");
+                break;
+        }
+        
+        return uiNewTableValueString(buf);
+    }
+    
+    if (col == 1)
+    {
+        switch (row)
+        {
+            case 0:
+                strcpy(buf, "\n\n\t\t     37456,34 р.\n\n");
+                break;
+            case 1:
+                strcpy(buf, "\n\n\t\t     11400,79 р.\n\n");
+                break;
+            case 2:
+                strcpy(buf, "\n\n\t\t     14374,23 р.\n\n");
+                break;
+            case 3:
+                strcpy(buf, "\n\n\t\t      3987.67 р.\n\n");
+                break;
+            case 4:
+                strcpy(buf, "\n\n\t\t      7984.32 р.\n\n");
+                break;
+        }
+
+        return uiNewTableValueString(buf);
+    }
+
+    if (col == 3)
+    {
+        return uiNewTableValueString("\n\n|||\n\n"); 
+    }
+
 	return uiNewTableValueString(buf);
 }
 
-static void modelSetCellValue(uiTableModelHandler *mh, uiTableModel *m, int row, int col, const uiTableValue *val)
+static void modelSetCellValue(uiTableModelHandler *handler, uiTableModel *model, int row, int col, const uiTableValue *val)
 {
-    return;
+    if (col == 2)
+    {
+        // вызвать окно топора
+    }
 }
 
 
@@ -54,8 +107,8 @@ uiControl *createMainWndTable(void)
     uiBox *hBox;
     uiTable *mainWndTable;
     uiTableParams params;
-    uiGrid *grid; 
-    //uiTableTextColumnOptionalParams textParams;
+    uiGrid *grid;
+    uiLabel *space;
 
     hBox = uiNewHorizontalBox();
     grid = uiNewGrid();
@@ -75,13 +128,19 @@ uiControl *createMainWndTable(void)
     params.RowBackgroundColorModelColumn = 3; 
     mainWndTable = uiNewTable(&params);
 
-    uiTableAppendTextColumn(mainWndTable, "Card", 0, uiTableModelColumnNeverEditable, NULL);
+    uiTableAppendTextColumn(mainWndTable, "\n\t\t\tКарта \t\t\t\n", 0, uiTableModelColumnNeverEditable, NULL);
+    uiTableAppendTextColumn(mainWndTable, "\n\t\t\t Баланс          \t\t\n", 1, uiTableModelColumnNeverEditable, NULL);
+    uiTableAppendButtonColumn(mainWndTable, "\n\t\t   К операциям\t\t\n", 3, 1);
 
-    uiGridAppend(grid, uiControl(mainWndTable), 50, 50, 50, 40, 1, uiAlignFill, 0, uiAlignFill);
+    space = uiNewLabel("");
+    uiGridAppend(grid, uiControl(space), 0, 0, 30, 100, 1, uiAlignCenter, 0, uiAlignCenter);
+    uiGridAppend(grid, uiControl(mainWndTable), 50, 30, 50, 90, 1, uiAlignFill, 0, uiAlignFill);
 
     return uiControl(hBox);
 }
 
+
+// Main пока оставил для тестов
 int main()
 {
 	uiInitOptions options;
@@ -91,7 +150,6 @@ int main()
 	memset(&options, 0, sizeof (uiInitOptions));
 	err = uiInit(&options);
 	if (err != NULL) {
-		fprintf(stderr, "error initializing libui: %s", err);
 		uiFreeInitError(err);
 		return 1;
 	}
