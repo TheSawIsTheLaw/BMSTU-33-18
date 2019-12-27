@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 from ctypes import *
 
-libreadlink = CDLL("../libs/libcore.so")
-readlink = libreadlink.core_readlink
-
-def test_readlink(ops):
+def readlink_py(ops):
+    
+    libreadlink = CDLL("../libs/libcore.so")
+    readlink = libreadlink.core_readlink
     
     LP_c_char = POINTER(c_char)
     LP_LP_c_char = POINTER(LP_c_char)
@@ -20,7 +20,3 @@ def test_readlink(ops):
         argv[i] = create_string_buffer(enc_arg)
 
     readlink(argc, argv)
-
-
-if __name__ == "__main__":
-    test_readlink("/bin/sh")
