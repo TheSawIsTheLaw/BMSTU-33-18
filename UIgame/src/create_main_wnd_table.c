@@ -1,4 +1,5 @@
 #include "../include/create_main_wnd_table.h"
+#include "../include/create_operations_page.h"
 
 static uiTableModelHandler handler;
 static uiTableModel *model;
@@ -80,10 +81,7 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
 
 static void modelSetCellValue(uiTableModelHandler *handler, uiTableModel *model, int row, int col, const uiTableValue *val)
 {
-    if (col == 2)
-    {
-        // вызвать окно топора
-    }
+    createOperationsPage(NULL);
 }
 
 uiControl *createMainWndTable(void)
