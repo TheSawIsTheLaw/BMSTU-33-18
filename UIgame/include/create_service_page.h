@@ -1,5 +1,5 @@
-#ifndef __CREATE_MAIN_PAGE_H__
-#define __CREATE_MAIN_PAGE_H__
+#ifndef __CREATE_SERVICE_PAGE_H__
+#define __CREATE_SERVICE_PAGE_H__
 
 #include "ui.h"
 

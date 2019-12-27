@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../include/ui.h"
 #include "../include/create_main_page.h"
+#include "../include/create_service_page.h"
 
 #define WND_WIDTH 1440
 #define WND_HEIGHT 1025
@@ -61,7 +62,8 @@ int main(void)
     mainTab = uiNewTab();
     uiBoxAppend(bxMain, uiControl(mainTab), 1);
     createMainPage(mainTab);
-
+    createServicePage(mainTab, wndMain);
+    
     uiControlShow(uiControl(wndMain));
     uiMain();
     return EXIT_SUCCESS;
