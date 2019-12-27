@@ -3,6 +3,6 @@
 
 #include "ui.h"
 
-void createAccountPage(uiTab *mainTab);
+void createAccountPage(uiTab *mainTab, uiWindow *wndMain);
 
 #endif
