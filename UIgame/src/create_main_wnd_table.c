@@ -75,7 +75,7 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
         return uiNewTableValueString("\n\n|||\n\n"); 
     }
 
-	return uiNewTableValueString(buf);
+    return uiNewTableValueString(buf);
 }
 
 static void modelSetCellValue(uiTableModelHandler *handler, uiTableModel *model, int row, int col, const uiTableValue *val)
