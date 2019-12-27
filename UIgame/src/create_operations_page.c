@@ -20,13 +20,13 @@ int onShouldQuit1(void *data)
 
 void createOperationsPage()
 {
-    operationWnd = uiNewWindow("OleneffBank: Operations", 500, 500, 0);
+    operationWnd = uiNewWindow("OleneffBank: Операции с картами", 500, 500, 0);
     uiWindowSetMargined(operationWnd, 0);
     uiWindowOnClosing(operationWnd, onClosing1, NULL);
     uiOnShouldQuit(onShouldQuit1, operationWnd);
     uiControlShow(uiControl(operationWnd));
 
-    group = uiNewGroup("Operations");
+    group = uiNewGroup("");
 	uiGroupSetMargined(group, 20);
 
     hbox = uiNewHorizontalBox();
