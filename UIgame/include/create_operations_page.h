@@ -5,7 +5,9 @@
 #include "create_entry_sum.h"
 #include "checkEntryCard.h"
 
-void createOperationsPage(uiTab *operationsTab);
+//extern uiWindow *wndAcc;
+
+void createOperationsPage(uiWindow *operationsTab);
 
 #endif
 
