@@ -134,7 +134,7 @@ uiControl *createMainWndTable(void)
 
     space = uiNewLabel("");
     uiGridAppend(grid, uiControl(space), 0, 0, 30, 100, 1, uiAlignCenter, 0, uiAlignCenter);
-    uiGridAppend(grid, uiControl(mainWndTable), 50, 30, 50, 90, 1, uiAlignFill, 0, uiAlignFill);
+    uiGridAppend(grid, uiControl(mainWndTable), 50, 30, 70, 90, 1, uiAlignFill, 0, uiAlignFill);
 
     return uiControl(hBox);
 }
@@ -149,6 +149,7 @@ int main()
 
 	memset(&options, 0, sizeof (uiInitOptions));
 	err = uiInit(&options);
+
 	if (err != NULL) {
 		uiFreeInitError(err);
 		return 1;
