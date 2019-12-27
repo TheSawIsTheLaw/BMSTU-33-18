@@ -28,19 +28,19 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
         switch (row)
         {
             case 0:
-                strcpy(buf, "\n\n\t      Oleneff Platinum\n\n");
+                strcpy(buf, "\n\n\t         Oleneff Platinum\n\n");
                 break;
             case 1:
-                strcpy(buf, "\n\n\t\tOleneff Black\n\n");
+                strcpy(buf, "\n\n\t\t   Oleneff Black\n\n");
                 break;
             case 2:
-                strcpy(buf, "\n\n\t\t    Visa Gold\n\n");
+                strcpy(buf, "\n\n\t\t       Visa Gold\n\n");
                 break;
             case 3:
-                strcpy(buf, "\n\n\tMaster Card Business\n\n");
+                strcpy(buf, "\n\n\t    Master Card Business\n\n");
                 break;
             case 4:
-                strcpy(buf, "\n\n\t\t  Oleneff Kids\n\n");
+                strcpy(buf, "\n\n\t\t     Oleneff Kids\n\n");
                 break;
         }
         
@@ -52,19 +52,19 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
         switch (row)
         {
             case 0:
-                strcpy(buf, "\n\n\t\t     37456,34 р.\n\n");
+                strcpy(buf, "\n\n\t\t      37456,34 р.\n\n");
                 break;
             case 1:
-                strcpy(buf, "\n\n\t\t     11400,79 р.\n\n");
+                strcpy(buf, "\n\n\t\t      11400,79 р.\n\n");
                 break;
             case 2:
-                strcpy(buf, "\n\n\t\t     14374,23 р.\n\n");
+                strcpy(buf, "\n\n\t\t      14374,23 р.\n\n");
                 break;
             case 3:
-                strcpy(buf, "\n\n\t\t      3987.67 р.\n\n");
+                strcpy(buf, "\n\n\t\t       3987.67 р.\n\n");
                 break;
             case 4:
-                strcpy(buf, "\n\n\t\t      7984.32 р.\n\n");
+                strcpy(buf, "\n\n\t\t       7984.32 р.\n\n");
                 break;
         }
 
@@ -130,11 +130,11 @@ uiControl *createMainWndTable(void)
 
     uiTableAppendTextColumn(mainWndTable, "\n\t\t\tКарта \t\t\t\n", 0, uiTableModelColumnNeverEditable, NULL);
     uiTableAppendTextColumn(mainWndTable, "\n\t\t\t Баланс          \t\t\n", 1, uiTableModelColumnNeverEditable, NULL);
-    uiTableAppendButtonColumn(mainWndTable, "\n\t\t\tК операциям  \t\n", 3, 1);
+    uiTableAppendButtonColumn(mainWndTable, "\n\t\t\t  К операциям \t\n", 3, 1);
 
     space = uiNewLabel("");
     uiGridAppend(grid, uiControl(space), 0, 0, 30, 100, 1, uiAlignCenter, 0, uiAlignCenter);
-    uiGridAppend(grid, uiControl(mainWndTable), 25, 30, 70, 85, 1, uiAlignFill, 0, uiAlignFill);
+    uiGridAppend(grid, uiControl(mainWndTable), 25, 30, 70, 79, 1, uiAlignFill, 0, uiAlignFill);
 
     return uiControl(hBox);
 }
