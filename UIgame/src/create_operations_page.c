@@ -3,6 +3,7 @@
 uiGroup *group;
 uiEntry *entryForm;
 uiBox *hbox, *vbox;
+uiWindow *operationWnd;
 
 int onClosing1(uiWindow *w, void *data)
 {
@@ -17,7 +18,7 @@ int onShouldQuit1(void *data)
     return 1;
 }
 
-void createOperationsPage(uiWindow *operationWnd)
+void createOperationsPage()
 {
     operationWnd = uiNewWindow("OleneffBank: Operations", 500, 500, 0);
     uiWindowSetMargined(operationWnd, 0);

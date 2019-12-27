@@ -7,7 +7,7 @@
 
 //extern uiWindow *wndAcc;
 
-void createOperationsPage(uiWindow *operationsTab);
+void createOperationsPage();
 
 #endif
 
