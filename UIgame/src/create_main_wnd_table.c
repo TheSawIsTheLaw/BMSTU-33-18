@@ -1,6 +1,5 @@
 #include "../include/create_main_wnd_table.h"
 
-static uiWindow *mainWnd;
 static uiTableModelHandler handler;
 static uiTableModel *model;
 
@@ -87,21 +86,6 @@ static void modelSetCellValue(uiTableModelHandler *handler, uiTableModel *model,
     }
 }
 
-
-static int onClosing(uiWindow *w, void *data)
-{
-	uiQuit();
-	return 1;
-}
-
-static int onShouldQuit(void *data)
-{
-	uiWindow *mainwin = uiWindow(data);
-
-	uiControlDestroy(uiControl(mainwin));
-	return 1;
-}
-
 uiControl *createMainWndTable(void)
 {
     uiBox *hBox;
@@ -134,39 +118,7 @@ uiControl *createMainWndTable(void)
 
     space = uiNewLabel("");
     uiGridAppend(grid, uiControl(space), 0, 0, 30, 100, 1, uiAlignCenter, 0, uiAlignCenter);
-    uiGridAppend(grid, uiControl(mainWndTable), 25, 30, 70, 79, 1, uiAlignFill, 0, uiAlignFill);
+    uiGridAppend(grid, uiControl(mainWndTable), 25, 30, 70, 77, 1, uiAlignFill, 0, uiAlignFill);
 
     return uiControl(hBox);
-}
-
-
-// Main пока оставил для тестов
-int main()
-{
-	uiInitOptions options;
-	const char *err;
-	uiTab *tab;
-
-	memset(&options, 0, sizeof (uiInitOptions));
-	err = uiInit(&options);
-
-	if (err != NULL) {
-		uiFreeInitError(err);
-		return 1;
-	}
-
-	mainWnd = uiNewWindow("libui Control Gallery", 1440, 1025, 1);
-	uiWindowOnClosing(mainWnd, onClosing, NULL);
-	uiOnShouldQuit(onShouldQuit, mainWnd);
-
-	tab = uiNewTab();
-	uiWindowSetChild(mainWnd, uiControl(tab));
-	uiWindowSetMargined(mainWnd, 1);
-
-    uiTabAppend(tab, "main window",  createMainWndTable());
-	uiTabSetMargined(tab, 0, 1);
-
-	uiControlShow(uiControl(mainWnd));
-	uiMain();
-	return 0;
 }
