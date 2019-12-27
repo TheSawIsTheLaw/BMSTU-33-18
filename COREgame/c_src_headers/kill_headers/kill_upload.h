@@ -7,4 +7,6 @@
 
 typedef int (*fprot)();
 
+fprot get_kill();
+
 #endif
