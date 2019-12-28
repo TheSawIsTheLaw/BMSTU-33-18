@@ -39,7 +39,7 @@ int tty(int argc, char **argv)
 
     if (!tty)
     {
-        tty = _("not a tty");
+        tty = ("not a tty");
         status = TTY_STDIN_NOTTY;
     }
 
