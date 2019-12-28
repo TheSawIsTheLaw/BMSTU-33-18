@@ -3,11 +3,14 @@
 
 #include <stdio.h>
 #include <getopt.h>
-
+#include <stdbool.h>
 #include <unistd.h>
+#include <errno.h>
 
 #define TTY_STDIN_NOTTY 1
 #define TTY_FAILURE     2
+#define EXIT_SUCCESS    0
+
 
 #define PROGRAM_NAME "tty"
 
@@ -17,8 +20,6 @@ static struct option const longopts[] =
 {
   {"silent", no_argument, NULL, 's'},
   {"quiet", no_argument, NULL, 's'},
-  {GETOPT_HELP_OPTION_DECL},
-  {GETOPT_VERSION_OPTION_DECL},
   {NULL, 0, NULL, 0}
 }
 
