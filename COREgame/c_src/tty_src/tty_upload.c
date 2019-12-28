@@ -15,7 +15,7 @@ fprot get_tty(void)
 
     dlerror();
     void *fptr;
-    ftpr = dlsym(tty_lib, TTYNAME);
+    fptr = dlsym(tty_lib, TTYNAME);
     if ((err = dlerror()) != NULL)
     {
         fputs(err, stderr);
