@@ -21,7 +21,7 @@ static struct option const longopts[] =
   {"silent", no_argument, NULL, 's'},
   {"quiet", no_argument, NULL, 's'},
   {NULL, 0, NULL, 0}
-}
+};
 
 static void usage();
 
