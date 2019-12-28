@@ -29,7 +29,7 @@ static int perm_related_errno(int err)
 
 int nice(char **program_argv, int *incr, int *value)
 {
-    int current_niceness;
+    int current_niceness = 0;
     if (!incr)
     {
         current_niceness = GETNICENESS();
