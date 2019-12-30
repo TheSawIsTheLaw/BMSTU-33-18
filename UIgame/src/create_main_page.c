@@ -1,7 +1,7 @@
 #include "../include/create_main_page.h"
+#include "../include/create_main_wnd_table.h"
 
 void createMainPage(uiTab *mainTab)
 {
-    uiBox *mainPage = uiNewVerticalBox();
-    uiTabAppend(mainTab, "Главная страница", uiControl(mainPage));
+    uiTabAppend(mainTab, "Главная страница", createMainWndTable());
 }

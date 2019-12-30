@@ -1,6 +1,6 @@
 CC = gcc
 CFILES = $(wildcard src/*.c)
-COMPILE_FLAGS = -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=c99 -O3 -Wno-unused-parameter -Wno-switch
+COMPILE_FLAGS = -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -g -std=c99 -O3 -Wno-unused-parameter -Wno-switch 
 LIBNAME = 
 LINKING_FLAGS = 
 
@@ -18,6 +18,9 @@ else
 	endif
 endif
 
+run: build
+	./uigame.exe
+
 lib:
 	git clone https://github.com/andlabs/libui libui
 	cd libui && meson setup build --buildtype=release --default-library=shared && ninja -C build
@@ -29,9 +32,6 @@ build: $(patsubst %.c,%.c.o,$(CFILES))
 
 %.c.o: %.c
 	$(CC) $(COMPILE_FLAGS) -MD -MQ $< -MF $<.d -o $<.o -c $<
-
-run: build
-	./uigame.exe
 
 clean:
 	rm src/*.o src/*.d *.out *.exe

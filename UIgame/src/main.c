@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "../include/ui.h"
 #include "../include/create_main_page.h"
+#include "../include/create_service_page.h"
+#include "../include/create_chat_page.h"
+#include "../include/create_account_page.h"
 
-#define WND_WIDTH 1440
-#define WND_HEIGHT 1025
+#define WND_WIDTH 1025
+#define WND_HEIGHT 725
 
 // Окна
 uiWindow *wndMain;
@@ -61,6 +65,10 @@ int main(void)
     mainTab = uiNewTab();
     uiBoxAppend(bxMain, uiControl(mainTab), 1);
     createMainPage(mainTab);
+    createServicePage(mainTab, wndMain);
+    createChatPage(mainTab);
+    createAccountPage(mainTab);
+
 
     uiControlShow(uiControl(wndMain));
     uiMain();
