@@ -3,5 +3,5 @@
 
 void createAccountPage(uiTab *mainTab)
 {
-    uiTabAppend(mainTab, "Информация о аккаунте", createAccTable());
+    uiTabAppend(mainTab, "Информация об аккаунте", createAccTable());
 }

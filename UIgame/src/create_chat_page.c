@@ -89,7 +89,7 @@ void createChatPage(uiTab *parentTab)
     uiBoxAppend(verBox, uiControl(chtBox), 1);
     uiBoxAppend(verBox, uiControl(conBox), 0);
 
-    uiButton *sndButton = uiNewButton("Send");
+    uiButton *sndButton = uiNewButton("Отправить");
     chtEntry = uiNewEntry();
 
     uiButtonOnClicked(sndButton, onSend, NULL);
@@ -98,8 +98,8 @@ void createChatPage(uiTab *parentTab)
 
     newBoxes(newGrid);
 
-    uiBoxAppend(conBox, uiControl(sndButton), 1);
     uiBoxAppend(conBox, uiControl(chtEntry), 1);
+    uiBoxAppend(conBox, uiControl(sndButton), 1);
     uiBoxAppend(chtBox, uiControl(newGrid), 1);
 
     uiTabAppend(parentTab, CHAT_TAB_NAME, uiControl(verBox));

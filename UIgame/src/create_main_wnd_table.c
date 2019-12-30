@@ -52,13 +52,13 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
         switch (row)
         {
             case 0:
-                strcpy(buf, "\n\n\t\t      37456,34 р.\n\n");
+                strcpy(buf, "\n\n\t\t      37456.34 р.\n\n");
                 break;
             case 1:
-                strcpy(buf, "\n\n\t\t      11400,79 р.\n\n");
+                strcpy(buf, "\n\n\t\t      11400.79 р.\n\n");
                 break;
             case 2:
-                strcpy(buf, "\n\n\t\t      14374,23 р.\n\n");
+                strcpy(buf, "\n\n\t\t      14374.23 р.\n\n");
                 break;
             case 3:
                 strcpy(buf, "\n\n\t\t       3987.67 р.\n\n");
@@ -102,7 +102,7 @@ static void modelSetCellValue(uiTableModelHandler *handler, uiTableModel *model,
             break;
     }
 
-    createOperationsPage();
+    createOperationsPage(balance);
 }
 
 uiControl *createMainWndTable(void)
