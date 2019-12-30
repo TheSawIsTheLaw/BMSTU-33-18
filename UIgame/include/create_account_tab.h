@@ -8,5 +8,6 @@
 #define CARDS_TOTAL 5
 #define COLS_TOTAL 2
 
+uiControl *createAccTable(void);
+
 #endif
- 

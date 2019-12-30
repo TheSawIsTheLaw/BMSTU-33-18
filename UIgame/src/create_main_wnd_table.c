@@ -73,7 +73,7 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
 
     if (col == 3)
     {
-        return uiNewTableValueString("\n\n|||\n\n");
+        return uiNewTableValueString("\n\nОперации\n\n");
     }
 
     return uiNewTableValueString(buf);
@@ -81,7 +81,28 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
 
 static void modelSetCellValue(uiTableModelHandler *handler, uiTableModel *model, int row, int col, const uiTableValue *val)
 {
-    createOperationsPage(NULL);
+    char balance[100];
+
+    switch (row)
+    {
+        case 0:
+            strcpy(balance, "37456.34");
+            break;
+        case 1:
+            strcpy(balance, "11400.79");
+            break;
+        case 2:
+            strcpy(balance, "14374.23");
+            break;
+        case 3:
+            strcpy(balance, "3987.67");
+            break;
+        case 4:
+            strcpy(balance, "7984.32");
+            break;
+    }
+
+    createOperationsPage();
 }
 
 uiControl *createMainWndTable(void)
@@ -91,6 +112,7 @@ uiControl *createMainWndTable(void)
     uiTableParams params;
     uiGrid *grid;
     uiLabel *space;
+    uiEntry *findEntry;
 
     hBox = uiNewHorizontalBox();
     grid = uiNewGrid();
@@ -115,7 +137,9 @@ uiControl *createMainWndTable(void)
     uiTableAppendButtonColumn(mainWndTable, "\n\t\t\t  К операциям \t\n", 3, 1);
 
     space = uiNewLabel("");
-    uiGridAppend(grid, uiControl(space), 0, 0, 30, 100, 1, uiAlignCenter, 0, uiAlignCenter);
+    findEntry = uiNewFindEntry();
+    uiGridAppend(grid, uiControl(findEntry), 22, 10, 40, 10, 1, uiAlignCenter, 0, uiAlignCenter);
+    uiGridAppend(grid, uiControl(space), 0, 5, 55, 13, 1, uiAlignCenter, 0, uiAlignCenter);
     uiGridAppend(grid, uiControl(mainWndTable), 8, 20, 70, 77, 1, uiAlignFill, 0, uiAlignFill);
 
     return uiControl(hBox);

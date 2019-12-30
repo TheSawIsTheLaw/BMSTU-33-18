@@ -27,19 +27,19 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
         switch (row)
         {
             case 0:
-                strcpy(buf, "\n\n\t         Oleneff Platinum\n\n");
+                strcpy(buf, "\n\n\t        Oleneff Platinum\n\n");
                 break;
             case 1:
-                strcpy(buf, "\n\n\t\t   Oleneff Black\n\n");
+                strcpy(buf, "\n\n\t\t Oleneff Black\n\n");
                 break;
             case 2:
-                strcpy(buf, "\n\n\t\t       Visa Gold\n\n");
+                strcpy(buf, "\n\n\t\t    Visa Gold\n\n");
                 break;
             case 3:
-                strcpy(buf, "\n\n\t    Master Card Business\n\n");
+                strcpy(buf, "\n\n\t  Master Card Business\n\n");
                 break;
             case 4:
-                strcpy(buf, "\n\n\t\t     Oleneff Kids\n\n");
+                strcpy(buf, "\n\n\t\t   Oleneff Kids\n\n");
                 break;
         }
 
@@ -51,19 +51,19 @@ static uiTableValue *modelCellValue(uiTableModelHandler *handler, uiTableModel *
         switch (row)
         {
             case 0:
-                strcpy(buf, "\n\n\t\t      37456,34 р.\n\n");
+                strcpy(buf, "\n\n\t\t 37456.34 р.\n\n");
                 break;
             case 1:
-                strcpy(buf, "\n\n\t\t      11400,79 р.\n\n");
+                strcpy(buf, "\n\n\t\t 11400.79 р.\n\n");
                 break;
             case 2:
-                strcpy(buf, "\n\n\t\t      14374,23 р.\n\n");
+                strcpy(buf, "\n\n\t\t 14374.23 р.\n\n");
                 break;
             case 3:
-                strcpy(buf, "\n\n\t\t       3987.67 р.\n\n");
+                strcpy(buf, "\n\n\t\t 3987.67 р.\n\n");
                 break;
             case 4:
-                strcpy(buf, "\n\n\t\t       7984.32 р.\n\n");
+                strcpy(buf, "\n\n\t\t 7984.32 р.\n\n");
                 break;
         }
 
@@ -79,7 +79,7 @@ uiControl *createAccTable(void)
     uiTable *accTable;
     uiTableParams params;
     uiGrid *grid;
-    uiLabel *space;
+    uiLabel *space, *achievements;
 
     hBox = uiNewHorizontalBox();
     grid = uiNewGrid();
@@ -98,13 +98,14 @@ uiControl *createAccTable(void)
     params.RowBackgroundColorModelColumn = 2;
     accTable = uiNewTable(&params);
 
-    uiTableAppendTextColumn(accTable, "\n\t\t\tКарта \t\t\t\n", 0, uiTableModelColumnNeverEditable, NULL);
-    uiTableAppendTextColumn(accTable, "\n\t\t\t Баланс          \t\t\n", 1, uiTableModelColumnNeverEditable, NULL);
+    uiTableAppendTextColumn(accTable, "\n\t\t Карта \t\t\n", 0, uiTableModelColumnNeverEditable, NULL);
+    uiTableAppendTextColumn(accTable, "\n\t\t Баланс\t\t\n", 1, uiTableModelColumnNeverEditable, NULL);
 
     space = uiNewLabel("");
-    uiGridAppend(grid, uiControl(space), 0, 0, 30, 100, 1, uiAlignCenter, 0, uiAlignCenter);
-    uiGridAppend(grid, uiControl(accTable), 25, 30, 70, 77, 1, uiAlignFill, 0, uiAlignFill);
+    achievements = uiNewLabel("\t\t\t\tДостижения:\n\n\t\t\t✔ Консоль mode!\n\n\t\t\t✔ Сын маминой подруги...\n\n\t\t\t✔ Купил сыну велосипед\n\n\t\t\t✔ Много денег!\n\n\t\t\t✔ Сделать uigame\n\n\n\n\t\t\t     Не разблокировано:\n\n\t\t\tX Сдать физику\n\n\t\t\tX Стать хорошим програмистом");
+    uiGridAppend(grid, uiControl(space), 0, 5, 55, 13, 1, uiAlignCenter, 0, uiAlignCenter);
+    uiGridAppend(grid, uiControl(achievements), 40, 30, 45, 40, 1, uiAlignCenter, 0, uiAlignCenter);
+    uiGridAppend(grid, uiControl(accTable), 5, 30, 40, 77, 1, uiAlignFill, 0, uiAlignFill);
 
     return uiControl(hBox);
 }
-

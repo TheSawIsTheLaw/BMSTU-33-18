@@ -5,6 +5,8 @@
 #include "../include/ui.h"
 #include "../include/create_main_page.h"
 #include "../include/create_service_page.h"
+#include "../include/create_chat_page.h"
+#include "../include/create_account_page.h"
 
 #define WND_WIDTH 1025
 #define WND_HEIGHT 725
@@ -64,6 +66,9 @@ int main(void)
     uiBoxAppend(bxMain, uiControl(mainTab), 1);
     createMainPage(mainTab);
     createServicePage(mainTab, wndMain);
+    createChatPage(mainTab);
+    createAccountPage(mainTab);
+
 
     uiControlShow(uiControl(wndMain));
     uiMain();
