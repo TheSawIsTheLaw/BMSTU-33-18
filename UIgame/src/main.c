@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../include/ui.h"
 #include "../include/create_main_page.h"
+#include "../include/create_operations_page.h"
 
 #define WND_WIDTH 1440
 #define WND_HEIGHT 1025
@@ -12,6 +13,8 @@ uiWindow *wndMain;
 
 // Tab
 uiTab *mainTab;
+
+uiButton *getButton;
 
 // Entry
 uiEntry *entFindMain;
@@ -32,6 +35,11 @@ static int onShouldQuit(void *data)
 {
     uiControlDestroy(uiControl(wndMain));
     return EXIT_FAILURE;
+}
+
+void getButtob()
+{
+    createOperationsPage("12345");
 }
 
 int main(void)
@@ -61,6 +69,10 @@ int main(void)
     mainTab = uiNewTab();
     uiBoxAppend(bxMain, uiControl(mainTab), 1);
     createMainPage(mainTab);
+    
+    getButton = uiNewButton("button");
+    uiButtonOnClicked(getButton, getButtob, getButton);
+    uiBoxAppend(bxMain, uiControl(getButton), 0);
 
     uiControlShow(uiControl(wndMain));
     uiMain();
