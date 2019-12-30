@@ -5,7 +5,7 @@ uiEntry *entry_card_num;
 uiEntry *create_entry_cardnum()
 {
     entry_card_num = uiNewEntry();
-    uiEntrySetText(entry_card_num, "Номер карты");
+    uiEntrySetText(entry_card_num, "Введите номер карты:");
 
-    return entryCardNum;
+    return entry_card_num;
 }
