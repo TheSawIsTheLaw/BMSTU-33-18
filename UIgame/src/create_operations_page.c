@@ -2,29 +2,46 @@
 
 uiGroup *group;
 uiEntry *entrySum, *entryCardNum, *entryTelNum;
-uiButton *buttonSend;
+uiButton *send_button;
 uiBox *hbox, *vbox;
 uiWindow *operationWnd;
 uiLabel *labelExp;
 
+char curBalanse[50] = { 0 };
+
 int onClosing(uiWindow *w, void *data) {
     uiControlDestroy(uiControl(w));
-    return 0;
+    return EXIT_ONE;
 }
 
 // Вынужденное закрытие окна
 int onShouldQuit(void *data) {
-    uiControlDestroy(uiControl(data));
-    return 1;
+    uiControlDestroy(uiControl(operationWnd));
+    return EXIT_TWO;
 }
 
-void createOperationsPage(char *const balanse) {
+// Переправление в проверяющую функцию
+void getInfo()
+{
+    int check = 0;
+
+    check = check_entrys(operationWnd, uiEntryText(entrySum), uiEntryText(entryCardNum), curBalanse);
+    if (!check)
+    {
+        onClosing(operationWnd, operationWnd);
+    }
+}
+
+void createOperationsPage(char *const balanse) 
+{
     // настройки окна
     operationWnd = uiNewWindow("OleneffBank: Операции с картами", 500, 500, 0);
     uiWindowSetMargined(operationWnd, 0);
     uiWindowOnClosing(operationWnd, onClosing, NULL);
     uiOnShouldQuit(onShouldQuit, operationWnd);
     uiControlShow(uiControl(operationWnd));
+
+    strcpy(curBalanse, balanse);
 
     // создание группы
     group = uiNewGroup("");
@@ -43,8 +60,7 @@ void createOperationsPage(char *const balanse) {
     entrySum = create_entry_sum();
     entryCardNum = create_entry_cardnum();
     entryTelNum = create_entry_telnum();
-    buttonSend =
-        create_button_send(operationWnd, entrySum, entryCardNum, balanse);
+    send_button = create_button_send();
 
     // создаем бокс для хранения виджитов
     vbox = uiNewVerticalBox();
@@ -55,7 +71,8 @@ void createOperationsPage(char *const balanse) {
     uiBoxAppend(vbox, uiControl(entryTelNum), 0);
     uiBoxAppend(vbox, uiControl(entrySum), 0);
     uiBoxAppend(vbox, uiControl(entryCardNum), 0);
-    uiBoxAppend(vbox, uiControl(buttonSend), 0);
+    uiBoxAppend(vbox, uiControl(send_button), 0);
+    uiButtonOnClicked(send_button, getInfo, send_button);
 
     // добавляем бокс в группу
     uiGroupSetChild(group, uiControl(vbox));

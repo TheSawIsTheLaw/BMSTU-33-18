@@ -15,7 +15,10 @@
 #define CARD_ERROR 2
 #define OK 0
 
-uiButton *create_button_send(uiWindow *wnd, uiEntry *entry_sum,
-                             uiEntry *entry_cardnum, char *amount);
+uiButton *send_button;
+
+uiButton *create_button_send();
+
+int check_entrys(uiWindow *operationWnd, void *entrySum, void *entryCardNum, char *curBalanse);
 
 #endif

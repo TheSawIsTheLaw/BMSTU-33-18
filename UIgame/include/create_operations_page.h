@@ -11,6 +11,9 @@
 #include "create_entry_telnum.h"
 #include "create_button_send.h"
 
+#define EXIT_ONE 0
+#define EXIT_TWO 1
+
 //extern uiWindow *wndAcc;
 
 void createOperationsPage(char *const balanse);
