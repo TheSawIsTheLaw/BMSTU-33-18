@@ -1,48 +1,82 @@
 #include "../include/create_operations_page.h"
 
 uiGroup *group;
-uiEntry *entryForm;
+uiEntry *entrySum, *entryCardNum, *entryTelNum;
+uiButton *send_button;
 uiBox *hbox, *vbox;
 uiWindow *operationWnd;
+uiLabel *labelExp;
 
-int onClosing1(uiWindow *w, void *data)
-{
+char curBalanсe[50] = { 0 };
+
+int onClosing(uiWindow *w, void *data) {
     uiControlDestroy(uiControl(w));
-    return 0;
+    return EXIT_ONE;
 }
 
 // Вынужденное закрытие окна
-int onShouldQuit1(void *data)
-{
-    uiControlDestroy(uiControl(data));
-    return 1;
+int onShouldQuit(void *data) {
+    uiControlDestroy(uiControl(operationWnd));
+    return EXIT_TWO;
 }
 
-void createOperationsPage()
+// Переправление в проверяющую функцию
+void getInfo()
 {
+    int check = 0;
+
+    check = check_entrys(operationWnd, uiEntryText(entrySum), uiEntryText(entryCardNum), curBalanсe);
+    if (!check)
+    {
+        onClosing(operationWnd, operationWnd);
+    }
+}
+
+void createOperationsPage(char *const balanсe) 
+{
+    // настройки окна
     operationWnd = uiNewWindow("OleneffBank: Операции с картами", 500, 500, 0);
     uiWindowSetMargined(operationWnd, 0);
-    uiWindowOnClosing(operationWnd, onClosing1, NULL);
-    uiOnShouldQuit(onShouldQuit1, operationWnd);
+    uiWindowOnClosing(operationWnd, onClosing, NULL);
+    uiOnShouldQuit(onShouldQuit, operationWnd);
     uiControlShow(uiControl(operationWnd));
 
-    group = uiNewGroup("");
-	uiGroupSetMargined(group, 20);
+    strcpy(curBalanсe, balanсe);
 
+    // создание группы
+    group = uiNewGroup("");
+    uiGroupSetMargined(group, 20);
+
+    // создаем бокс для хранении групы
     hbox = uiNewHorizontalBox();
-	uiBoxSetPadded(hbox, 1);
+    uiBoxSetPadded(hbox, 1);
     uiWindowSetChild(operationWnd, uiControl(hbox));
     uiBoxAppend(hbox, uiControl(group), 1);
 
-    entryForm = create_entry_sum();
-    uiGroupSetChild(group, uiControl(entryForm));
+    // создание label
+    labelExp = create_label_MExpencces();
 
+    // создание entry
+    entrySum = create_entry_sum();
+    entryCardNum = create_entry_cardnum();
+    entryTelNum = create_entry_telnum();
+    send_button = create_button_send();
+
+    // создаем бокс для хранения виджитов
     vbox = uiNewVerticalBox();
-	uiBoxSetPadded(vbox, 1);
-	uiGroupSetChild(group, uiControl(vbox));
+    uiBoxSetPadded(vbox, 1);
 
-    uiBoxAppend(vbox, uiControl(entryForm), 0);
+    // добавляем виджеты в бокс
+    uiBoxAppend(vbox, uiControl(labelExp), 0);
+    uiBoxAppend(vbox, uiControl(entryTelNum), 0);
+    uiBoxAppend(vbox, uiControl(entrySum), 0);
+    uiBoxAppend(vbox, uiControl(entryCardNum), 0);
+    uiBoxAppend(vbox, uiControl(send_button), 0);
+    uiButtonOnClicked(send_button, getInfo, send_button);
 
+    // добавляем бокс в группу
+    uiGroupSetChild(group, uiControl(vbox));
+
+    // отображаем бокс с группой
     uiControl(hbox);
 }
-
