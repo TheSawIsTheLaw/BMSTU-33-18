@@ -40,7 +40,8 @@ uiButton *create_button_send(uiWindow *wnd, uiEntry *entry_sum,
     entrys[2] = amount;
     entrys[3] = wnd;
 
-    printf("1->%s 2->%s 3->%s\n", (char *)entrys[0], (char *)entrys[1], (char *)entrys[2]);
+    printf("1->%s 2->%s 3->%s\n", (char *)entrys[0], (char *)entrys[1],
+           (char *)entrys[2]);
 
     uiButtonOnClicked(send_button, check_entrys, entrys);
 
