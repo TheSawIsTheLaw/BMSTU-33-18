@@ -16,7 +16,7 @@
 
 //extern uiWindow *wndAcc;
 
-void createOperationsPage(char *const balanсe);
+void createOperationsPage(char *const balance);
 
 #endif
 
