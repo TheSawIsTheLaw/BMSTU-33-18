@@ -2,7 +2,7 @@
 
 int operations_rc = -1;
 
-int check_entrys(uiWindow *operationWnd, void *entrySum, void *entryCardNum, char *curBalanсe) 
+int check_entrys(uiWindow *operationWnd, void *entrySum, void *entryCardNum, char *curBalance) 
 {
     if (check_entry_sum(entrySum) == NO) {
         uiMsgBoxError(operationWnd, "Ошибка суммы.",
@@ -11,7 +11,7 @@ int check_entrys(uiWindow *operationWnd, void *entrySum, void *entryCardNum, cha
         return NO;
     }
 
-    if (enoughMoney(curBalanсe, (char *)entrySum) == EXIT_FAILURE) {
+    if (enoughMoney(curBalance, (char *)entrySum) == EXIT_FAILURE) {
         uiMsgBoxError(operationWnd, "Ошибка баланса.",
                       "Баланс слишком мал для перевода.");
         operations_rc = SUM_ERROR;
