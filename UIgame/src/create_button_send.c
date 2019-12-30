@@ -11,6 +11,13 @@ int check_entrys(uiWindow *operationWnd, void *entrySum, void *entryCardNum, cha
         return NO;
     }
 
+    if (enoughMoney(curBalanse, (char *)entrySum) == EXIT_FAILURE) {
+        uiMsgBoxError(operationWnd, "Ошибка баланса.",
+                      "Баланс слишком мал для перевода.");
+        operations_rc = SUM_ERROR;
+        return NO;
+    }
+
     if (checkEntryCard(entryCardNum) == NO) {
         uiMsgBoxError(operationWnd, "Ошибка карты.",
                       "Ошибка при вводе карты, проверьте ввод.");

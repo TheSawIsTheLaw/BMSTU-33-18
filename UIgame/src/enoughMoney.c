@@ -1,4 +1,4 @@
-#include "enoughMoney.h"
+#include "../include/enoughMoney.h"
 
 /*!
  * @brief enough_money(char *str1, char* str2) - ф-ия проверки баланса при переводе

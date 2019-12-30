@@ -5,8 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/checkEntryCard.h"
-#include "../include/checkEntrySum.h"
+#include "checkEntryCard.h"
+#include "checkEntrySum.h"
+#include "enoughMoney.h"
+
 
 #define YES 0
 #define NO 1
