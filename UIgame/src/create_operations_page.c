@@ -7,7 +7,7 @@ uiBox *hbox, *vbox;
 uiWindow *operationWnd;
 uiLabel *labelExp;
 
-char curBalanсe[50] = { 0 };
+char curBalance[50] = { 0 };
 
 int onClosing(uiWindow *w, void *data) {
     uiControlDestroy(uiControl(w));
@@ -25,14 +25,14 @@ void getInfo()
 {
     int check = 0;
 
-    check = check_entrys(operationWnd, uiEntryText(entrySum), uiEntryText(entryCardNum), curBalanсe);
+    check = check_entrys(operationWnd, uiEntryText(entrySum), uiEntryText(entryCardNum), curBalance);
     if (!check)
     {
         onClosing(operationWnd, operationWnd);
     }
 }
 
-void createOperationsPage(char *const balanсe) 
+void createOperationsPage(char *const balance) 
 {
     // настройки окна
     operationWnd = uiNewWindow("OleneffBank: Операции с картами", 500, 500, 0);
@@ -41,7 +41,7 @@ void createOperationsPage(char *const balanсe)
     uiOnShouldQuit(onShouldQuit, operationWnd);
     uiControlShow(uiControl(operationWnd));
 
-    strcpy(curBalanсe, balanсe);
+    strcpy(curBalance, balance);
 
     // создание группы
     group = uiNewGroup("");
