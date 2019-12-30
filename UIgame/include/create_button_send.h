@@ -21,6 +21,6 @@ uiButton *send_button;
 
 uiButton *create_button_send();
 
-int check_entrys(uiWindow *operationWnd, void *entrySum, void *entryCardNum, char *curBalanse);
+int check_entrys(uiWindow *operationWnd, void *entrySum, void *entryCardNum, char *curBalanсe);
 
 #endif
