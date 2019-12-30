@@ -26,6 +26,7 @@ int checkEntryCard(const char *string)
         count++;
         string++;
     }
+
     if (count == 13 || count == 16 || count == 19)
     {
         return 0;

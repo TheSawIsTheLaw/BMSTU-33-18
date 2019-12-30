@@ -2,24 +2,37 @@
 
 uiGroup *group;
 uiEntry *entrySum, *entryCardNum, *entryTelNum;
+uiButton *send_button;
 uiBox *hbox, *vbox;
 uiWindow *operationWnd;
 uiLabel *labelExp;
 
-int onClosing(uiWindow *w, void *data)
-{
+char curBalanse[50] = { 0 };
+
+int onClosing(uiWindow *w, void *data) {
     uiControlDestroy(uiControl(w));
-    return 0;
+    return EXIT_ONE;
 }
 
 // Вынужденное закрытие окна
-int onShouldQuit(void *data)
-{
-    uiControlDestroy(uiControl(data));
-    return 1;
+int onShouldQuit(void *data) {
+    uiControlDestroy(uiControl(operationWnd));
+    return EXIT_TWO;
 }
 
-void createOperationsPage(char *const balanse)
+// Переправление в проверяющую функцию
+void getInfo()
+{
+    int check = 0;
+
+    check = check_entrys(operationWnd, uiEntryText(entrySum), uiEntryText(entryCardNum), curBalanse);
+    if (!check)
+    {
+        onClosing(operationWnd, operationWnd);
+    }
+}
+
+void createOperationsPage(char *const balanse) 
 {
     // настройки окна
     operationWnd = uiNewWindow("OleneffBank: Операции с картами", 500, 500, 0);
@@ -28,13 +41,15 @@ void createOperationsPage(char *const balanse)
     uiOnShouldQuit(onShouldQuit, operationWnd);
     uiControlShow(uiControl(operationWnd));
 
+    strcpy(curBalanse, balanse);
+
     // создание группы
     group = uiNewGroup("");
-	uiGroupSetMargined(group, 20);
+    uiGroupSetMargined(group, 20);
 
     // создаем бокс для хранении групы
     hbox = uiNewHorizontalBox();
-	uiBoxSetPadded(hbox, 1);
+    uiBoxSetPadded(hbox, 1);
     uiWindowSetChild(operationWnd, uiControl(hbox));
     uiBoxAppend(hbox, uiControl(group), 1);
 
@@ -45,21 +60,23 @@ void createOperationsPage(char *const balanse)
     entrySum = create_entry_sum();
     entryCardNum = create_entry_cardnum();
     entryTelNum = create_entry_telnum();
+    send_button = create_button_send();
 
-    // создаем бокс для хранения виджитов 
+    // создаем бокс для хранения виджитов
     vbox = uiNewVerticalBox();
-	uiBoxSetPadded(vbox, 1);
+    uiBoxSetPadded(vbox, 1);
 
     // добавляем виджеты в бокс
     uiBoxAppend(vbox, uiControl(labelExp), 0);
     uiBoxAppend(vbox, uiControl(entryTelNum), 0);
     uiBoxAppend(vbox, uiControl(entrySum), 0);
     uiBoxAppend(vbox, uiControl(entryCardNum), 0);
+    uiBoxAppend(vbox, uiControl(send_button), 0);
+    uiButtonOnClicked(send_button, getInfo, send_button);
 
     // добавляем бокс в группу
-	uiGroupSetChild(group, uiControl(vbox));
+    uiGroupSetChild(group, uiControl(vbox));
 
     // отображаем бокс с группой
     uiControl(hbox);
 }
-
