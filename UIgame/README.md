@@ -2,6 +2,9 @@
 
 ```
 1. make lib
-2. make build
-3. make run
+2. make run
 ```
+
+# Распределение баллов
+
+https://bit.ly/2SEj21V

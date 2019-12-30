@@ -18,6 +18,9 @@ else
 	endif
 endif
 
+run: build
+	./uigame.exe
+
 lib:
 	git clone https://github.com/andlabs/libui libui
 	cd libui && meson setup build --buildtype=release --default-library=shared && ninja -C build
@@ -29,9 +32,6 @@ build: $(patsubst %.c,%.c.o,$(CFILES))
 
 %.c.o: %.c
 	$(CC) $(COMPILE_FLAGS) -MD -MQ $< -MF $<.d -o $<.o -c $<
-
-run: build
-	./uigame.exe
 
 clean:
 	rm src/*.o src/*.d *.out *.exe
