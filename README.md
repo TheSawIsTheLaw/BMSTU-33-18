@@ -8,6 +8,8 @@
   * [IMDBgame](#rec)
   * [ARRgame](#arr)
   * [MATRIXgame](#matrix)
+  * [COREgame](#core)
+  * [UIgame](#ui)
 * [По организационным и остальным вопросам](#org)
 * [Leaderboard](https://docs.google.com/spreadsheets/d/1r5wZ7WW5BFAgROaxf1SvH3cbg8OA8J4fSu6nSBqjfXE/edit?usp=sharing)
 * [ARRgame board](https://docs.google.com/spreadsheets/d/1NsSevvCq2d52TNeedHo6OGtyP-unvljMqknLzyuJvmI/edit#gid=0)
@@ -17,33 +19,34 @@
 👨‍💻 *TeamLead* проекта - **Кононенко Сергей** 
 * GitLab: @ks18u889
 * Telegram: @hackfeed
-* VK: @hackfeed
 
 ### STRGame <a name="str"></a>
 
 👨‍💻 *TeamLead* проекта - **Романов Алексей** 
 * GitLab: @rav18u816
 * Telegram: @mrrvz1
-* VK: @id447778419
 
 ### IMDBgame <a name="rec"></a>
 
 👨‍💻 *TeamLead* проекта - **Нитенко Михаил**
 * GitLab: @nmyu18u413
+* Telegram: @Justarone
+
+👨‍💻 *Второй TeamLead* проекта - **Пересторонин Павел**
+* GitLab: @ppg18u800 
 * Telegram: @VASYA_VAN
-* VK: @ya_vrzh
-* 
+
 ### ARRgame <a name="arr"></a>
 
 👨‍💻 *TeamLead* проекта - **Якуба Дмитрий**
 * GitLab: @yadv18u603
 * Telegram: @xGULZAx
-* VK: А вдруг Антон Александрович увидит и убьёт
 
 👨‍💻 *Architect* проекта - **Кононенко Сергей** 
 * GitLab: @ks18u889
 * Telegram: @hackfeed
-* 
+
+
 ### MATRIXgame <a name="matrix"></a>
 
 👨‍💻 *TeamLead* проекта - **Кривозубов Влад**
@@ -58,21 +61,33 @@
 * Gitlab: @ks18u889
 * Telegram: @hackfeed
 
-## COREgame <a name="core"></a>
 
-👨<200d>💻 *TeamLead* проекта - **Топорков Павел**
+### COREgame <a name="core"></a>
+
+👨‍💻 *TeamLead* проекта - **Топорков Павел**
 * Gitlab: @tpa18u531
 * Telegram: @ptrk09
 
-👨<200d>💻 *Arhcitect* проекта - **Кривозубов Влад**
-* Gitlab: @@kvo18u333
+👨‍💻 *Arhcitect* проекта - **Кривозубов Влад**
+* Gitlab: @kvo18u333
 * Telegram: @dliosh
 
-👨<200d>💻 *DevOps* проекта - **Кононенко Сергей**
+👨‍💻 *DevOps* проекта - **Кононенко Сергей**
 * Gitlab: @ks18u889
 * Telegram: @hackfeed
 
-## 💡 По организационным и остальным вопросам <a name="org"></a>
+
+### UIgame <a name="ui"></a>
+
+👨‍💻 *TeamLead* проекта - **Саркисов Артём**
+* Gitlab: @sas18u476
+* Telegram: @temasarkisov
+
+👨‍💻 *Arhcitect* проекта - **Романов Алексей**
+* Gitlab: @rav18u816
+* Telegram: @mRRvz
+
+### 💡 По организационным и остальным вопросам <a name="org"></a>
 
 🦌 *TeamLead* группы - **Оленев Антон Александрович**
 * GitLab: @aolenev
