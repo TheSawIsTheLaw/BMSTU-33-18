@@ -1,6 +1,6 @@
 CC = gcc
 CFILES = $(wildcard src/*.c)
-COMPILE_FLAGS = -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -g -std=c99 -O3 -Wno-unused-parameter -Wno-switch 
+COMPILE_FLAGS = -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -g -Wall -Winvalid-pch -Wextra -Wpedantic -g -std=c99 -O3 -Wno-unused-parameter -Wno-switch 
 LIBNAME = 
 LINKING_FLAGS = 
 

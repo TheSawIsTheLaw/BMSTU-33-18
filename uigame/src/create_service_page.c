@@ -61,7 +61,6 @@ void createServicePage(uiTab *servTab, uiWindow *parent)
     uiBox *servPage = uiNewHorizontalBox();
     uiBoxSetPadded(servPage, 1);
     uiTabAppend(servTab, "Сервисы", uiControl(servPage));
-    uiTabSetMargined(servTab, 5, 1);
 
     uiGrid *grid = uiNewGrid();
     uiGridSetPadded(grid, 1);
