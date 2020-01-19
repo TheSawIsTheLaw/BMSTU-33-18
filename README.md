@@ -8,6 +8,8 @@
   * [IMDBgame](#rec)
   * [ARRgame](#arr)
   * [MATRIXgame](#matrix)
+  * [TEEN48game](#teen)
+  * [TITANICgame](#tit)
   * [COREgame](#core)
   * [UIgame](#ui)
 * [По организационным и остальным вопросам](#org)
@@ -61,6 +63,32 @@
 * Gitlab: @ks18u889
 * Telegram: @hackfeed
 
+
+### TEEN48game <a name="teen"></a>
+
+👨‍💻 *TeamLead* проекта - **Пересторонин Павел**
+* Gitlab: @ppg18u800
+* Telegram: @Justarone
+ 
+👨‍💻 *Arhcitect* проекта - **Топорков Павел**
+* Gitlab: @tpa18u531
+* Telegram: @ptrk09
+
+👨‍💻 *DevOps* проекта - **Кононенко Сергей**
+* Gitlab: @ks18u889
+* Telegram: @hackfeed
+
+
+### TITANICgame <a name="tit"></a>
+
+👨‍💻 *TeamLead* проекта - **Прохорова Любовь**
+ 
+👨‍💻 *TeamLead* проекта - **Наместник Анастасия**
+
+👨‍💻 *TeamLead* проекта - **Аксенова Надежда**
+ 
+👨‍💻 *TeamLead* проекта - **Сукочева Элис**
+ 
 
 ### COREgame <a name="core"></a>
 
